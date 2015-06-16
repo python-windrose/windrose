@@ -127,6 +127,8 @@ and to have a graphical representation of this result :
     gca().set_xticklabels(xlabels)
     draw()
 
+![histo_WD](screenshots/histo_WD.png)
+
 In addition of all the standard pyplot parameters, you can pass special parameters to control the windrose production. For the stacked histogram windrose, calling help(ax.bar) will give :
 `bar(self, dir, var, **kwargs)` method of `windrose.WindroseAxes` instance Plot a windrose in bar mode. For each var bins and for each sector, a colored bar will be draw on the axes.
  

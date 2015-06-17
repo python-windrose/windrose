@@ -4,9 +4,10 @@
 import matplotlib
 import matplotlib.cm as cm
 import numpy as np
-from matplotlib.patches import Rectangle, Polygon
-from matplotlib.ticker import ScalarFormatter, AutoLocator
-from matplotlib.text import Text, FontProperties
+#import matplotlib as mpl
+#from matplotlib.patches import Rectangle, Polygon
+#from matplotlib.ticker import ScalarFormatter, AutoLocator
+#from matplotlib.text import Text, FontProperties
 from matplotlib.projections.polar import PolarAxes
 from numpy.lib.twodim_base import histogram2d
 import matplotlib.pyplot as plt
@@ -66,7 +67,7 @@ class WindroseAxes(PolarAxes):
         Set the radii labels angle
         """
 
-        _ = kwargs.pop('labels', None)
+        kwargs.pop('labels', None)
         angle = kwargs.pop('angle', None)
         if angle is None:
             angle = self.radii_angle
@@ -74,7 +75,7 @@ class WindroseAxes(PolarAxes):
         radii = np.linspace(0.1, self.get_rmax(), 6)
         radii_labels = [ "%.1f" %r for r in radii ]
         radii_labels[0] = "" #Removing label 0
-        _ = self.set_rgrids(radii=radii, labels=radii_labels,
+        self.set_rgrids(radii=radii, labels=radii_labels,
                                angle=self.radii_angle, **kwargs)
 
 
@@ -128,7 +129,7 @@ class WindroseAxes(PolarAxes):
                     color = p.get_color()
                 else:
                     raise AttributeError("Can't handle patches")
-                handles.append(Rectangle((0, 0), 0.2, 0.2,
+                handles.append(matplotlib.patches.Rectangle((0, 0), 0.2, 0.2,
                     facecolor=color, edgecolor='black'))
             return handles
 
@@ -138,8 +139,8 @@ class WindroseAxes(PolarAxes):
                       for i in range(len(labels)-1)]
             return labels
 
-        _ = kwargs.pop('labels', None)
-        _ = kwargs.pop('handles', None)
+        kwargs.pop('labels', None)
+        kwargs.pop('handles', None)
         handles = get_handles()
         labels = get_labels()
         self.legend_ = matplotlib.legend.Legend(self, handles, labels, loc, **kwargs)
@@ -151,7 +152,7 @@ class WindroseAxes(PolarAxes):
         Internal method used by all plotting commands
         """
         #self.cla()
-        _ = kwargs.pop('zorder', None)
+        kwargs.pop('zorder', None)
 
         #Init of the bins array if not set
         bins = kwargs.pop('bins', None)
@@ -279,8 +280,8 @@ class WindroseAxes(PolarAxes):
 
         bins, nbins, nsector, colors, angles, kwargs = self._init_plot(dir, var,
                                                                        **kwargs)
-        _ = kwargs.pop('facecolor', None)
-        _ = kwargs.pop('edgecolor', None)
+        kwargs.pop('facecolor', None)
+        kwargs.pop('edgecolor', None)
         
         #closing lines
         angles = np.hstack((angles, angles[-1]-2*np.pi/nsector))
@@ -331,7 +332,7 @@ class WindroseAxes(PolarAxes):
 
         bins, nbins, nsector, colors, angles, kwargs = self._init_plot(dir, var,
                                                                        **kwargs)
-        _ = kwargs.pop('facecolor', None)
+        kwargs.pop('facecolor', None)
         edgecolor = kwargs.pop('edgecolor', None)
         if edgecolor is not None:
             if not isinstance(edgecolor, str):
@@ -349,7 +350,7 @@ class WindroseAxes(PolarAxes):
                     offset += self._info['table'][i-1, j]
                 val = self._info['table'][i, j]
                 zorder = ZBASE + nbins - i
-                patch = Rectangle((angles[j]-opening/2, offset), opening, val,
+                patch = matplotlib.patches.Rectangle((angles[j]-opening/2, offset), opening, val,
                     facecolor=colors[i], edgecolor=edgecolor, zorder=zorder,
                     **kwargs)
                 self.add_patch(patch)
@@ -389,7 +390,7 @@ class WindroseAxes(PolarAxes):
 
         bins, nbins, nsector, colors, angles, kwargs = self._init_plot(dir, var,
                                                                        **kwargs)
-        _ = kwargs.pop('facecolor', None)
+        kwargs.pop('facecolor', None)
         edgecolor = kwargs.pop('edgecolor', None)
         if edgecolor is not None:
             if not isinstance(edgecolor, str):
@@ -403,7 +404,7 @@ class WindroseAxes(PolarAxes):
                     offset += self._info['table'][i-1, j]
                 val = self._info['table'][i, j]
                 zorder = ZBASE + nbins - i
-                patch = Rectangle((angles[j]-opening[i]/2, offset), opening[i],
+                patch = matplotlib.patches.Rectangle((angles[j]-opening[i]/2, offset), opening[i],
                     val, facecolor=colors[i], edgecolor=edgecolor,
                     zorder=zorder, **kwargs)
                 self.add_patch(patch)

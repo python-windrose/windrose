@@ -446,8 +446,8 @@ def histogram(direction, var, bins, nsector, normed=False, blowto=False):
     var_bins.append(np.inf)
 
     if blowto:
-        dir = dir + 180.
-        dir[dir>=360.] = dir[dir>=360.] - 360
+        direction = direction + 180.
+        direction[direction>=360.] = direction[direction>=360.] - 360
 
     table = histogram2d(x=var, y=direction, bins=[var_bins, dir_bins],
                           normed=False)[0]

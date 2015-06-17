@@ -1,11 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-__version__ = '1.4'
-__author__ = 'Lionel Roubeyrie'
-__mail__ = 'lionel.roubeyrie@gmail.com'
-__license__ = 'CeCILL-B'
-
 import matplotlib
 import matplotlib.cm as cm
 import numpy as np

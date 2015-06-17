@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from windrose import WindroseAxes
 from matplotlib import pyplot as plt
 import matplotlib.cm as cm
@@ -5,8 +8,9 @@ from numpy.random import random
 from numpy import arange
 
 #Create wind speed and direction variables
-ws = random(500)*6
-wd = random(500)*360
+N = 500
+ws = random(N)*6
+wd = random(N)*360
 
 def new_axes():
     fig = plt.figure(figsize=(8, 8), dpi=80, facecolor='w', edgecolor='w')

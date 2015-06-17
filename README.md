@@ -25,8 +25,14 @@ Requirements:
  - numpy http://www.numpy.org/
  - and naturally python https://www.python.org/ :-P
 
-Example :
----------
+Notebook example :
+------------------
+An [IPython (Jupyter)](http://ipython.org/) notebook showing this package usage is available at:
+
+ - http://nbviewer.ipython.org/github/scls19fr/windrose/blob/master/windrose_sample.ipynb
+
+Script example :
+----------------
 
 Expecting the `windrose.py` file and all the necessary modules are in the `PYTHONPATH`, this example use randoms values for wind speed and direction(ws and wd variables). In situation, these variables are loaded with reals values (1-D array), from a database or directly from a text file (see the "load" facility from the matplotlib.pylab interface for that).
 

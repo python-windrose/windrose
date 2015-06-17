@@ -20,8 +20,9 @@ def set_legend(ax):
 
 def test_windrose():
     #Create wind speed and direction variables
-    ws = random(500)*6
-    wd = random(500)*360
+    N = 500
+    ws = random(N)*6
+    wd = random(N)*360
 
     #windrose like a stacked histogram with normed (displayed in percent) results
     ax = new_axes()

@@ -123,7 +123,7 @@ So, to know the frequency of each wind direction, for all wind speeds, do:
 
 and to have a graphical representation of this result :
 
-    dir = ax._info['dir']
+    direction = ax._info['dir']
     wd_freq = np.sum(table, axis=0)
     plt.bar(arange(16), wd_freq, align='center')
     xlabels = ('N','','N-E','','E','','S-E','','S','','S-O','','O','','N-O','')
@@ -136,11 +136,11 @@ and to have a graphical representation of this result :
 ![histo_WD](screenshots/histo_WD.png)
 
 In addition of all the standard pyplot parameters, you can pass special parameters to control the windrose production. For the stacked histogram windrose, calling help(ax.bar) will give :
-`bar(self, dir, var, **kwargs)` method of `windrose.WindroseAxes` instance Plot a windrose in bar mode. For each var bins and for each sector, a colored bar will be draw on the axes.
+`bar(self, direction, var, **kwargs)` method of `windrose.WindroseAxes` instance Plot a windrose in bar mode. For each var bins and for each sector, a colored bar will be draw on the axes.
  
 
 Mandatory:
- - `dir` : 1D array - directions the wind blows from, North centred
+ - `direction` : 1D array - directions the wind blows from, North centred
  - `var` : 1D array - values of the variable to compute. Typically the wind speeds
 
 Optional:

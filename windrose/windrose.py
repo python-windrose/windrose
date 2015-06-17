@@ -149,7 +149,7 @@ class WindroseAxes(PolarAxes):
         return self.legend_
 
 
-    def _init_plot(self, dir, var, **kwargs):
+    def _init_plot(self, direction, var, **kwargs):
         """
         Internal method used by all plotting commands
         """
@@ -191,12 +191,12 @@ class WindroseAxes(PolarAxes):
         blowto = kwargs.pop('blowto', False)
 
         #Set the global information dictionnary
-        self._info['dir'], self._info['bins'], self._info['table'] = histogram(dir, var, bins, nsector, normed, blowto)
+        self._info['dir'], self._info['bins'], self._info['table'] = histogram(direction, var, bins, nsector, normed, blowto)
 
         return bins, nbins, nsector, colors, angles, kwargs
 
 
-    def contour(self, dir, var, **kwargs):
+    def contour(self, direction, var, **kwargs):
         """
         Plot a windrose in linear mode. For each var bins, a line will be
         draw on the axes, a segment between each sector (center to center).
@@ -204,7 +204,7 @@ class WindroseAxes(PolarAxes):
         pylab command.
 
         Mandatory:
-        * dir : 1D array - directions the wind blows from, North centred
+        * direction : 1D array - directions the wind blows from, North centred
         * var : 1D array - values of the variable to compute. Typically the wind
         speeds
         Optional:
@@ -228,7 +228,7 @@ class WindroseAxes(PolarAxes):
 
         """
 
-        bins, nbins, nsector, colors, angles, kwargs = self._init_plot(dir, var,
+        bins, nbins, nsector, colors, angles, kwargs = self._init_plot(direction, var,
                                                                        **kwargs)
 
         #closing lines
@@ -248,7 +248,7 @@ class WindroseAxes(PolarAxes):
         self._update()
 
 
-    def contourf(self, dir, var, **kwargs):
+    def contourf(self, direction, var, **kwargs):
         """
         Plot a windrose in filled mode. For each var bins, a line will be
         draw on the axes, a segment between each sector (center to center).
@@ -256,7 +256,7 @@ class WindroseAxes(PolarAxes):
         pylab command.
 
         Mandatory:
-        * dir : 1D array - directions the wind blows from, North centred
+        * direction : 1D array - directions the wind blows from, North centred
         * var : 1D array - values of the variable to compute. Typically the wind
         speeds
         Optional:
@@ -280,7 +280,7 @@ class WindroseAxes(PolarAxes):
 
         """
 
-        bins, nbins, nsector, colors, angles, kwargs = self._init_plot(dir, var,
+        bins, nbins, nsector, colors, angles, kwargs = self._init_plot(direction, var,
                                                                        **kwargs)
         kwargs.pop('facecolor', None)
         kwargs.pop('edgecolor', None)
@@ -301,13 +301,13 @@ class WindroseAxes(PolarAxes):
             self.patches_list.extend(patch)
 
 
-    def bar(self, dir, var, **kwargs):
+    def bar(self, direction, var, **kwargs):
         """
         Plot a windrose in bar mode. For each var bins and for each sector,
         a colored bar will be draw on the axes.
 
         Mandatory:
-        * dir : 1D array - directions the wind blows from, North centred
+        * direction : 1D array - directions the wind blows from, North centred
         * var : 1D array - values of the variable to compute. Typically the wind
         speeds
         Optional:
@@ -332,7 +332,7 @@ class WindroseAxes(PolarAxes):
 
         """
 
-        bins, nbins, nsector, colors, angles, kwargs = self._init_plot(dir, var,
+        bins, nbins, nsector, colors, angles, kwargs = self._init_plot(direction, var,
                                                                        **kwargs)
         kwargs.pop('facecolor', None)
         edgecolor = kwargs.pop('edgecolor', None)
@@ -361,13 +361,13 @@ class WindroseAxes(PolarAxes):
         self._update()
 
 
-    def box(self, dir, var, **kwargs):
+    def box(self, direction, var, **kwargs):
         """
         Plot a windrose in proportional bar mode. For each var bins and for each
         sector, a colored bar will be draw on the axes.
 
         Mandatory:
-        * dir : 1D array - directions the wind blows from, North centred
+        * direction : 1D array - directions the wind blows from, North centred
         * var : 1D array - values of the variable to compute. Typically the wind
         speeds
         Optional:
@@ -390,7 +390,7 @@ class WindroseAxes(PolarAxes):
 
         """
 
-        bins, nbins, nsector, colors, angles, kwargs = self._init_plot(dir, var,
+        bins, nbins, nsector, colors, angles, kwargs = self._init_plot(direction, var,
                                                                        **kwargs)
         kwargs.pop('facecolor', None)
         edgecolor = kwargs.pop('edgecolor', None)
@@ -414,12 +414,12 @@ class WindroseAxes(PolarAxes):
                     self.patches_list.append(patch)
         self._update()
 
-def histogram(dir, var, bins, nsector, normed=False, blowto=False):
+def histogram(direction, var, bins, nsector, normed=False, blowto=False):
     """
     Returns an array where, for each sector of wind
     (centred on the north), we have the number of time the wind comes with a
     particular var (speed, polluant concentration, ...).
-    * dir : 1D array - directions the wind blows from, North centred
+    * direction : 1D array - directions the wind blows from, North centred
     * var : 1D array - values of the variable to compute. Typically the wind
         speeds
     * bins : list - list of var category against we're going to compute the table
@@ -431,8 +431,8 @@ def histogram(dir, var, bins, nsector, normed=False, blowto=False):
 
     """
 
-    if len(var) != len(dir):
-        raise ValueError, "var and dir must have same length"
+    if len(var) != len(direction):
+        raise ValueError, "var and direction must have same length"
 
     angle = 360./nsector
 
@@ -449,7 +449,7 @@ def histogram(dir, var, bins, nsector, normed=False, blowto=False):
         dir = dir + 180.
         dir[dir>=360.] = dir[dir>=360.] - 360
 
-    table = histogram2d(x=var, y=dir, bins=[var_bins, dir_bins],
+    table = histogram2d(x=var, y=direction, bins=[var_bins, dir_bins],
                           normed=False)[0]
     # add the last value to the first to have the table of North winds
     table[:,0] = table[:,0] + table[:,-1]
@@ -461,63 +461,63 @@ def histogram(dir, var, bins, nsector, normed=False, blowto=False):
     return dir_edges, var_bins, table
 
 
-def wrcontour(dir, var, **kwargs):
+def wrcontour(direction, var, **kwargs):
     fig = plt.figure()
     rect = [0.1, 0.1, 0.8, 0.8]
     ax = WindroseAxes(fig, rect)
     fig.add_axes(ax)
-    ax.contour(dir, var, **kwargs)
+    ax.contour(direction, var, **kwargs)
     l = ax.legend(borderaxespad=-0.10)
     plt.setp(l.get_texts(), fontsize=8)
     plt.draw()
     plt.show()
     return ax
 
-def wrcontourf(dir, var, **kwargs):
+def wrcontourf(direction, var, **kwargs):
     fig = plt.figure()
     rect = [0.1, 0.1, 0.8, 0.8]
     ax = WindroseAxes(fig, rect)
     fig.add_axes(ax)
-    ax.contourf(dir, var, **kwargs)
+    ax.contourf(direction, var, **kwargs)
     l = ax.legend(borderaxespad=-0.10)
     plt.setp(l.get_texts(), fontsize=8)
     plt.draw()
     plt.show()
     return ax
 
-def wrbox(dir, var, **kwargs):
+def wrbox(direction, var, **kwargs):
     fig = plt.figure()
     rect = [0.1, 0.1, 0.8, 0.8]
     ax = WindroseAxes(fig, rect)
     fig.add_axes(ax)
-    ax.box(dir, var, **kwargs)
+    ax.box(direction, var, **kwargs)
     l = ax.legend(borderaxespad=-0.10)
     plt.setp(l.get_texts(), fontsize=8)
     plt.draw()
     plt.show()
     return ax
 
-def wrbar(dir, var, **kwargs):
+def wrbar(direction, var, **kwargs):
     fig = plt.figure()
     rect = [0.1, 0.1, 0.8, 0.8]
     ax = WindroseAxes(fig, rect)
     fig.add_axes(ax)
-    ax.bar(dir, var, **kwargs)
+    ax.bar(direction, var, **kwargs)
     l = ax.legend(borderaxespad=-0.10)
     plt.setp(l.get_texts(), fontsize=8)
     plt.draw()
     plt.show()
     return ax
 
-def clean(dir, var):
+def clean(direction, var):
     '''
     Remove masked values in the two arrays, where if a direction data is masked,
     the var data will also be removed in the cleaning process (and vice-versa)
     '''
-    dirmask = dir.mask==False
-    varmask = var.mask==False
+    dirmask = direction.mask==False
+    varmask = direction.mask==False
     ind = dirmask*varmask
-    return dir[ind], var[ind]
+    return direction[ind], var[ind]
 
 if __name__=='__main__':
     from pylab import figure, show, setp, random, grid, draw

@@ -66,7 +66,7 @@ class WindroseAxes(PolarAxes):
         Set the radii labels angle
         """
 
-        null = kwargs.pop('labels', None)
+        _ = kwargs.pop('labels', None)
         angle = kwargs.pop('angle', None)
         if angle is None:
             angle = self.radii_angle
@@ -74,7 +74,7 @@ class WindroseAxes(PolarAxes):
         radii = np.linspace(0.1, self.get_rmax(), 6)
         radii_labels = [ "%.1f" %r for r in radii ]
         radii_labels[0] = "" #Removing label 0
-        null = self.set_rgrids(radii=radii, labels=radii_labels,
+        _ = self.set_rgrids(radii=radii, labels=radii_labels,
                                angle=self.radii_angle, **kwargs)
 
 
@@ -138,8 +138,8 @@ class WindroseAxes(PolarAxes):
                       for i in range(len(labels)-1)]
             return labels
 
-        null = kwargs.pop('labels', None)
-        null = kwargs.pop('handles', None)
+        _ = kwargs.pop('labels', None)
+        _ = kwargs.pop('handles', None)
         handles = get_handles()
         labels = get_labels()
         self.legend_ = matplotlib.legend.Legend(self, handles, labels, loc, **kwargs)
@@ -151,7 +151,7 @@ class WindroseAxes(PolarAxes):
         Internal method used by all plotting commands
         """
         #self.cla()
-        null = kwargs.pop('zorder', None)
+        _ = kwargs.pop('zorder', None)
 
         #Init of the bins array if not set
         bins = kwargs.pop('bins', None)
@@ -279,8 +279,8 @@ class WindroseAxes(PolarAxes):
 
         bins, nbins, nsector, colors, angles, kwargs = self._init_plot(dir, var,
                                                                        **kwargs)
-        null = kwargs.pop('facecolor', None)
-        null = kwargs.pop('edgecolor', None)
+        _ = kwargs.pop('facecolor', None)
+        _ = kwargs.pop('edgecolor', None)
         
         #closing lines
         angles = np.hstack((angles, angles[-1]-2*np.pi/nsector))
@@ -331,7 +331,7 @@ class WindroseAxes(PolarAxes):
 
         bins, nbins, nsector, colors, angles, kwargs = self._init_plot(dir, var,
                                                                        **kwargs)
-        null = kwargs.pop('facecolor', None)
+        _ = kwargs.pop('facecolor', None)
         edgecolor = kwargs.pop('edgecolor', None)
         if edgecolor is not None:
             if not isinstance(edgecolor, str):
@@ -389,7 +389,7 @@ class WindroseAxes(PolarAxes):
 
         bins, nbins, nsector, colors, angles, kwargs = self._init_plot(dir, var,
                                                                        **kwargs)
-        null = kwargs.pop('facecolor', None)
+        _ = kwargs.pop('facecolor', None)
         edgecolor = kwargs.pop('edgecolor', None)
         if edgecolor is not None:
             if not isinstance(edgecolor, str):

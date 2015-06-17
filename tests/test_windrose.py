@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import matplotlib as mpl
+mpl.use('Agg')
 from windrose import WindroseAxes
 from matplotlib import pyplot as plt
 import matplotlib.cm as cm

@@ -8,7 +8,7 @@ import io
 
 here = path.abspath(path.dirname(__file__))
 
-NAME = 'pandas_confusion'
+NAME = 'windrose'
 with io.open(path.join(here, NAME, 'version.py'), 'rt', encoding='UTF-8') as f:
     exec(f.read())
 
@@ -113,4 +113,3 @@ setup(
         ],
     },
 )
-

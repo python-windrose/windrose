@@ -47,16 +47,16 @@ def test_windrose_numpy():
     ax = new_axes()
     ax.contour(wd, ws, bins=np.arange(0,8,1), cmap=cm.hot, lw=3)
     set_legend(ax)
+    plt.savefig('tests/contour.png')
 
     ##print ax._info
     #plt.show()
-    plt.savefig('contour.png')
 
     ax = fig_ax()
     bins = np.arange(0, 30+1, 1)
     bins = bins[1:]
-    pdf(wd, ws, bins=bins, ax=ax)
-    plt.savefig('pdf.png')
+    pdf(ws, bins=bins, ax=ax)
+    plt.savefig('tests/pdf.png')
 
 def test_windrose_pandas():
     import pandas as pd
@@ -68,4 +68,4 @@ def test_windrose_pandas():
     df = pd.DataFrame({'speed': ws, 'direction': wd})
 
     plot_windrose(df, kind='contour', bins=np.arange(0.01,8,1), cmap=cm.hot, lw=3)
-    plt.savefig('df_contour.png')
+    plt.savefig('tests/df_contour.png')

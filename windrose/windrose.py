@@ -545,7 +545,7 @@ def clean(direction, var):
     return direction[ind], var[ind]
 
 
-def pdf(direction, var, bins, Nx=100, bar_color='b', plot_color='g', ax=None):
+def pdf(var, bins, Nx=100, bar_color='b', plot_color='g', ax=None, **kwargs):
     '''
     Draw probability density function
     and return Weitbull distribution parameters
@@ -576,7 +576,7 @@ def plot_windrose(df, kind='contour', var_name=VAR_DEFAULT, direction_name=DIR_D
         df = clean(df)
     var = df[var_name].values
     direction = df[direction_name].values
-    ax = f_plot(direction, var, **kwargs)
+    ax = f_plot(direction=direction, var=var, **kwargs)
     return ax
 
 def fig_ax(ax=None, **kwargs):

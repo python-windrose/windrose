@@ -21,6 +21,7 @@ bins = np.arange(0,30+1,1)
 bins = bins[1:]
 
 #fig, ax = plt.subplots(figsize=(8, 8), dpi=80)
-res = plot_windrose(df, kind='pdf', bins=bins)
-print(res)
+ax, params = plot_windrose(df, kind='pdf', bins=bins)
+print(params)
+#plt.savefig("screenshots/pdf.png")
 plt.show()

@@ -37,6 +37,7 @@ Script example :
 Expecting the `windrose.py` file and all the necessary modules are in the `PYTHONPATH`, this example use randoms values for wind speed and direction(ws and wd variables). In situation, these variables are loaded with reals values (1-D array), from a database or directly from a text file (see the "load" facility from the matplotlib.pylab interface for that).
 
     from windrose import WindroseAxes
+    from windrose import new_axes, set_legend
     from matplotlib import pyplot as plt
     import matplotlib.cm as cm
     from numpy.random import random
@@ -46,21 +47,6 @@ Expecting the `windrose.py` file and all the necessary modules are in the `PYTHO
 
     ws = random(500)*6
     wd = random(500)*360
-
-    #A quick way to create new windrose axes...
-
-    def new_axes():
-        fig = plt.figure(figsize=(8, 8), dpi=80, facecolor='w', edgecolor='w')
-        rect = [0.1, 0.1, 0.8, 0.8]
-        ax = WindroseAxes(fig, rect, axisbg='w')
-        fig.add_axes(ax)
-        return ax
-
-    #...and adjust the legend box
-
-    def set_legend(ax):
-        l = ax.legend(axespad=-0.10)
-        plt.setp(l.get_texts(), fontsize=8)
 
 A stacked histogram with normed (displayed in percent) results :
 ----------------------------------------------------------------
@@ -153,3 +139,21 @@ Optional:
  - `edgecolor` : string - The string color each edge bar will be plotted.
    Default : no edgecolor
  - opening : float - between 0.0 and 1.0, to control the space between each sector (1.0 for no space)
+
+probability density function (pdf) and fitting Weibull distribution
+-------------------------------------------------------------------
+
+A probability density function can be plot using:
+
+    from windrose import fig_ax
+    ax = fig_ax()
+    bins = np.arange(0, 30+1, 1)
+    bins = bins[1:]
+    ax, params = pdf(ws, bins=bins, ax=ax)
+
+![pdf](screenshots/pdf.png)
+
+Optimal parameters of Weibull distribution can be displayed using
+
+    print(params)
+    (1, 1.7042156870194352, 0, 7.0907180300605459)

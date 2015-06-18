@@ -29,7 +29,7 @@ Notebook example :
 ------------------
 An [IPython (Jupyter)](http://ipython.org/) notebook showing this package usage is available at:
 
- - http://nbviewer.ipython.org/github/scls19fr/windrose/blob/master/windrose_sample.ipynb
+ - http://nbviewer.ipython.org/github/scls19fr/windrose/blob/master/windrose_sample_random.ipynb
 
 Script example :
 ----------------

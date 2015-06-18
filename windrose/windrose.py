@@ -17,6 +17,10 @@ from pylab import poly_between
 
 RESOLUTION = 100
 ZBASE = -1000 #The starting zorder for all drawing, negative to have the grid on
+VAR_DEFAULT = 'speed'
+DIR_DEFAULT = 'direction'
+FIGSIZE_DEFAULT = (8, 8)
+DPI_DEFAULT = 80
 
 class WindroseAxes(PolarAxes):
     """
@@ -509,15 +513,90 @@ def wrbar(direction, var, **kwargs):
     plt.show()
     return ax
 
+#def clean(direction, var):
+#    '''
+#    Remove masked values in the two arrays, where if a direction data is masked,
+#    the var data will also be removed in the cleaning process (and vice-versa)
+#    '''
+#    dirmask = direction.mask==False
+#    varmask = direction.mask==False
+#    ind = dirmask*varmask
+#    return direction[ind], var[ind]
+
+def clean_df(df, var=VAR_DEFAULT, direction=DIR_DEFAULT):
+    '''
+    Remove nan and var=0 values in the DataFrame
+    if a var (wind speed) is nan or equal to 0, this row is
+    removed from DataFrame
+    if a direction is nan, this row is also removed from DataFrame
+    '''
+    return(df[df[var].notnull() & df[var]!=0 & df[direction].notnull()])
+
 def clean(direction, var):
     '''
-    Remove masked values in the two arrays, where if a direction data is masked,
-    the var data will also be removed in the cleaning process (and vice-versa)
+    Remove nan and var=0 values in the two arrays
+    if a var (wind speed) is nan or equal to 0, this data is
+    removed from var array but also from dir array
+    if a direction is nan, data is also removed from both array
     '''
-    dirmask = direction.mask==False
-    varmask = direction.mask==False
+    dirmask = np.isfinite(direction)
+    varmask = (var!=0 & np.isfinite(var))
     ind = dirmask*varmask
     return direction[ind], var[ind]
+
+
+def pdf(direction, var, bins, Nx=100, bar_color='b', plot_color='g', ax=None):
+    '''
+    Draw probability density function
+    and return Weitbull distribution parameters
+    '''
+    import scipy.stats
+    ax = fig_ax(ax)
+    hist, bins = np.histogram(var, bins=bins, normed=True)
+    width = 0.7 * (bins[1] - bins[0])
+    center = (bins[:-1] + bins[1:]) / 2
+    ax.bar(center, hist, align='center', width=width, color=bar_color)
+    params = scipy.stats.exponweib.fit(var, floc=0, f0=1)
+    x = np.linspace(0, bins[-1], Nx)
+    _ = ax.plot(x, scipy.stats.exponweib.pdf(x, *params), color=plot_color)
+    return(ax, params)
+
+def plot_windrose(df, kind='contour', var_name=VAR_DEFAULT, direction_name=DIR_DEFAULT, clean=clean_df, **kwargs):
+    d = {
+        'hist': histogram,
+        'histogram': histogram,
+        'contour': wrcontour,
+        'contourf': wrcontourf,
+        'box': wrbox,
+        'bar': wrbar,
+        'pdf': pdf,
+    }
+    f_plot = d[kind]
+    if clean is not None:
+        df = clean(df)
+    var = df[var_name].values
+    direction = df[direction_name].values
+    ax = f_plot(direction, var, **kwargs)
+    return ax
+
+def fig_ax(ax=None, **kwargs):
+    if ax is None:
+        fig, ax = plt.subplots(**kwargs) # ToDo: figsize, dpi
+        return(ax)
+    else:
+        return(ax)    
+
+def new_axes():
+    fig = plt.figure(figsize=FIGSIZE_DEFAULT, dpi=DPI_DEFAULT, facecolor='w', edgecolor='w')
+    rect = [0.1, 0.1, 0.8, 0.8]
+    ax = WindroseAxes(fig, rect, axisbg='w')
+    fig.add_axes(ax)
+    return ax
+
+def set_legend(ax):
+    l = ax.legend(borderaxespad=-0.10)
+    plt.setp(l.get_texts(), fontsize=8)
+
 
 if __name__=='__main__':
     from pylab import figure, show, setp, random, grid, draw

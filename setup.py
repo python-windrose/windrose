@@ -89,6 +89,7 @@ setup(
     extras_require = {
         'dev': ['check-manifest', 'nose'],
         'test': ['coverage', 'nose'],
+        'advanced':  ['pandas', 'scipy']
     },
 
     # If there are data files included in your packages that need to be

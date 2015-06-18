@@ -40,13 +40,12 @@ Expecting the `windrose.py` file and all the necessary modules are in the `PYTHO
     from windrose import new_axes, set_legend
     from matplotlib import pyplot as plt
     import matplotlib.cm as cm
-    from numpy.random import random
-    from numpy import arange
+    import numpy as np
 
     #Create wind speed and direction variables
 
-    ws = random(500)*6
-    wd = random(500)*360
+    ws = np.random.random(500)*6
+    wd = np.random.random(500)*360
 
 A stacked histogram with normed (displayed in percent) results :
 ----------------------------------------------------------------
@@ -61,7 +60,7 @@ Another stacked histogram representation, not normed, with bins limits
 ----------------------------------------------------------------------
 
     ax = new_axes()
-    ax.box(wd, ws, bins=arange(0,8,1))
+    ax.box(wd, ws, bins=np.arange(0,8,1))
     set_legend(ax)
 
 ![box](screenshots/box.png)
@@ -70,7 +69,7 @@ A windrose in filled representation, with a controled colormap
 --------------------------------------------------------------
 
     ax = new_axes()
-    ax.contourf(wd, ws, bins=arange(0,8,1), cmap=cm.hot)
+    ax.contourf(wd, ws, bins=np.arange(0,8,1), cmap=cm.hot)
     set_legend(ax)
 
 ![contourf](screenshots/contourf.png)
@@ -79,8 +78,8 @@ Same as above, but with contours over each filled region...
 -----------------------------------------------------------
 
     ax = new_axes()
-    ax.contourf(wd, ws, bins=arange(0,8,1), cmap=cm.hot)
-    ax.contour(wd, ws, bins=arange(0,8,1), colors='black')
+    ax.contourf(wd, ws, bins=np.arange(0,8,1), cmap=cm.hot)
+    ax.contour(wd, ws, bins=np.arange(0,8,1), colors='black')
     set_legend(ax)
 
 ![contourf-contour](screenshots/contourf-contour.png)
@@ -89,7 +88,7 @@ Same as above, but with contours over each filled region...
 ----------------------------
 
     ax = new_axes()
-    ax.contour(wd, ws, bins=arange(0,8,1), cmap=cm.hot, lw=3)
+    ax.contour(wd, ws, bins=np.arange(0,8,1), cmap=cm.hot, lw=3)
     set_legend(ax)
 
 ![contour](screenshots/contour.png)
@@ -111,7 +110,7 @@ and to have a graphical representation of this result :
 
     direction = ax._info['dir']
     wd_freq = np.sum(table, axis=0)
-    plt.bar(arange(16), wd_freq, align='center')
+    plt.bar(np.arange(16), wd_freq, align='center')
     xlabels = ('N','','N-E','','E','','S-E','','S','','S-O','','O','','N-O','')
     xticks=arange(16)
     gca().set_xticks(xticks)
@@ -157,3 +156,39 @@ Optimal parameters of Weibull distribution can be displayed using
 
     print(params)
     (1, 1.7042156870194352, 0, 7.0907180300605459)
+
+Pandas support
+--------------
+
+windrose not only supports Numpy arrays. It also supports also Pandas DataFrame. `plot_windrose` function provides most of plotting features previously shown.
+
+    N = 500
+    ws = np.random.random(N) * 6
+    wd = np.random.random(N) * 360
+    df = pd.DataFrame({'speed': ws, 'direction': wd})
+    plot_windrose(df, kind='contour', bins=np.arange(0.01,8,1), cmap=cm.hot, lw=3)
+
+Mandatory:
+ - `df`: Pandas DataFrame with `DateTimeIndex` as index and at least 2 columns (`'speed'` and `'direction'`) like:
+
+          direction     speed
+    0    201.488779  4.534348
+    1    166.267614  2.160528
+    2    346.481000  1.644309
+    3    283.763579  0.168824
+    4    206.115589  1.951608
+    ..          ...       ...
+    495  100.001369  4.655061
+    496  226.667282  3.857004
+    497  154.043604  2.966170
+    498  343.204680  0.732751
+    499  182.293037  0.334265
+
+[500 rows x 2 columns]
+
+Optional:
+ - `kind` : kind of plot (might be either, `'contour'`, `'contourf'`, `'bar'`, `'box'`, `'pdf'`)
+ - `var_name` : name of var column name ; default value is `VAR_DEFAULT='speed'
+ - `direction_name` : name of direction column name ; default value is `DIR_DEFAULT='direction'`
+ - `clean` : cleanup data function (remove data points with `NaN`, `var=0`) before plotting ; default value is `clean=clean_df`
+if `clean=None` no data cleanup if performed.

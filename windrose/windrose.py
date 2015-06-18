@@ -563,15 +563,16 @@ def pdf(var, bins, Nx=100, bar_color='b', plot_color='g', ax=None, **kwargs):
 
 def plot_windrose(df, kind='contour', var_name=VAR_DEFAULT, direction_name=DIR_DEFAULT, clean=clean_df, **kwargs):
     d = {
-        'hist': histogram,
-        'histogram': histogram,
         'contour': wrcontour,
         'contourf': wrcontourf,
         'box': wrbox,
         'bar': wrbar,
         'pdf': pdf,
     }
-    f_plot = d[kind]
+    if kind in d.keys():
+        f_plot = d[kind]
+    else:
+        raise(Exception("kind=%r but it must be in %r" % (kind, d.keys())))
     if clean is not None:
         df = clean(df)
     var = df[var_name].values

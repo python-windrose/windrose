@@ -446,6 +446,42 @@ class WindroseAxes(PolarAxes):
                     self.patches_list.append(patch)
         self._update()
 
+
+class WindAxes(mpl.axes.Subplot):
+    def __init__(self, *args, **kwargs):
+        """
+        See Axes base class for args and kwargs documentation
+        """
+        super(WindAxes, self).__init__(*args, **kwargs)
+
+    @staticmethod
+    def from_ax(ax=None, *args, **kwargs):
+        if ax is None:
+            fig = plt.figure(figsize=FIGSIZE_DEFAULT, dpi=DPI_DEFAULT)
+            ax = WindAxes(fig, 1, 1, 1, *args, **kwargs)
+            fig.add_axes(ax)
+            return ax
+        else:
+            return(ax)
+
+    def pdf(self, var, bins=None, Nx=100, bar_color='b', plot_color='g', Nbins=10, *args, **kwargs):
+        '''
+        Draw probability density function
+        and return Weibull distribution parameters
+        '''
+        import scipy.stats
+        if bins is None:
+            bins = np.linspace(0, np.max(var), Nbins)
+        hist, bins = np.histogram(var, bins=bins, normed=True)
+        width = 0.7 * (bins[1] - bins[0])
+        center = (bins[:-1] + bins[1:]) / 2
+        self.bar(center, hist, align='center', width=width, color=bar_color)
+        params = scipy.stats.exponweib.fit(var, floc=0, f0=1)
+        x = np.linspace(0, bins[-1], Nx)
+        _ = self.plot(x, scipy.stats.exponweib.pdf(x, *params), color=plot_color)
+        return(self, params)        
+
+
 def histogram(direction, var, bins, nsector, normed=False, blowto=False):
     """
     Returns an array where, for each sector of wind
@@ -499,11 +535,13 @@ def wrcontour(direction, var, ax=None, **kwargs):
     ax.set_legend()
     return ax
 
+
 def wrcontourf(direction, var, ax=None, **kwargs):
     ax = WindroseAxes.from_ax(ax)
     ax.contourf(direction, var, **kwargs)
     ax.set_legend()
     return ax
+
 
 def wrbox(direction, var, ax=None, **kwargs):
     ax = WindroseAxes.from_ax(ax)
@@ -511,11 +549,32 @@ def wrbox(direction, var, ax=None, **kwargs):
     ax.set_legend()
     return ax
 
+
 def wrbar(direction, var, ax=None, **kwargs):
     ax = WindroseAxes.from_ax(ax)
     ax.bar(direction, var, **kwargs)
     ax.set_legend()
     return ax
+
+
+def wrpdf(var, bins=None, Nx=100, bar_color='b', plot_color='g', Nbins=10, ax=None, *args, **kwargs):
+    '''
+    Draw probability density function
+    and return Weitbull distribution parameters
+    '''
+    ax = WindAxes.from_ax(ax)
+    ax, params = ax.pdf(var, bins, Nx, bar_color, plot_color, *args, **kwargs)
+    return(ax, params)
+
+
+def wrscatter(direction, var, ax=None, *args, **kwargs):
+    '''
+    Draw scatter plot
+    '''
+    ax = WindroseAxes.from_ax(ax)
+    ax.scatter(direction, var, *args, **kwargs)
+    return ax
+
 
 #def clean(direction, var):
 #    '''
@@ -527,6 +586,7 @@ def wrbar(direction, var, ax=None, **kwargs):
 #    ind = dirmask*varmask
 #    return direction[ind], var[ind]
 
+
 def clean_df(df, var=VAR_DEFAULT, direction=DIR_DEFAULT):
     '''
     Remove nan and var=0 values in the DataFrame
@@ -535,6 +595,7 @@ def clean_df(df, var=VAR_DEFAULT, direction=DIR_DEFAULT):
     if a direction is nan, this row is also removed from DataFrame
     '''
     return(df[df[var].notnull() & df[var]!=0 & df[direction].notnull()])
+
 
 def clean(direction, var):
     '''
@@ -549,22 +610,15 @@ def clean(direction, var):
     return direction[ind], var[ind]
 
 
-def wrpdf(var, bins=None, Nx=100, bar_color='b', plot_color='g', Nbins=10, ax=None, *args, **kwargs):
-    '''
-    Draw probability density function
-    and return Weitbull distribution parameters
-    '''
-    ax = WindAxes.from_ax(ax)
-    ax, params = ax.pdf(var, bins, Nx, bar_color, plot_color, *args, **kwargs)
-    return(ax, params)
-
 D_KIND_PLOT = {
     'contour': wrcontour,
     'contourf': wrcontourf,
     'box': wrbox,
     'bar': wrbar,
     'pdf': wrpdf,
+    'scatter': wrscatter
 }
+
 
 def plot_windrose(df, kind='contour', var_name=VAR_DEFAULT, direction_name=DIR_DEFAULT, f_clean=clean_df, **kwargs):
     if kind in D_KIND_PLOT.keys():
@@ -579,37 +633,3 @@ def plot_windrose(df, kind='contour', var_name=VAR_DEFAULT, direction_name=DIR_D
     if kind not in ['pdf']:
         ax.set_legend()
     return ax
-
-class WindAxes(mpl.axes.Subplot):
-    def __init__(self, *args, **kwargs):
-        """
-        See Axes base class for args and kwargs documentation
-        """
-        super(WindAxes, self).__init__(*args, **kwargs)
-
-    @staticmethod
-    def from_ax(ax=None, *args, **kwargs):
-        if ax is None:
-            fig = plt.figure(figsize=FIGSIZE_DEFAULT, dpi=DPI_DEFAULT)
-            ax = WindAxes(fig, 1, 1, 1, *args, **kwargs)
-            fig.add_axes(ax)
-            return ax
-        else:
-            return(ax)
-
-    def pdf(self, var, bins=None, Nx=100, bar_color='b', plot_color='g', Nbins=10, *args, **kwargs):
-        '''
-        Draw probability density function
-        and return Weibull distribution parameters
-        '''
-        import scipy.stats
-        if bins is None:
-            bins = np.linspace(0, np.max(var), Nbins)
-        hist, bins = np.histogram(var, bins=bins, normed=True)
-        width = 0.7 * (bins[1] - bins[0])
-        center = (bins[:-1] + bins[1:]) / 2
-        self.bar(center, hist, align='center', width=width, color=bar_color)
-        params = scipy.stats.exponweib.fit(var, floc=0, f0=1)
-        x = np.linspace(0, bins[-1], Nx)
-        _ = self.plot(x, scipy.stats.exponweib.pdf(x, *params), color=plot_color)
-        return(self, params)        

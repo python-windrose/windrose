@@ -13,6 +13,10 @@ N = 500
 ws = np.random.random(N) * 6
 wd = np.random.random(N) * 360
 
+ax = WindroseAxes.from_ax()
+ax.scatter(wd, ws, alpha=0.2)
+ax.set_legend()
+
 #windrose like a stacked histogram with normed (displayed in percent) results
 ax = WindroseAxes.from_ax()
 ax.bar(wd, ws, normed=True, opening=0.8, edgecolor='white')

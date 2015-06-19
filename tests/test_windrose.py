@@ -11,7 +11,7 @@ from windrose import WindAxes
 from windrose import WindAxesFactory
 
 from windrose import FIGSIZE_DEFAULT, DPI_DEFAULT
-from windrose import wrbar, wrbox, wrcontour, wrcontourf, wrpdf
+from windrose import wrbar, wrbox, wrcontour, wrcontourf, wrpdf, wrscatter
 from windrose import plot_windrose
 from windrose import D_KIND_PLOT
 
@@ -28,6 +28,12 @@ df = pd.DataFrame({'speed': ws, 'direction': wd})
 
 def test_windrose_np_mpl_oo():
     bins = np.arange(0, 8, 1)
+
+    #windrose with scatter plot
+    ax = WindroseAxes.from_ax()
+    ax.scatter(wd, ws, alpha=0.2)
+    ax.set_legend()
+    plt.savefig('tests/output/oo/scatter.png')
 
     #windrose like a stacked histogram with normed (displayed in percent) results
     ax = WindroseAxes.from_ax()
@@ -71,27 +77,35 @@ def test_windrose_np_mpl_oo():
 def test_windrose_np_mpl_func():
     bins = np.arange(0, 8, 1)
 
+    wrscatter(wd, ws, alpha=0.2)
+    plt.savefig('tests/output/func/scatter.png')
+
+
     wrbar(wd, ws, normed=True, opening=0.8, edgecolor='white')
-    plt.savefig('tests/output/func/wrbar.png')
+    plt.savefig('tests/output/func/bar.png')
 
     wrbox(wd, ws, bins=bins)
-    plt.savefig('tests/output/func/wrbox.png')
+    plt.savefig('tests/output/func/box.png')
     
     wrcontourf(wd, ws, bins=bins, cmap=cm.hot)
-    plt.savefig('tests/output/func/wrcontourf.png')
+    plt.savefig('tests/output/func/contourf.png')
 
     #ax = wrcontourf(wd, ws, bins=bin, cmap=cm.hot)
     #wrcontour(wd, ws, bins=np.arange(0, 8, 1), colors='black')
     #plt.savefig('tests/output/func/wrcontourf-contour.png')
 
     wrcontour(wd, ws, bins=bins, cmap=cm.hot, lw=3)
-    plt.savefig('tests/output/func/wrcontour.png')
+    plt.savefig('tests/output/func/contour.png')
 
     wrpdf(ws, bins=bins)
-    plt.savefig('tests/output/func/wrpdf.png')
+    plt.savefig('tests/output/func/pdf.png')
 
 def test_windrose_pandas():
     bins = np.arange(0.01, 8, 1)
+
+    kind = 'scatter'
+    plot_windrose(df, kind=kind, alpha=0.2)
+    plt.savefig('tests/output/df/%s.png' % kind)
 
     kind = 'bar'
     plot_windrose(df, kind=kind, normed=True, opening=0.8, edgecolor='white')

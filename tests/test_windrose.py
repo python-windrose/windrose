@@ -138,3 +138,13 @@ def test_windaxesfactory():
     bins = bins[1:]
     ax.pdf(ws, bins=bins)
     plt.savefig('tests/output/oo/pdf_from_factory.png')
+
+#def test_plot_by():
+#    #df = pd.read_csv("samples/sample_wind_poitiers.csv", parse_dates=['Timestamp'])
+#    #df['Timestamp'] = pd.to_timestamp()
+#    #df = df.set_index('Timestamp')
+#    #by = 'year_month'
+#    #df[by] = df.index.map(lambda dt: (dt.year, dt.month))
+#    #df = df.reset_index()
+#    #df = df.set_index([by, 'Timestamp'])
+#    #print(df)

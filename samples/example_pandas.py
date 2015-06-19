@@ -8,7 +8,8 @@ from matplotlib import pyplot as plt
 import matplotlib.cm as cm
 import numpy as np
 
-df = pd.read_csv("samples/sample_wind_poitiers.csv")
+df = pd.read_csv("samples/sample_wind_poitiers.csv", parse_dates=['Timestamp'])
+#df['Timestamp'] = pd.to_timestamp()
 df = df.set_index('Timestamp')
 
 #N = 500
@@ -17,6 +18,7 @@ df = df.set_index('Timestamp')
 #df = pd.DataFrame({'speed': ws, 'direction': wd})
 
 print(df)
+print(df.dtypes)
 
 bins = np.arange(0.01, 8, 1)
 plot_windrose(df, kind='contour', bins=bins, cmap=cm.hot, lw=3)

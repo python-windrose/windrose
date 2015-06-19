@@ -15,7 +15,7 @@ A windrose, also known as a polar rose plot, is a special diagram for representi
 This is a simple module for the matplotlib python library, which requires numpy for internal computation.
 
 Original code forked from:
- - http://youarealegend.blogspot.fr/search/label/windrose
+ - windrose 1.4 by Lionel Roubeyrie <lionel.roubeyrie@gmail.com> http://youarealegend.blogspot.fr/search/label/windrose
 
 
 Requirements:
@@ -24,6 +24,11 @@ Requirements:
  - matplotlib http://matplotlib.org/
  - numpy http://www.numpy.org/
  - and naturally python https://www.python.org/ :-P
+
+Option libraries:
+
+ - Pandas http://pandas.pydata.org/ (to feed plot functions easily)
+ - Scipy http://www.scipy.org/ (to fit data with Weibull distribution)
 
 Notebook example :
 ------------------

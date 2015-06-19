@@ -1,15 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from __future__ import absolute_import, division, print_function
+#from __future__ import absolute_import, division, print_function
 
-import matplotlib
-import matplotlib.cm as cm
+import matplotlib as mpl
 import numpy as np
-#import matplotlib as mpl
-#from matplotlib.patches import Rectangle, Polygon
-#from matplotlib.ticker import ScalarFormatter, AutoLocator
-#from matplotlib.text import Text, FontProperties
 from matplotlib.projections.polar import PolarAxes
 from numpy.lib.twodim_base import histogram2d
 import matplotlib.pyplot as plt
@@ -21,6 +16,26 @@ VAR_DEFAULT = 'speed'
 DIR_DEFAULT = 'direction'
 FIGSIZE_DEFAULT = (8, 8)
 DPI_DEFAULT = 80
+
+
+class WindAxesFactory(object):
+    # Create based on class name:
+    @staticmethod
+    def create(typ, ax=None, *args, **kwargs):
+        typ = typ.lower()
+        d = {
+            'windroseaxes': WindroseAxes,
+            'windaxes': WindAxes
+        }
+        if typ in d.keys():
+            cls = d[typ]
+            if isinstance(ax, cls):
+                return ax
+            else:
+                ax = cls.from_ax(ax, *args, **kwargs)
+                return ax
+        else:
+            raise(NotImplementedError("typ=%r but it might be in %s" % (typ, d.keys())))
 
 class WindroseAxes(PolarAxes):
     """
@@ -42,6 +57,16 @@ class WindroseAxes(PolarAxes):
         self.radii_angle = 67.5
         self.cla()
 
+    @staticmethod
+    def from_ax(ax=None, *args, **kwargs):
+        if ax is None:
+            fig = plt.figure(figsize=FIGSIZE_DEFAULT, dpi=DPI_DEFAULT, facecolor='w', edgecolor='w')
+            rect = [0.1, 0.1, 0.8, 0.8]
+            ax = WindroseAxes(fig, rect, axisbg='w', *args, **kwargs)
+            fig.add_axes(ax)
+            return ax
+        else:
+            return ax
 
     def cla(self):
         """
@@ -128,14 +153,14 @@ class WindroseAxes(PolarAxes):
         def get_handles():
             handles = list()
             for p in self.patches_list:
-                if isinstance(p, matplotlib.patches.Polygon) or \
-                isinstance(p, matplotlib.patches.Rectangle):
+                if isinstance(p, mpl.patches.Polygon) or \
+                isinstance(p, mpl.patches.Rectangle):
                     color = p.get_facecolor()
-                elif isinstance(p, matplotlib.lines.Line2D):
+                elif isinstance(p, mpl.lines.Line2D):
                     color = p.get_color()
                 else:
                     raise AttributeError("Can't handle patches")
-                handles.append(matplotlib.patches.Rectangle((0, 0), 0.2, 0.2,
+                handles.append(mpl.patches.Rectangle((0, 0), 0.2, 0.2,
                     facecolor=color, edgecolor='black'))
             return handles
 
@@ -149,9 +174,12 @@ class WindroseAxes(PolarAxes):
         kwargs.pop('handles', None)
         handles = get_handles()
         labels = get_labels()
-        self.legend_ = matplotlib.legend.Legend(self, handles, labels, loc, **kwargs)
+        self.legend_ = mpl.legend.Legend(self, handles, labels, loc, **kwargs)
         return self.legend_
 
+    def set_legend(self):
+        l = self.legend(borderaxespad=-0.10)
+        plt.setp(l.get_texts(), fontsize=8)
 
     def _init_plot(self, direction, var, **kwargs):
         """
@@ -185,7 +213,7 @@ class WindroseAxes(PolarAxes):
                     raise ValueError("colors and bins must have same length")
         else:
             if cmap is None:
-                cmap = cm.jet
+                cmap = mpl.cm.jet
             colors = self._colors(cmap, nbins)
 
         #Building the angles list
@@ -356,7 +384,7 @@ class WindroseAxes(PolarAxes):
                     offset += self._info['table'][i-1, j]
                 val = self._info['table'][i, j]
                 zorder = ZBASE + nbins - i
-                patch = matplotlib.patches.Rectangle((angles[j]-opening/2, offset), opening, val,
+                patch = mpl.patches.Rectangle((angles[j]-opening/2, offset), opening, val,
                     facecolor=colors[i], edgecolor=edgecolor, zorder=zorder,
                     **kwargs)
                 self.add_patch(patch)
@@ -410,7 +438,7 @@ class WindroseAxes(PolarAxes):
                     offset += self._info['table'][i-1, j]
                 val = self._info['table'][i, j]
                 zorder = ZBASE + nbins - i
-                patch = matplotlib.patches.Rectangle((angles[j]-opening[i]/2, offset), opening[i],
+                patch = mpl.patches.Rectangle((angles[j]-opening[i]/2, offset), opening[i],
                     val, facecolor=colors[i], edgecolor=edgecolor,
                     zorder=zorder, **kwargs)
                 self.add_patch(patch)
@@ -466,27 +494,27 @@ def histogram(direction, var, bins, nsector, normed=False, blowto=False):
 
 
 def wrcontour(direction, var, ax=None, **kwargs):
-    ax = new_axes(ax)
+    ax = WindroseAxes.from_ax(ax)
     ax.contour(direction, var, **kwargs)
-    set_legend(ax)
+    ax.set_legend()
     return ax
 
 def wrcontourf(direction, var, ax=None, **kwargs):
-    ax = new_axes(ax)
+    ax = WindroseAxes.from_ax(ax)
     ax.contourf(direction, var, **kwargs)
-    set_legend(ax)
+    ax.set_legend()
     return ax
 
 def wrbox(direction, var, ax=None, **kwargs):
-    ax = new_axes(ax)
+    ax = WindroseAxes.from_ax(ax)
     ax.box(direction, var, **kwargs)
-    set_legend(ax)
+    ax.set_legend()
     return ax
 
 def wrbar(direction, var, ax=None, **kwargs):
-    ax = new_axes(ax)
+    ax = WindroseAxes.from_ax(ax)
     ax.bar(direction, var, **kwargs)
-    set_legend(ax)
+    ax.set_legend()
     return ax
 
 #def clean(direction, var):
@@ -521,32 +549,26 @@ def clean(direction, var):
     return direction[ind], var[ind]
 
 
-def pdf(var, bins, Nx=100, bar_color='b', plot_color='g', ax=None, **kwargs):
+def wrpdf(var, bins=None, Nx=100, bar_color='b', plot_color='g', Nbins=10, ax=None, *args, **kwargs):
     '''
     Draw probability density function
     and return Weitbull distribution parameters
     '''
-    import scipy.stats
-    ax = fig_ax(ax)
-    hist, bins = np.histogram(var, bins=bins, normed=True)
-    width = 0.7 * (bins[1] - bins[0])
-    center = (bins[:-1] + bins[1:]) / 2
-    ax.bar(center, hist, align='center', width=width, color=bar_color)
-    params = scipy.stats.exponweib.fit(var, floc=0, f0=1)
-    x = np.linspace(0, bins[-1], Nx)
-    _ = ax.plot(x, scipy.stats.exponweib.pdf(x, *params), color=plot_color)
+    ax = WindAxes.from_ax(ax)
+    ax, params = ax.pdf(var, bins, Nx, bar_color, plot_color, *args, **kwargs)
     return(ax, params)
 
+D_KIND_PLOT = {
+    'contour': wrcontour,
+    'contourf': wrcontourf,
+    'box': wrbox,
+    'bar': wrbar,
+    'pdf': wrpdf,
+}
+
 def plot_windrose(df, kind='contour', var_name=VAR_DEFAULT, direction_name=DIR_DEFAULT, f_clean=clean_df, **kwargs):
-    d = {
-        'contour': wrcontour,
-        'contourf': wrcontourf,
-        'box': wrbox,
-        'bar': wrbar,
-        'pdf': pdf,
-    }
-    if kind in d.keys():
-        f_plot = d[kind]
+    if kind in D_KIND_PLOT.keys():
+        f_plot = D_KIND_PLOT[kind]
     else:
         raise(Exception("kind=%r but it must be in %r" % (kind, d.keys())))
     if f_clean is not None:
@@ -555,46 +577,39 @@ def plot_windrose(df, kind='contour', var_name=VAR_DEFAULT, direction_name=DIR_D
     direction = df[direction_name].values
     ax = f_plot(direction=direction, var=var, **kwargs)
     if kind not in ['pdf']:
-        set_legend(ax)
+        ax.set_legend()
     return ax
 
-def fig_ax(ax=None, **kwargs):
-    if ax is None:
-        fig, ax = plt.subplots(**kwargs) # ToDo: figsize, dpi
-        return(ax)
-    else:
-        return(ax)    
+class WindAxes(mpl.axes.Subplot):
+    def __init__(self, *args, **kwargs):
+        """
+        See Axes base class for args and kwargs documentation
+        """
+        super(WindAxes, self).__init__(*args, **kwargs)
 
-def new_axes(ax=None):
-    if ax is None:
-        fig = plt.figure(figsize=FIGSIZE_DEFAULT, dpi=DPI_DEFAULT, facecolor='w', edgecolor='w')
-        rect = [0.1, 0.1, 0.8, 0.8]
-        ax = WindroseAxes(fig, rect, axisbg='w')
-        fig.add_axes(ax)
-        return ax
-    else:
-        return ax
+    @staticmethod
+    def from_ax(ax=None, *args, **kwargs):
+        if ax is None:
+            fig = plt.figure(figsize=FIGSIZE_DEFAULT, dpi=DPI_DEFAULT)
+            ax = WindAxes(fig, 1, 1, 1, *args, **kwargs)
+            fig.add_axes(ax)
+            return ax
+        else:
+            return(ax)
 
-def set_legend(ax):
-    l = ax.legend(borderaxespad=-0.10)
-    plt.setp(l.get_texts(), fontsize=8)
-
-
-#if __name__=='__main__':
-#    from pylab import figure, show, setp, random, grid, draw
-#    vv=random(500)*6
-#    dv=random(500)*360
-#    fig = figure(figsize=(8, 8), dpi=80, facecolor='w', edgecolor='w')
-#    rect = [0.1, 0.1, 0.8, 0.8]
-#    ax = WindroseAxes(fig, rect, axisbg='w')
-#    fig.add_axes(ax)
-
-##    ax.contourf(dv, vv, bins=np.arange(0,8,1), cmap=cm.hot)
-##    ax.contour(dv, vv, bins=np.arange(0,8,1), colors='k')
-##    ax.bar(dv, vv, normed=True, opening=0.8, edgecolor='white')
-#    ax.box(dv, vv, normed=True)
-#    l = ax.legend(borderaxespad=-0.10)
-#    setp(l.get_texts(), fontsize=8)
-#    draw()
-#    #print ax._info
-#    show()
+    def pdf(self, var, bins=None, Nx=100, bar_color='b', plot_color='g', Nbins=10, *args, **kwargs):
+        '''
+        Draw probability density function
+        and return Weibull distribution parameters
+        '''
+        import scipy.stats
+        if bins is None:
+            bins = np.linspace(0, np.max(var), Nbins)
+        hist, bins = np.histogram(var, bins=bins, normed=True)
+        width = 0.7 * (bins[1] - bins[0])
+        center = (bins[:-1] + bins[1:]) / 2
+        self.bar(center, hist, align='center', width=width, color=bar_color)
+        params = scipy.stats.exponweib.fit(var, floc=0, f0=1)
+        x = np.linspace(0, bins[-1], Nx)
+        _ = self.plot(x, scipy.stats.exponweib.pdf(x, *params), color=plot_color)
+        return(self, params)        

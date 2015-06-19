@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from windrose import WindAxesFactory
 from windrose import WindroseAxes
 from windrose import WindAxes
 
@@ -15,7 +14,6 @@ ws = np.random.random(N) * 6
 wd = np.random.random(N) * 360
 
 #windrose like a stacked histogram with normed (displayed in percent) results
-#ax = WindAxesFactory.create('WindroseAxes')
 ax = WindroseAxes.from_ax()
 ax.bar(wd, ws, normed=True, opening=0.8, edgecolor='white')
 ax.set_legend()

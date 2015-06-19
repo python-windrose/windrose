@@ -8,6 +8,8 @@ import matplotlib.cm as cm
 
 from windrose import WindroseAxes
 from windrose import WindAxes
+from windrose import WindAxesFactory
+
 from windrose import FIGSIZE_DEFAULT, DPI_DEFAULT
 from windrose import wrbar, wrbox, wrcontour, wrcontourf, wrpdf
 from windrose import plot_windrose
@@ -22,6 +24,7 @@ ws = np.random.random(N) * 6
 wd = np.random.random(N) * 360
 
 df = pd.DataFrame({'speed': ws, 'direction': wd})
+
 
 def test_windrose_np_mpl_oo():
     bins = np.arange(0, 8, 1)
@@ -109,3 +112,15 @@ def test_windrose_pandas():
     kind = 'pdf'
     plot_windrose(df, kind=kind, bins=bins)
     plt.savefig('tests/output/df/%s.png' % kind)
+
+def test_windaxesfactory():
+    ax = WindAxesFactory.create('WindroseAxes')
+    ax.bar(wd, ws, normed=True, opening=0.8, edgecolor='white')
+    ax.set_legend()
+    plt.savefig('tests/output/oo/bar_from_factory.png')
+
+    ax = WindAxesFactory.create('WindAxes')
+    bins = np.arange(0, 8, 1)
+    bins = bins[1:]
+    ax.pdf(ws, bins=bins)
+    plt.savefig('tests/output/oo/pdf_from_factory.png')

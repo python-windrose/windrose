@@ -10,18 +10,23 @@ import numpy as np
 
 df = pd.read_csv("samples/sample_wind_poitiers.csv")
 df = df.set_index('Timestamp')
-#print(df)
-#plot_windrose(df, kind='contour', bins=arange(0.01,8,1), cmap=cm.hot, lw=3)
-#plt.show()
 
-#plot_windrose(df, kind='histogram')
-#plt.show()
+#N = 500
+#ws = np.random.random(N) * 6
+#wd = np.random.random(N) * 360
+#df = pd.DataFrame({'speed': ws, 'direction': wd})
 
-bins = np.arange(0,30+1,1)
+print(df)
+
+bins = np.arange(0.01, 8, 1)
+plot_windrose(df, kind='contour', bins=bins, cmap=cm.hot, lw=3)
+plt.show()
+
+bins = np.arange(0, 30 + 1, 1)
 bins = bins[1:]
 
-#fig, ax = plt.subplots(figsize=(8, 8), dpi=80)
 ax, params = plot_windrose(df, kind='pdf', bins=bins)
+print("Weibull params:")
 print(params)
 #plt.savefig("screenshots/pdf.png")
 plt.show()

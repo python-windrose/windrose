@@ -465,52 +465,28 @@ def histogram(direction, var, bins, nsector, normed=False, blowto=False):
     return dir_edges, var_bins, table
 
 
-def wrcontour(direction, var, **kwargs):
-    fig = plt.figure()
-    rect = [0.1, 0.1, 0.8, 0.8]
-    ax = WindroseAxes(fig, rect)
-    fig.add_axes(ax)
+def wrcontour(direction, var, ax=None, **kwargs):
+    ax = new_axes(ax)
     ax.contour(direction, var, **kwargs)
-    l = ax.legend(borderaxespad=-0.10)
-    plt.setp(l.get_texts(), fontsize=8)
-    plt.draw()
-    plt.show()
+    set_legend(ax)
     return ax
 
-def wrcontourf(direction, var, **kwargs):
-    fig = plt.figure()
-    rect = [0.1, 0.1, 0.8, 0.8]
-    ax = WindroseAxes(fig, rect)
-    fig.add_axes(ax)
+def wrcontourf(direction, var, ax=None, **kwargs):
+    ax = new_axes(ax)
     ax.contourf(direction, var, **kwargs)
-    l = ax.legend(borderaxespad=-0.10)
-    plt.setp(l.get_texts(), fontsize=8)
-    plt.draw()
-    plt.show()
+    set_legend(ax)
     return ax
 
-def wrbox(direction, var, **kwargs):
-    fig = plt.figure()
-    rect = [0.1, 0.1, 0.8, 0.8]
-    ax = WindroseAxes(fig, rect)
-    fig.add_axes(ax)
+def wrbox(direction, var, ax=None, **kwargs):
+    ax = new_axes(ax)
     ax.box(direction, var, **kwargs)
-    l = ax.legend(borderaxespad=-0.10)
-    plt.setp(l.get_texts(), fontsize=8)
-    plt.draw()
-    plt.show()
+    set_legend(ax)
     return ax
 
-def wrbar(direction, var, **kwargs):
-    fig = plt.figure()
-    rect = [0.1, 0.1, 0.8, 0.8]
-    ax = WindroseAxes(fig, rect)
-    fig.add_axes(ax)
+def wrbar(direction, var, ax=None, **kwargs):
+    ax = new_axes(ax)
     ax.bar(direction, var, **kwargs)
-    l = ax.legend(borderaxespad=-0.10)
-    plt.setp(l.get_texts(), fontsize=8)
-    plt.draw()
-    plt.show()
+    set_legend(ax)
     return ax
 
 #def clean(direction, var):
@@ -561,7 +537,7 @@ def pdf(var, bins, Nx=100, bar_color='b', plot_color='g', ax=None, **kwargs):
     _ = ax.plot(x, scipy.stats.exponweib.pdf(x, *params), color=plot_color)
     return(ax, params)
 
-def plot_windrose(df, kind='contour', var_name=VAR_DEFAULT, direction_name=DIR_DEFAULT, clean=clean_df, **kwargs):
+def plot_windrose(df, kind='contour', var_name=VAR_DEFAULT, direction_name=DIR_DEFAULT, f_clean=clean_df, **kwargs):
     d = {
         'contour': wrcontour,
         'contourf': wrcontourf,
@@ -573,11 +549,13 @@ def plot_windrose(df, kind='contour', var_name=VAR_DEFAULT, direction_name=DIR_D
         f_plot = d[kind]
     else:
         raise(Exception("kind=%r but it must be in %r" % (kind, d.keys())))
-    if clean is not None:
-        df = clean(df)
+    if f_clean is not None:
+        df = f_clean(df)
     var = df[var_name].values
     direction = df[direction_name].values
     ax = f_plot(direction=direction, var=var, **kwargs)
+    if kind not in ['pdf']:
+        set_legend(ax)
     return ax
 
 def fig_ax(ax=None, **kwargs):
@@ -587,39 +565,36 @@ def fig_ax(ax=None, **kwargs):
     else:
         return(ax)    
 
-def new_axes():
-    fig = plt.figure(figsize=FIGSIZE_DEFAULT, dpi=DPI_DEFAULT, facecolor='w', edgecolor='w')
-    rect = [0.1, 0.1, 0.8, 0.8]
-    ax = WindroseAxes(fig, rect, axisbg='w')
-    fig.add_axes(ax)
-    return ax
+def new_axes(ax=None):
+    if ax is None:
+        fig = plt.figure(figsize=FIGSIZE_DEFAULT, dpi=DPI_DEFAULT, facecolor='w', edgecolor='w')
+        rect = [0.1, 0.1, 0.8, 0.8]
+        ax = WindroseAxes(fig, rect, axisbg='w')
+        fig.add_axes(ax)
+        return ax
+    else:
+        return ax
 
 def set_legend(ax):
     l = ax.legend(borderaxespad=-0.10)
     plt.setp(l.get_texts(), fontsize=8)
 
 
-if __name__=='__main__':
-    from pylab import figure, show, setp, random, grid, draw
-    vv=random(500)*6
-    dv=random(500)*360
-    fig = figure(figsize=(8, 8), dpi=80, facecolor='w', edgecolor='w')
-    rect = [0.1, 0.1, 0.8, 0.8]
-    ax = WindroseAxes(fig, rect, axisbg='w')
-    fig.add_axes(ax)
+#if __name__=='__main__':
+#    from pylab import figure, show, setp, random, grid, draw
+#    vv=random(500)*6
+#    dv=random(500)*360
+#    fig = figure(figsize=(8, 8), dpi=80, facecolor='w', edgecolor='w')
+#    rect = [0.1, 0.1, 0.8, 0.8]
+#    ax = WindroseAxes(fig, rect, axisbg='w')
+#    fig.add_axes(ax)
 
-#    ax.contourf(dv, vv, bins=np.arange(0,8,1), cmap=cm.hot)
-#    ax.contour(dv, vv, bins=np.arange(0,8,1), colors='k')
-#    ax.bar(dv, vv, normed=True, opening=0.8, edgecolor='white')
-    ax.box(dv, vv, normed=True)
-    l = ax.legend(borderaxespad=-0.10)
-    setp(l.get_texts(), fontsize=8)
-    draw()
-    #print ax._info
-    show()
-
-
-
-
-
-
+##    ax.contourf(dv, vv, bins=np.arange(0,8,1), cmap=cm.hot)
+##    ax.contour(dv, vv, bins=np.arange(0,8,1), colors='k')
+##    ax.bar(dv, vv, normed=True, opening=0.8, edgecolor='white')
+#    ax.box(dv, vv, normed=True)
+#    l = ax.legend(borderaxespad=-0.10)
+#    setp(l.get_texts(), fontsize=8)
+#    draw()
+#    #print ax._info
+#    show()

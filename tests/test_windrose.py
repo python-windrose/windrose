@@ -3,12 +3,13 @@
 
 import matplotlib as mpl
 mpl.use('Agg', warn=False)
+import matplotlib.pyplot as plt
+import matplotlib.cm as cm
 
 from windrose import WindroseAxes
+from windrose import FIGSIZE_DEFAULT, DPI_DEFAULT
 from windrose import new_axes, set_legend, fig_ax
 from windrose import pdf
-from matplotlib import pyplot as plt
-import matplotlib.cm as cm
 import numpy as np
 
 def test_windrose_numpy():
@@ -49,7 +50,7 @@ def test_windrose_numpy():
     set_legend(ax)
     plt.savefig('tests/contour.png')
 
-    ##print ax._info
+    #print ax._info
     #plt.show()
 
     ax = fig_ax()

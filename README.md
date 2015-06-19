@@ -34,7 +34,7 @@ An [IPython (Jupyter)](http://ipython.org/) notebook showing this package usage 
 Script example :
 ----------------
 
-Expecting the `windrose.py` file and all the necessary modules are in the `PYTHONPATH`, this example use randoms values for wind speed and direction(ws and wd variables). In situation, these variables are loaded with reals values (1-D array), from a database or directly from a text file (see the "load" facility from the matplotlib.pylab interface for that).
+This example use randoms values for wind speed and direction(ws and wd variables). In situation, these variables are loaded with reals values (1-D array), from a database or directly from a text file (see the "load" facility from the matplotlib.pylab interface for that).
 
     from windrose import WindroseAxes
     from windrose import new_axes, set_legend

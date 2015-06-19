@@ -8,8 +8,7 @@
 [![Build Status](https://travis-ci.org/scls19fr/windrose.svg)](https://travis-ci.org/scls19fr/windrose)
 
 
-windrose
-========
+#windrose
 
 A windrose, also known as a polar rose plot, is a special diagram for representing the distribution of meteorological datas, typically wind speeds by class and direction.
 This is a simple module for the matplotlib python library, which requires numpy for internal computation.
@@ -18,8 +17,7 @@ Original code forked from:
  - windrose 1.4 by Lionel Roubeyrie <lionel.roubeyrie@gmail.com> http://youarealegend.blogspot.fr/search/label/windrose
 
 
-Requirements:
--------------
+##Requirements:
 
  - matplotlib http://matplotlib.org/
  - numpy http://www.numpy.org/
@@ -30,14 +28,13 @@ Option libraries:
  - Pandas http://pandas.pydata.org/ (to feed plot functions easily)
  - Scipy http://www.scipy.org/ (to fit data with Weibull distribution)
 
-Notebook example :
-------------------
+##Notebook example :
+
 An [IPython (Jupyter)](http://ipython.org/) notebook showing this package usage is available at:
 
  - http://nbviewer.ipython.org/github/scls19fr/windrose/blob/master/windrose_sample_random.ipynb
 
-Script example :
-----------------
+##Script example :
 
 This example use randoms values for wind speed and direction(ws and wd variables). In situation, these variables are loaded with reals values (1-D array), from a database or directly from a text file (see the "load" facility from the matplotlib.pylab interface for that).
 
@@ -51,8 +48,7 @@ This example use randoms values for wind speed and direction(ws and wd variables
     ws = np.random.random(500) * 6
     wd = np.random.random(500) * 360
 
-A stacked histogram with normed (displayed in percent) results :
-----------------------------------------------------------------
+###A stacked histogram with normed (displayed in percent) results :
 
     ax = WindroseAxes.from_ax()
     ax.bar(wd, ws, normed=True, opening=0.8, edgecolor='white')
@@ -60,8 +56,7 @@ A stacked histogram with normed (displayed in percent) results :
 
 ![bar](screenshots/bar.png)
 
-Another stacked histogram representation, not normed, with bins limits
-----------------------------------------------------------------------
+###Another stacked histogram representation, not normed, with bins limits
 
     ax = WindroseAxes.from_ax()
     ax.box(wd, ws, bins=np.arange(0, 8, 1))
@@ -69,8 +64,7 @@ Another stacked histogram representation, not normed, with bins limits
 
 ![box](screenshots/box.png)
 
-A windrose in filled representation, with a controled colormap
---------------------------------------------------------------
+###A windrose in filled representation, with a controled colormap
 
     ax = WindroseAxes.from_ax()
     ax.contourf(wd, ws, bins=np.arange(0, 8, 1), cmap=cm.hot)
@@ -78,8 +72,7 @@ A windrose in filled representation, with a controled colormap
 
 ![contourf](screenshots/contourf.png)
 
-Same as above, but with contours over each filled region...
------------------------------------------------------------
+###Same as above, but with contours over each filled region...
 
     ax = WindroseAxes.from_ax()
     ax.contourf(wd, ws, bins=np.arange(0, 8, 1), cmap=cm.hot)
@@ -88,8 +81,7 @@ Same as above, but with contours over each filled region...
 
 ![contourf-contour](screenshots/contourf-contour.png)
 
-...or without filled regions
-----------------------------
+###...or without filled regions
 
     ax = WindroseAxes.from_ax()
     ax.contour(wd, ws, bins=np.arange(0, 8, 1), cmap=cm.hot, lw=3)
@@ -142,8 +134,7 @@ Optional:
    Default : no edgecolor
  - `opening` : float - between 0.0 and 1.0, to control the space between each sector (1.0 for no space)
 
-probability density function (pdf) and fitting Weibull distribution
--------------------------------------------------------------------
+###probability density function (pdf) and fitting Weibull distribution
 
 A probability density function can be plot using:
 
@@ -161,14 +152,12 @@ Optimal parameters of Weibull distribution can be displayed using
     (1, 1.7042156870194352, 0, 7.0907180300605459)
 
 
-Functional API
---------------
+##Functional API
 
 Instead of using object oriented approach like previously shown, some "shortcut" functions have been defined: `wrbox`, `wrbar`, `wrcontour`, `wrcontourf`, `wrpdf`.
 See [unit tests](tests/test_windrose.py).
 
-Pandas support
---------------
+##Pandas support
 
 windrose not only supports Numpy arrays. It also supports also Pandas DataFrame. `plot_windrose` function provides most of plotting features previously shown.
 

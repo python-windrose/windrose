@@ -583,8 +583,8 @@ def wrscatter(direction, var, ax=None, *args, **kwargs):
 #    '''
 #    dirmask = direction.mask==False
 #    varmask = direction.mask==False
-#    ind = dirmask*varmask
-#    return direction[ind], var[ind]
+#    mask = dirmask*varmask
+#    return direction[mask], var[mask]
 
 
 def clean_df(df, var=VAR_DEFAULT, direction=DIR_DEFAULT):
@@ -597,7 +597,7 @@ def clean_df(df, var=VAR_DEFAULT, direction=DIR_DEFAULT):
     return(df[df[var].notnull() & df[var]!=0 & df[direction].notnull()])
 
 
-def clean(direction, var):
+def clean(direction, var, index=False):
     '''
     Remove nan and var=0 values in the two arrays
     if a var (wind speed) is nan or equal to 0, this data is
@@ -606,8 +606,15 @@ def clean(direction, var):
     '''
     dirmask = np.isfinite(direction)
     varmask = (var!=0 & np.isfinite(var))
-    ind = dirmask*varmask
-    return direction[ind], var[ind]
+    mask = dirmask * varmask
+    if index is None:
+        index = np.arange(mask.sum())
+        return direction[mask], var[mask], index
+    elif not index:
+        return direction[mask], var[mask]
+    else:
+        index = index[mask]
+        return direction[mask], var[mask], index
 
 
 D_KIND_PLOT = {

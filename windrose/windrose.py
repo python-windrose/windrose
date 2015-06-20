@@ -619,16 +619,31 @@ D_KIND_PLOT = {
     'scatter': wrscatter
 }
 
+def plot_windrose(direction_or_df, var=None, kind='contour', var_name=VAR_DEFAULT, direction_name=DIR_DEFAULT, **kwargs):
+    if var is None:
+        # Assuming direction_or_df is a DataFrame
+        df = direction_or_df
+        var = df[var_name].values
+        direction = df[direction_name].values
+    else:
+        direction = direction_or_df
+    return(plot_windrose_np(direction, var, kind=kind, **kwargs))
 
-def plot_windrose(df, kind='contour', var_name=VAR_DEFAULT, direction_name=DIR_DEFAULT, f_clean=clean_df, **kwargs):
+def plot_windrose_df(df, kind='contour', var_name=VAR_DEFAULT, direction_name=DIR_DEFAULT, **kwargs):
+    var = df[var_name].values
+    direction = df[direction_name].values
+    return(plot_windrose_np(direction, var, **kwargs))
+
+def plot_windrose_np(direction, var, kind='contour', **kwargs):
     if kind in D_KIND_PLOT.keys():
         f_plot = D_KIND_PLOT[kind]
     else:
         raise(Exception("kind=%r but it must be in %r" % (kind, d.keys())))
-    if f_clean is not None:
-        df = f_clean(df)
-    var = df[var_name].values
-    direction = df[direction_name].values
+    #if f_clean is not None:
+    #    df = f_clean(df)
+    #var = df[var_name].values
+    #direction = df[direction_name].values
+    var, direction = clean(var, direction)
     ax = f_plot(direction=direction, var=var, **kwargs)
     if kind not in ['pdf']:
         ax.set_legend()

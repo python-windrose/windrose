@@ -1,6 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+# Run all unit tests (from project root directory)
+# $ nosetests -s -v
+
+# Run a test (from project root directory)
+# $ nosetests tests.test_windrose:test_windrose_np_plot_and_pd_plot -s -v
+
 import matplotlib as mpl
 mpl.use('Agg', warn=False)
 import matplotlib.pyplot as plt
@@ -12,7 +18,7 @@ from windrose import WindAxesFactory
 
 from windrose import FIGSIZE_DEFAULT, DPI_DEFAULT
 from windrose import wrbar, wrbox, wrcontour, wrcontourf, wrpdf, wrscatter
-from windrose import plot_windrose
+from windrose import plot_windrose_np, plot_windrose_df, plot_windrose
 from windrose import D_KIND_PLOT
 
 import numpy as np
@@ -138,6 +144,18 @@ def test_windaxesfactory():
     bins = bins[1:]
     ax.pdf(ws, bins=bins)
     plt.savefig('tests/output/oo/pdf_from_factory.png')
+
+def test_windrose_np_plot_and_pd_plot():
+    bins = np.arange(0.01, 8, 1)
+    
+    kind = 'scatter'
+    
+    plot_windrose(df, kind=kind, alpha=0.2)
+    plt.savefig('tests/output/df/%s.png' % kind)
+
+    plot_windrose(wd, ws, kind=kind, alpha=0.2)
+    plt.savefig('tests/output/func/%s.png' % kind)
+
 
 #def test_plot_by():
 #    #df = pd.read_csv("samples/sample_wind_poitiers.csv", parse_dates=['Timestamp'])

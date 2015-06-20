@@ -5,5 +5,6 @@ from __future__ import absolute_import, division, print_function
 
 from .windrose import WindAxesFactory, WindroseAxes, WindAxes, \
     wrcontour, wrcontourf, wrbox, wrbar, wrpdf, wrscatter, \
-    clean, clean_df, plot_windrose, \
+    clean, clean_df, \
+    plot_windrose_np, plot_windrose_df, plot_windrose, \
     FIGSIZE_DEFAULT, DPI_DEFAULT, D_KIND_PLOT

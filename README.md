@@ -177,3 +177,12 @@ Optional:
  - `var_name` : name of var column name ; default value is `VAR_DEFAULT='speed'`
  - `direction_name` : name of direction column name ; default value is `DIR_DEFAULT='direction'`
  - `clean` : cleanup data function (remove data points with `NaN`, `var=0`) before plotting ; default value is `clean=clean_df`. If `clean=None` no data cleanup if performed.
+
+##Video export
+A video of plot can be exported. See:
+
+[![Video](http://img.youtube.com/vi/_lfrwvjjVFw/0.jpg)](https://www.youtube.com/watch?v=_lfrwvjjVFw)
+
+[Source code](samples/sample_animate.py)
+
+This is just a sample for now. API for video need to be created.

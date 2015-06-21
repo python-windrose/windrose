@@ -79,7 +79,7 @@ def main():
 
                     #ax.scatter(wd, ws, alpha=0.2)
 
-                    ax.bar(wd, ws, normed=True, opening=0.8, edgecolor='white')
+                    ax.bar(wd, ws, bins=bins, normed=True, opening=0.8, edgecolor='white')
 
                     #ax.box(wd, ws, bins=bins)
 

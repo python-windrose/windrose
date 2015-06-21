@@ -7,10 +7,12 @@
 # Run a test (from project root directory)
 # $ nosetests tests.test_windrose:test_windrose_np_plot_and_pd_plot -s -v
 
+import matplotlib
+matplotlib.use('Agg')
+
 import matplotlib as mpl
-mpl.use('Agg', warn=False)
-import matplotlib.pyplot as plt
-import matplotlib.cm as cm
+from matplotlib import pyplot as plt
+from matplotlib import cm as cm
 
 from windrose import WindroseAxes
 from windrose import WindAxes

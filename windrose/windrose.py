@@ -58,9 +58,10 @@ class WindroseAxes(PolarAxes):
         self.cla()
 
     @staticmethod
-    def from_ax(ax=None, *args, **kwargs):
+    def from_ax(ax=None, fig=None, *args, **kwargs):
         if ax is None:
-            fig = plt.figure(figsize=FIGSIZE_DEFAULT, dpi=DPI_DEFAULT, facecolor='w', edgecolor='w')
+            if fig is None:
+                fig = plt.figure(figsize=FIGSIZE_DEFAULT, dpi=DPI_DEFAULT, facecolor='w', edgecolor='w')
             rect = [0.1, 0.1, 0.8, 0.8]
             ax = WindroseAxes(fig, rect, axisbg='w', *args, **kwargs)
             fig.add_axes(ax)
@@ -455,9 +456,10 @@ class WindAxes(mpl.axes.Subplot):
         super(WindAxes, self).__init__(*args, **kwargs)
 
     @staticmethod
-    def from_ax(ax=None, *args, **kwargs):
+    def from_ax(ax=None, fig=None, *args, **kwargs):
         if ax is None:
-            fig = plt.figure(figsize=FIGSIZE_DEFAULT, dpi=DPI_DEFAULT)
+            if fig is None:
+                fig = plt.figure(figsize=FIGSIZE_DEFAULT, dpi=DPI_DEFAULT)
             ax = WindAxes(fig, 1, 1, 1, *args, **kwargs)
             fig.add_axes(ax)
             return ax

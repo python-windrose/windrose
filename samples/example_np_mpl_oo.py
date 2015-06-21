@@ -24,23 +24,24 @@ ax.set_legend()
 
 #Another stacked histogram representation, not normed, with bins limits
 ax = WindroseAxes.from_ax()
-ax.box(wd, ws, bins=np.arange(0, 8, 1))
+bins = np.arange(0, 8, 1)
+ax.box(wd, ws, bins=bins)
 ax.set_legend()
 
 #A windrose in filled representation, with a controled colormap
 ax = WindroseAxes.from_ax()
-ax.contourf(wd, ws, bins=np.arange(0, 8, 1), cmap=cm.hot)
+ax.contourf(wd, ws, bins=bins, cmap=cm.hot)
 ax.set_legend()
 
 #Same as above, but with contours over each filled region...
 ax = WindroseAxes.from_ax()
-ax.contourf(wd, ws, bins=np.arange(0, 8, 1), cmap=cm.hot)
-ax.contour(wd, ws, bins=np.arange(0, 8, 1), colors='black')
+ax.contourf(wd, ws, bins=bins, cmap=cm.hot)
+ax.contour(wd, ws, bins=bins, colors='black')
 ax.set_legend()
 
 #...or without filled regions
 ax = WindroseAxes.from_ax()
-ax.contour(wd, ws, bins=np.arange(0, 8, 1), cmap=cm.hot, lw=3)
+ax.contour(wd, ws, bins=bins, cmap=cm.hot, lw=3)
 ax.set_legend()
 
 ##print ax._info

@@ -179,7 +179,7 @@ Optional:
  - `clean` : cleanup data function (remove data points with `NaN`, `var=0`) before plotting ; default value is `clean=clean_df`. If `clean=None` no data cleanup if performed.
 
 ##Video export
-A video of plot can be exported. See:
+A video of plots can be exported. See:
 
 [![Video](http://img.youtube.com/vi/_lfrwvjjVFw/0.jpg)](https://www.youtube.com/watch?v=_lfrwvjjVFw)
 

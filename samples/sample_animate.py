@@ -8,6 +8,8 @@ This sample need to be improve to provide
 a clean API to output animation
 """
 
+import click
+
 import matplotlib
 #matplotlib.use("Agg")
 
@@ -27,40 +29,62 @@ from windrose import WindroseAxes, WindAxes, plot_windrose, clean, FIGSIZE_DEFAU
 import sys
 import traceback
 
-def main():
-    df = pd.read_csv("samples/sample_wind_poitiers.csv")
+S_FIGSIZE_DEFAULT = ",".join(map(str, FIGSIZE_DEFAULT))
+
+@click.command()
+@click.option("--filename", default="samples/sample_wind_poitiers.csv", help="Input filename")
+@click.option("--exit_at", default=0, help="premature exit (int) - must be > 1")
+@click.option("--size", default=36 * 4, help="size of window")
+@click.option("--offset", default=3 + 6 * 6 + 24 * 6 * 365 * 2 - 24 * 6 * 65, help="data offset")
+@click.option("--filename_out", default="windrose_animation.mp4", help="Output filename")
+@click.option("--dpi", default=DPI_DEFAULT, help="Dot per inch for plot generation")
+@click.option("--figsize", default=S_FIGSIZE_DEFAULT, help="Figure size x,y - default=%s" % S_FIGSIZE_DEFAULT)
+@click.option("--fps", default=7, help="Number of frame per seconds for video generation")
+@click.option("--bins_min", default=0.01, help="Bins minimum value")
+@click.option("--bins_max", default=20, help="Bins maximum value")
+@click.option("--bins_step", default=2, help="Bins step value")
+def main(filename, exit_at, size, offset, dpi, figsize, fps, bins_min, bins_max, bins_step, filename_out):
+    # convert figsize (string like "8,9" to a list of float [8.0, 9.0]
+    figsize = figsize.split(",")
+    figsize = map(float, figsize)
+
+    # Read CSV file to a Pandas DataFrame
+    df = pd.read_csv(filename)
     df['Timestamp'] = pd.to_datetime(df['Timestamp'])
     df = df.set_index('Timestamp')
     #df = df.iloc[-10000:,:]
+
+    # Get Numpy arrays from DataFrame
     direction = df['direction'].values
     var = df['speed'].values
     index = df.index.values
 
-    bins = np.arange(0.01, 8, 1)
+    # Define bins
+    bins = np.arange(bins_min, bins_max, bins_step)
 
-    fig = plt.figure(figsize=FIGSIZE_DEFAULT, dpi=DPI_DEFAULT, facecolor='w', edgecolor='w')
-    #ax.scatter(direction, var, alpha=0.2)
+    # Create figure
+    fig = plt.figure(figsize=figsize, dpi=dpi, facecolor='w', edgecolor='w')
 
-
+    # Create a video writer (ffmpeg can create MPEG files)
     FFMpegWriter = mpl.animation.writers['ffmpeg']
-    metadata = dict(title='Movie Test', artist='Matplotlib',
-            comment='Movie support!')
-    writer = FFMpegWriter(fps=15, metadata=metadata)
+    metadata = dict(title='windrose', artist='windrose',
+            comment="""Made with windrose
+http://www.github.com/scls19fr/windrose""")
+    writer = FFMpegWriter(fps=fps, metadata=metadata)
 
-    size = 36 * 4
-    offset = 3 + 6 * 6 + 24 * 6 * 365 * 2 - 24 * 6 * 65
+    dt0 = index[offset]
+    print("size: %d" % size)
+    print("offset: %d" % offset)
+    print("First dt: %s" % dt0)
 
-    print("First dt: %s" % index[offset])
+    print("")
 
     dt2 = None
     i = 0
-    filename = "windrose_animation_box.mp4"
-    with writer.saving(fig, filename, 100):
+    with writer.saving(fig, filename_out, 100):
         #for i in range(1000): # 100
         try:
-            while True:
-                ax = WindroseAxes.from_ax(fig=fig)
-
+            while True: # loop until fails (end of data)
                 print("Processing %d" % (i + 1))
                 i1 = offset + i*size
                 i2 = offset + (i+1)*size + 1
@@ -75,24 +99,35 @@ def main():
                 print("""    td %r""" % td.astype('timedelta64[m]'))
     
                 try:
-                    wd = direction[i1:i2]
-                    ws = var[i1:i2]
+                    direction_tmp = direction[i1:i2]
+                    var_tmp = var[i1:i2]
 
-                    #ax.scatter(wd, ws, alpha=0.2)
+                    ax = WindroseAxes.from_ax(fig=fig) # scatter, bar, box, contour, contourf
 
-                    #ax.bar(wd, ws, bins=bins, normed=True, opening=0.8, edgecolor='white')
+                    #ax.scatter(direction_tmp, var_tmp, alpha=0.2)
+                    #ax.set_xlim([-bins[-1], bins[-1]])
+                    #ax.set_ylim([-bins[-1], bins[-1]])
 
-                    ax.box(wd, ws, bins=bins)
+                    #ax.bar(direction_tmp, var_tmp, bins=bins, normed=True, opening=0.8, edgecolor='white')
 
-                    #ax.contour(wd, ws, cmap=cm.hot, lw=3, bins=bins)
+                    #ax.box(direction_tmp, var_tmp, bins=bins)
 
-                    #ax.contourf(wd, ws, bins=bins, cmap=cm.hot)
-                    #ax.contour(wd, ws, bins=bins, colors='black')
+                    #ax.contour(direction_tmp, var_tmp, cmap=cm.hot, lw=3, bins=bins)
+
+                    ax.contourf(direction_tmp, var_tmp, bins=bins, cmap=cm.hot)
+                    ax.contour(direction_tmp, var_tmp, bins=bins, colors='black', lw=3)
 
                     ax.set_legend()
 
+                    #ax = WindAxes.from_ax(fig=fig) # pdf: probability density function
+                    #ax.pdf(var_tmp, bins=bins)
+                    #ax.set_xlim([0, bins[-1]])
+                    #ax.set_ylim([0, 0.4])
+
                     ax.set_title(title, fontname="Courier New")
+
                     writer.grab_frame()
+
                 except:
                     print(traceback.format_exc(), file=sys.stderr)
 
@@ -100,13 +135,24 @@ def main():
 
                 fig.clf()
                 i += 1
+                if i == exit_at - 1: # exit_at must be > 1
+                    break
+
         except:
             print(traceback.format_exc(), file=sys.stderr)
 
+        print("First dt: %s" % dt0)
         print("Last  dt: %s" % dt2)
+        td = dt2 - dt0
+        print("      td: %r" % td.astype('timedelta64[D]'))
+        N = i + 1
+        print("Number of slides: %d" % N)
 
 
     #plt.show()
+
+    print("")
+    print("Save file to '%s'" % filename_out)
 
 if __name__ == "__main__":
     main()

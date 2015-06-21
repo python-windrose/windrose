@@ -28,6 +28,7 @@ Option libraries:
  - Pandas http://pandas.pydata.org/ (to feed plot functions easily)
  - Scipy http://www.scipy.org/ (to fit data with Weibull distribution)
  - ffmpeg https://www.ffmpeg.org/ (to output video)
+ - click http://click.pocoo.org/ (for command line interface tools)
 
 ##Notebook example :
 
@@ -189,3 +190,9 @@ A video of plots can be exported. See:
 [Source code](samples/sample_animate.py)
 
 This is just a sample for now. API for video need to be created.
+
+Use: 
+
+    $ python samples/sample_animate.py --help
+
+to display command line interface usage.

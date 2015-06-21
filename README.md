@@ -27,6 +27,7 @@ Option libraries:
 
  - Pandas http://pandas.pydata.org/ (to feed plot functions easily)
  - Scipy http://www.scipy.org/ (to fit data with Weibull distribution)
+ - ffmpeg https://www.ffmpeg.org/ (to output video)
 
 ##Notebook example :
 

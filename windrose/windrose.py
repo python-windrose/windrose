@@ -643,7 +643,7 @@ def plot_windrose_df(df, kind='contour', var_name=VAR_DEFAULT, direction_name=DI
     direction = df[direction_name].values
     return(plot_windrose_np(direction, var, **kwargs))
 
-def plot_windrose_np(direction, var, kind='contour', **kwargs):
+def plot_windrose_np(direction, var, kind='contour', clean=True, **kwargs):
     if kind in D_KIND_PLOT.keys():
         f_plot = D_KIND_PLOT[kind]
     else:
@@ -652,7 +652,8 @@ def plot_windrose_np(direction, var, kind='contour', **kwargs):
     #    df = f_clean(df)
     #var = df[var_name].values
     #direction = df[direction_name].values
-    var, direction = clean(var, direction)
+    if clean:
+        var, direction = clean(var, direction)
     ax = f_plot(direction=direction, var=var, **kwargs)
     if kind not in ['pdf']:
         ax.set_legend()

@@ -54,7 +54,7 @@ def main():
 
     dt2 = None
     i = 0
-    with writer.saving(fig, "wind_anim_test.mp4", 100):
+    with writer.saving(fig, "windrose_animation_bar.mp4", 100):
         #for i in range(1000): # 100
         try:
             while True:
@@ -76,10 +76,20 @@ def main():
                 try:
                     wd = direction[i1:i2]
                     ws = var[i1:i2]
+
+                    #ax.scatter(wd, ws, alpha=0.2)
+
+                    ax.bar(wd, ws, normed=True, opening=0.8, edgecolor='white')
+
+                    #ax.box(wd, ws, bins=bins)
+
                     #ax.contour(wd, ws, cmap=cm.hot, lw=3, bins=bins)
-                    ax.contourf(wd, ws, bins=bins, cmap=cm.hot)
-                    ax.contour(wd, ws, bins=bins, colors='black')
+
+                    #ax.contourf(wd, ws, bins=bins, cmap=cm.hot)
+                    #ax.contour(wd, ws, bins=bins, colors='black')
+
                     ax.set_legend()
+
                     ax.set_title(title, fontname="Courier New")
                     writer.grab_frame()
                 except:

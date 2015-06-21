@@ -52,8 +52,6 @@ def main():
 
     print("First dt: %s" % index[offset])
 
-    return
-
     dt2 = None
     i = 0
     with writer.saving(fig, "wind_anim_test.mp4", 100):

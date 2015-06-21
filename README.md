@@ -14,7 +14,7 @@ A windrose, also known as a polar rose plot, is a special diagram for representi
 This is a simple module for the matplotlib python library, which requires numpy for internal computation.
 
 Original code forked from:
- - windrose 1.4 by Lionel Roubeyrie <lionel.roubeyrie@gmail.com> http://youarealegend.blogspot.fr/search/label/windrose
+ - windrose 1.4 by [Lionel Roubeyrie](https://github.com/LionelR) <lionel.roubeyrie@gmail.com> http://youarealegend.blogspot.fr/search/label/windrose
 
 
 ##Requirements:

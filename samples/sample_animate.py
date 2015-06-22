@@ -53,6 +53,7 @@ def main(filename, exit_at, size, offset, dpi, figsize, fps, bins_min, bins_max,
     df['Timestamp'] = pd.to_datetime(df['Timestamp'])
     df = df.set_index('Timestamp')
     #df = df.iloc[-10000:,:]
+    df.index = df.index.tz_localize('UTC').tz_convert('UTC')
 
     # Get Numpy arrays from DataFrame
     direction = df['direction'].values
@@ -141,8 +142,8 @@ http://www.github.com/scls19fr/windrose""")
         except:
             print(traceback.format_exc(), file=sys.stderr)
 
-        print("First dt: %s" % dt0)
-        print("Last  dt: %s" % dt2)
+        print("First dt: %r" % dt0)
+        print("Last  dt: %r" % dt2)
         td = dt2 - dt0
         print("      td: %r" % td.astype('timedelta64[D]'))
         N = i + 1

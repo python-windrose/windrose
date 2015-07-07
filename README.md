@@ -30,6 +30,12 @@ Option libraries:
  - ffmpeg https://www.ffmpeg.org/ (to output video)
  - click http://click.pocoo.org/ (for command line interface tools)
 
+## Install
+
+A package is available and can be downloaded from PyPi and installed using:
+
+	$ pip install windrose
+
 ##Notebook example :
 
 An [IPython (Jupyter)](http://ipython.org/) notebook showing this package usage is available at:
@@ -196,3 +202,43 @@ Use:
     $ python samples/sample_animate.py --help
 
 to display command line interface usage.
+
+## Development
+
+You can help to develop this library.
+
+### Issues
+
+You can submit issues using <https://github.com/scls19fr/windrose/issues>
+
+### Clone
+
+You can clone repository to try to fix issues yourself using:
+
+	$ git clone https://github.com/scls19fr/windrose.git
+
+### Run unit tests
+
+Run all unit tests
+
+	$ nosetests -s -v
+	
+Run a given test
+
+	$ nosetests tests.test_windrose:test_plot_by -s -v
+
+### Install development version
+
+	$ python setup.py install
+	
+or
+
+	$ sudo pip install git+git://github.com/scls19fr/windrose.git
+
+### Collaborating
+
+- Fork repository
+- Create a branch which fix a given issue
+- Submit pull requests
+
+<https://help.github.com/categories/collaborating/>

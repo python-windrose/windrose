@@ -46,6 +46,7 @@ An [IPython (Jupyter)](http://ipython.org/) notebook showing this package usage 
 
 This example use randoms values for wind speed and direction(ws and wd variables). In situation, these variables are loaded with reals values (1-D array), from a database or directly from a text file (see the "load" facility from the matplotlib.pylab interface for that).
 
+```python
     from windrose import WindroseAxes
     from matplotlib import pyplot as plt
     import matplotlib.cm as cm
@@ -55,45 +56,56 @@ This example use randoms values for wind speed and direction(ws and wd variables
 
     ws = np.random.random(500) * 6
     wd = np.random.random(500) * 360
+```
 
 ###A stacked histogram with normed (displayed in percent) results :
 
+```python
     ax = WindroseAxes.from_ax()
     ax.bar(wd, ws, normed=True, opening=0.8, edgecolor='white')
     ax.set_legend()
+```
 
 ![bar](screenshots/bar.png)
 
 ###Another stacked histogram representation, not normed, with bins limits
 
+```python
     ax = WindroseAxes.from_ax()
     ax.box(wd, ws, bins=np.arange(0, 8, 1))
     ax.set_legend()
+```
 
 ![box](screenshots/box.png)
 
 ###A windrose in filled representation, with a controled colormap
 
+```python
     ax = WindroseAxes.from_ax()
     ax.contourf(wd, ws, bins=np.arange(0, 8, 1), cmap=cm.hot)
     ax.set_legend()
+```
 
 ![contourf](screenshots/contourf.png)
 
 ###Same as above, but with contours over each filled region...
 
+```python
     ax = WindroseAxes.from_ax()
     ax.contourf(wd, ws, bins=np.arange(0, 8, 1), cmap=cm.hot)
     ax.contour(wd, ws, bins=np.arange(0, 8, 1), colors='black')
     ax.set_legend()
+```
 
 ![contourf-contour](screenshots/contourf-contour.png)
 
 ###...or without filled regions
 
+```python
     ax = WindroseAxes.from_ax()
     ax.contour(wd, ws, bins=np.arange(0, 8, 1), cmap=cm.hot, lw=3)
     ax.set_legend()
+```
 
 ![contour](screenshots/contour.png)
 
@@ -105,12 +117,15 @@ After that, you can have a look at the computed values used to plot the windrose
 
 So, to know the frequency of each wind direction, for all wind speeds, do:
 
+```python
     ax.bar(wd, ws, normed=True, nsector=16)
     table = ax._info['table']
     wd_freq = np.sum(table, axis=0)
+```
 
 and to have a graphical representation of this result :
 
+```python
     direction = ax._info['dir']
     wd_freq = np.sum(table, axis=0)
     plt.bar(np.arange(16), wd_freq, align='center')
@@ -120,6 +135,7 @@ and to have a graphical representation of this result :
     draw()
     gca().set_xticklabels(xlabels)
     draw()
+```
 
 ![histo_WD](screenshots/histo_WD.png)
 
@@ -146,11 +162,13 @@ Optional:
 
 A probability density function can be plot using:
 
+```python
     from windrose import WindAxes
     ax = WindAxes.from_ax()
     bins = np.arange(0, 6 + 1, 0.5)
     bins = bins[1:]
     ax, params = ax.pdf(ws, bins=bins)
+```
 
 ![pdf](screenshots/pdf.png)
 
@@ -170,12 +188,14 @@ See [unit tests](tests/test_windrose.py).
 windrose not only supports Numpy arrays. It also supports also Pandas DataFrame. `plot_windrose` function provides most of plotting features previously shown.
 
 
+```python
+	from windrose import plot_windrose
     N = 500
     ws = np.random.random(N) * 6
     wd = np.random.random(N) * 360
     df = pd.DataFrame({'speed': ws, 'direction': wd})
     plot_windrose(df, kind='contour', bins=np.arange(0.01,8,1), cmap=cm.hot, lw=3)
-
+```
 
 Mandatory:
  - `df`: Pandas DataFrame with `DateTimeIndex` as index and at least 2 columns (`'speed'` and `'direction'`).

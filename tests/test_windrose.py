@@ -158,6 +158,15 @@ def test_windrose_np_plot_and_pd_plot():
     plot_windrose(wd, ws, kind=kind, alpha=0.2)
     plt.savefig('tests/output/func/%s.png' % kind)
 
+def test_windrose_pd_not_default_names():
+    bins = np.arange(0.01, 8, 1)
+    
+    kind = 'scatter'
+    
+    df_not_default_names = pd.DataFrame({'wind_speed': ws, 'wind_direction': wd})
+
+    plot_windrose(df_not_default_names, kind=kind, alpha=0.2, var_name='wind_speed', direction_name='wind_direction')
+
 
 #def test_plot_by():
 #    #df = pd.read_csv("samples/sample_wind_poitiers.csv", parse_dates=['Timestamp'])

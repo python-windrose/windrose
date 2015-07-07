@@ -12,9 +12,6 @@ NAME = 'windrose'
 with io.open(path.join(here, NAME, 'version.py'), 'rt', encoding='UTF-8') as f:
     exec(f.read())
 
-#from version import __author__, __copyright__, __credits__, \
-#    __license__, __version__, __maintainer__, __email__, __status__, __url__
-
 setup(
     name=NAME,
 

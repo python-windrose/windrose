@@ -4,6 +4,7 @@
 [![License](https://img.shields.io/pypi/l/windrose.svg)](https://pypi.python.org/pypi/windrose/)
 [![Development Status](https://img.shields.io/pypi/status/windrose.svg)](https://pypi.python.org/pypi/windrose/)
 [![Downloads monthly](https://img.shields.io/pypi/dm/windrose.svg)](https://pypi.python.org/pypi/windrose/)
+[![Requirements Status](https://requires.io/github/scls19fr/windrose/requirements.svg?branch=master)](https://requires.io/github/scls19fr/windrose/requirements/?branch=master)
 [![Code Health](https://landscape.io/github/scls19fr/windrose/master/landscape.svg?style=flat)](https://landscape.io/github/scls19fr/windrose/master)
 [![Codacy Badge](https://www.codacy.com/project/badge/fff3df3be0754829925202cdd6495ce7)](https://www.codacy.com/app/s-celles/windrose)
 [![Build Status](https://travis-ci.org/scls19fr/windrose.svg)](https://travis-ci.org/scls19fr/windrose)

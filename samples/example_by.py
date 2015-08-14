@@ -73,11 +73,11 @@ def main(filename, dpi, figsize, fps, bins_min, bins_max, bins_step, filename_ou
     mask = (by == (2011, 3)).all(axis=1)
     print(mask)
 
-    by_value = (2011, 3)
-    var_masked = np.ma.masked_where(by==by_value, var)
+    #by_value = (2011, 3)
+    #var_masked = np.ma.masked_where(by==by_value, var)
 
-    mask = (by == (2011, 3))
-    print(mask)
+    #mask = (by == (2011, 3))
+    #print(mask)
 
     # Define bins
     bins = np.arange(bins_min, bins_max, bins_step)

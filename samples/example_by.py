@@ -65,33 +65,48 @@ def main(filename, dpi, figsize, fps, bins_min, bins_max, bins_step, filename_ou
     # Get Numpy arrays from DataFrame
     direction = df['direction'].values
     var = df['speed'].values
-    index = df.index.values
+    index = df.index.to_datetime() #Fixed: .values -> to_datetime()
     by = df.index.map(by_func_monthly)
     by_unique = np.unique(by)
-    print(by_unique)
+    #print(by_unique)
 
-    mask = (by == (2011, 3)).all(axis=1)
-    print(mask)
+    for by_value in by_unique:
+        #by_value = (2011, 5)
 
-    #by_value = (2011, 3)
-    #var_masked = np.ma.masked_where(by==by_value, var)
+        #mask = (by == by_value).all(axis=1)
+        # ToFix: see http://stackoverflow.com/questions/32005403/boolean-indexing-with-numpy-array-and-tuples
 
-    #mask = (by == (2011, 3))
-    #print(mask)
+        mask = (pd.Series(by) == by_value).values
 
-    # Define bins
-    bins = np.arange(bins_min, bins_max, bins_step)
+        #print(mask)
 
-    # Create figure
-    #fig = plt.figure(figsize=figsize, dpi=dpi, facecolor='w', edgecolor='w')
+        index_masked = index[mask]
+        var_masked = var[mask]
+        direction_masked = direction[mask]
 
-    #Same as above, but with contours over each filled region...
-    ax = WindroseAxes.from_ax()
-    ax.contourf(direction, var, bins=bins, cmap=cm.hot)
-    ax.contour(direction, var, bins=bins, colors='black')
-    ax.set_legend()
+        # Define bins
+        bins = np.arange(bins_min, bins_max, bins_step)
 
-    #plt.show()
+        # Create figure
+        #fig = plt.figure(figsize=figsize, dpi=dpi, facecolor='w', edgecolor='w')
+
+        #Same as above, but with contours over each filled region...
+        ax = WindroseAxes.from_ax()
+        ax.contourf(direction_masked, var_masked, bins=bins, cmap=cm.hot)
+        ax.contour(direction_masked, var_masked, bins=bins, colors='black')
+        fontname = "Courier"
+        #title = by_value
+        dt1 = index_masked[0]
+        dt2 = index_masked[-1]
+        #dt1 = df.index[mask][0]
+        #dt2 = df.index[mask][-1]
+        td = dt2 - dt1
+        title = "From %s\n  to %s" % (dt1, dt2)
+
+        ax.set_title(title, fontname=fontname)
+        ax.set_legend()
+
+        plt.show()
 
     #time.sleep(10)
 

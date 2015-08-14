@@ -50,14 +50,18 @@ class Layout(object):
         return self._array_fig
 
     def _resize(self):
-        self._array_ax = np.empty((self.nsheets, self.nrows, self.ncols))
-        self._array_ax.fill(None)
+        #self._array_ax = np.empty((self.nsheets, self.nrows, self.ncols), dtype=object)
+        self._array_ax = np.empty(self.nsheets, dtype=object)
+        #self._array_ax.fill(None)
 
-        self._array_fig = np.empty(self.nsheets)
-        self._array_fig.fill(None)
+        self._array_fig = np.empty(self.nsheets, dtype=object)
+        #self._array_fig.fill(None)
 
         for i in range(self.nsheets):
-            self._array_fig[i], self._array_ax[i] = plt.subplots(nrows=self.nrows, ncols=self.nrows)
+            fig, axs = plt.subplots(nrows=self.nrows, ncols=self.nrows)
+            #print(fig, axs)
+            self._array_fig[i] = fig
+            self._array_ax[i] = axs
 
     def __repr__(self):
         s = """<Layout
@@ -164,6 +168,48 @@ def main(filename, dpi, figsize, fps, bins_min, bins_max, bins_step, filename_ou
     by = df.index.map(by_func_monthly)
     by_unique = np.unique(by)
     print(by_unique)
+
+    (ncols, nrows, nsheets) = (4, 3, 2)
+    #layout = Layout(4, 3, 2) # ncols, nrows, nsheets
+    layout = Layout(ncols, nrows, nsheets)
+    def tuple_position(i, ncols, nrows):
+        i_sheet, sheet_pos = divmod(i, ncols*nrows)
+        i_row, i_col  = divmod(sheet_pos, ncols)
+        return i_sheet, i_row, i_col
+
+    def position_from_tuple(t, ncols, nrows):
+        i_sheet, i_row, i_col = t
+        return i_sheet * ncols * nrows + i_row * ncols + i_col
+
+    assert  tuple_position(0, ncols, nrows) == (0, 0, 0)
+    assert  tuple_position(1, ncols, nrows) == (0, 0, 1)
+    assert  tuple_position(2, ncols, nrows) == (0, 0, 2)
+    assert  tuple_position(3, ncols, nrows) == (0, 0, 3)
+    assert  tuple_position(4, ncols, nrows) == (0, 1, 0)
+    assert  tuple_position(5, ncols, nrows) == (0, 1, 1)
+    assert  tuple_position(6, ncols, nrows) == (0, 1, 2)
+    assert  tuple_position(7, ncols, nrows) == (0, 1, 3)
+    assert  tuple_position(8, ncols, nrows) == (0, 2, 0)
+    assert  tuple_position(9, ncols, nrows) == (0, 2, 1)
+    assert tuple_position(10, ncols, nrows) == (0, 2, 2)
+    assert tuple_position(11, ncols, nrows) == (0, 2, 3)
+    assert tuple_position(12, ncols, nrows) == (1, 0, 0)
+    assert tuple_position(13, ncols, nrows) == (1, 0, 1)
+    assert tuple_position(14, ncols, nrows) == (1, 0, 2)
+    assert tuple_position(15, ncols, nrows) == (1, 0, 3)
+    assert tuple_position(16, ncols, nrows) == (1, 1, 0)
+    assert tuple_position(17, ncols, nrows) == (1, 1, 1)
+
+    assert position_from_tuple((0, 0, 0), ncols, nrows) == 0
+    assert position_from_tuple((1, 0, 0), ncols, nrows) == ncols * nrows
+    assert position_from_tuple((2, 0, 0), ncols, nrows) == 2 * ncols * nrows
+    assert position_from_tuple((1, 0, 1), ncols, nrows) == ncols * nrows + 1
+    assert position_from_tuple((1, 1, 1), ncols, nrows) == ncols * nrows + ncols + 1
+    assert position_from_tuple((1, 2, 3), ncols, nrows) == ncols * nrows + 2 * ncols + 3
+
+    for i in range(20):
+        t = tuple_position(i, ncols, nrows)
+        assert position_from_tuple(t, ncols, nrows) == i
 
     #layout = NormalLayout()
 

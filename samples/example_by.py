@@ -70,6 +70,9 @@ def main(filename, dpi, figsize, fps, bins_min, bins_max, bins_step, filename_ou
     by_unique = np.unique(by)
     print(by_unique)
 
+    mask = (by == (2011, 3)).all(axis=1)
+    print(mask)
+
     by_value = (2011, 3)
     var_masked = np.ma.masked_where(by==by_value, var)
 
@@ -92,7 +95,7 @@ def main(filename, dpi, figsize, fps, bins_min, bins_max, bins_step, filename_ou
 
     #time.sleep(10)
 
-    print("Save file to '%s'" % filename_out)
+    #print("Save file to '%s'" % filename_out)
 
 if __name__ == "__main__":
     main()

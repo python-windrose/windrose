@@ -7,6 +7,100 @@ from __future__ import print_function
 sample using "by" keyword
 """
 
+import numpy as np
+import matplotlib.pyplot as plt
+
+class AxCollection(object):
+    def __init__(self, fig=None, *args, **kwargs):
+        if fig is None:
+            self.fig = plt.figure(figsize=FIGSIZE_DEFAULT, dpi=DPI_DEFAULT, facecolor='w', edgecolor='w')
+        else:
+            self.fig = fig
+
+    def animate(self):
+        pass
+
+    def show(self):
+        pass
+
+class Layout(object):
+    """
+
+    Inspired from PdfPages 
+        https://github.com/matplotlib/matplotlib/blob/master/lib/matplotlib/backends/backend_pdf.pyPdfPages
+        http://matplotlib.org/api/backend_pdf_api.html
+        http://matplotlib.org/examples/pylab_examples/multipage_pdf.html
+
+    Inspired also from FFMpegWriter
+        http://matplotlib.org/examples/animation/moviewriter.html
+        https://github.com/matplotlib/matplotlib/blob/master/lib/matplotlib/animation.py
+        MovieWriter
+    """
+
+    def __init__(self, ncols=4, nrows=6, nsheets=1):
+        self.ncols = ncols
+        self.nrows = nrows
+        self.nsheets = nsheets
+
+        self._resize()
+        self._i = 0
+
+    @property
+    def fig(self):
+        return self._array_fig
+
+    def _resize(self):
+        self._array_ax = np.empty((self.nsheets, self.nrows, self.ncols))
+        self._array_ax.fill(None)
+
+        self._array_fig = np.empty(self.nsheets)
+        self._array_fig.fill(None)
+
+        for i in range(self.nsheets):
+            self._array_fig[i], self._array_ax[i] = plt.subplots(nrows=self.nrows, ncols=self.nrows)
+
+    def __repr__(self):
+        s = """<Layout
+  cols: %s
+  rows: %s
+  sheets: %s
+>""" % (self.ncols, self.nrows, self.nsheets)
+        return s
+
+    def __enter__(self, *args, **kwargs):
+        print("enter %s %s" % (args, kwargs))
+        return self
+
+    #def __exit__(self, *args, **kwargs):
+    def __exit__(self, type, value, traceback):
+        #print("exit %s %s" % (args, kwargs))
+        print("exit %s %s %s" % (type, value, traceback))
+        #print("exit")
+        self.close()
+
+    def close(self):
+        print("close")
+
+    def saveax(self):
+        print("saveax")
+        self._i += 1
+
+#layout = Layout(4, 6, 1)
+#layout.save(ax)
+#layout.to_pdf("filename.pdf")
+#layout.to_video("filename.mp4")
+
+#fig, ax = plt.subplots(nrows=2, ncols=3)
+
+#with Layout(4, 6, 1) as layout:
+#    print(layout)
+#    #layout.save(ax)
+
+class NormalLayout(Layout):
+    def __init__(self):
+        super(NormalLayout, self).__init__()
+
+
 import click
 
 import matplotlib
@@ -59,8 +153,9 @@ def main(filename, dpi, figsize, fps, bins_min, bins_max, bins_step, filename_ou
     df = pd.read_csv(filename)
     df['Timestamp'] = pd.to_datetime(df['Timestamp'])
     df = df.set_index('Timestamp')
-    #df = df.iloc[-10000:,:]
     df.index = df.index.tz_localize('UTC').tz_convert('UTC')
+    #df = df.iloc[-10000:,:]    
+    df = df['2011-07-01':'2011-12-31']
 
     # Get Numpy arrays from DataFrame
     direction = df['direction'].values
@@ -68,7 +163,16 @@ def main(filename, dpi, figsize, fps, bins_min, bins_max, bins_step, filename_ou
     index = df.index.to_datetime() #Fixed: .values -> to_datetime()
     by = df.index.map(by_func_monthly)
     by_unique = np.unique(by)
-    #print(by_unique)
+    print(by_unique)
+
+    #layout = NormalLayout()
+
+    #with layout.append() as ax:
+    #    pass
+    #layout.show()
+
+    # Define bins
+    bins = np.arange(bins_min, bins_max, bins_step)
 
     for by_value in by_unique:
         #by_value = (2011, 5)
@@ -83,9 +187,6 @@ def main(filename, dpi, figsize, fps, bins_min, bins_max, bins_step, filename_ou
         index_masked = index[mask]
         var_masked = var[mask]
         direction_masked = direction[mask]
-
-        # Define bins
-        bins = np.arange(bins_min, bins_max, bins_step)
 
         # Create figure
         #fig = plt.figure(figsize=figsize, dpi=dpi, facecolor='w', edgecolor='w')

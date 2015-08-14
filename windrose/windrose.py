@@ -618,7 +618,6 @@ def clean(direction, var, index=False):
         index = index[mask]
         return direction[mask], var[mask], index
 
-
 D_KIND_PLOT = {
     'contour': wrcontour,
     'contourf': wrcontourf,
@@ -628,7 +627,7 @@ D_KIND_PLOT = {
     'scatter': wrscatter
 }
 
-def plot_windrose(direction_or_df, var=None, kind='contour', var_name=VAR_DEFAULT, direction_name=DIR_DEFAULT, **kwargs):
+def plot_windrose(direction_or_df, var=None, kind='contour', var_name=VAR_DEFAULT, direction_name=DIR_DEFAULT, by=None, **kwargs):
     if var is None:
         # Assuming direction_or_df is a DataFrame
         df = direction_or_df
@@ -636,14 +635,14 @@ def plot_windrose(direction_or_df, var=None, kind='contour', var_name=VAR_DEFAUL
         direction = df[direction_name].values
     else:
         direction = direction_or_df
-    return(plot_windrose_np(direction, var, kind=kind, **kwargs))
+    return(plot_windrose_np(direction, var, kind=kind, by=by, **kwargs))
 
-def plot_windrose_df(df, kind='contour', var_name=VAR_DEFAULT, direction_name=DIR_DEFAULT, **kwargs):
+def plot_windrose_df(df, kind='contour', var_name=VAR_DEFAULT, direction_name=DIR_DEFAULT, by=None, **kwargs):
     var = df[var_name].values
     direction = df[direction_name].values
-    return(plot_windrose_np(direction, var, **kwargs))
+    return(plot_windrose_np(direction, var, by=by, **kwargs))
 
-def plot_windrose_np(direction, var, kind='contour', clean_flag=True, **kwargs):
+def plot_windrose_np(direction, var, kind='contour', clean_flag=True, by=None, **kwargs):
     if kind in D_KIND_PLOT.keys():
         f_plot = D_KIND_PLOT[kind]
     else:
@@ -654,7 +653,10 @@ def plot_windrose_np(direction, var, kind='contour', clean_flag=True, **kwargs):
     #direction = df[direction_name].values
     if clean_flag:
         var, direction = clean(var, direction)
-    ax = f_plot(direction=direction, var=var, **kwargs)
-    if kind not in ['pdf']:
-        ax.set_legend()
-    return ax
+    if by is None:
+        ax = f_plot(direction=direction, var=var, **kwargs)
+        if kind not in ['pdf']:
+            ax.set_legend()
+        return ax
+    else:
+        raise(NotImplementedError("'by' keyword not supported for now https://github.com/scls19fr/windrose/issues/10"))

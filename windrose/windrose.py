@@ -48,8 +48,8 @@ class WindroseAxes(PolarAxes):
         """
         See Axes base class for args and kwargs documentation
         """
-        
-        #Uncomment to have the possibility to change the resolution directly 
+
+        #Uncomment to have the possibility to change the resolution directly
         #when the instance is created
         #self.RESOLUTION = kwargs.pop('resolution', 100)
         PolarAxes.__init__(self, *args, **kwargs)
@@ -269,7 +269,7 @@ class WindroseAxes(PolarAxes):
         vals = np.hstack((self._info['table'],
                          np.reshape(self._info['table'][:,0],
                                    (self._info['table'].shape[0], 1))))
-        
+
         offset = 0
         for i in range(nbins):
             val = vals[i,:] + offset
@@ -317,7 +317,7 @@ class WindroseAxes(PolarAxes):
                                                                        **kwargs)
         kwargs.pop('facecolor', None)
         kwargs.pop('edgecolor', None)
-        
+
         #closing lines
         angles = np.hstack((angles, angles[-1]-2*np.pi/nsector))
         vals = np.hstack((self._info['table'],
@@ -481,7 +481,7 @@ class WindAxes(mpl.axes.Subplot):
         params = scipy.stats.exponweib.fit(var, floc=0, f0=1)
         x = np.linspace(0, bins[-1], Nx)
         _ = self.plot(x, scipy.stats.exponweib.pdf(x, *params), color=plot_color)
-        return(self, params)        
+        return(self, params)
 
 
 def histogram(direction, var, bins, nsector, normed=False, blowto=False):

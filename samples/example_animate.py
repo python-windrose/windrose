@@ -50,16 +50,16 @@ def main(filename, exit_at, size, offset, dpi, figsize, fps, bins_min, bins_max,
     figsize = map(float, figsize)
 
     # Read CSV file to a Pandas DataFrame
-    df = pd.read_csv(filename)
-    df['Timestamp'] = pd.to_datetime(df['Timestamp'])
-    df = df.set_index('Timestamp')
-    #df = df.iloc[-10000:,:]
-    df.index = df.index.tz_localize('UTC').tz_convert('UTC')
+    df_all = pd.read_csv(filename)
+    df_all['Timestamp'] = pd.to_datetime(df_all['Timestamp'])
+    df_all = df_all.set_index('Timestamp')
+    #df_all = df_all.iloc[-10000:,:]
+    df_all.index = df_all.index.tz_localize('UTC').tz_convert('UTC')
 
     # Get Numpy arrays from DataFrame
-    direction = df['direction'].values
-    var = df['speed'].values
-    index = df.index.to_datetime() #.values -> .to_datetime()
+    direction_all = df_all['direction'].values
+    var_all = df_all['speed'].values
+    index_all = df_all.index.to_datetime() #.values -> .to_datetime()
 
     # Define bins
     bins = np.arange(bins_min, bins_max, bins_step)
@@ -74,7 +74,7 @@ def main(filename, exit_at, size, offset, dpi, figsize, fps, bins_min, bins_max,
 http://www.github.com/scls19fr/windrose""")
     writer = FFMpegWriter(fps=fps, metadata=metadata)
 
-    dt0 = index[offset]
+    dt0 = index_all[offset]
     print("size: %d" % size)
     print("offset: %d" % offset)
     print("First dt: %s" % dt0)
@@ -91,9 +91,9 @@ http://www.github.com/scls19fr/windrose""")
                 i1 = offset + i*size
                 i2 = offset + (i+1)*size + 1
 
-                index_tmp = index[i1:i2]
-                dt1 = index_tmp[0]
-                dt2 = index_tmp[-1]
+                index = index_all[i1:i2]
+                dt1 = index[0]
+                dt2 = index[-1]
                 td = dt2 - dt1
                 title = "  From %s\n    to %s" % (dt1, dt2)
                 print(title)
@@ -101,28 +101,28 @@ http://www.github.com/scls19fr/windrose""")
                 #print("    td %r" % td.astype('timedelta64[m]'))
     
                 try:
-                    direction_tmp = direction[i1:i2]
-                    var_tmp = var[i1:i2]
+                    direction = direction_all[i1:i2]
+                    var = var_all[i1:i2]
 
                     ax = WindroseAxes.from_ax(fig=fig) # scatter, bar, box, contour, contourf
 
-                    #ax.scatter(direction_tmp, var_tmp, alpha=0.2)
+                    #ax.scatter(direction, var, alpha=0.2)
                     #ax.set_xlim([-bins[-1], bins[-1]])
                     #ax.set_ylim([-bins[-1], bins[-1]])
 
-                    #ax.bar(direction_tmp, var_tmp, bins=bins, normed=True, opening=0.8, edgecolor='white')
+                    #ax.bar(direction, var, bins=bins, normed=True, opening=0.8, edgecolor='white')
 
-                    #ax.box(direction_tmp, var_tmp, bins=bins)
+                    #ax.box(direction, var, bins=bins)
 
-                    #ax.contour(direction_tmp, var_tmp, cmap=cm.hot, lw=3, bins=bins)
+                    #ax.contour(direction, var, cmap=cm.hot, lw=3, bins=bins)
 
-                    ax.contourf(direction_tmp, var_tmp, bins=bins, cmap=cm.hot)
-                    ax.contour(direction_tmp, var_tmp, bins=bins, colors='black', lw=3)
+                    ax.contourf(direction, var, bins=bins, cmap=cm.hot)
+                    ax.contour(direction, var, bins=bins, colors='black', lw=3)
 
                     ax.set_legend()
 
                     #ax = WindAxes.from_ax(fig=fig) # pdf: probability density function
-                    #ax.pdf(var_tmp, bins=bins)
+                    #ax.pdf(var, bins=bins)
                     #ax.set_xlim([0, bins[-1]])
                     #ax.set_ylim([0, 0.4])
 

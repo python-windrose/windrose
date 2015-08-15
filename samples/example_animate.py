@@ -43,7 +43,8 @@ S_FIGSIZE_DEFAULT = ",".join(map(str, FIGSIZE_DEFAULT))
 @click.option("--bins_min", default=0.01, help="Bins minimum value")
 @click.option("--bins_max", default=20, help="Bins maximum value")
 @click.option("--bins_step", default=2, help="Bins step value")
-def main(filename, exit_at, size, offset, dpi, figsize, fps, bins_min, bins_max, bins_step, filename_out):
+@click.option("--fontname", default="Courier New", help="Font name")
+def main(filename, exit_at, size, offset, dpi, figsize, fps, bins_min, bins_max, bins_step, fontname, filename_out):
     # convert figsize (string like "8,9" to a list of float [8.0, 9.0]
     figsize = figsize.split(",")
     figsize = map(float, figsize)
@@ -58,7 +59,7 @@ def main(filename, exit_at, size, offset, dpi, figsize, fps, bins_min, bins_max,
     # Get Numpy arrays from DataFrame
     direction = df['direction'].values
     var = df['speed'].values
-    index = df.index.values
+    index = df.index.to_datetime() #.values -> .to_datetime()
 
     # Define bins
     bins = np.arange(bins_min, bins_max, bins_step)
@@ -94,10 +95,10 @@ http://www.github.com/scls19fr/windrose""")
                 dt1 = index_tmp[0]
                 dt2 = index_tmp[-1]
                 td = dt2 - dt1
-                title = """  From %s
-    to %s""" % (dt1, dt2)
+                title = "  From %s\n    to %s" % (dt1, dt2)
                 print(title)
-                print("""    td %r""" % td.astype('timedelta64[m]'))
+                print("    td %r" % td)
+                #print("    td %r" % td.astype('timedelta64[m]'))
     
                 try:
                     direction_tmp = direction[i1:i2]
@@ -125,10 +126,11 @@ http://www.github.com/scls19fr/windrose""")
                     #ax.set_xlim([0, bins[-1]])
                     #ax.set_ylim([0, 0.4])
 
-                    ax.set_title(title, fontname="Courier New")
+                    ax.set_title(title, fontname=fontname)
 
                     writer.grab_frame()
-
+                except KeyboardInterrupt:
+                    return
                 except:
                     print(traceback.format_exc(), file=sys.stderr)
 
@@ -138,7 +140,8 @@ http://www.github.com/scls19fr/windrose""")
                 i += 1
                 if i == exit_at - 1: # exit_at must be > 1
                     break
-
+        except KeyboardInterrupt:
+            return
         except:
             print(traceback.format_exc(), file=sys.stderr)
 

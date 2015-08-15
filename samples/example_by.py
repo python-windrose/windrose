@@ -27,7 +27,7 @@ class Layout(object):
     """
 
     Inspired from PdfPages 
-        https://github.com/matplotlib/matplotlib/blob/master/lib/matplotlib/backends/backend_pdf.pyPdfPages
+        https://github.com/matplotlib/matplotlib/blob/master/lib/matplotlib/backends/backend_pdf.py - PdfPages
         http://matplotlib.org/api/backend_pdf_api.html
         http://matplotlib.org/examples/pylab_examples/multipage_pdf.html
 
@@ -58,7 +58,7 @@ class Layout(object):
         #self._array_fig.fill(None)
 
         for i in range(self.nsheets):
-            fig, axs = plt.subplots(nrows=self.nrows, ncols=self.nrows)
+            fig, axs = plt.subplots(nrows=self.nrows, ncols=self.ncols)
             #print(fig, axs)
             self._array_fig[i] = fig
             self._array_ax[i] = axs
@@ -154,19 +154,19 @@ def main(filename, dpi, figsize, fps, bins_min, bins_max, bins_step, filename_ou
     figsize = map(float, figsize)
 
     # Read CSV file to a Pandas DataFrame
-    df = pd.read_csv(filename)
-    df['Timestamp'] = pd.to_datetime(df['Timestamp'])
-    df = df.set_index('Timestamp')
-    df.index = df.index.tz_localize('UTC').tz_convert('UTC')
-    #df = df.iloc[-10000:,:]    
-    df = df['2011-07-01':'2011-12-31']
+    df_all = pd.read_csv(filename)
+    df_all['Timestamp'] = pd.to_datetime(df_all['Timestamp'])
+    df_all = df_all.set_index('Timestamp')
+    df_all.index = df_all.index.tz_localize('UTC').tz_convert('UTC')
+    #df_all = df_all.iloc[-10000:,:]    
+    df_all = df_all['2011-07-01':'2011-12-31']
 
     # Get Numpy arrays from DataFrame
-    direction = df['direction'].values
-    var = df['speed'].values
-    index = df.index.to_datetime() #Fixed: .values -> to_datetime()
-    by = df.index.map(by_func_monthly)
-    by_unique = np.unique(by)
+    direction_all = df_all['direction'].values
+    var_all = df_all['speed'].values
+    index_all = df_all.index.to_datetime() #Fixed: .values -> to_datetime()
+    by_all = df_all.index.map(by_func_monthly)
+    by_unique = np.unique(by_all)
     print(by_unique)
 
     (ncols, nrows, nsheets) = (4, 3, 2)
@@ -226,25 +226,25 @@ def main(filename, dpi, figsize, fps, bins_min, bins_max, bins_step, filename_ou
         #mask = (by == by_value).all(axis=1)
         # ToFix: see http://stackoverflow.com/questions/32005403/boolean-indexing-with-numpy-array-and-tuples
 
-        mask = (pd.Series(by) == by_value).values
+        mask = (pd.Series(by_all) == by_value).values
 
         #print(mask)
 
-        index_masked = index[mask]
-        var_masked = var[mask]
-        direction_masked = direction[mask]
+        index = index_all[mask]
+        var = var_all[mask]
+        direction = direction_all[mask]
 
         # Create figure
         #fig = plt.figure(figsize=figsize, dpi=dpi, facecolor='w', edgecolor='w')
 
         #Same as above, but with contours over each filled region...
         ax = WindroseAxes.from_ax()
-        ax.contourf(direction_masked, var_masked, bins=bins, cmap=cm.hot)
-        ax.contour(direction_masked, var_masked, bins=bins, colors='black')
+        ax.contourf(direction, var, bins=bins, cmap=cm.hot)
+        ax.contour(direction, var, bins=bins, colors='black')
         fontname = "Courier"
         #title = by_value
-        dt1 = index_masked[0]
-        dt2 = index_masked[-1]
+        dt1 = index[0]
+        dt2 = index[-1]
         #dt1 = df.index[mask][0]
         #dt2 = df.index[mask][-1]
         td = dt2 - dt1

@@ -4,7 +4,9 @@
 from __future__ import print_function
 
 """
-sample using "by" keyword
+Example to create a PDF
+Monthly windrose axe
+One figure per year
 """
 
 import numpy as np
@@ -28,15 +30,19 @@ import numpy as np
 from math import pi
 from numpy import sin, cos
 
-from windrose import WindroseAxes, WindAxes, plot_windrose, clean, FIGSIZE_DEFAULT, DPI_DEFAULT
+from windrose import WindroseAxes, WindAxes, plot_windrose, clean
 from windrose import wrscatter
 
 import sys
 import traceback
 
-import time
+import datetime
+#import time
 
+FIGSIZE_DEFAULT = (16, 12)
 S_FIGSIZE_DEFAULT = ",".join(map(str, FIGSIZE_DEFAULT))
+
+DPI_DEFAULT = 40
 
 def by_func_yearly(dt):
     return dt.year
@@ -49,17 +55,27 @@ def by_func_daily(dt):
 
 @click.command()
 @click.option("--filename", default="samples/sample_wind_poitiers.csv", help="Input filename")
-@click.option("--filename_out", default="windrose_animation.mp4", help="Output filename")
+@click.option("--filename_out", default="windrose.pdf", help="Output filename")
 @click.option("--dpi", default=DPI_DEFAULT, help="Dot per inch for plot generation")
 @click.option("--figsize", default=S_FIGSIZE_DEFAULT, help="Figure size x,y - default=%s" % S_FIGSIZE_DEFAULT)
 @click.option("--fps", default=7, help="Number of frame per seconds for video generation")
 @click.option("--bins_min", default=0.01, help="Bins minimum value")
 @click.option("--bins_max", default=20, help="Bins maximum value")
 @click.option("--bins_step", default=2, help="Bins step value")
-def main(filename, dpi, figsize, fps, bins_min, bins_max, bins_step, filename_out):
+@click.option("--fontname", default="Courier New", help="Font name")
+@click.option("--show/--no-show", default=False, help="Show figure")
+@click.option("--dt_from", default='', help="Datetime from")
+@click.option("--dt_to", default='', help="Datetime to")
+@click.option("--offset", default=0, help="Axe figure offset")
+@click.option("--ncols", default=4, help="Number of columns per figure")
+@click.option("--nrows", default=3, help="Number of rows per figure")
+def main(filename, dt_from, dt_to, dpi, figsize, fps,
+    bins_min, bins_max, bins_step, ncols, nrows,
+    fontname, show, filename_out, offset):
+
     # convert figsize (string like "8,9" to a list of float [8.0, 9.0]
     figsize = figsize.split(",")
-    figsize = map(float, figsize)
+    figsize = tuple(map(float, figsize))
     width, height = figsize
 
     # Read CSV file to a Pandas DataFrame
@@ -67,8 +83,13 @@ def main(filename, dpi, figsize, fps, bins_min, bins_max, bins_step, filename_ou
     df_all['Timestamp'] = pd.to_datetime(df_all['Timestamp'])
     df_all = df_all.set_index('Timestamp')
     df_all.index = df_all.index.tz_localize('UTC').tz_convert('UTC')
-    #df_all = df_all.iloc[-10000:,:]    
-    df_all = df_all['2011-07-01':'2012-12-31']
+    #df_all = df_all.iloc[-10000:,:]
+    #df_all = df_all['2011-07-01':'2012-12-31']
+    if dt_from=='':
+        dt_from = df_all.index[0]
+    if dt_to=='':
+        dt_to = df_all.index[-1]
+    df_all = df_all[dt_from:dt_to]
 
     # Get Numpy arrays from DataFrame
     direction_all = df_all['direction'].values
@@ -81,63 +102,80 @@ def main(filename, dpi, figsize, fps, bins_min, bins_max, bins_step, filename_ou
     # Define bins
     bins = np.arange(bins_min, bins_max, bins_step)
 
-    (ncols, nrows) = (4, 3)
-    offset = 6
+    with PdfPages(filename_out) as pdf:
 
-    for i, by_value in enumerate(by_unique):
-        if (i + offset) % (ncols*nrows) == 0 or i==0:
-            fig, axs = plt.subplots(nrows=nrows, ncols=ncols, dpi=dpi, facecolor='w', edgecolor='w')
-            #print(fig, axs)
+        for i, by_value in enumerate(by_unique):
+            print("processing: %s" % str(by_value))
 
-        i_sheet, sheet_pos = divmod(i + offset, ncols*nrows)
-        i_row, i_col  = divmod(sheet_pos, ncols)
+            if (i + offset) % (ncols*nrows) == 0 or i==0:
+                # Create figure and axes
+                fig, axs = plt.subplots(nrows=nrows, ncols=ncols, figsize=figsize, dpi=dpi, facecolor='w', edgecolor='w')
 
-        ax = axs[i_row][i_col]
+            i_sheet, sheet_pos = divmod(i + offset, ncols*nrows)
+            i_row, i_col  = divmod(sheet_pos, ncols)
 
-        mask = (pd.Series(by_all) == by_value).values
+            ax = axs[i_row][i_col]
 
-        index = index_all[mask]
-        var = var_all[mask]
-        direction = direction_all[mask]
+            mask = (pd.Series(by_all) == by_value).values
 
-        #df = pd.DataFrame([var, direction], index=['Speed', 'Direction'], columns=index).transpose()
-        #df.index.name = 'DateTime'
-        #print(df)
+            index = index_all[mask]
+            var = var_all[mask]
+            direction = direction_all[mask]
 
-        # Create figure
-        #fig = plt.figure(figsize=figsize, dpi=dpi, facecolor='w', edgecolor='w')
+            #df = pd.DataFrame([var, direction], index=['Speed', 'Direction'], columns=index).transpose()
+            #df.index.name = 'DateTime'
+            #print(df)
 
-        ax.scatter(var*sin(pi / 180 * direction), var*cos(pi / 180 * direction), alpha=0.1)
-        v = 40
-        ax.set_xlim(-v, v)
-        ax.set_ylim(-v, v)
-        #wrscatter(direction, var, ax=ax)
+            ax.scatter(var*sin(pi / 180 * direction), var*cos(pi / 180 * direction), alpha=0.1)
+            v = 40
+            ax.set_xlim(-v, v)
+            ax.set_ylim(-v, v)
+            #wrscatter(direction, var, ax=ax)
 
-        #Same as above, but with contours over each filled region...
-        #ax = WindroseAxes.from_ax(ax)
-        #ax.contourf(direction, var, bins=bins, cmap=cm.hot)
-        #ax.contour(direction, var, bins=bins, colors='black')
+            #Same as above, but with contours over each filled region...
+            # ToFix!!!!
+            #ax = WindroseAxes.from_ax(ax)
+            #ax.contourf(direction, var, bins=bins, cmap=cm.hot)
+            #ax.contour(direction, var, bins=bins, colors='black')
 
-        dt1 = index[0]
-        dt2 = index[-1]
-        #dt1 = df.index[mask][0]
-        #dt2 = df.index[mask][-1]
-        td = dt2 - dt1
+            dt1 = index[0]
+            dt2 = index[-1]
+            #dt1 = df.index[mask][0]
+            #dt2 = df.index[mask][-1]
+            td = dt2 - dt1
 
-        #title = by_value
-        #title = "From %s\n  to %s" % (dt1, dt2)
-        title = "%04d-%02d" % (by_value[0], by_value[1])
-        fontname = "Courier"
-        ax.set_title(title, fontname=fontname)
+            #title = by_value
+            #title = "From %s\n  to %s" % (dt1, dt2)
+            #title = "%04d-%02d" % (by_value[0], by_value[1])
+            dt = datetime.date(by_value[0], by_value[1], 1)
+            fmt = "%B" #"%Y %B" # Month
+            title = dt.strftime(fmt)
+            ax.set_title(title, fontname=fontname)
 
-        #ax.set_legend()
+            #ax.set_legend()
 
-        if (i + offset + 1) % (ncols*nrows) == 0:
-            plt.show()
+            fig_title = dt.strftime("%Y") # Year
+            fig.suptitle(fig_title)
 
-    #time.sleep(10)
+            remaining = (i + offset + 1) % (ncols*nrows)
+            if remaining == 0:
+                save_figure(fig, pdf, show, fig_title)
 
-    #print("Save file to '%s'" % filename_out)
+        save_figure(fig, pdf, show, fig_title)
+
+        #time.sleep(10)
+
+        print("Save file to '%s'" % filename_out)
+
+        print("remaining: %d" % remaining)
+
+def save_figure(fig, pdf, show, fig_title):
+    filename = "windrose_%s.png" % fig_title
+    print("save_figure: %s" % filename)
+    if show:
+        plt.show()
+    fig.savefig(filename) # Save to image
+    pdf.savefig(fig)
 
 if __name__ == "__main__":
     main()

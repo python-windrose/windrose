@@ -58,7 +58,6 @@ def by_func_daily(dt):
 @click.option("--filename_out", default="windrose.pdf", help="Output filename")
 @click.option("--dpi", default=DPI_DEFAULT, help="Dot per inch for plot generation")
 @click.option("--figsize", default=S_FIGSIZE_DEFAULT, help="Figure size x,y - default=%s" % S_FIGSIZE_DEFAULT)
-@click.option("--fps", default=7, help="Number of frame per seconds for video generation")
 @click.option("--bins_min", default=0.01, help="Bins minimum value")
 @click.option("--bins_max", default=20, help="Bins maximum value")
 @click.option("--bins_step", default=2, help="Bins step value")
@@ -69,7 +68,7 @@ def by_func_daily(dt):
 @click.option("--offset", default=0, help="Axe figure offset")
 @click.option("--ncols", default=4, help="Number of columns per figure")
 @click.option("--nrows", default=3, help="Number of rows per figure")
-def main(filename, dt_from, dt_to, dpi, figsize, fps,
+def main(filename, dt_from, dt_to, dpi, figsize,
     bins_min, bins_max, bins_step, ncols, nrows,
     fontname, show, filename_out, offset):
 

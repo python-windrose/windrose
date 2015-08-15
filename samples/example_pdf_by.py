@@ -31,7 +31,7 @@ from math import pi
 from numpy import sin, cos
 
 from windrose import WindroseAxes, WindAxes, plot_windrose, clean
-from windrose import wrscatter
+from windrose import wrscatter, wrcontour, wrcontourf
 
 import sys
 import traceback
@@ -110,11 +110,13 @@ def main(filename, dt_from, dt_to, dpi, figsize, fps,
             if (i + offset) % (ncols*nrows) == 0 or i==0:
                 # Create figure and axes
                 fig, axs = plt.subplots(nrows=nrows, ncols=ncols, figsize=figsize, dpi=dpi, facecolor='w', edgecolor='w')
+                print("%r\n%r\n%r" % (fig, fig.axes, axs))
 
             i_sheet, sheet_pos = divmod(i + offset, ncols*nrows)
             i_row, i_col  = divmod(sheet_pos, ncols)
 
-            ax = axs[i_row][i_col]
+            #ax = axs[i_row][i_col]
+            ax = fig.axes[sheet_pos]
 
             mask = (pd.Series(by_all) == by_value).values
 
@@ -130,11 +132,24 @@ def main(filename, dt_from, dt_to, dpi, figsize, fps,
             v = 40
             ax.set_xlim(-v, v)
             ax.set_ylim(-v, v)
-            #wrscatter(direction, var, ax=ax)
+
+            #rect = [0.1, 0.1, 0.8, 0.8]
+            #ax = WindroseAxes(fig, rect, axisbg='w')
+            #wrscatter(direction, var, ax=ax) # ToFix!!!! TypeError: Input must be a 2D array.
+
+            #print(direction)
+            #print(var)
+            #print(ax)
+            #wrcontour(direction, var, ax=ax) # ToFix!!!! TypeError: Input must be a 2D array.
 
             #Same as above, but with contours over each filled region...
-            # ToFix!!!!
+            # ToFix!!!! TypeError: Input must be a 2D array.
             #ax = WindroseAxes.from_ax(ax)
+            #rect = [0.1, 0.1, 0.8, 0.8]
+            ##axs[i_row][i_col] = WindroseAxes(fig, rect, axisbg='w')
+            ##axs[i_row][i_col] = WindroseAxes.from_ax(fig=fig)
+            #ax = WindroseAxes(fig, rect, axisbg='w')
+            #fig.axes[i + offset] = ax
             #ax.contourf(direction, var, bins=bins, cmap=cm.hot)
             #ax.contour(direction, var, bins=bins, colors='black')
 
@@ -161,7 +176,8 @@ def main(filename, dt_from, dt_to, dpi, figsize, fps,
             if remaining == 0:
                 save_figure(fig, pdf, show, fig_title)
 
-        save_figure(fig, pdf, show, fig_title)
+        if remaining != 0:
+            save_figure(fig, pdf, show, fig_title)
 
         #time.sleep(10)
 

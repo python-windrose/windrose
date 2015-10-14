@@ -255,7 +255,7 @@ Run a given test
 	
 or
 
-	$ sudo pip install git+git://github.com/scls19fr/windrose.git
+	$ sudo pip install git+https://github.com/scls19fr/windrose.git
 
 ### Collaborating
 

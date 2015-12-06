@@ -10,22 +10,22 @@ a clean API to output animation
 
 import click
 
+from math import pi
+
+import sys
+import traceback
+
 import matplotlib
 #matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+import matplotlib.animation
+import matplotlib.cm as cm
 
 import pandas as pd
 import numpy as np
 
-import matplotlib.pyplot as plt
-import matplotlib.animation
-
-import matplotlib.cm as cm
-from math import pi
-
-from windrose import WindroseAxes, WindAxes, plot_windrose, clean, FIGSIZE_DEFAULT, DPI_DEFAULT
-
-import sys
-import traceback
+from windrose import (WindroseAxes, WindAxes, plot_windrose, 
+                        FIGSIZE_DEFAULT, DPI_DEFAULT)
 
 S_FIGSIZE_DEFAULT = ",".join(map(str, FIGSIZE_DEFAULT))
 
@@ -129,7 +129,7 @@ http://www.github.com/scls19fr/windrose""")
                     writer.grab_frame()
                 except KeyboardInterrupt:
                     return
-                except:
+                except Exception as e:
                     print(traceback.format_exc(), file=sys.stderr)
 
                 print("")
@@ -140,7 +140,7 @@ http://www.github.com/scls19fr/windrose""")
                     break
         except KeyboardInterrupt:
             return
-        except:
+        except Exception as e:
             print(traceback.format_exc(), file=sys.stderr)
 
         print("First dt: %r" % dt0)

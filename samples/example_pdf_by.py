@@ -9,35 +9,31 @@ Monthly windrose axe
 One figure per year
 """
 
-import numpy as np
-import matplotlib.pyplot as plt
 
 import click
-
-import matplotlib
-#matplotlib.use("Agg")
-
-import pandas as pd
-import numpy as np
-
-import matplotlib as mpl
-import matplotlib.pyplot as plt
-import matplotlib.animation
-from matplotlib.backends.backend_pdf import PdfPages
-
-import matplotlib.cm as cm
-import numpy as np
-from math import pi
-from numpy import sin, cos
-
-from windrose import WindroseAxes, WindAxes, plot_windrose, clean
-from windrose import wrscatter, wrcontour, wrcontourf
 
 import sys
 import traceback
 
 import datetime
 #import time
+
+from math import pi
+
+import matplotlib
+#matplotlib.use("Agg")
+#import matplotlib as mpl
+import matplotlib.pyplot as plt
+import matplotlib.animation
+from matplotlib.backends.backend_pdf import PdfPages
+import matplotlib.cm as cm
+
+import numpy as np
+from numpy import sin, cos
+import pandas as pd
+
+from windrose import WindroseAxes, WindAxes, plot_windrose, clean
+from windrose import wrscatter, wrcontour, wrcontourf
 
 FIGSIZE_DEFAULT = (16, 12)
 S_FIGSIZE_DEFAULT = ",".join(map(str, FIGSIZE_DEFAULT))

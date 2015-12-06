@@ -9,24 +9,17 @@ sample using "by" keyword
 
 import click
 
-import sys
-import traceback
-
-import time
-
-from math import pi
-
 import matplotlib
 #matplotlib.use("Agg")
-import matplotlib as mpl
+#import matplotlib as mpl
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
-import matplotlib.animation
 
 import numpy as np
 import pandas as pd
 
-from windrose import WindroseAxes, WindAxes, plot_windrose, clean, FIGSIZE_DEFAULT, DPI_DEFAULT
+from windrose import (WindroseAxes, WindAxes, clean, 
+                        FIGSIZE_DEFAULT, DPI_DEFAULT)
 
 class AxCollection(object):
     def __init__(self, fig=None, *args, **kwargs):
@@ -153,7 +146,7 @@ def main(filename, dpi, figsize, fps, bins_min, bins_max, bins_step, filename_ou
     df_all = df_all.set_index('Timestamp')
     df_all.index = df_all.index.tz_localize('UTC').tz_convert('UTC')
     #df_all = df_all.iloc[-10000:,:]    
-    df_all = df_all['2011-07-01':'2011-12-31']
+    df_all = df_all.ix['2011-07-01':'2011-12-31']
 
     # Get Numpy arrays from DataFrame
     direction_all = df_all['direction'].values

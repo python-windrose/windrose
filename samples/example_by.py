@@ -7,8 +7,26 @@ from __future__ import print_function
 sample using "by" keyword
 """
 
-import numpy as np
+import click
+
+import sys
+import traceback
+
+import time
+
+from math import pi
+
+import matplotlib
+#matplotlib.use("Agg")
+import matplotlib as mpl
 import matplotlib.pyplot as plt
+import matplotlib.cm as cm
+import matplotlib.animation
+
+import numpy as np
+import pandas as pd
+
+from windrose import WindroseAxes, WindAxes, plot_windrose, clean, FIGSIZE_DEFAULT, DPI_DEFAULT
 
 class AxCollection(object):
     def __init__(self, fig=None, *args, **kwargs):
@@ -103,30 +121,6 @@ class Layout(object):
 class NormalLayout(Layout):
     def __init__(self):
         super(NormalLayout, self).__init__()
-
-
-import click
-
-import matplotlib
-#matplotlib.use("Agg")
-
-import pandas as pd
-import numpy as np
-
-import matplotlib as mpl
-import matplotlib.pyplot as plt
-import matplotlib.animation
-
-import matplotlib.cm as cm
-import numpy as np
-from math import pi
-
-from windrose import WindroseAxes, WindAxes, plot_windrose, clean, FIGSIZE_DEFAULT, DPI_DEFAULT
-
-import sys
-import traceback
-
-import time
 
 S_FIGSIZE_DEFAULT = ",".join(map(str, FIGSIZE_DEFAULT))
 

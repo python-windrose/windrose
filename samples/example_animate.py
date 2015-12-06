@@ -16,12 +16,10 @@ import matplotlib
 import pandas as pd
 import numpy as np
 
-import matplotlib as mpl
 import matplotlib.pyplot as plt
 import matplotlib.animation
 
 import matplotlib.cm as cm
-import numpy as np
 from math import pi
 
 from windrose import WindroseAxes, WindAxes, plot_windrose, clean, FIGSIZE_DEFAULT, DPI_DEFAULT
@@ -68,7 +66,7 @@ def main(filename, exit_at, size, offset, dpi, figsize, fps, bins_min, bins_max,
     fig = plt.figure(figsize=figsize, dpi=dpi, facecolor='w', edgecolor='w')
 
     # Create a video writer (ffmpeg can create MPEG files)
-    FFMpegWriter = mpl.animation.writers['ffmpeg']
+    FFMpegWriter = matplotlib.animation.writers['ffmpeg']
     metadata = dict(title='windrose', artist='windrose',
             comment="""Made with windrose
 http://www.github.com/scls19fr/windrose""")

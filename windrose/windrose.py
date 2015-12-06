@@ -646,7 +646,7 @@ def plot_windrose_np(direction, var, kind='contour', clean_flag=True, by=None, *
     if kind in D_KIND_PLOT.keys():
         f_plot = D_KIND_PLOT[kind]
     else:
-        raise(Exception("kind=%r but it must be in %r" % (kind, d.keys())))
+        raise(Exception("kind=%r but it must be in %r" % (kind, D_KIND_PLOT.keys())))
     #if f_clean is not None:
     #    df = f_clean(df)
     #var = df[var_name].values

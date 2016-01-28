@@ -44,7 +44,7 @@ class WindroseAxes(PolarAxes):
 
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, rmax=None, *args, **kwargs):
         """
         See Axes base class for args and kwargs documentation
         """
@@ -52,18 +52,19 @@ class WindroseAxes(PolarAxes):
         #Uncomment to have the possibility to change the resolution directly
         #when the instance is created
         #self.RESOLUTION = kwargs.pop('resolution', 100)
+        self.rmax = rmax
         PolarAxes.__init__(self, *args, **kwargs)
         self.set_aspect('equal', adjustable='box', anchor='C')
         self.radii_angle = 67.5
         self.cla()
 
     @staticmethod
-    def from_ax(ax=None, fig=None, *args, **kwargs):
+    def from_ax(ax=None, fig=None, rmax=None, *args, **kwargs):
         if ax is None:
             if fig is None:
                 fig = plt.figure(figsize=FIGSIZE_DEFAULT, dpi=DPI_DEFAULT, facecolor='w', edgecolor='w')
             rect = [0.1, 0.1, 0.8, 0.8]
-            ax = WindroseAxes(fig, rect, axisbg='w', *args, **kwargs)
+            ax = WindroseAxes(rmax, fig, rect, axisbg='w', *args, **kwargs)
             fig.add_axes(ax)
             return ax
         else:
@@ -112,7 +113,10 @@ class WindroseAxes(PolarAxes):
 
 
     def _update(self):
-        self.set_rmax(rmax=np.max(np.sum(self._info['table'], axis=0)))
+        if self.rmax is None:
+            self.set_rmax(rmax=np.max(np.sum(self._info['table'], axis=0)))
+        else:
+            self.set_rmax(rmax=self.rmax)
         self.set_radii_angle(angle=self.radii_angle)
 
 
@@ -260,7 +264,6 @@ class WindroseAxes(PolarAxes):
         others kwargs : see help(pylab.plot)
 
         """
-
         bins, nbins, nsector, colors, angles, kwargs = self._init_plot(direction, var,
                                                                        **kwargs)
 
@@ -531,35 +534,35 @@ def histogram(direction, var, bins, nsector, normed=False, blowto=False):
     return dir_edges, var_bins, table
 
 
-def wrcontour(direction, var, ax=None, **kwargs):
-    ax = WindroseAxes.from_ax(ax)
+def wrcontour(direction, var, ax=None, rmax=None, **kwargs):
+    ax = WindroseAxes.from_ax(ax, rmax=rmax)
     ax.contour(direction, var, **kwargs)
     ax.set_legend()
     return ax
 
 
-def wrcontourf(direction, var, ax=None, **kwargs):
-    ax = WindroseAxes.from_ax(ax)
+def wrcontourf(direction, var, ax=None, rmax=None, **kwargs):
+    ax = WindroseAxes.from_ax(ax, rmax=rmax)
     ax.contourf(direction, var, **kwargs)
     ax.set_legend()
     return ax
 
 
-def wrbox(direction, var, ax=None, **kwargs):
-    ax = WindroseAxes.from_ax(ax)
+def wrbox(direction, var, ax=None, rmax=None, **kwargs):
+    ax = WindroseAxes.from_ax(ax, rmax=rmax)
     ax.box(direction, var, **kwargs)
     ax.set_legend()
     return ax
 
 
-def wrbar(direction, var, ax=None, **kwargs):
-    ax = WindroseAxes.from_ax(ax)
+def wrbar(direction, var, ax=None, rmax=None, **kwargs):
+    ax = WindroseAxes.from_ax(ax, rmax=rmax)
     ax.bar(direction, var, **kwargs)
     ax.set_legend()
     return ax
 
 
-def wrpdf(var, bins=None, Nx=100, bar_color='b', plot_color='g', Nbins=10, ax=None, *args, **kwargs):
+def wrpdf(var, bins=None, Nx=100, bar_color='b', plot_color='g', Nbins=10, ax=None, rmax=None, *args, **kwargs):
     '''
     Draw probability density function
     and return Weitbull distribution parameters
@@ -569,11 +572,11 @@ def wrpdf(var, bins=None, Nx=100, bar_color='b', plot_color='g', Nbins=10, ax=No
     return(ax, params)
 
 
-def wrscatter(direction, var, ax=None, *args, **kwargs):
+def wrscatter(direction, var, ax=None, rmax=None, *args, **kwargs):
     '''
     Draw scatter plot
     '''
-    ax = WindroseAxes.from_ax(ax)
+    ax = WindroseAxes.from_ax(ax, rmax=rmax)
     ax.scatter(direction, var, *args, **kwargs)
     return ax
 
@@ -627,7 +630,7 @@ D_KIND_PLOT = {
     'scatter': wrscatter
 }
 
-def plot_windrose(direction_or_df, var=None, kind='contour', var_name=VAR_DEFAULT, direction_name=DIR_DEFAULT, by=None, **kwargs):
+def plot_windrose(direction_or_df, var=None, kind='contour', var_name=VAR_DEFAULT, direction_name=DIR_DEFAULT, by=None, rmax=None, **kwargs):
     if var is None:
         # Assuming direction_or_df is a DataFrame
         df = direction_or_df
@@ -635,14 +638,14 @@ def plot_windrose(direction_or_df, var=None, kind='contour', var_name=VAR_DEFAUL
         direction = df[direction_name].values
     else:
         direction = direction_or_df
-    return(plot_windrose_np(direction, var, kind=kind, by=by, **kwargs))
+    return(plot_windrose_np(direction, var, kind=kind, by=by, rmax=rmax, **kwargs))
 
-def plot_windrose_df(df, kind='contour', var_name=VAR_DEFAULT, direction_name=DIR_DEFAULT, by=None, **kwargs):
+def plot_windrose_df(df, kind='contour', var_name=VAR_DEFAULT, direction_name=DIR_DEFAULT, by=None, rmax=None, **kwargs):
     var = df[var_name].values
     direction = df[direction_name].values
-    return(plot_windrose_np(direction, var, by=by, **kwargs))
+    return(plot_windrose_np(direction, var, by=by, rmax=rmax, **kwargs))
 
-def plot_windrose_np(direction, var, kind='contour', clean_flag=True, by=None, **kwargs):
+def plot_windrose_np(direction, var, kind='contour', clean_flag=True, by=None, rmax=None, **kwargs):
     if kind in D_KIND_PLOT.keys():
         f_plot = D_KIND_PLOT[kind]
     else:
@@ -654,7 +657,7 @@ def plot_windrose_np(direction, var, kind='contour', clean_flag=True, by=None, *
     if clean_flag:
         var, direction = clean(var, direction)
     if by is None:
-        ax = f_plot(direction=direction, var=var, **kwargs)
+        ax = f_plot(direction=direction, var=var, rmax=rmax, **kwargs)
         if kind not in ['pdf']:
             ax.set_legend()
         return ax

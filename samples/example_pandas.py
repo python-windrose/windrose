@@ -21,7 +21,7 @@ print(df)
 print(df.dtypes)
 
 bins = np.arange(0.01, 8, 1)
-plot_windrose(df, kind='contour', bins=bins, cmap=cm.hot, lw=3)
+plot_windrose(df, kind='contour', bins=bins, cmap=cm.hot, lw=3, rmax=20000)
 plt.show()
 
 bins = np.arange(0, 30 + 1, 1)

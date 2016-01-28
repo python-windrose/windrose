@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from __future__ import print_function
-
 """
 This sample need to be improve to provide
 a clean API to output animation
@@ -12,8 +10,12 @@ import click
 
 from math import pi
 
-import sys
+import time
+import logging
 import traceback
+logging.Formatter.converter = time.gmtime
+logging.basicConfig(format='%(asctime)s %(levelname)s %(message)s', level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 import matplotlib
 #matplotlib.use("Agg")
@@ -84,12 +86,16 @@ def main(filename, exit_at, by, dpi, figsize, fps, bins_min, bins_max, bins_step
 
     dt_start = df_all.index[0]
     dt_end = df_all.index[-1]
-    print("First dt: %s" % dt_start)
-    print("Last  dt: %s" % dt_end)
+
     td = dt_end - dt_start
-    print("      td: %s" % td)
     Nslides = count(df_all, by_func)
-    print("  Slides: %d" % Nslides)
+    msg = """Starting
+First dt: %s
+Last  dt: %s
+      td: %s
+  Slides: %d
+""" % (dt_start, dt_end, td, Nslides)
+    logger.info(msg)
 
     # Define bins
     bins = np.arange(bins_min, bins_max, bins_step)
@@ -104,8 +110,6 @@ def main(filename, exit_at, by, dpi, figsize, fps, bins_min, bins_max, bins_step
 http://www.github.com/scls19fr/windrose""")
     writer = FFMpegWriter(fps=fps, metadata=metadata)
 
-    print("")
-
     with writer.saving(fig, filename_out, 100):
         try:
             for i, df in enumerate(generate(df_all, by_func)):
@@ -114,10 +118,10 @@ http://www.github.com/scls19fr/windrose""")
                 td = dt2 - dt1
                 msg = """  Slide %s/%s
     From %s
-    to %s
-    td %s
+      to %s
+      td %s
 """ % (i+1, Nslides, dt1, dt2, td)
-                print(msg)
+                logger.info(msg)
                 title = "  From %s\n    to %s" % (dt1, dt2)
     
                 try:
@@ -152,9 +156,8 @@ http://www.github.com/scls19fr/windrose""")
                 except KeyboardInterrupt:
                     return
                 except Exception as e:
-                    print(traceback.format_exc(), file=sys.stderr)
+                    logger.error(traceback.format_exc())
 
-                print("")
 
                 fig.clf()
                 if i > exit_at - 1 and exit_at != 0: # exit_at must be > 1
@@ -162,16 +165,15 @@ http://www.github.com/scls19fr/windrose""")
         except KeyboardInterrupt:
             return
         except Exception as e:
-            print(traceback.format_exc(), file=sys.stderr)
+            logger.error(traceback.format_exc())
 
         N = i + 1
-        print("Number of slides: %d" % N)
+        logger.info("Number of slides: %d" % N)
 
 
     #plt.show()
 
-    print("")
-    print("Save file to '%s'" % filename_out)
+    logger.info("Save file to '%s'" % filename_out)
 
 if __name__ == "__main__":
     main()

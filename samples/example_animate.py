@@ -62,6 +62,7 @@ def count(df_all, func):
 @click.option("--filename", default="samples/sample_wind_poitiers.csv", help="Input filename")
 @click.option("--exit_at", default=0, help="premature exit (int) - must be > 1")
 @click.option("--by", default='month', help="Animate by (year, month, day...)")
+@click.option("--rmax", default=1000, help="rmax")
 @click.option("--filename_out", default="windrose_animation.mp4", help="Output filename")
 @click.option("--dpi", default=DPI_DEFAULT, help="Dot per inch for plot generation")
 @click.option("--figsize", default=S_FIGSIZE_DEFAULT, help="Figure size x,y - default=%s" % S_FIGSIZE_DEFAULT)
@@ -70,7 +71,7 @@ def count(df_all, func):
 @click.option("--bins_max", default=20, help="Bins maximum value")
 @click.option("--bins_step", default=2, help="Bins step value")
 @click.option("--fontname", default="Courier New", help="Font name")
-def main(filename, exit_at, by, dpi, figsize, fps, bins_min, bins_max, bins_step, fontname, filename_out):
+def main(filename, exit_at, by, rmax, dpi, figsize, fps, bins_min, bins_max, bins_step, fontname, filename_out):
     # convert figsize (string like "8,9" to a list of float [8.0, 9.0]
     figsize = figsize.split(",")
     figsize = map(float, figsize)
@@ -125,7 +126,7 @@ http://www.github.com/scls19fr/windrose""")
                 title = "  From %s\n    to %s" % (dt1, dt2)
     
                 try:
-                    ax = WindroseAxes.from_ax(fig=fig) # scatter, bar, box, contour, contourf
+                    ax = WindroseAxes.from_ax(fig=fig, rmax=rmax) # scatter, bar, box, contour, contourf
                     
                     direction = df['direction'].values
                     var = df['speed'].values
@@ -154,7 +155,7 @@ http://www.github.com/scls19fr/windrose""")
 
                     writer.grab_frame()
                 except KeyboardInterrupt:
-                    return
+                    break
                 except Exception as e:
                     logger.error(traceback.format_exc())
 

@@ -4,6 +4,13 @@
 """
 This sample need to be improve to provide
 a clean API to output animation
+
+Monthly
+python samples/example_animate.py --by M --exit_at 5 --rmax 1000
+
+Daily
+python samples/example_animate.py --by D --exit_at 5 --rmax 100
+
 """
 
 import click
@@ -26,6 +33,8 @@ import matplotlib.cm as cm
 import pandas as pd
 pd.set_option('max_rows', 10)
 import numpy as np
+
+import datetime
 
 from windrose import (WindroseAxes, WindAxes, plot_windrose, 
                         FIGSIZE_DEFAULT, DPI_DEFAULT)
@@ -94,8 +103,7 @@ def main(filename, exit_at, by, rmax, dpi, figsize, fps, bins_min, bins_max, bin
 First dt: %s
 Last  dt: %s
       td: %s
-  Slides: %d
-""" % (dt_start, dt_end, td, Nslides)
+  Slides: %d""" % (dt_start, dt_end, td, Nslides)
     logger.info(msg)
 
     # Define bins
@@ -111,6 +119,8 @@ Last  dt: %s
 http://www.github.com/scls19fr/windrose""")
     writer = FFMpegWriter(fps=fps, metadata=metadata)
 
+    dt_start_process = datetime.datetime.now()
+
     with writer.saving(fig, filename_out, 100):
         try:
             for i, df in enumerate(generate(df_all, by_func)):
@@ -120,9 +130,16 @@ http://www.github.com/scls19fr/windrose""")
                 msg = """  Slide %s/%s
     From %s
       to %s
-      td %s
-""" % (i+1, Nslides, dt1, dt2, td)
+      td %s""" % (i+1, Nslides, dt1, dt2, td)
                 logger.info(msg)
+                remaining = Nslides - (i + 1)
+                now = datetime.datetime.now()
+                td_remaining = (now - dt_start_process) / (i + 1) * remaining
+                logger.info("""    Expected 
+    time: %s
+  end at: %s
+""" % (td_remaining, now + td_remaining))
+
                 title = "  From %s\n    to %s" % (dt1, dt2)
     
                 try:

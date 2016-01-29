@@ -9,37 +9,37 @@ Monthly
 python samples/example_animate.py --by M --exit_at 5 --rmax 1000
 
 Daily
-python samples/example_animate.py --by D --exit_at 5 --rmax 100
+python samples/example_animate.py --by D --exit_at 5 --rmax 60
 
 """
 
 import click
 
-from math import pi
-
 import time
 import logging
 import traceback
-logging.Formatter.converter = time.gmtime
-logging.basicConfig(format='%(asctime)s %(levelname)s %(message)s', level=logging.DEBUG)
-logger = logging.getLogger(__name__)
 
 import matplotlib
-#matplotlib.use("Agg")
+# matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import matplotlib.animation
 import matplotlib.cm as cm
 
 import pandas as pd
-pd.set_option('max_rows', 10)
 import numpy as np
 
 import datetime
 
-from windrose import (WindroseAxes, WindAxes, plot_windrose, 
-                        FIGSIZE_DEFAULT, DPI_DEFAULT)
+from windrose import (WindroseAxes, FIGSIZE_DEFAULT, DPI_DEFAULT)
+
+logging.Formatter.converter = time.gmtime
+logging.basicConfig(format='%(asctime)s %(levelname)s %(message)s', level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+
+pd.set_option('max_rows', 10)
 
 S_FIGSIZE_DEFAULT = ",".join(map(str, FIGSIZE_DEFAULT))
+
 
 def get_by_func(by=None, by_func=None):
     if by is None and by_func is None:
@@ -51,10 +51,11 @@ def get_by_func(by=None, by_func=None):
         return lambda dt: (dt.year, dt.month)
     elif by in ['day', 'daily', 'D']:
         return lambda dt: (dt.year, dt.month, dt.day)
-    elif by is None and func is not None:
+    elif by is None and by_func is not None:
         return by_func
     else:
         raise NotImplementedError("'%s' is not an allowed 'by' parameter" % by)
+
 
 def generate(df_all, func, copy=True):
     if copy:
@@ -64,8 +65,10 @@ def generate(df_all, func, copy=True):
     for by_val in df.index.levels[0]:
         yield df.loc[by_val]
 
+
 def count(df_all, func):
     return len(np.unique(df_all.index.map(func)))
+
 
 @click.command()
 @click.option("--filename", default="samples/sample_wind_poitiers.csv", help="Input filename")
@@ -115,7 +118,7 @@ Last  dt: %s
     # Create a video writer (ffmpeg can create MPEG files)
     FFMpegWriter = matplotlib.animation.writers['ffmpeg']
     metadata = dict(title='windrose', artist='windrose',
-            comment="""Made with windrose
+                    comment="""Made with windrose
 http://www.github.com/scls19fr/windrose""")
     writer = FFMpegWriter(fps=fps, metadata=metadata)
 
@@ -130,66 +133,64 @@ http://www.github.com/scls19fr/windrose""")
                 msg = """  Slide %s/%s
     From %s
       to %s
-      td %s""" % (i+1, Nslides, dt1, dt2, td)
+      td %s""" % (i + 1, Nslides, dt1, dt2, td)
                 logger.info(msg)
                 remaining = Nslides - (i + 1)
                 now = datetime.datetime.now()
                 td_remaining = (now - dt_start_process) / (i + 1) * remaining
-                logger.info("""    Expected 
+                logger.info("""    Expected
     time: %s
   end at: %s
 """ % (td_remaining, now + td_remaining))
 
                 title = "  From %s\n    to %s" % (dt1, dt2)
-    
+
                 try:
-                    ax = WindroseAxes.from_ax(fig=fig, rmax=rmax) # scatter, bar, box, contour, contourf
-                    
+                    ax = WindroseAxes.from_ax(fig=fig, rmax=rmax)  # scatter, bar, box, contour, contourf
+
                     direction = df['direction'].values
                     var = df['speed'].values
-                    
-                    #ax.scatter(direction, var, alpha=0.2)
-                    #ax.set_xlim([-bins[-1], bins[-1]])
-                    #ax.set_ylim([-bins[-1], bins[-1]])
 
-                    #ax.bar(direction, var, bins=bins, normed=True, opening=0.8, edgecolor='white')
+                    # ax.scatter(direction, var, alpha=0.2)
+                    # ax.set_xlim([-bins[-1], bins[-1]])
+                    # ax.set_ylim([-bins[-1], bins[-1]])
 
-                    #ax.box(direction, var, bins=bins)
+                    # ax.bar(direction, var, bins=bins, normed=True, opening=0.8, edgecolor='white')
 
-                    #ax.contour(direction, var, cmap=cm.hot, lw=3, bins=bins)
+                    # ax.box(direction, var, bins=bins)
+
+                    # ax.contour(direction, var, cmap=cm.hot, lw=3, bins=bins)
 
                     ax.contourf(direction, var, bins=bins, cmap=cm.hot)
                     ax.contour(direction, var, bins=bins, colors='black', lw=3)
 
                     ax.set_legend()
 
-                    #ax = WindAxes.from_ax(fig=fig) # pdf: probability density function
-                    #ax.pdf(var, bins=bins)
-                    #ax.set_xlim([0, bins[-1]])
-                    #ax.set_ylim([0, 0.4])
+                    # ax = WindAxes.from_ax(fig=fig)  # pdf: probability density function
+                    # ax.pdf(var, bins=bins)
+                    # ax.set_xlim([0, bins[-1]])
+                    # ax.set_ylim([0, 0.4])
 
                     ax.set_title(title, fontname=fontname)
 
                     writer.grab_frame()
                 except KeyboardInterrupt:
                     break
-                except Exception as e:
+                except Exception:
                     logger.error(traceback.format_exc())
 
-
                 fig.clf()
-                if i > exit_at - 1 and exit_at != 0: # exit_at must be > 1
+                if i > exit_at - 1 and exit_at != 0:  # exit_at must be > 1
                     break
         except KeyboardInterrupt:
             return
-        except Exception as e:
+        except Exception:
             logger.error(traceback.format_exc())
 
         N = i + 1
         logger.info("Number of slides: %d" % N)
 
-
-    #plt.show()
+    # plt.show()
 
     logger.info("Save file to '%s'" % filename_out)
 

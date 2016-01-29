@@ -11,6 +11,7 @@ before_install:
 
 # command to install dependencies
 install:
+  - pip install -qq flake8
   - sudo apt-get update
   # You may want to periodically update this, although the conda update
   # conda line below will keep everything up-to-date.  We do this
@@ -35,7 +36,10 @@ install:
   - python setup.py install
 
 # command to run tests
-script: nosetests
+script:
+  - flake8 --version
+  - flake8 --ignore=E501 windrose samples
+  - nosetests
 
 addons:
   apt_packages:

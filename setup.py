@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 from setuptools import setup, find_packages  # Always prefer setuptools over distutils
-from codecs import open  # To use a consistent encoding
 from os import path
 import io
 
@@ -18,7 +17,7 @@ setup(
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # https://packaging.python.org/en/latest/development.html#single-sourcing-the-version
-    #version='0.0.2',
+    # version='0.0.2',
     version=__version__,
 
     setup_requires=['setuptools-markdown'],
@@ -45,7 +44,7 @@ setup(
 
         # Indicate who your project is intended for
         'Environment :: Console',
-        #'Topic :: Software Development :: Build Tools',
+        # 'Topic :: Software Development :: Build Tools',
         'Intended Audience :: Developers',
         'Operating System :: OS Independent',
 
@@ -54,11 +53,11 @@ setup(
         'Programming Language :: Cython',
 
         'Programming Language :: Python',
-        #'Programming Language :: Python :: 2',
-        #'Programming Language :: Python :: 2.6',
+        # 'Programming Language :: Python :: 2',
+        # 'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
-        #'Programming Language :: Python :: 3',
-        #'Programming Language :: Python :: 3.2',
+        # 'Programming Language :: Python :: 3',
+        # 'Programming Language :: Python :: 3.2',
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
 
@@ -86,7 +85,7 @@ setup(
     extras_require = {
         'dev': ['check-manifest', 'nose'],
         'test': ['coverage', 'nose'],
-        'advanced':  ['pandas', 'scipy']
+        'advanced': ['pandas', 'scipy']
     },
 
     # If there are data files included in your packages that need to be
@@ -100,7 +99,7 @@ setup(
     # need to place data files outside of your packages.
     # see http://docs.python.org/3.4/distutils/setupscript.html#installing-additional-files
     # In this case, 'data_file' will be installed into '<sys.prefix>/my_data'
-    #data_files=[('my_data', ['data/data_file'])],
+    # data_files=[('my_data', ['data/data_file'])],
 
     # To provide executable scripts, use entry points in preference to the
     # "scripts" keyword. Entry points provide cross-platform support and allow

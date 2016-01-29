@@ -33,6 +33,7 @@ install:
   # Replace dep1 dep2 ... with your dependencies
   - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION matplotlib numpy pandas scipy
   - source activate test-environment
+  - pip install matplotlib
   - python setup.py install
 
 # command to run tests

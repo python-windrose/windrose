@@ -165,19 +165,21 @@ Optional:
 A probability density function can be plot using:
 
 ```python
-    from windrose import WindAxes
-    ax = WindAxes.from_ax()
-    bins = np.arange(0, 6 + 1, 0.5)
-    bins = bins[1:]
-    ax, params = ax.pdf(ws, bins=bins)
+from windrose import WindAxes
+ax = WindAxes.from_ax()
+bins = np.arange(0, 6 + 1, 0.5)
+bins = bins[1:]
+ax, params = ax.pdf(ws, bins=bins)
 ```
 
 ![pdf](screenshots/pdf.png)
 
 Optimal parameters of Weibull distribution can be displayed using
 
-    print(params)
-    (1, 1.7042156870194352, 0, 7.0907180300605459)
+```python
+print(params)
+(1, 1.7042156870194352, 0, 7.0907180300605459)
+```
 
 
 ##Functional API
@@ -191,12 +193,12 @@ windrose not only supports Numpy arrays. It also supports also Pandas DataFrame.
 
 
 ```python
-	from windrose import plot_windrose
-    N = 500
-    ws = np.random.random(N) * 6
-    wd = np.random.random(N) * 360
-    df = pd.DataFrame({'speed': ws, 'direction': wd})
-    plot_windrose(df, kind='contour', bins=np.arange(0.01,8,1), cmap=cm.hot, lw=3)
+from windrose import plot_windrose
+N = 500
+ws = np.random.random(N) * 6
+wd = np.random.random(N) * 360
+df = pd.DataFrame({'speed': ws, 'direction': wd})
+plot_windrose(df, kind='contour', bins=np.arange(0.01,8,1), cmap=cm.hot, lw=3)
 ```
 
 Mandatory:
@@ -213,7 +215,7 @@ A video of plots can be exported. See:
 
 [![Video1](http://img.youtube.com/vi/0u2RxtGgEFo/0.jpg)](https://www.youtube.com/watch?v=0u2RxtGgEFo)
 [![Video2](http://img.youtube.com/vi/3CWpjSEt0so/0.jpg)](https://www.youtube.com/watch?v=3CWpjSEt0so)
-[![Video3](http://img.youtube.com/vi/CsALnB-0G28/0.jpg)](https://www.youtube.com/watch?v=CsALnB-0G28)
+[![Video3](http://img.youtube.com/vi/UiGC-3aw9TM-0G28/0.jpg)](https://www.youtube.com/watch?v=UiGC-3aw9TM)
 
 [Source code](samples/example_animate.py)
 

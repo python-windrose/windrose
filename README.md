@@ -213,11 +213,15 @@ Optional:
  - `clean_flag` : cleanup data flag (remove data points with `NaN`, `var=0`) before plotting ; default value is `True`.
 
 ##Video export
-A video of plots can be exported. See:
+A video of plots can be exported.
+A playlist of videos is available at https://www.youtube.com/playlist?list=PLE9hIvV5BUzsQ4EPBDnJucgmmZ85D_b-W
+
+See:
 
 [![Video1](http://img.youtube.com/vi/0u2RxtGgEFo/0.jpg)](https://www.youtube.com/watch?v=0u2RxtGgEFo)
 [![Video2](http://img.youtube.com/vi/3CWpjSEt0so/0.jpg)](https://www.youtube.com/watch?v=3CWpjSEt0so)
 [![Video3](http://img.youtube.com/vi/UiGC-3aw9TM/0.jpg)](https://www.youtube.com/watch?v=UiGC-3aw9TM)
+[![Video3](http://img.youtube.com/vi/OXP-P7tRmFA/0.jpg)](https://www.youtube.com/watch?v=OXP-P7tRmFA)
 
 [Source code](samples/example_animate.py)
 

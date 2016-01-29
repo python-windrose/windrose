@@ -36,7 +36,9 @@ Option libraries:
 
 A package is available and can be downloaded from PyPi and installed using:
 
-	$ pip install windrose
+```bash
+$ pip install windrose
+```
 
 ##Notebook example :
 
@@ -49,23 +51,23 @@ An [IPython (Jupyter)](http://ipython.org/) notebook showing this package usage 
 This example use randoms values for wind speed and direction(ws and wd variables). In situation, these variables are loaded with reals values (1-D array), from a database or directly from a text file (see the "load" facility from the matplotlib.pylab interface for that).
 
 ```python
-    from windrose import WindroseAxes
-    from matplotlib import pyplot as plt
-    import matplotlib.cm as cm
-    import numpy as np
+from windrose import WindroseAxes
+from matplotlib import pyplot as plt
+import matplotlib.cm as cm
+import numpy as np
 
-    #Create wind speed and direction variables
+# Create wind speed and direction variables
 
-    ws = np.random.random(500) * 6
-    wd = np.random.random(500) * 360
+ws = np.random.random(500) * 6
+wd = np.random.random(500) * 360
 ```
 
 ###A stacked histogram with normed (displayed in percent) results :
 
 ```python
-    ax = WindroseAxes.from_ax()
-    ax.bar(wd, ws, normed=True, opening=0.8, edgecolor='white')
-    ax.set_legend()
+ax = WindroseAxes.from_ax()
+ax.bar(wd, ws, normed=True, opening=0.8, edgecolor='white')
+ax.set_legend()
 ```
 
 ![bar](screenshots/bar.png)
@@ -73,9 +75,9 @@ This example use randoms values for wind speed and direction(ws and wd variables
 ###Another stacked histogram representation, not normed, with bins limits
 
 ```python
-    ax = WindroseAxes.from_ax()
-    ax.box(wd, ws, bins=np.arange(0, 8, 1))
-    ax.set_legend()
+ax = WindroseAxes.from_ax()
+ax.box(wd, ws, bins=np.arange(0, 8, 1))
+ax.set_legend()
 ```
 
 ![box](screenshots/box.png)
@@ -83,9 +85,9 @@ This example use randoms values for wind speed and direction(ws and wd variables
 ###A windrose in filled representation, with a controled colormap
 
 ```python
-    ax = WindroseAxes.from_ax()
-    ax.contourf(wd, ws, bins=np.arange(0, 8, 1), cmap=cm.hot)
-    ax.set_legend()
+ax = WindroseAxes.from_ax()
+ax.contourf(wd, ws, bins=np.arange(0, 8, 1), cmap=cm.hot)
+ax.set_legend()
 ```
 
 ![contourf](screenshots/contourf.png)
@@ -93,10 +95,10 @@ This example use randoms values for wind speed and direction(ws and wd variables
 ###Same as above, but with contours over each filled region...
 
 ```python
-    ax = WindroseAxes.from_ax()
-    ax.contourf(wd, ws, bins=np.arange(0, 8, 1), cmap=cm.hot)
-    ax.contour(wd, ws, bins=np.arange(0, 8, 1), colors='black')
-    ax.set_legend()
+ax = WindroseAxes.from_ax()
+ax.contourf(wd, ws, bins=np.arange(0, 8, 1), cmap=cm.hot)
+ax.contour(wd, ws, bins=np.arange(0, 8, 1), colors='black')
+ax.set_legend()
 ```
 
 ![contourf-contour](screenshots/contourf-contour.png)
@@ -104,9 +106,9 @@ This example use randoms values for wind speed and direction(ws and wd variables
 ###...or without filled regions
 
 ```python
-    ax = WindroseAxes.from_ax()
-    ax.contour(wd, ws, bins=np.arange(0, 8, 1), cmap=cm.hot, lw=3)
-    ax.set_legend()
+ax = WindroseAxes.from_ax()
+ax.contour(wd, ws, bins=np.arange(0, 8, 1), cmap=cm.hot, lw=3)
+ax.set_legend()
 ```
 
 ![contour](screenshots/contour.png)
@@ -120,23 +122,23 @@ After that, you can have a look at the computed values used to plot the windrose
 So, to know the frequency of each wind direction, for all wind speeds, do:
 
 ```python
-    ax.bar(wd, ws, normed=True, nsector=16)
-    table = ax._info['table']
-    wd_freq = np.sum(table, axis=0)
+ax.bar(wd, ws, normed=True, nsector=16)
+table = ax._info['table']
+wd_freq = np.sum(table, axis=0)
 ```
 
 and to have a graphical representation of this result :
 
 ```python
-    direction = ax._info['dir']
-    wd_freq = np.sum(table, axis=0)
-    plt.bar(np.arange(16), wd_freq, align='center')
-    xlabels = ('N','','N-E','','E','','S-E','','S','','S-O','','O','','N-O','')
-    xticks=arange(16)
-    gca().set_xticks(xticks)
-    draw()
-    gca().set_xticklabels(xlabels)
-    draw()
+direction = ax._info['dir']
+wd_freq = np.sum(table, axis=0)
+plt.bar(np.arange(16), wd_freq, align='center')
+xlabels = ('N','','N-E','','E','','S-E','','S','','S-O','','O','','N-O','')
+xticks=arange(16)
+gca().set_xticks(xticks)
+draw()
+gca().set_xticklabels(xlabels)
+draw()
 ```
 
 ![histo_WD](screenshots/histo_WD.png)
@@ -223,7 +225,9 @@ This is just a sample for now. API for video need to be created.
 
 Use: 
 
-    $ python samples/example_animate.py --help
+```bash
+$ python samples/example_animate.py --help
+```
 
 to display command line interface usage.
 
@@ -239,25 +243,35 @@ You can submit issues using <https://github.com/scls19fr/windrose/issues>
 
 You can clone repository to try to fix issues yourself using:
 
-	$ git clone https://github.com/scls19fr/windrose.git
+```bash
+$ git clone https://github.com/scls19fr/windrose.git
+```
 
 ### Run unit tests
 
 Run all unit tests
 
-	$ nosetests -s -v
+```bash
+$ nosetests -s -v
+```
 	
 Run a given test
 
-	$ nosetests tests.test_windrose:test_plot_by -s -v
+```bash
+$ nosetests tests.test_windrose:test_plot_by -s -v
+```
 
 ### Install development version
 
-	$ python setup.py install
+```bash
+$ python setup.py install
+```
 	
 or
 
-	$ sudo pip install git+https://github.com/scls19fr/windrose.git
+```bash
+$ sudo pip install git+https://github.com/scls19fr/windrose.git
+```
 
 ### Collaborating
 

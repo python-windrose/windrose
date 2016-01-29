@@ -212,7 +212,7 @@ Optional:
 A video of plots can be exported. See:
 
 [![Video1](http://img.youtube.com/vi/0u2RxtGgEFo/0.jpg)](https://www.youtube.com/watch?v=0u2RxtGgEFo)
-[![Video2](http://img.youtube.com/vi/e8kP64VXxR0/0.jpg)](https://www.youtube.com/watch?v=e8kP64VXxR0)
+[![Video2](http://img.youtube.com/vi/3CWpjSEt0so/0.jpg)](https://www.youtube.com/watch?v=3CWpjSEt0so)
 [![Video3](http://img.youtube.com/vi/CsALnB-0G28/0.jpg)](https://www.youtube.com/watch?v=CsALnB-0G28)
 
 [Source code](samples/example_animate.py)

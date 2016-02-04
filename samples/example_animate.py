@@ -46,7 +46,7 @@ def get_by_func(by=None, by_func=None):
         by = 'MS'
 
     if by in ['year', 'yearly', 'Y']:
-        return lambda dt: (dt.year, dt.month, dt.day)
+        return lambda dt: dt.year
     elif by in ['month', 'monthly', 'MS']:  # MS: month start
         return lambda dt: (dt.year, dt.month)
     elif by in ['day', 'daily', 'D']:

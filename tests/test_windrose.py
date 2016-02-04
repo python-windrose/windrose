@@ -8,6 +8,7 @@
 # $ nosetests tests.test_windrose:test_windrose_np_plot_and_pd_plot -s -v
 
 import matplotlib
+matplotlib.use('Agg')  # noqa
 
 # import matplotlib as mpl
 from matplotlib import pyplot as plt
@@ -23,8 +24,6 @@ from windrose import plot_windrose
 
 import numpy as np
 import pandas as pd
-
-matplotlib.use('Agg')
 
 
 # Create wind speed and direction variables

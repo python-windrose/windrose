@@ -5,6 +5,7 @@ import pandas as pd
 
 import numpy as np
 from matplotlib import pyplot as plt
+import matplotlib.cm as cm
 
 from windrose import WindroseAxes
 
@@ -64,7 +65,9 @@ def main():
         ax = WindroseAxes(fig, rect, rmax=1000)
         # ax.set_title(month)
         fig.add_axes(ax)
-        ax.contour(direction, var, bins=bins, colors='black', lw=3)
+        #ax.contour(direction, var, bins=bins, colors='black', lw=3)
+        ax.contourf(direction, var, bins=bins, cmap=cm.hot)
+        ax.contour(direction, var, bins=bins, colors='black')
 
     plt.show()
 

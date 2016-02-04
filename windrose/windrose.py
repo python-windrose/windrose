@@ -3,6 +3,7 @@
 
 # from __future__ import absolute_import, division, print_function
 
+import locale
 import matplotlib as mpl
 import numpy as np
 from matplotlib.projections.polar import PolarAxes
@@ -170,7 +171,11 @@ class WindroseAxes(PolarAxes):
 
         def get_labels():
             labels = np.copy(self._info['bins'])
-            labels = ["[%.1f : %0.1f[" % (labels[i], labels[i + 1])
+            if locale.getlocale()[0] in ['fr_FR']:
+                fmt = "[%.1f : %0.1f["
+            else:
+                fmt = "[%.1f : %0.1f)"
+            labels = [fmt % (labels[i], labels[i + 1])
                       for i in range(len(labels) - 1)]
             return labels
 

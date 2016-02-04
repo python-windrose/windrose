@@ -50,7 +50,9 @@ def main():
     year = 2014
 
     nrows, ncols = 3, 4
-    width, height = 1.0 / ncols, 1.0 / nrows
+    margin_pct = 0.1
+    margin_pct_x, margin_pct_y = margin_pct, margin_pct
+    width, height = (1.0 - margin_pct_x) / ncols, (1.0 - margin_pct_y) / nrows
 
     for month in range(1, 13):
         df = df_all.loc[year].loc[(year, month)]
@@ -61,11 +63,11 @@ def main():
         var = df['speed'].values
 
         fig = plt.gcf()
-        rect = [i_col * width, 1 - (i_row + 1) * height, width, height]  # [left, bottom, width, height]
+        rect = [i_col * width + margin_pct_x / 2, 1 - (i_row + 1) * height - margin_pct_y / 2, width, height]  # [left, bottom, width, height]
         ax = WindroseAxes(fig, rect, rmax=1000)
         # ax.set_title(month)
         fig.add_axes(ax)
-        #ax.contour(direction, var, bins=bins, colors='black', lw=3)
+        # ax.contour(direction, var, bins=bins, colors='black', lw=3)
         ax.contourf(direction, var, bins=bins, cmap=cm.hot)
         ax.contour(direction, var, bins=bins, colors='black')
 

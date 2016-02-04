@@ -46,7 +46,7 @@ class WindroseAxes(PolarAxes):
 
     """
 
-    def __init__(self, rmax=None, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         """
         See Axes base class for args and kwargs documentation
         """
@@ -54,7 +54,7 @@ class WindroseAxes(PolarAxes):
         # Uncomment to have the possibility to change the resolution directly
         # when the instance is created
         # self.RESOLUTION = kwargs.pop('resolution', 100)
-        self.rmax = rmax
+        self.rmax = kwargs.pop('rmax', None)
         PolarAxes.__init__(self, *args, **kwargs)
         self.set_aspect('equal', adjustable='box', anchor='C')
         self.radii_angle = 67.5

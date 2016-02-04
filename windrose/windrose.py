@@ -107,10 +107,16 @@ class WindroseAxes(PolarAxes):
         if angle is None:
             angle = self.radii_angle
         self.radii_angle = angle
-        radii = np.linspace(0.1, self.get_rmax(), 6)
-        radii_labels = ["%.1f" % r for r in radii]
-        radii_labels[0] = ""  # Removing label 0
-        self.set_rgrids(radii=radii, labels=radii_labels,
+        N = 5
+        rmax = self.get_rmax()
+        radii = np.linspace(0, rmax, N + 1)
+        if rmax % N == 0:
+            fmt = "%d"
+        else:
+            fmt = "%.1f"
+        radii_labels = [fmt % r for r in radii]
+        #radii_labels[0] = ""  # Removing label 0
+        self.set_rgrids(radii=radii[1:], labels=radii_labels[1:],
                         angle=self.radii_angle, **kwargs)
 
     def _update(self):

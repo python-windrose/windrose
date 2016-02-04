@@ -175,7 +175,7 @@ class WindroseAxes(PolarAxes):
                 fmt = "[%.1f : %0.1f["
             else:
                 fmt = "[%.1f : %0.1f)"
-            labels = fmt % (labels[i], labels[i + 1])
+            labels = [fmt % (labels[i], labels[i + 1])
                       for i in range(len(labels) - 1)]
             return labels
 

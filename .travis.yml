@@ -39,7 +39,7 @@ install:
 # command to run tests
 script:
   - flake8 --version
-  - flake8 --ignore=E501 windrose samples
+  - flake8 --ignore=E501 windrose samples tests
   - nosetests
 
 addons:

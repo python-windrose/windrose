@@ -159,6 +159,7 @@ class WindroseAxes(PolarAxes):
         handlelen = 0.05     # the length of the legend lines
         handletextsep = 0.02 # the space between the legend line and legend text
         borderaxespad = 0.02       # the border between the axes and legend edge
+        decimal_places = 1   # the decimal places of the formated legend
         """
 
         def get_handles():
@@ -175,20 +176,31 @@ class WindroseAxes(PolarAxes):
                                facecolor=color, edgecolor='black'))
             return handles
 
-        def get_labels():
+        def get_labels(decimal_places=1):
+            _decimal_places = str(decimal_places)
+            
+            fmt = (
+                "[%." + _decimal_places + "f " + 
+                ": %0." + _decimal_places + "f"
+            )
+            
             labels = np.copy(self._info['bins'])
             if locale.getlocale()[0] in ['fr_FR']:
-                fmt = "[%.1f : %0.1f["
+                fmt += '['
             else:
-                fmt = "[%.1f : %0.1f)"
+                fmt += ')'
+                
             labels = [fmt % (labels[i], labels[i + 1])
                       for i in range(len(labels) - 1)]
             return labels
 
         kwargs.pop('labels', None)
         kwargs.pop('handles', None)
+        
+        decimal_places = kwargs.pop('decimal_places', 1)
+        
         handles = get_handles()
-        labels = get_labels()
+        labels = get_labels(decimal_places)
         self.legend_ = mpl.legend.Legend(self, handles, labels, loc, **kwargs)
         return self.legend_
 

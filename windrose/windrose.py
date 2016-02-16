@@ -178,27 +178,27 @@ class WindroseAxes(PolarAxes):
 
         def get_labels(decimal_places=1):
             _decimal_places = str(decimal_places)
-            
+
             fmt = (
-                "[%." + _decimal_places + "f " + 
+                "[%." + _decimal_places + "f " +
                 ": %0." + _decimal_places + "f"
             )
-            
+
             labels = np.copy(self._info['bins'])
             if locale.getlocale()[0] in ['fr_FR']:
                 fmt += '['
             else:
                 fmt += ')'
-                
+
             labels = [fmt % (labels[i], labels[i + 1])
                       for i in range(len(labels) - 1)]
             return labels
 
         kwargs.pop('labels', None)
         kwargs.pop('handles', None)
-        
+
         decimal_places = kwargs.pop('decimal_places', 1)
-        
+
         handles = get_handles()
         labels = get_labels(decimal_places)
         self.legend_ = mpl.legend.Legend(self, handles, labels, loc, **kwargs)

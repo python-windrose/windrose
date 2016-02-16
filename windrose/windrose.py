@@ -91,10 +91,10 @@ class WindroseAxes(PolarAxes):
         self.patches_list = list()
 
     def _colors(self, cmap, n):
-        '''
+        """
         Returns a list of n colors based on the colormap cmap
 
-        '''
+        """
         return [cmap(i) for i in np.linspace(0.0, 1.0, n)]
 
     def set_radii_angle(self, **kwargs):

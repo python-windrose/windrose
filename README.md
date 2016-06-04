@@ -8,7 +8,7 @@
 [![Code Health](https://landscape.io/github/scls19fr/windrose/master/landscape.svg?style=flat)](https://landscape.io/github/scls19fr/windrose/master)
 [![Codacy Badge](https://www.codacy.com/project/badge/fff3df3be0754829925202cdd6495ce7)](https://www.codacy.com/app/s-celles/windrose)
 [![Build Status](https://travis-ci.org/scls19fr/windrose.svg)](https://travis-ci.org/scls19fr/windrose)
-
+[![Research software impact](http://depsy.org/api/package/pypi/windrose/badge.svg)](http://depsy.org/package/python/windrose)
 
 #windrose
 

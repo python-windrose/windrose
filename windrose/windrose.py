@@ -7,7 +7,6 @@ import locale
 import matplotlib as mpl
 import numpy as np
 from matplotlib.projections.polar import PolarAxes
-from matplotlib.projections import register_projection
 from numpy.lib.twodim_base import histogram2d
 import matplotlib.pyplot as plt
 from pylab import poly_between
@@ -687,6 +686,3 @@ def plot_windrose_np(direction, var, kind='contour', clean_flag=True, by=None, r
         return ax
     else:
         raise(NotImplementedError("'by' keyword not supported for now https://github.com/scls19fr/windrose/issues/10"))
-
-
-register_projection(WindroseAxes)

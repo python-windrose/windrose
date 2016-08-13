@@ -1,13 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import click
+
+import datetime
 import pandas as pd
 
 import numpy as np
 from matplotlib import pyplot as plt
 import matplotlib.cm as cm
 
-from windrose import WindroseAxes
+import windrose  # noqa
 
 pd.set_option('max_rows', 10)
 
@@ -34,8 +37,11 @@ def tuple_position(i, nrows, ncols):
     return i_sheet, i_row, i_col
 
 
-def main():
-    df_all = pd.read_csv("samples/sample_wind_poitiers.csv", parse_dates=['Timestamp'])
+@click.command()
+@click.option("--filename", default="samples/sample_wind_poitiers.csv", help="Input filename")
+@click.option("--year", default=2014, help="Year")
+def main(filename, year):
+    df_all = pd.read_csv(filename, parse_dates=['Timestamp'])
     df_all = df_all.set_index('Timestamp')
 
     f_year = get_by_func('year')
@@ -47,26 +53,21 @@ def main():
 
     print(df_all)
 
-    year = 2014
-
     nrows, ncols = 3, 4
-    margin_pct = 0.1
-    margin_pct_x, margin_pct_y = margin_pct, margin_pct
-    width, height = (1.0 - margin_pct_x) / ncols, (1.0 - margin_pct_y) / nrows
+    fig = plt.figure()
+    bins = np.arange(0.01, 8, 1)
 
+    fig.suptitle("Wind speed - %d" % year)
     for month in range(1, 13):
-        df = df_all.loc[year].loc[(year, month)]
-        i_sheet, i_row, i_col = tuple_position(month - 1, nrows, ncols)
-        assert i_sheet == 0
-        bins = np.arange(0.01, 8, 1)
+        ax = fig.add_subplot(nrows, ncols, month, projection='windrose')
+        title = datetime.datetime(year, month, 1).strftime("%b")
+        ax.set_title(title)
+        try:
+            df = df_all.loc[year].loc[(year, month)]
+        except KeyError:
+            continue
         direction = df['direction'].values
         var = df['speed'].values
-
-        fig = plt.gcf()
-        rect = [i_col * width + margin_pct_x / 2, 1 - (i_row + 1) * height - margin_pct_y / 2, width, height]  # [left, bottom, width, height]
-        ax = WindroseAxes(fig, rect, rmax=1000)
-        # ax.set_title(month)
-        fig.add_axes(ax)
         # ax.contour(direction, var, bins=bins, colors='black', lw=3)
         ax.contourf(direction, var, bins=bins, cmap=cm.hot)
         ax.contour(direction, var, bins=bins, colors='black')

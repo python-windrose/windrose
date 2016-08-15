@@ -45,6 +45,7 @@ class WindroseAxes(PolarAxes):
     Create a windrose axes
 
     """
+    name = 'windrose'
 
     def __init__(self, *args, **kwargs):
         """

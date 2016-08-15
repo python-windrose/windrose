@@ -22,5 +22,5 @@ before_install:
     - "sh -e /etc/init.d/xvfb start"
 
 script:
-    - flake8 --ignore=E501 windrose samples tests
     - nosetests tests --verbose
+    - flake8 --ignore=E501 windrose samples tests

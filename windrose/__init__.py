@@ -8,3 +8,6 @@ from .windrose import (WindAxesFactory, WindroseAxes, WindAxes,  # noqa
     clean, clean_df,  # noqa
     plot_windrose_np, plot_windrose_df, plot_windrose,  # noqa
     FIGSIZE_DEFAULT, DPI_DEFAULT, D_KIND_PLOT)  # noqa
+
+from matplotlib.projections import register_projection
+register_projection(WindroseAxes)

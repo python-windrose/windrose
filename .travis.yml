@@ -23,4 +23,5 @@ before_install:
 
 script:
     - nosetests tests --verbose
+    - flake8 --version
     - flake8 --ignore=E501 windrose samples tests

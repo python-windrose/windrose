@@ -205,8 +205,10 @@ class WindroseAxes(PolarAxes):
         self.legend_ = mpl.legend.Legend(self, handles, labels, loc, **kwargs)
         return self.legend_
 
-    def set_legend(self):
-        l = self.legend(borderaxespad=-0.10)
+    def set_legend(self, **pyplot_arguments):
+        if 'borderaxespad' not in pyplot_arguments:
+            pyplot_arguments['borderaxespad'] = -0.10
+        l = self.legend(**pyplot_arguments)
         plt.setp(l.get_texts(), fontsize=8)
 
     def _init_plot(self, direction, var, **kwargs):

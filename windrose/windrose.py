@@ -6,6 +6,7 @@
 import locale
 import matplotlib as mpl
 import numpy as np
+import random
 from matplotlib.projections.polar import PolarAxes
 from numpy.lib.twodim_base import histogram2d
 import matplotlib.pyplot as plt
@@ -214,7 +215,41 @@ class WindroseAxes(PolarAxes):
     def _init_plot(self, direction, var, **kwargs):
         """
         Internal method used by all plotting commands
+        direction : 1D array - directions the wind blows from, North centred
+        var : 1D array - values of the variable to compute. Typically the wind
+              speeds
         """
+
+        # if weibull factors are entered overwrite direction and var
+        if 'weibull_factors' in kwargs or 'mean_values' in kwargs:
+           if 'weibull_factors' in kwargs and 'mean_values' in kwargs:
+              raise TypeError("cannot specify both weibull_factors and mean_values") 
+           statistic_type = 'unset'
+           if 'weibull_factors' in kwargs:
+              statistic_type = 'weibull'
+              kwargs.pop('weibull_factors')
+           elif 'mean_values' in kwargs:
+              statistic_type = 'mean'
+              kwargs.pop('mean_values')
+           if 'frequency' not in kwargs:
+              raise TypeError("specify 'frequency' argument for statistical input")
+           windFrequencies = kwargs.pop('frequency')
+           if len(windFrequencies) != len(direction) or len(direction) != len(var):
+              if len(windFrequencies) != len(direction):
+                 raise TypeError("len(frequency) != len(direction)")
+              elif len(direction) != len(var):
+                 raise TypeError("len(frequency) != len(direction)")
+           windSpeeds = []
+           windDirections = []
+           for dbin in range(len(direction)):
+               for _ in range(int(windFrequencies[dbin] * 10000)):
+                   if statistic_type == 'weibull':
+                      windSpeeds.append(random.weibullvariate(var[dbin][0], var[dbin][1]))
+                   elif statistic_type=='mean':
+                      windSpeeds.append(random.weibullvariate(var[dbin] * 2 / np.sqrt(np.pi), 2))
+                   windDirections.append(direction[dbin]) 
+           var, direction = windSpeeds, windDirections
+
         # self.cla()
         kwargs.pop('zorder', None)
 

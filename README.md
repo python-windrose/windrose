@@ -161,6 +161,8 @@ Optional:
  - `edgecolor` : string - The string color each edge bar will be plotted.
    Default : no edgecolor
  - `opening` : float - between 0.0 and 1.0, to control the space between each sector (1.0 for no space)
+ - `mean_values` : Bool - specify wind speed statistics with direction=specific mean wind speeds. If this flag is specified, var is expected to be an array of mean wind speeds corresponding to each entry in `direction`. These are used to generate a distribution of wind speeds assuming the distribution is Weibull with shape factor = 2.
+ - `weibull_factors` : Bool - specify wind speed statistics with direction=specific weibull scale and shape factors. If this flag is specified, var is expected to be of the form [[7,2], ...., [7.5,1.9]] where var[i][0] is the weibull scale factor and var[i][1] is the shape factor
 
 ###probability density function (pdf) and fitting Weibull distribution
 

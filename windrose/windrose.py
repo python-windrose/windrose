@@ -223,7 +223,7 @@ class WindroseAxes(PolarAxes):
         # if weibull factors are entered overwrite direction and var
         if 'weibull_factors' in kwargs or 'mean_values' in kwargs:
             if 'weibull_factors' in kwargs and 'mean_values' in kwargs:
-                raise TypeError("cannot specify both weibull_factors and mean_values") 
+                raise TypeError("cannot specify both weibull_factors and mean_values")
             statistic_type = 'unset'
             if 'weibull_factors' in kwargs:
                 statistic_type = 'weibull'
@@ -243,12 +243,12 @@ class WindroseAxes(PolarAxes):
                 windSpeeds = []
                 windDirections = []
                 for dbin in range(len(direction)):
-                     for _ in range(int(windFrequencies[dbin] * 10000)):
-                         if statistic_type == 'weibull':
-                             windSpeeds.append(random.weibullvariate(var[dbin][0], var[dbin][1]))
-                         elif statistic_type=='mean':
-                             windSpeeds.append(random.weibullvariate(var[dbin] * 2 / np.sqrt(np.pi), 2))
-                         windDirections.append(direction[dbin]) 
+                    for _ in range(int(windFrequencies[dbin] * 10000)):
+                        if statistic_type == 'weibull':
+                            windSpeeds.append(random.weibullvariate(var[dbin][0], var[dbin][1]))
+                        elif statistic_type == 'mean':
+                            windSpeeds.append(random.weibullvariate(var[dbin] * 2 / np.sqrt(np.pi), 2))
+                        windDirections.append(direction[dbin])
                 var, direction = windSpeeds, windDirections
 
         # self.cla()

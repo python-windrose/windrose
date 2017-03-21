@@ -12,7 +12,7 @@ FILENAME_DEFAULT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ama
 @click.option("--filename", default=FILENAME_DEFAULT, help="Input filename")
 def main(filename):
     fig = plt.figure(figsize=(12, 8), dpi=80, facecolor='w', edgecolor='w')
-    ax = WindroseAxes(fig, [0.1, 0.1, 0.8, 0.8], axisbg='w')
+    ax = WindroseAxes(fig, [0.1, 0.1, 0.8, 0.8], facecolor='w')
     fig.add_axes(ax)
     windRose = np.loadtxt(filename)
     indexes = np.where(windRose[:, 1] > 0.1)

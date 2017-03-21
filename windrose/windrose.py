@@ -211,6 +211,7 @@ class WindroseAxes(PolarAxes):
             pyplot_arguments['borderaxespad'] = -0.10
         l = self.legend(**pyplot_arguments)
         plt.setp(l.get_texts(), fontsize=8)
+        return l
 
     def _init_plot(self, direction, var, **kwargs):
         """

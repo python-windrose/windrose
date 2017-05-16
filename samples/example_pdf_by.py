@@ -130,7 +130,7 @@ def main(filename, dt_from, dt_to, dpi, figsize,
             ax.set_ylim(-v, v)
 
             # rect = [0.1, 0.1, 0.8, 0.8]
-            # ax = WindroseAxes(fig, rect, axisbg='w')
+            # ax = WindroseAxes(fig, rect, facecolor='w')
             # wrscatter(direction, var, ax=ax) # ToFix!!!! TypeError: Input must be a 2D array.
 
             # print(direction)
@@ -142,9 +142,9 @@ def main(filename, dt_from, dt_to, dpi, figsize,
             # ToFix!!!! TypeError: Input must be a 2D array.
             # ax = WindroseAxes.from_ax(ax)
             # rect = [0.1, 0.1, 0.8, 0.8]
-            # #axs[i_row][i_col] = WindroseAxes(fig, rect, axisbg='w')
+            # #axs[i_row][i_col] = WindroseAxes(fig, rect, facecolor='w')
             # #axs[i_row][i_col] = WindroseAxes.from_ax(fig=fig)
-            # ax = WindroseAxes(fig, rect, axisbg='w')
+            # ax = WindroseAxes(fig, rect, facecolor='w')
             # fig.axes[i + offset] = ax
             # ax.contourf(direction, var, bins=bins, cmap=cm.hot)
             # ax.contour(direction, var, bins=bins, colors='black')

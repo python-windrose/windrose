@@ -18,6 +18,8 @@ VAR_DEFAULT = 'speed'
 DIR_DEFAULT = 'direction'
 FIGSIZE_DEFAULT = (8, 8)
 DPI_DEFAULT = 80
+CALM_CIRCLE_COLOR = "red"
+CALM_CIRCLE_ALPHA = 0.4
 
 
 class WindAxesFactory(object):
@@ -92,6 +94,8 @@ class WindroseAxes(PolarAxes):
 
         self.patches_list = list()
 
+        self.calm_count = None
+
     def _colors(self, cmap, n):
         """
         Returns a list of n colors based on the colormap cmap
@@ -122,10 +126,10 @@ class WindroseAxes(PolarAxes):
                         angle=self.radii_angle, **kwargs)
 
     def _update(self):
-        if self.rmax is None:
-            self.set_rmax(rmax=np.max(np.sum(self._info['table'], axis=0)))
-        else:
-            self.set_rmax(rmax=self.rmax)
+        if not self.rmax:
+            self.rmax = np.max(np.sum(self._info['table'], axis=0))
+        calm_count = self.calm_count or 0
+        self.set_rmax(rmax=self.rmax+calm_count)
         self.set_radii_angle(angle=self.radii_angle)
 
     def legend(self, loc='lower left', **kwargs):
@@ -289,10 +293,33 @@ class WindroseAxes(PolarAxes):
         normed = kwargs.pop('normed', False)
         blowto = kwargs.pop('blowto', False)
 
+        # Calm condition
+        calm_limit = kwargs.pop('calm_limit', None)
+        if calm_limit is not None:
+            mask = var > calm_limit
+            self.calm_count = len(var) - np.count_nonzero(mask)
+            if normed:
+                self.calm_count = self.calm_count*100/len(var)
+            var = var[mask]
+            direction = direction[mask]
+
         # Set the global information dictionnary
         self._info['dir'], self._info['bins'], self._info['table'] = histogram(direction, var, bins, nsector, normed, blowto)
 
         return bins, nbins, nsector, colors, angles, kwargs
+
+    def _calm_circle(self):
+        """
+        Draw the calm centered circle
+        and return the initial offset for plots methods
+        """
+        if self.calm_count and self.calm_count > 0:
+            circle = mpl.patches.Circle((0., 0.), self.calm_count,
+                            transform=self.transData._b,
+                            color=CALM_CIRCLE_COLOR,
+                            alpha=CALM_CIRCLE_ALPHA)
+            self.add_artist(circle)
+        return self.calm_count or 0
 
     def contour(self, direction, var, **kwargs):
         """
@@ -321,6 +348,9 @@ class WindroseAxes(PolarAxes):
         in different colors in the order specified.
         * cmap : a cm Colormap instance from matplotlib.cm.
           - if cmap == None and colors == None, a default Colormap is used.
+        * calm_limit: float - Calm limit for the var parameter. If not None, 
+        a centered red circle will be draw for representing the calms occurences
+        and all datas below this value will be removed from the computation
 
         others kwargs : see help(pylab.plot)
 
@@ -334,7 +364,7 @@ class WindroseAxes(PolarAxes):
                          np.reshape(self._info['table'][:, 0],
                                     (self._info['table'].shape[0], 1))))
 
-        offset = 0
+        offset = self._calm_circle()
         for i in range(nbins):
             val = vals[i, :] + offset
             offset += vals[i, :]
@@ -371,6 +401,9 @@ class WindroseAxes(PolarAxes):
         in different colors in the order specified.
         * cmap : a cm Colormap instance from matplotlib.cm.
           - if cmap == None and colors == None, a default Colormap is used.
+        * calm_limit: float - Calm limit for the var parameter. If not None, 
+        a centered red circle will be draw for representing the calms occurences
+        and all datas below this value will be removed from the computation
 
         others kwargs : see help(pylab.plot)
 
@@ -386,7 +419,7 @@ class WindroseAxes(PolarAxes):
         vals = np.hstack((self._info['table'],
                           np.reshape(self._info['table'][:, 0],
                                      (self._info['table'].shape[0], 1))))
-        offset = 0
+        offset = self._calm_circle()
         for i in range(nbins):
             val = vals[i, :] + offset
             offset += vals[i, :]
@@ -395,6 +428,7 @@ class WindroseAxes(PolarAxes):
             patch = self.fill(xs, ys, facecolor=colors[i],
                               edgecolor=colors[i], zorder=zorder, **kwargs)
             self.patches_list.extend(patch)
+        self._update()
 
     def bar(self, direction, var, **kwargs):
         """
@@ -424,6 +458,9 @@ class WindroseAxes(PolarAxes):
         Default : no edgecolor
         * opening : float - between 0.0 and 1.0, to control the space between
         each sector (1.0 for no space)
+        * calm_limit: float - Calm limit for the var parameter. If not None, 
+        a centered red circle will be draw for representing the calms occurences
+        and all datas below this value will be removed from the computation
 
         """
 
@@ -440,8 +477,10 @@ class WindroseAxes(PolarAxes):
         dtheta = 2 * np.pi / nsector
         opening = dtheta * opening
 
+        o = self._calm_circle()
+
         for j in range(nsector):
-            offset = 0
+            offset = o
             for i in range(nbins):
                 if i > 0:
                     offset += self._info['table'][i - 1, j]
@@ -482,6 +521,9 @@ class WindroseAxes(PolarAxes):
           - if cmap == None and colors == None, a default Colormap is used.
         edgecolor : string - The string color each edge bar will be plotted.
         Default : no edgecolor
+        * calm_limit: float - Calm limit for the var parameter. If not None, 
+        a centered red circle will be draw for representing the calms occurences
+        and all datas below this value will be removed from the computation
 
         """
 
@@ -494,8 +536,10 @@ class WindroseAxes(PolarAxes):
                 raise ValueError('edgecolor must be a string color')
         opening = np.linspace(0.0, np.pi / 16, nbins)
 
+        o = self._calm_circle()
+
         for j in range(nsector):
-            offset = 0
+            offset = o
             for i in range(nbins):
                 if i > 0:
                     offset += self._info['table'][i - 1, j]

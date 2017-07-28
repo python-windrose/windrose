@@ -680,6 +680,7 @@ def clean(direction, var, index=False):
         index = index[mask]
         return direction[mask], var[mask], index
 
+
 D_KIND_PLOT = {
     'contour': wrcontour,
     'contourf': wrcontourf,

@@ -36,5 +36,6 @@ def main():
     # plt.savefig("screenshots/pdf.png")
     plt.show()
 
+
 if __name__ == "__main__":
     main()

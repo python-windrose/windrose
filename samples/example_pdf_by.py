@@ -190,5 +190,6 @@ def save_figure(fig, pdf, show, fig_title):
     fig.savefig(filename)  # Save to image
     pdf.savefig(fig)
 
+
 if __name__ == "__main__":
     main()

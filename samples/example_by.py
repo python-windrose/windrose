@@ -104,6 +104,7 @@ class NormalLayout(Layout):
     def __init__(self):
         super(NormalLayout, self).__init__()
 
+
 S_FIGSIZE_DEFAULT = ",".join(map(str, FIGSIZE_DEFAULT))
 
 
@@ -250,6 +251,7 @@ def main(filename, dpi, figsize, fps, bins_min, bins_max, bins_step, filename_ou
     # time.sleep(10)
 
     # print("Save file to '%s'" % filename_out)
+
 
 if __name__ == "__main__":
     main()

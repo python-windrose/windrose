@@ -8,6 +8,7 @@
 [![Code Health](https://landscape.io/github/python-windrose/windrose/master/landscape.svg?style=flat)](https://landscape.io/github/python-windrose/windrose/master)
 [![Codacy Badge](https://www.codacy.com/project/badge/fff3df3be0754829925202cdd6495ce7)](https://www.codacy.com/app/s-celles/windrose_2)
 [![Build Status](https://travis-ci.org/python-windrose/windrose.svg)](https://travis-ci.org/python-windrose/windrose)
+[![DOI](https://zenodo.org/badge/37549137.svg)](https://zenodo.org/badge/latestdoi/37549137)
 [![Research software impact](http://depsy.org/api/package/pypi/windrose/badge.svg)](http://depsy.org/package/python/windrose)
 
 # Windrose

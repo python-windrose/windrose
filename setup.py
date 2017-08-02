@@ -64,7 +64,7 @@ setup(
         'Programming Language :: Python :: 3.6',
 
         # Pick your license as you wish (should match "license" above)
-        'License :: CEA CNRS Inria Logiciel Libre License B (CeCILL-B)',
+        # 'License :: OSI Approved :: CEA CNRS Inria Logiciel Libre License B (CeCILL-B)',
 
     ],
 

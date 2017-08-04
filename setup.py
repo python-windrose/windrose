@@ -11,6 +11,9 @@ NAME = 'windrose'
 with io.open(path.join(here, NAME, 'version.py'), 'rt', encoding='UTF-8') as f:
     exec(f.read())
 
+with io.open(path.join(here, 'README.md'), 'rt', encoding='UTF-8') as f:
+    long_description = f.read()
+
 setup(
     name=NAME,
 
@@ -20,9 +23,8 @@ setup(
     # version='0.0.2',
     version=__version__,
 
-    setup_requires=['setuptools-markdown'],
     description='Python Matplotlib, Numpy library to manage wind data, draw windrose (also known as a polar rose plot)',
-    long_description_markdown_filename='README.md',
+    long_description=long_description,
 
     # The project's main homepage.
     url=__url__,

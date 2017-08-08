@@ -25,6 +25,7 @@ setup(
 
     description='Python Matplotlib, Numpy library to manage wind data, draw windrose (also known as a polar rose plot)',
     long_description=long_description,
+    long_description_content_type='text/markdown; charset=UTF-8',
 
     # The project's main homepage.
     url=__url__,

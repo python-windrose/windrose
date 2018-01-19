@@ -68,7 +68,7 @@ class WindroseAxes(PolarAxes):
             if fig is None:
                 fig = plt.figure(figsize=FIGSIZE_DEFAULT, dpi=DPI_DEFAULT, facecolor='w', edgecolor='w')
             rect = [0.1, 0.1, 0.8, 0.8]
-            ax = WindroseAxes(fig, rect, facecolor='w', rmax=rmax, *args, **kwargs)
+            ax = WindroseAxes(fig, rect, rmax=rmax, *args, **kwargs)
             fig.add_axes(ax)
             return ax
         else:

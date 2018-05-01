@@ -1,13 +1,13 @@
-Notebook example :
-------------------
+Notebook example
+----------------
 
 An `IPython (Jupyter) <http://ipython.org/>`__ notebook showing this
 package usage is available at:
 
 -  http://nbviewer.ipython.org/github/python-windrose/windrose/blob/master/windrose_sample_random.ipynb
 
-Script example :
-----------------
+Script example
+--------------
 
 This example use randoms values for wind speed and direction(ws and wd
 variables). In situation, these variables are loaded with reals values
@@ -26,8 +26,8 @@ variables). In situation, these variables are loaded with reals values
     ws = np.random.random(500) * 6
     wd = np.random.random(500) * 360
 
-A stacked histogram with normed (displayed in percent) results :
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A stacked histogram with normed (displayed in percent) results
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code:: python
 

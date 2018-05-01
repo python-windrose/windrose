@@ -1,8 +1,8 @@
 Install
 -------
 
-Requirements:
-~~~~~~~~~~~~~
+Requirements
+~~~~~~~~~~~~
 
 -  matplotlib http://matplotlib.org/
 -  numpy http://www.numpy.org/

@@ -209,9 +209,9 @@ class WindroseAxes(PolarAxes):
     def set_legend(self, **pyplot_arguments):
         if 'borderaxespad' not in pyplot_arguments:
             pyplot_arguments['borderaxespad'] = -0.10
-        l = self.legend(**pyplot_arguments)
-        plt.setp(l.get_texts(), fontsize=8)
-        return l
+        legend = self.legend(**pyplot_arguments)
+        plt.setp(legend.get_texts(), fontsize=8)
+        return legend
 
     def _init_plot(self, direction, var, **kwargs):
         """
@@ -359,7 +359,7 @@ class WindroseAxes(PolarAxes):
         * direction : 1D array - directions the wind blows from, North centred
         * var : 1D array - values of the variable to compute. Typically the wind
         speeds
-        
+
         Optional:
 
         * nsector: integer - number of sectors used to compute the windrose
@@ -562,7 +562,7 @@ def histogram(direction, var, bins, nsector, normed=False, blowto=False):
     Returns an array where, for each sector of wind
     (centred on the north), we have the number of time the wind comes with a
     particular var (speed, polluant concentration, ...).
-    
+
     * direction : 1D array - directions the wind blows from, North centred
     * var : 1D array - values of the variable to compute. Typically the wind
         speeds

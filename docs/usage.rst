@@ -38,8 +38,6 @@ A stacked histogram with normed (displayed in percent) results
 .. figure:: screenshots/bar.png
    :alt: bar
 
-   bar
-
 Another stacked histogram representation, not normed, with bins limits
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -52,8 +50,6 @@ Another stacked histogram representation, not normed, with bins limits
 .. figure:: screenshots/box.png
    :alt: box
 
-   box
-
 A windrose in filled representation, with a controled colormap
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -65,8 +61,6 @@ A windrose in filled representation, with a controled colormap
 
 .. figure:: screenshots/contourf.png
    :alt: contourf
-
-   contourf
 
 Same as above, but with contours over each filled region...
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -81,8 +75,6 @@ Same as above, but with contours over each filled region...
 .. figure:: screenshots/contourf-contour.png
    :alt: contourf-contour
 
-   contourf-contour
-
 ...or without filled regions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -95,15 +87,16 @@ Same as above, but with contours over each filled region...
 .. figure:: screenshots/contour.png
    :alt: contour
 
-   contour
-
 After that, you can have a look at the computed values used to plot the
-windrose with the ``ax._info`` dictionnary : - ``ax._info['bins']`` :
+windrose with the ``ax._info`` dictionnary : 
+
+- ``ax._info['bins']`` :
 list of bins (limits) used for wind speeds. If not set in the call, bins
-will be set to 6 parts between wind speed min and max. -
-``ax._info['dir']`` : list of directions "bundaries" used to compute the
+will be set to 6 parts between wind speed min and max. 
+- ``ax._info['dir']`` : list of directions "bundaries" used to compute the
 distribution by wind direction sector. This can be set by the nsector
-parameter (see below). - ``ax._info['table']`` : the resulting table of
+parameter (see below). 
+- ``ax._info['table']`` : the resulting table of
 the computation. It's a 2D histogram, where each line represents a wind
 speed class, and each column represents a wind direction class.
 
@@ -132,8 +125,6 @@ and to have a graphical representation of this result :
 
 .. figure:: screenshots/histo_WD.png
    :alt: histo\_WD
-
-   histo\_WD
 
 In addition of all the standard pyplot parameters, you can pass special
 parameters to control the windrose production. For the stacked histogram
@@ -197,8 +188,6 @@ A probability density function can be plot using:
 .. figure:: screenshots/pdf.png
    :alt: pdf
 
-   pdf
-
 Optimal parameters of Weibull distribution can be displayed using
 
 .. code:: python
@@ -230,7 +219,9 @@ previously shown.
     df = pd.DataFrame({'speed': ws, 'direction': wd})
     plot_windrose(df, kind='contour', bins=np.arange(0.01,8,1), cmap=cm.hot, lw=3)
 
-Mandatory: - ``df``: Pandas DataFrame with ``DateTimeIndex`` as index
+Mandatory:
+
+- ``df``: Pandas DataFrame with ``DateTimeIndex`` as index
 and at least 2 columns (``'speed'`` and ``'direction'``).
 
 Optional: 
@@ -250,8 +241,6 @@ Subplots
 
 .. figure:: screenshots/subplots.png
    :alt: subplots
-
-   subplots
 
 Video export
 ------------

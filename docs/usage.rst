@@ -226,12 +226,10 @@ and at least 2 columns (``'speed'`` and ``'direction'``).
 
 Optional: 
 
-- ``kind`` : kind of plot (might be either, ``'contour'``,
-``'contourf'``, ``'bar'``, ``'box'``, ``'pdf'``) 
-- ``var_name`` : name
-of var column name ; default value is ``VAR_DEFAULT='speed'`` -
-``direction_name`` : name of direction column name ; default value is
-``DIR_DEFAULT='direction'`` 
+- ``kind`` : kind of plot (might be either, ``'contour'``, ``'contourf'``, ``'bar'``, ``'box'``, ``'pdf'``)
+- ``var_name`` : name of var column name ; default value is ``VAR_DEFAULT='speed'``
+- ``direction_name`` : name of direction column name ; default value is
+``DIR_DEFAULT='direction'``
 - ``clean_flag`` : cleanup data flag (remove
 data points with ``NaN``, ``var=0``) before plotting ; default value is
 ``True``.

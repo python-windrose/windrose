@@ -20,9 +20,26 @@ DPI_DEFAULT = 80
 
 
 class WindAxesFactory(object):
-    # Create based on class name:
+    """
+
+    Factory class to create WindroseAxes or WindAxes
+
+    """
     @staticmethod
     def create(typ, ax=None, *args, **kwargs):
+        """
+
+        Create 
+
+        Mandatory:
+
+        * typ 'windroseaxes' to create WindroseAxes or 'windaxes' to create WindAxes
+
+        Optional:
+
+        * ax Matplotlib axe
+
+        """
         typ = typ.lower()
         d = {
             'windroseaxes': WindroseAxes,
@@ -304,23 +321,23 @@ class WindroseAxes(PolarAxes):
 
         * direction : 1D array - directions the wind blows from, North centred
         * var : 1D array - values of the variable to compute. Typically the wind
-        speeds
+          speeds
 
         Optional:
 
         * nsector: integer - number of sectors used to compute the windrose
-        table. If not set, nsectors=16, then each sector will be 360/16=22.5°,
-        and the resulting computed table will be aligned with the cardinals
-        points.
+          table. If not set, nsectors=16, then each sector will be 360/16=22.5°,
+          and the resulting computed table will be aligned with the cardinals
+          points.
         * bins : 1D array or integer- number of bins, or a sequence of
-        bins variable. If not set, bins=6, then
-            bins=linspace(min(var), max(var), 6)
+          bins variable. If not set, bins=6, then
+          bins=linspace(min(var), max(var), 6)
         * blowto : bool. If True, the windrose will be pi rotated,
-        to show where the wind blow to (usefull for pollutant rose).
+          to show where the wind blow to (usefull for pollutant rose).
         * colors : string or tuple - one string color ('k' or 'black'), in this
-        case all bins will be plotted in this color; a tuple of matplotlib
-        color args (string, float, rgb, etc), different levels will be plotted
-        in different colors in the order specified.
+          case all bins will be plotted in this color; a tuple of matplotlib
+          color args (string, float, rgb, etc), different levels will be plotted
+          in different colors in the order specified.
         * cmap : a cm Colormap instance from matplotlib.cm.
           - if cmap == None and colors == None, a default Colormap is used.
 
@@ -357,23 +374,23 @@ class WindroseAxes(PolarAxes):
 
         * direction : 1D array - directions the wind blows from, North centred
         * var : 1D array - values of the variable to compute. Typically the wind
-        speeds
+          speeds
 
         Optional:
 
         * nsector: integer - number of sectors used to compute the windrose
-        table. If not set, nsectors=16, then each sector will be 360/16=22.5°,
-        and the resulting computed table will be aligned with the cardinals
-        points.
+          table. If not set, nsectors=16, then each sector will be 360/16=22.5°,
+          and the resulting computed table will be aligned with the cardinals
+          points.
         * bins : 1D array or integer- number of bins, or a sequence of
-        bins variable. If not set, bins=6, then
-            bins=linspace(min(var), max(var), 6)
+          bins variable. If not set, bins=6, then
+          bins=linspace(min(var), max(var), 6)
         * blowto : bool. If True, the windrose will be pi rotated,
-        to show where the wind blow to (usefull for pollutant rose).
+          to show where the wind blow to (usefull for pollutant rose).
         * colors : string or tuple - one string color ('k' or 'black'), in this
-        case all bins will be plotted in this color; a tuple of matplotlib
-        color args (string, float, rgb, etc), different levels will be plotted
-        in different colors in the order specified.
+          case all bins will be plotted in this color; a tuple of matplotlib
+          color args (string, float, rgb, etc), different levels will be plotted
+          in different colors in the order specified.
         * cmap : a cm Colormap instance from matplotlib.cm.
           - if cmap == None and colors == None, a default Colormap is used.
 
@@ -410,27 +427,28 @@ class WindroseAxes(PolarAxes):
 
         * direction : 1D array - directions the wind blows from, North centred
         * var : 1D array - values of the variable to compute. Typically the wind
-        speeds
+          speeds
+
         Optional:
 
         * nsector: integer - number of sectors used to compute the windrose
-        table. If not set, nsectors=16, then each sector will be 360/16=22.5°,
-        and the resulting computed table will be aligned with the cardinals
-        points.
-        * bins : 1D array or integer- number of bins, or a sequence of
-        bins variable. If not set, bins=6 between min(var) and max(var).
+          table. If not set, nsectors=16, then each sector will be 360/16=22.5°,
+          and the resulting computed table will be aligned with the cardinals
+          points.
+        * bins : 1D array or integer - number of bins, or a sequence of
+          bins variable. If not set, bins=6 between min(var) and max(var).
         * blowto : bool. If True, the windrose will be pi rotated,
-        to show where the wind blow to (usefull for pollutant rose).
+          to show where the wind blow to (usefull for pollutant rose).
         * colors : string or tuple - one string color ('k' or 'black'), in this
-        case all bins will be plotted in this color; a tuple of matplotlib
-        color args (string, float, rgb, etc), different levels will be plotted
-        in different colors in the order specified.
+          case all bins will be plotted in this color; a tuple of matplotlib
+          color args (string, float, rgb, etc), different levels will be plotted
+          in different colors in the order specified.
         * cmap : a cm Colormap instance from matplotlib.cm.
           - if cmap == None and colors == None, a default Colormap is used.
-        edgecolor : string - The string color each edge bar will be plotted.
-        Default : no edgecolor
+        * edgecolor : string - The string color each edge bar will be plotted.
+          Default : no edgecolor
         * opening : float - between 0.0 and 1.0, to control the space between
-        each sector (1.0 for no space)
+          each sector (1.0 for no space)
 
         """
 
@@ -472,25 +490,26 @@ class WindroseAxes(PolarAxes):
 
         * direction : 1D array - directions the wind blows from, North centred
         * var : 1D array - values of the variable to compute. Typically the wind
-        speeds
+          speeds
+
         Optional:
 
         * nsector: integer - number of sectors used to compute the windrose
-        table. If not set, nsectors=16, then each sector will be 360/16=22.5°,
-        and the resulting computed table will be aligned with the cardinals
-        points.
+          table. If not set, nsectors=16, then each sector will be 360/16=22.5°,
+          and the resulting computed table will be aligned with the cardinals
+          points.
         * bins : 1D array or integer- number of bins, or a sequence of
-        bins variable. If not set, bins=6 between min(var) and max(var).
+          bins variable. If not set, bins=6 between min(var) and max(var).
         * blowto : bool. If True, the windrose will be pi rotated,
-        to show where the wind blow to (usefull for pollutant rose).
+          to show where the wind blow to (usefull for pollutant rose).
         * colors : string or tuple - one string color ('k' or 'black'), in this
-        case all bins will be plotted in this color; a tuple of matplotlib
-        color args (string, float, rgb, etc), different levels will be plotted
-        in different colors in the order specified.
+          case all bins will be plotted in this color; a tuple of matplotlib
+          color args (string, float, rgb, etc), different levels will be plotted
+          in different colors in the order specified.
         * cmap : a cm Colormap instance from matplotlib.cm.
           - if cmap == None and colors == None, a default Colormap is used.
-        edgecolor : string - The string color each edge bar will be plotted.
-        Default : no edgecolor
+        * edgecolor : string - The string color each edge bar will be plotted.
+          Default : no edgecolor
 
         """
 
@@ -564,13 +583,13 @@ def histogram(direction, var, bins, nsector, normed=False, blowto=False):
 
     * direction : 1D array - directions the wind blows from, North centred
     * var : 1D array - values of the variable to compute. Typically the wind
-        speeds
+      speeds
     * bins : list - list of var category against we're going to compute the table
     * nsector : integer - number of sectors
     * normed : boolean - The resulting table is normed in percent or not.
     * blowto : boolean - Normaly a windrose is computed with directions
-    as wind blows from. If true, the table will be reversed (usefull for
-    pollutantrose)
+      as wind blows from. If true, the table will be reversed (usefull for
+      pollutantrose)
 
     """
 

@@ -91,14 +91,14 @@ After that, you can have a look at the computed values used to plot the
 windrose with the ``ax._info`` dictionnary : 
 
 - ``ax._info['bins']`` :
-list of bins (limits) used for wind speeds. If not set in the call, bins
-will be set to 6 parts between wind speed min and max. 
+  list of bins (limits) used for wind speeds. If not set in the call, bins
+  will be set to 6 parts between wind speed min and max. 
 - ``ax._info['dir']`` : list of directions "bundaries" used to compute the
-distribution by wind direction sector. This can be set by the nsector
-parameter (see below). 
+  distribution by wind direction sector. This can be set by the nsector
+  parameter (see below). 
 - ``ax._info['table']`` : the resulting table of
-the computation. It's a 2D histogram, where each line represents a wind
-speed class, and each column represents a wind direction class.
+  the computation. It's a 2D histogram, where each line represents a wind
+  speed class, and each column represents a wind direction class.
 
 So, to know the frequency of each wind direction, for all wind speeds,
 do:
@@ -143,34 +143,33 @@ Mandatory:
 Optional: 
 
 - ``nsector`` : integer - number of sectors used to compute
-the windrose table. If not set, nsectors=16, then each sector will be
-360/16=22.5°, and the resulting computed table will be aligned with the
-cardinals points. 
+  the windrose table. If not set, nsectors=16, then each sector will be
+  360/16=22.5°, and the resulting computed table will be aligned with the
+  cardinals points.
 - ``bins`` : 1D array or integer- number of bins, or a
-sequence of bins variable. If not set, bins=6 between min(var) and
-max(var). 
+  sequence of bins variable. If not set, bins=6 between min(var) and
+  max(var).
 - ``blowto`` : bool. If True, the windrose will be pi rotated,
-to show where the wind blow to (usefull for pollutant rose). 
--
-``colors`` : string or tuple - one string color (``'k'`` or
-``'black'``), in this case all bins will be plotted in this color; a
-tuple of matplotlib color args (string, float, rgb, etc), different
-levels will be plotted in different colors in the order specified. 
+  to show where the wind blow to (usefull for pollutant rose). 
+- ``colors`` : string or tuple - one string color (``'k'`` or
+  ``'black'``), in this case all bins will be plotted in this color; a
+  tuple of matplotlib color args (string, float, rgb, etc), different
+  levels will be plotted in different colors in the order specified. 
 - ``cmap`` : a cm Colormap instance from ``matplotlib.cm``. - if
-``cmap == None`` and ``colors == None``, a default Colormap is used. -
-``edgecolor`` : string - The string color each edge bar will be plotted.
-Default : no edgecolor - ``opening`` : float - between 0.0 and 1.0, to
-control the space between each sector (1.0 for no space) 
+  ``cmap == None`` and ``colors == None``, a default Colormap is used. -
+  ``edgecolor`` : string - The string color each edge bar will be plotted.
+  Default : no edgecolor - ``opening`` : float - between 0.0 and 1.0, to
+  control the space between each sector (1.0 for no space) 
 - ``mean_values`` : Bool - specify wind speed statistics with
-direction=specific mean wind speeds. If this flag is specified, var is
-expected to be an array of mean wind speeds corresponding to each entry
-in ``direction``. These are used to generate a distribution of wind
-speeds assuming the distribution is Weibull with shape factor = 2. 
+  direction=specific mean wind speeds. If this flag is specified, var is
+  expected to be an array of mean wind speeds corresponding to each entry
+  in ``direction``. These are used to generate a distribution of wind
+  speeds assuming the distribution is Weibull with shape factor = 2. 
 - ``weibull_factors`` : Bool - specify wind speed statistics with
-direction=specific weibull scale and shape factors. If this flag is
-specified, var is expected to be of the form [[7,2], ...., [7.5,1.9]]
-where var[i][0] is the weibull scale factor and var[i][1] is the shape
-factor
+  direction=specific weibull scale and shape factors. If this flag is
+  specified, var is expected to be of the form [[7,2], ...., [7.5,1.9]]
+  where var[i][0] is the weibull scale factor and var[i][1] is the shape
+  factor
 
 probability density function (pdf) and fitting Weibull distribution
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -222,17 +221,17 @@ previously shown.
 Mandatory:
 
 - ``df``: Pandas DataFrame with ``DateTimeIndex`` as index
-and at least 2 columns (``'speed'`` and ``'direction'``).
+  and at least 2 columns (``'speed'`` and ``'direction'``).
 
 Optional: 
 
 - ``kind`` : kind of plot (might be either, ``'contour'``, ``'contourf'``, ``'bar'``, ``'box'``, ``'pdf'``)
 - ``var_name`` : name of var column name ; default value is ``VAR_DEFAULT='speed'``
 - ``direction_name`` : name of direction column name ; default value is
-``DIR_DEFAULT='direction'``
+  ``DIR_DEFAULT='direction'``
 - ``clean_flag`` : cleanup data flag (remove
-data points with ``NaN``, ``var=0``) before plotting ; default value is
-``True``.
+  data points with ``NaN``, ``var=0``) before plotting ; default value is
+  ``True``.
 
 Subplots
 --------

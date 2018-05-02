@@ -135,10 +135,8 @@ var bins and for each sector, a colored bar will be draw on the axes.
 
 Mandatory:
 
-- ``direction`` : 1D array
-- directions the wind blows from, North centred
-- ``var`` : 1D array
-- values of the variable to compute. Typically the wind speeds
+- ``direction`` : 1D array - directions the wind blows from, North centred
+- ``var`` : 1D array - values of the variable to compute. Typically the wind speeds
 
 Optional: 
 
@@ -146,7 +144,7 @@ Optional:
   the windrose table. If not set, nsectors=16, then each sector will be
   360/16=22.5°, and the resulting computed table will be aligned with the
   cardinals points.
-- ``bins`` : 1D array or integer- number of bins, or a
+- ``bins`` : 1D array or integer - number of bins, or a
   sequence of bins variable. If not set, bins=6 between min(var) and
   max(var).
 - ``blowto`` : bool. If True, the windrose will be pi rotated,
@@ -156,9 +154,10 @@ Optional:
   tuple of matplotlib color args (string, float, rgb, etc), different
   levels will be plotted in different colors in the order specified. 
 - ``cmap`` : a cm Colormap instance from ``matplotlib.cm``. - if
-  ``cmap == None`` and ``colors == None``, a default Colormap is used. -
-  ``edgecolor`` : string - The string color each edge bar will be plotted.
-  Default : no edgecolor - ``opening`` : float - between 0.0 and 1.0, to
+  ``cmap == None`` and ``colors == None``, a default Colormap is used. 
+- ``edgecolor`` : string - The string color each edge bar will be plotted.
+  Default : no edgecolor 
+- ``opening`` : float - between 0.0 and 1.0, to
   control the space between each sector (1.0 for no space) 
 - ``mean_values`` : Bool - specify wind speed statistics with
   direction=specific mean wind speeds. If this flag is specified, var is

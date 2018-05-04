@@ -207,7 +207,6 @@ class WindroseAxes(PolarAxes):
         return self.legend_
 
     def set_legend(self, **pyplot_arguments):
-
         if 'borderaxespad' not in pyplot_arguments:
             pyplot_arguments['borderaxespad'] = -0.10
         legend = self.legend(**pyplot_arguments)

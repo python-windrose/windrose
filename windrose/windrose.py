@@ -29,9 +29,26 @@ def _autogen_docstring(base):
 
 
 class WindAxesFactory(object):
-    # Create based on class name:
+    """
+
+    Factory class to create WindroseAxes or WindAxes
+
+    """
     @staticmethod
     def create(typ, ax=None, *args, **kwargs):
+        """
+
+        Create 
+
+        Mandatory:
+
+        * typ 'windroseaxes' to create WindroseAxes or 'windaxes' to create WindAxes
+
+        Optional:
+
+        * ax Matplotlib axe
+
+        """
         typ = typ.lower()
         d = {
             'windroseaxes': WindroseAxes,
@@ -328,7 +345,7 @@ class WindroseAxes(PolarAxes):
             float, rgb, etc), different levels will be plotted in different
             colors in the order specified.
         cmap : a cm Colormap instance from matplotlib.cm, optional
-	    if cmap == None and colors == None, a default Colormap is used.
+  	        if cmap == None and colors == None, a default Colormap is used.
 
         others kwargs : see help(pylab.plot)
 
@@ -362,7 +379,7 @@ class WindroseAxes(PolarAxes):
         Parameters
         ----------
         direction : 1D array
-	    directions the wind blows from, North centred
+      	    directions the wind blows from, North centred
         var : 1D array
             values of the variable to compute. Typically the wind speeds
 
@@ -382,7 +399,7 @@ class WindroseAxes(PolarAxes):
             float, rgb, etc), different levels will be plotted in different
             colors in the order specified.
         cmap : a cm Colormap instance from matplotlib.cm, optional
-	    if cmap == None and colors == None, a default Colormap is used.
+	          if cmap == None and colors == None, a default Colormap is used.
 
         others kwargs : see help(pylab.plot)
 
@@ -581,16 +598,16 @@ def histogram(direction, var, bins, nsector, normed=False, blowto=False):
     Parameters
     ----------
     direction : 1D array
-	directions the wind blows from, North centred
+	      directions the wind blows from, North centred
     var : 1D array
         values of the variable to compute. Typically the wind speeds
     bins : list
-	list of var category against we're going to compute the table
+	      list of var category against we're going to compute the table
     nsector : integer
-	number of sectors
+	      number of sectors
 
     normed : boolean, optional
-	The resulting table is normed in percent or not.
+	      The resulting table is normed in percent or not.
     blowto : boolean, optional
         Normaly a windrose is computed with directions as wind blows from. If
         true, the table will be reversed (usefull for pollutantrose)

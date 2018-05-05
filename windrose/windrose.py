@@ -245,7 +245,7 @@ class WindroseAxes(PolarAxes):
         plt.setp(legend.get_texts(), fontsize=8)
         return legend
 
-    def _init_plot(self, direction, var, normed=False, blowto=False, **kwargs):
+    def _init_plot(self, direction, var, **kwargs):
         """
         Internal method used by all plotting commands
 
@@ -260,6 +260,11 @@ class WindroseAxes(PolarAxes):
         ----------------
         normed : boolean, default False
         blowto : boolean, default False
+        colors : str or list of str, default None
+            The colors of the plot.
+        cmap : color map, default `jet`
+            A :obj:`matplotlib.cm` colormap for the plot.
+            Warning! It overrides `colors`.
         weibull_factors :
         mean_values :
         frequency :
@@ -332,8 +337,8 @@ class WindroseAxes(PolarAxes):
         # Building the angles list
         angles = np.arange(0, -2 * np.pi, -2 * np.pi / nsector) + np.pi / 2
 
-        # normed = kwargs.pop('normed', False)
-        # blowto = kwargs.pop('blowto', False)
+        normed = kwargs.pop('normed', False)
+        blowto = kwargs.pop('blowto', False)
 
         # Set the global information dictionnary
         self._info['dir'], self._info['bins'], self._info['table'] = histogram(direction, var, bins, nsector, normed, blowto)

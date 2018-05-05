@@ -167,23 +167,33 @@ class WindroseAxes(PolarAxes):
 
         Parameters
         ----------
-
         loc : int, string or pair of floats, default: 'lower left'
-            see :matplotlib.pyplot.legend:
+            see :obj:`matplotlib.pyplot.legend`.
 
         decimal_places : int, default 1
             The decimal places of the formated legend
 
-        The following kwargs are supported:
-
-        * isaxes=True           # whether this is an axes legend
-        * prop = FontProperties(size='smaller')  # the font property
-        * pad = 0.2             # the fractional whitespace inside the legend border
-        * shadow                # if True, draw a shadow behind legend
-        * labelsep = 0.005     # the vertical space between the legend entries
-        * handlelen = 0.05     # the length of the legend lines
-        * handletextsep = 0.02 # the space between the legend line and legend text
-        * borderaxespad = 0.02       # the border between the axes and legend edge
+        Other Parameters
+        ----------------
+        isaxes : boolean, default True
+            whether this is an axes legend
+        prop : FontProperties(size='smaller')
+            the font property
+        borderpad : float
+            the fractional whitespace inside the legend border
+        shadow : boolean
+            if True, draw a shadow behind legend
+        labelspacing : float, 0.005
+            the vertical space between the legend entries
+        handlelenght : float, 0.05
+            the length of the legend lines
+        handletextsep : float, 0.02
+            the space between the legend line and legend text
+        borderaxespad : float, 0.02
+            the border between the axes and legend edge
+        kwarg
+            Every other kwarg argument supported by
+            :obj:`matplotlib.pyplot.legend`
         """
 
         def get_handles():

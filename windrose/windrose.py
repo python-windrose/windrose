@@ -167,23 +167,33 @@ class WindroseAxes(PolarAxes):
 
         Parameters
         ----------
-
         loc : int, string or pair of floats, default: 'lower left'
-            see :matplotlib.pyplot.legend:
+            see :obj:`matplotlib.pyplot.legend`.
 
         decimal_places : int, default 1
             The decimal places of the formated legend
 
-        The following kwargs are supported:
-
-        * isaxes=True           # whether this is an axes legend
-        * prop = FontProperties(size='smaller')  # the font property
-        * pad = 0.2             # the fractional whitespace inside the legend border
-        * shadow                # if True, draw a shadow behind legend
-        * labelsep = 0.005     # the vertical space between the legend entries
-        * handlelen = 0.05     # the length of the legend lines
-        * handletextsep = 0.02 # the space between the legend line and legend text
-        * borderaxespad = 0.02       # the border between the axes and legend edge
+        Other Parameters
+        ----------------
+        isaxes : boolean, default True
+            whether this is an axes legend
+        prop : FontProperties(size='smaller')
+            the font property
+        borderpad : float
+            the fractional whitespace inside the legend border
+        shadow : boolean
+            if True, draw a shadow behind legend
+        labelspacing : float, 0.005
+            the vertical space between the legend entries
+        handlelenght : float, 0.05
+            the length of the legend lines
+        handletextsep : float, 0.02
+            the space between the legend line and legend text
+        borderaxespad : float, 0.02
+            the border between the axes and legend edge
+        kwarg
+            Every other kwarg argument supported by
+            :obj:`matplotlib.pyplot.legend`
         """
 
         def get_handles():
@@ -245,6 +255,21 @@ class WindroseAxes(PolarAxes):
             directions the wind blows from, North centred
         var : 1D array,
             values of the variable to compute. Typically the wind speeds
+
+        Other Parameters
+        ----------------
+        normed : boolean, default False
+        blowto : boolean, default False
+        colors : str or list of str, default None
+            The colors of the plot.
+        cmap : color map, default `jet`
+            A :obj:`matplotlib.cm` colormap for the plot.
+            Warning! It overrides `colors`.
+        weibull_factors :
+        mean_values :
+        frequency :
+        kwarg
+            Any argument accepted by :obj:`matplotlib.pyplot.plot`.
         """
 
         # if weibull factors are entered overwrite direction and var
@@ -334,6 +359,8 @@ class WindroseAxes(PolarAxes):
         var : 1D array
             values of the variable to compute. Typically the wind speeds.
 
+        Other Parameters
+        ----------------
         sector : integer, optional
             number of sectors used to compute the windrose table. If not set,
             nsectors=16, then each sector will be 360/16=22.5°, and the
@@ -349,10 +376,10 @@ class WindroseAxes(PolarAxes):
             plotted in this color; a tuple of matplotlib color args (string,
             float, rgb, etc), different levels will be plotted in different
             colors in the order specified.
-        cmap : a cm Colormap instance from matplotlib.cm, optional
+        cmap : a cm Colormap instance from :obj:`matplotlib.cm`, optional
             if cmap == None and colors == None, a default Colormap is used.
-
-        others kwargs : see help(pylab.plot)
+        others kwargs
+            Any supported argument of :obj:`matplotlib.pyplot.plot`
 
         """
         bins, nbins, nsector, colors, angles, kwargs = self._init_plot(direction, var,
@@ -388,6 +415,8 @@ class WindroseAxes(PolarAxes):
         var : 1D array
             values of the variable to compute. Typically the wind speeds
 
+        Other Parameters
+        ----------------
         nsector: integer, optional
             number of sectors used to compute the windrose table. If not set,
             nsectors=16, then each sector will be 360/16=22.5°, and the
@@ -403,11 +432,11 @@ class WindroseAxes(PolarAxes):
             plotted in this color; a tuple of matplotlib color args (string,
             float, rgb, etc), different levels will be plotted in different
             colors in the order specified.
-        cmap : a cm Colormap instance from matplotlib.cm, optional
+        cmap : a cm Colormap instance from :obj:`matplotlib.cm`, optional
             if cmap == None and colors == None, a default Colormap is used.
 
-        others kwargs : see help(pylab.plot)
-
+        others kwargs
+            Any supported argument of :obj:`matplotlib.pyplot.plot`
         """
 
         bins, nbins, nsector, colors, angles, kwargs = self._init_plot(direction, var,
@@ -442,6 +471,8 @@ class WindroseAxes(PolarAxes):
         var : 1D array
             values of the variable to compute. Typically the wind speeds.
 
+        Other Parameters
+        ----------------
         nsector : integer, optional
             number of sectors used to compute the windrose table. If not set,
             nsectors=16, then each sector will be 360/16=22.5°, and the
@@ -450,14 +481,14 @@ class WindroseAxes(PolarAxes):
             number of bins, or a sequence of bins variable. If not set, bins=6
             between min(`var`) and max(`var`).
         blowto : bool, optional.
-            if True, the windrose will be pi rotated, to show where the wind blow
-            to (usefull for pollutant rose).
+            if True, the windrose will be pi rotated, to show where the wind
+            blow to (usefull for pollutant rose).
         colors : string or tuple, optional
             one string color ('k' or 'black'), in this case all bins will be
             plotted in this color; a tuple of matplotlib color args (string,
             float, rgb, etc), different levels will be plotted
             in different colors in the order specified.
-        cmap : a cm Colormap instance from matplotlib.cm, optional.
+        cmap : a cm Colormap instance from :obj:`matplotlib.cm`, optional.
             if cmap == None and colors == None, a default Colormap is used.
         edgecolor : string, optional
             The string color each edge box will be plotted.
@@ -509,6 +540,8 @@ class WindroseAxes(PolarAxes):
         var : 1D array
             values of the variable to compute. Typically the wind speeds
 
+        Other Parameters
+        ----------------
         nsector: integer, optional
             number of sectors used to compute the windrose table. If not set,
             nsectors=16, then each sector will be 360/16=22.5°, and the
@@ -524,7 +557,7 @@ class WindroseAxes(PolarAxes):
             plotted in this color; a tuple of matplotlib color args (string,
             float, rgb, etc), different levels will be plotted in different
             colors in the order specified.
-        cmap : a cm Colormap instance from matplotlib.cm, optional
+        cmap : a cm Colormap instance from :obj:`matplotlib.cm`, optional
             if cmap == None and colors == None, a default Colormap is used.
         edgecolor : string, optional
             The string color each edge bar will be plotted.  Default : no
@@ -611,9 +644,11 @@ def histogram(direction, var, bins, nsector, normed=False, blowto=False):
     nsector : integer
         number of sectors
 
-    normed : boolean, optional
+    Other Parameters
+    ----------------
+    normed : boolean, default False
         The resulting table is normed in percent or not.
-    blowto : boolean, optional
+    blowto : boolean, default False
         Normaly a windrose is computed with directions as wind blows from. If
         true, the table will be reversed (usefull for pollutantrose)
     """

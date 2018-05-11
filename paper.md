@@ -51,7 +51,7 @@ Data can be passed as Numpy array and as Pandas DataFrame.
 * Samuël Weber - https://github.com/weber-s
 * Bruno Ruas De Pinho - https://github.com/brunorpinho
 * Fabien Maussion - Research Centre for Climate at the University of Innsbruck - https://github.com/fmaussion
-* Filipe Fernandes - School of Marine Science and Technology - https://github.com/ocefpaf
+* Filipe Fernandes - Research Software Engineer contractor for SECOORA/IOOS - https://github.com/ocefpaf
 * Daniel Garver - United States Environmental Protection Agency - https://www.epa.gov/
 * Ryan Brown - United States Environmental Protection Agency - https://www.epa.gov/
 * daniclaar - Baum lab Applied ecology for impacted oceans - University of Victoria, BC, Canada - https://github.com/daniclaar

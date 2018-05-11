@@ -52,17 +52,15 @@ Data can be passed as Numpy array and as Pandas DataFrame.
 * Bruno Ruas De Pinho - https://github.com/brunorpinho
 * Fabien Maussion - Research Centre for Climate at the University of Innsbruck - https://github.com/fmaussion
 * Filipe Fernandes - Research Software Engineer contractor for SECOORA/IOOS - https://github.com/ocefpaf
-* Daniel Garver - United States Environmental Protection Agency - https://www.epa.gov/
-* Ryan Brown - United States Environmental Protection Agency - https://www.epa.gov/
 * daniclaar - Baum lab Applied ecology for impacted oceans - University of Victoria, BC, Canada - https://github.com/daniclaar
 * James McCann - Ramboll - https://github.com/mccannjb
+* Brian Blaylock - University of Utah Department of Atmospheric Sciences - https://github.com/blaylockbk
+* Daniel Garver - United States Environmental Protection Agency - https://www.epa.gov/
+* Ryan Brown - United States Environmental Protection Agency - https://www.epa.gov/
 
 # Future
-Windrose is still an evolving library which still need care from its users and developers. A better API for video exporting could be an interesting improvement.
-
+Windrose is still an evolving library which still need care from its users and developers.
+* Map overlay is a feature that could help some users.
+* A better API for video exporting could be an interesting improvement.
 
 # References
-* Travis E, Oliphant. A guide to NumPy, USA: Trelgol Publishing, (2006).
-* R.E. Munn (1969) Pollution wind‐rose analysis, Atmosphere, 7:3, 97-105
-* "NRCS National Water and Climate Center - Climate Products - Climate Data - Wind Rose." NRCS National Water and Climate Center | Home, www.wcc.nrcs.usda.gov/climate/windrose.html.
-* Air Quality Data Analysis using Open Source Tools http://slideplayer.com/slide/5922455/

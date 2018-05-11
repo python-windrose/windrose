@@ -20,19 +20,38 @@ authors:
 affiliations:
  - name: LIMAIR
    index: 1
- - name: Université de Poitiers - Poitiers Institute of Technology (IUT)
+ - name: Université de Poitiers - IUT de Poitiers (Poitiers Institute of Technology)
    index: 2
-date: 13 may 2017
+date: 11 may 2018
 bibliography: paper.bib
 ---
 
 # Summary
 
+A [wind rose](https://en.wikipedia.org/wiki/Wind_rose) is a graphic tool used by meteorologists to give a succinct view of how wind speed and direction are typically distributed at a particular location.
+
+A wind rose can also be used to describe visually air quality.
+
 Windrose is Python Matplotlib, Numpy library to manage wind data, draw windrose 
 (also known as a polar rose plot), draw probability density function and fit Weibull distribution
 
--![Windrose (bar) example](screenshots/bar.png)
--![Windrose (contourf-contour) example](screenshots/contourf-contour.png)
--![Windrose subplots](screenshots/subplots.png)
+-![Windrose (bar) example](docs/screenshots/bar.png)
+-![Windrose (contourf-contour) example](docs/screenshots/contourf-contour.png)
+-![Windrose subplots](docs/screenshots/subplots.png)
+
+# List of contributors and/or notable users
+* Lionel Roubeyrie - LIMAIR - https://github.com/LionelR
+* Sébastien Celles - Université de Poitiers - IUT de Poitiers - https://github.com/scls19fr
+* Julian Quick - https://github.com/kilojoules
+* Ivan Ogasawara - https://github.com/xmnlab
+* Samuël Weber - https://github.com/weber-s
+* Fabien Maussion - Research Centre for Climate at the University of Innsbruck - https://github.com/fmaussion
+* Filipe Fernandes - School of Marine Science and Technology - https://github.com/ocefpaf
+* Daniel Garver - United States Environmental Protection Agency
+* Ryan Brown - United States Environmental Protection Agency
 
 # References
+* Travis E, Oliphant. A guide to NumPy, USA: Trelgol Publishing, (2006).
+* R.E. Munn (1969) Pollution wind‐rose analysis, Atmosphere, 7:3, 97-105
+* "NRCS National Water and Climate Center - Climate Products - Climate Data - Wind Rose." NRCS National Water and Climate Center | Home, www.wcc.nrcs.usda.gov/climate/windrose.html.
+* Air Quality Data Analysis using Open Source Tools http://slideplayer.com/slide/5922455/

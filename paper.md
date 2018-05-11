@@ -46,7 +46,7 @@ Data can be passed as Numpy array and as Pandas DataFrame.
 # List of contributors and/or notable users
 * Lionel Roubeyrie - LIMAIR - https://github.com/LionelR
 * Sébastien Celles - Université de Poitiers - IUT de Poitiers - https://github.com/scls19fr
-* Julian Quick - https://github.com/kilojoules
+* Julian Quick - National Renewable Energy Laboratory, Golden, CO - https://github.com/kilojoules
 * Ivan Ogasawara - https://github.com/xmnlab
 * Samuël Weber - https://github.com/weber-s
 * Bruno Ruas De Pinho - https://github.com/brunorpinho

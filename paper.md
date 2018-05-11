@@ -105,7 +105,7 @@ You can help to develop this library.
 * Sébastien Celles - Université de Poitiers - IUT de Poitiers - https://github.com/scls19fr
 * Julian Quick - National Renewable Energy Laboratory, Golden, CO - https://github.com/kilojoules
 * Ivan Ogasawara - https://github.com/xmnlab
-* Samuël Weber - https://github.com/weber-s
+* Samuël Weber - Institut des Géosciences de l'Environnement, Grenoble, France, https://github.com/weber-s
 * Bruno Ruas De Pinho - https://github.com/brunorpinho
 * Fabien Maussion - Research Centre for Climate at the University of Innsbruck - https://github.com/fmaussion
 * Filipe Fernandes - Research Software Engineer contractor for SECOORA/IOOS - https://github.com/ocefpaf

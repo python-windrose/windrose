@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 
 # Run all unit tests (from project root directory)
-# $ nosetests -s -v
+# $ pytest -vv tests
 
 # Run a test (from project root directory)
-# $ nosetests tests.test_windrose:test_windrose_np_plot_and_pd_plot -s -v
+# $ pytest -vv tests/test_windrose.py::test_windrose_np_plot_and_pd_plot
 
 import matplotlib
 matplotlib.use('Agg')  # noqa

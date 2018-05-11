@@ -25,13 +25,13 @@ Run all unit tests
 
 .. code:: bash
 
-    $ nosetests -s -v
+    $ pytest -vv tests
 
 Run a given test
 
 .. code:: bash
 
-    $ nosetests tests.test_windrose:test_plot_by -s -v
+    $ pytest -vv tests/test_windrose.py::test_windrose_np_plot_and_pd_plot
 
 Install development version
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~

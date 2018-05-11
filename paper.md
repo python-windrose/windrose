@@ -47,8 +47,8 @@ Windrose is Python Matplotlib, Numpy library to manage wind data, draw windrose
 * Samuël Weber - https://github.com/weber-s
 * Fabien Maussion - Research Centre for Climate at the University of Innsbruck - https://github.com/fmaussion
 * Filipe Fernandes - School of Marine Science and Technology - https://github.com/ocefpaf
-* Daniel Garver - United States Environmental Protection Agency
-* Ryan Brown - United States Environmental Protection Agency
+* Daniel Garver - United States Environmental Protection Agency - https://www.epa.gov/
+* Ryan Brown - United States Environmental Protection Agency - https://www.epa.gov/
 
 # References
 * Travis E, Oliphant. A guide to NumPy, USA: Trelgol Publishing, (2006).

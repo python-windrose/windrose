@@ -55,6 +55,7 @@ Data can be passed as Numpy array and as Pandas DataFrame.
 * Daniel Garver - United States Environmental Protection Agency - https://www.epa.gov/
 * Ryan Brown - United States Environmental Protection Agency - https://www.epa.gov/
 * daniclaar - Baum lab Applied ecology for impacted oceans - University of Victoria, BC, Canada - https://github.com/daniclaar
+* James McCann - Ramboll - https://github.com/mccannjb
 
 # Future
 Windrose is still an evolving library which still need care from its users and developers. A better API for video exporting could be an interesting improvement.

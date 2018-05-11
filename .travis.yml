@@ -2,27 +2,37 @@ sudo: false
 
 language: python
 
-env:
-    - CONDA="python=2.7"
-    - CONDA="python=3.4"
-    - CONDA="python=3.5"
-    - CONDA="python=3.6"
+matrix:
+  fast_finish: true
+  include:
+  - python: 2.7
+    env: TEST_TARGET=default
+  - python: 3.5
+    env: TEST_TARGET=default
+  - python: 3.6
+    env: TEST_TARGET=default
+  - python: 3.6
+    env: TEST_TARGET=coding_standards
 
 before_install:
-    - wget http://bit.ly/miniconda -O miniconda.sh
-    - bash miniconda.sh -b -p $HOME/miniconda
-    - export PATH="$HOME/miniconda/bin:$PATH"
-    - conda update --all --yes
-    - conda config --add channels ioos -f
-    - travis_retry conda create --yes -n TEST $CONDA --file requirements.txt
-    - source activate TEST
-    - travis_retry conda install --yes  --file requirements-dev.txt
-    - travis_retry pip install check-manifest
-    # GUI
-    - "export DISPLAY=:99.0"
-    - "sh -e /etc/init.d/xvfb start"
+  - wget http://bit.ly/miniconda -O miniconda.sh
+  - bash miniconda.sh -b -p $HOME/miniconda
+  - export PATH="$HOME/miniconda/bin:$PATH"
+  - conda config --set always_yes yes --set changeps1 no --set show_channel_urls true
+  - conda update conda
+  - conda config --add channels conda-forge --force
+  - conda create --name TEST python=$TRAVIS_PYTHON_VERSION --file requirements.txt --file requirements-dev.txt
+  - source activate TEST
+  - pip install check-manifest
+  # GUI
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
 
 script:
-    - nosetests tests --verbose
-    - flake8 --version
-    - flake8 --ignore=E501 windrose samples tests
+  - if [[ $TEST_TARGET == 'default' ]]; then
+       pytest --verbose tests ;
+    fi
+
+  - if [[ $TEST_TARGET == 'coding_standards' ]]; then
+       flake8 --ignore=E501 windrose samples tests ;
+    fi

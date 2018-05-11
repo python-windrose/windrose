@@ -32,8 +32,12 @@ A [wind rose](https://en.wikipedia.org/wiki/Wind_rose) is a graphic tool used by
 
 A wind rose can also be used to describe visually air quality.
 
-Windrose is Python Matplotlib, Numpy library to manage wind data, draw windrose 
+Windrose is Python to manage wind data, draw windrose 
 (also known as a polar rose plot), draw probability density function and fit Weibull distribution
+
+It's using Matplotlib as a backend.
+
+Data can be passed as Numpy array and as Pandas DataFrame.
 
 -![Windrose (bar) example](docs/screenshots/bar.png)
 -![Windrose (contourf-contour) example](docs/screenshots/contourf-contour.png)

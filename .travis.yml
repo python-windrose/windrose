@@ -13,9 +13,6 @@ matrix:
     env: TEST_TARGET=default
   - python: 3.6
     env: TEST_TARGET=coding_standards
-  allow_failures:
-  - python: 3.6
-    env: TEST_TARGET=coding_standards
 
 before_install:
   - wget http://bit.ly/miniconda -O miniconda.sh

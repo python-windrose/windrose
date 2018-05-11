@@ -32,18 +32,75 @@ A [wind rose](https://en.wikipedia.org/wiki/Wind_rose) is a graphic tool used by
 
 A wind rose can also be used to describe visually air quality.
 
-Windrose is Python to manage wind data, draw windrose 
+Windrose is a Python library to manage wind data, draw windrose 
 (also known as a polar rose plot), draw probability density function and fit Weibull distribution
 
 It's using Matplotlib as a backend.
 
-Data can be passed as Numpy array and as Pandas DataFrame.
+Data can be passed using Numpy array or using Pandas DataFrame.
+
+# Install
+
+## Requirements
+- matplotlib http://matplotlib.org/
+- numpy http://www.numpy.org/
+- and naturally python https://www.python.org/ :-P
+
+Option libraries:
+- Pandas http://pandas.pydata.org/ (to feed plot functions easily)
+- Scipy http://www.scipy.org/ (to fit data with Weibull distribution)
+- ffmpeg https://www.ffmpeg.org/ (to output video)
+- click http://click.pocoo.org/ (for command line interface tools)
+
+## Install latest release version via pip
+A package is available and can be downloaded from PyPi and installed using:
+
+```bash
+$ pip install windrose
+```
+
+## Install latest development version
+
+```bash
+$ pip install git+https://github.com/python-windrose/windrose
+```
+
+or
+
+```bash
+$ git clone https://github.com/python-windrose/windrose
+$ python setup.py install
+```
+
+# Examples
+
+Bar plot is the most common plot
 
 -![Windrose (bar) example](docs/screenshots/bar.png)
+
+Plotting contour plot is also possible
+
 -![Windrose (contourf-contour) example](docs/screenshots/contourf-contour.png)
+
+Several windroses can be plotted using subplots to provide a plot per year with for example subplots per month
+
 -![Windrose subplots](docs/screenshots/subplots.png)
 
-# List of contributors and/or notable users
+Probability density function (pdf) can be plotted. and fitting Weibull distribution can be achieved thanks to Scipy.
+
+-![pdf example](docs/screenshots/pdf.png)
+
+# More advanced usages
+Full documentation of library is available at http://windrose.readthedocs.io/
+
+# Community guidelines
+You can help to develop this library.
+
+## Code of Conduct
+
+## Contributing
+
+## List of contributors and/or notable users
 * Lionel Roubeyrie - LIMAIR - https://github.com/LionelR
 * Sébastien Celles - Université de Poitiers - IUT de Poitiers - https://github.com/scls19fr
 * Julian Quick - National Renewable Energy Laboratory, Golden, CO - https://github.com/kilojoules

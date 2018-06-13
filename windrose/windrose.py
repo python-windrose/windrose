@@ -726,7 +726,7 @@ def wrpdf(var, bins=None, Nx=100, bar_color='b', plot_color='g', Nbins=10, ax=No
     parameters
     """
     ax = WindAxes.from_ax(ax)
-    ax, params = ax.pdf(var, bins, Nx, bar_color, plot_color, *args, **kwargs)
+    ax, params = ax.pdf(var, bins, Nx, bar_color, plot_color, Nbins, *args, **kwargs)
     return(ax, params)
 
 

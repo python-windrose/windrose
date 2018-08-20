@@ -28,27 +28,19 @@ bibliography: paper.bib
 
 # Summary
 
-A [wind rose](https://en.wikipedia.org/wiki/Wind_rose) is a graphic tool used by meteorologists to give a succinct view of how wind speed and direction are typically distributed at a particular location.
+A [wind rose](https://en.wikipedia.org/wiki/Wind_rose) is a graphic tool used by meteorologists to give a succinct view of how wind speed and direction are typically distributed at a particular location. It can also be used to describe air quality pollution sources. The wind rose tool uses Matplotlib as a backend. Data can be passed to the package using Numpy arrays or a Pandas DataFrame.
 
-A wind rose can also be used to describe visually air quality.
+Windrose is a Python library to manage wind data, draw windroses (also known as polar rose plots), and fit Weibull probability density functions.
 
-Windrose is a Python library to manage wind data, draw windrose 
-(also known as a polar rose plot), draw probability density function and fit Weibull distribution
+The initial use case of this library was for a technical report concerning pollution exposure and wind distributions analyzes. Data from local pollution measures and meteorologic informations from various sources like Meteo-France were used to generate a pollution source wind rose.
 
-Writing technical reports on pollution exposure 
-and wind distributions analyzes, by mixing local pollution measures and meteorologic informations from various sources like Meteo-France was initial use case for developing this library.
-
-It is also used by some contributors for teaching purpose (especially data analysis)
+It is also used by some contributors for teaching purpose 
 ![Map overlay](screenshots/overlay.png)
 
-Some others contributors are using it to make figures for wind plant optimization study.
+Some others contributors have used it to make figures for a [wind power plant control optimization study](https://www.nrel.gov/docs/fy17osti/68185.pdf).
 
-Some academics use it to track lightning strikes during high intensity storms.
-They are using it to visualize the motion of the storm based on the relative position of the lightning from one strike to the next.
+Some academics use it to track lightning strikes during high intensity storms. They are using it to visualize the motion of storms based on the relative position of the lightning from one strike to the next.
 
-It's using Matplotlib as a backend.
-
-Data can be passed using Numpy array or using Pandas DataFrame.
 
 # Install
 
@@ -88,11 +80,11 @@ $ python setup.py install
 
 # Examples
 
-Bar plot is the most common plot
+The bar plot wind rose is the most common plot
 
 -![Windrose (bar) example](screenshots/bar.png)
 
-Plotting contour plot is also possible
+Contour plots are also possible
 
 -![Windrose (contourf-contour) example](screenshots/contourf-contour.png)
 
@@ -100,8 +92,8 @@ Several windroses can be plotted using subplots to provide a plot per year with 
 
 -![Windrose subplots](screenshots/subplots.png)
 
-Probability density function (pdf) can be plotted. Fitting Weibull distribution can be achieved thanks to Scipy.
-The Weibull distribution is used in weather forecasting and the wind power industry to describe wind speed distributions, as the natural distribution often matches the Weibull shape
+Probability density functions may be plotted. Fitting Weibull distribution is enabled by Scipy.
+The Weibull distribution is used in weather forecasting and the wind power industry to describe wind speed distributions, as the natural distribution of wind speeds often matches the Weibull shape
 
 -![pdf example](screenshots/pdf.png)
 

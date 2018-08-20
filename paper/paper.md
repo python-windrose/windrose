@@ -1,5 +1,5 @@
 ---
-title: 'Windrose: A Python Matplotlib, Numpy library to manage wind data, draw windrose (also known as a polar rose plot), draw probability density function and fit Weibull distribution'
+title: 'Windrose: A Python Matplotlib, Numpy library to manage wind and pollution data, draw windrose'
 tags:
   - windrose
   - windspeed

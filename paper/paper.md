@@ -42,30 +42,6 @@ Some others contributors have used it to make figures for a [wind power plant co
 
 Some academics use it to track lightning strikes during high intensity storms. They are using it to visualize the motion of storms based on the relative position of the lightning from one strike to the next.
 
-
-# Install
-
-## Requirements
-
-- matplotlib http://matplotlib.org/
-- numpy http://www.numpy.org/
-- and naturally python https://www.python.org/ :-P
-
-Option libraries:
-
-- Pandas http://pandas.pydata.org/ (to feed plot functions easily)
-- Scipy http://www.scipy.org/ (to fit data with Weibull distribution)
-- ffmpeg https://www.ffmpeg.org/ (to output video)
-- click http://click.pocoo.org/ (for command line interface tools)
-
-## Install latest release version via pip
-
-A package is available and can be downloaded from PyPi and installed using:
-
-```bash
-$ pip install windrose
-```
-
 # Examples
 
 - The bar plot wind rose is the most common plot

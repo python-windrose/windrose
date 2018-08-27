@@ -18,8 +18,9 @@ Windrose is a Python library to manage wind data, draw windroses (also known as 
 
 The initial use case of this library was for a technical report concerning pollution exposure and wind distributions analyzes. Data from local pollution measures and meteorologic informations from various sources like Meteo-France were used to generate a pollution source wind rose.
 
-It is also used by some contributors for teaching purpose 
-![Map overlay](docs/screenshots/overlay.png)
+It is also used by some contributors for teaching purpose.
+
+![Map overlay](paper/screenshots/overlay.png)
 
 Some others contributors have used it to make figures for a [wind power plant control optimization study](https://www.nrel.gov/docs/fy17osti/68185.pdf).
 

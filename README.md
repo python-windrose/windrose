@@ -64,9 +64,31 @@ $ python setup.py install
 
 ## Examples
 
+Let's generate random data for wind speed (`ws`) and wind direction (`wd`).
+
+```python
+from windrose import WindroseAxes
+from matplotlib import pyplot as plt
+import matplotlib.cm as cm
+import numpy as np
+
+# Create wind speed and direction variables
+
+ws = np.random.random(500) * 6
+wd = np.random.random(500) * 360
+```
+
 The bar plot wind rose is the most common plot
 
 -![Windrose (bar) example](docs/screenshots/bar.png)
+
+This kind of plot can be plot using:
+
+```python
+ax = WindroseAxes.from_ax()
+ax.bar(wd, ws, normed=True, opening=0.8, edgecolor='white')
+ax.set_legend()
+```
 
 Contour plots are also possible
 

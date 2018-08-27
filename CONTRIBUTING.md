@@ -10,7 +10,20 @@ do so.
 
 * Check that the issue has not already been reported.
 * Check that the issue has not already been fixed in the latest code
-  (a.k.a. `master`).
+  (a.k.a. `master`). So be certain that you are using latest `master` code version
+  (not latest released version). Installing latest development version can be done using:
+
+```bash
+$ pip install git+https://github.com/python-windrose/windrose
+```
+
+or
+
+```bash
+$ git clone https://github.com/python-windrose/windrose
+$ python setup.py install
+```
+  
 * Be clear, concise and precise in your description of the problem.
 * Open an issue with a descriptive title and a summary in grammatically correct,
   complete sentences.

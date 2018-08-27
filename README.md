@@ -4,7 +4,6 @@
 [![Wheel format](https://img.shields.io/pypi/wheel/windrose.svg)](https://pypi.python.org/pypi/windrose/)
 [![License](https://img.shields.io/pypi/l/windrose.svg)](https://pypi.python.org/pypi/windrose/)
 [![Development Status](https://img.shields.io/pypi/status/windrose.svg)](https://pypi.python.org/pypi/windrose/)
-[![Downloads monthly](https://img.shields.io/pypi/dm/windrose.svg)](https://pypi.python.org/pypi/windrose/)
 [![Requirements Status](https://requires.io/github/python-windrose/windrose/requirements.svg?branch=master)](https://requires.io/github/python-windrose/windrose/requirements/?branch=master)
 [![Code Health](https://landscape.io/github/python-windrose/windrose/master/landscape.svg?style=flat)](https://landscape.io/github/python-windrose/windrose/master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/0c8af4ef10064de09a49bbe933479228)](https://www.codacy.com/project/s-celles/windrose_2/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=python-windrose/windrose&amp;utm_campaign=Badge_Grade_Dashboard)

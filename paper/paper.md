@@ -66,19 +66,6 @@ A package is available and can be downloaded from PyPi and installed using:
 $ pip install windrose
 ```
 
-## Install latest development version
-
-```bash
-$ pip install git+https://github.com/python-windrose/windrose
-```
-
-or
-
-```bash
-$ git clone https://github.com/python-windrose/windrose
-$ python setup.py install
-```
-
 # Examples
 
 - The bar plot wind rose is the most common plot
@@ -98,40 +85,15 @@ The Weibull distribution is used in weather forecasting and the wind power indus
 
 -![pdf example](screenshots/pdf.png)
 
-# More advanced usages
+# More advanced usages and contributing
 
 Full documentation of library is available at http://windrose.readthedocs.io/
-
-# Community guidelines
-
-You can help to develop this library.
-
-## Code of Conduct
-
-If you are using Python Windrose and want to interact with developers, others users...
-we encourage you to follow our [code of conduct](https://github.com/python-windrose/windrose/blob/master/CODE_OF_CONDUCT.md).
-
-## Contributing
 
 If you discover issues, have ideas for improvements or new features, please report them.
 [CONTRIBUTING.md](https://github.com/python-windrose/windrose/blob/master/CONTRIBUTING.md) explains 
 how to contribute to this project.
 
-## List of contributors and/or notable users
-
-- Lionel Roubeyrie - LIMAIR - https://github.com/LionelR
-- Sébastien Celles - Université de Poitiers - IUT de Poitiers - https://github.com/scls19fr
-- Julian Quick - National Renewable Energy Laboratory, Golden, CO - https://github.com/kilojoules
-- Ivan Ogasawara - https://github.com/xmnlab
-- Samuël Weber - Institut des Géosciences de l'Environnement, Grenoble, France, https://github.com/weber-s
-- Bruno Ruas De Pinho - https://github.com/brunorpinho
-- Fabien Maussion - Research Centre for Climate at the University of Innsbruck - https://github.com/fmaussion
-- Filipe Fernandes - Research Software Engineer contractor for SECOORA/IOOS - https://github.com/ocefpaf
-- daniclaar - Baum lab Applied ecology for impacted oceans - University of Victoria, BC, Canada - https://github.com/daniclaar
-- James McCann - Ramboll - https://github.com/mccannjb
-- Brian Blaylock - University of Utah Department of Atmospheric Sciences - https://github.com/blaylockbk
-- Daniel Garver - United States Environmental Protection Agency - https://www.epa.gov/
-- Ryan Brown - United States Environmental Protection Agency - https://www.epa.gov/
+List of contributors and/or notable users can be found at https://github.com/python-windrose/windrose/blob/master/CONTRIBUTORS.md
 
 # Future
 

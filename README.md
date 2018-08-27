@@ -7,8 +7,8 @@
 [![Downloads monthly](https://img.shields.io/pypi/dm/windrose.svg)](https://pypi.python.org/pypi/windrose/)
 [![Requirements Status](https://requires.io/github/python-windrose/windrose/requirements.svg?branch=master)](https://requires.io/github/python-windrose/windrose/requirements/?branch=master)
 [![Code Health](https://landscape.io/github/python-windrose/windrose/master/landscape.svg?style=flat)](https://landscape.io/github/python-windrose/windrose/master)
-[![Codacy Badge](https://www.codacy.com/project/badge/fff3df3be0754829925202cdd6495ce7)](https://www.codacy.com/app/s-celles/windrose_2)
-[![Build Status](https://travis-ci.org/python-windrose/windrose.svg)](https://travis-ci.org/python-windrose/windrose)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0c8af4ef10064de09a49bbe933479228)](https://www.codacy.com/project/s-celles/windrose_2/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=python-windrose/windrose&amp;utm_campaign=Badge_Grade_Dashboard)
+[![Build Status](https://travis-ci.org/python-windrose/windrose.svg?branch=master)](https://travis-ci.org/python-windrose/windrose)
 [![DOI](https://zenodo.org/badge/37549137.svg)](https://zenodo.org/badge/latestdoi/37549137)
 [![Research software impact](http://depsy.org/api/package/pypi/windrose/badge.svg)](http://depsy.org/package/python/windrose)
 

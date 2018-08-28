@@ -58,10 +58,10 @@ Some academics use it to track lightning strikes during high intensity storms. T
 
 ![Windrose subplots](screenshots/subplots.png)
 
-- Probability density functions may be plotted. Fitting Weibull distribution is enabled by Scipy.
+- Probability density functions (PDF) may be plotted. Fitting Weibull distribution is enabled by Scipy.
 The Weibull distribution is used in weather forecasting and the wind power industry to describe wind speed distributions, as the natural distribution of wind speeds often matches the Weibull shape
 
-![pdf example](screenshots/pdf.png)
+![Probability density function (PDF) example](screenshots/pdf.png)
 
 # More advanced usages and contributing
 

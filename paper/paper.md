@@ -24,6 +24,8 @@ affiliations:
    index: 2
 date: 11 may 2018
 bibliography: paper.bib
+nocite: | 
+  @wiki:xxx, @doi:10.1109/MCSE.2007.58, @doi:10.1109/MCSE.2011.36, @Walt:2011:NAS:1957373.1957466, @doi:10.1109/MCSE.2007.55, @mckinney-proc-scipy-2010, @doi:10.1109/MCSE.2007.53, @oliphant2001scipy, @oliphant2006guide, @munn1969pollution, @nrcs, @garver2016, @quick2017optimization, @harris2014parent, @horel2016summer
 ---
 
 # Summary
@@ -81,7 +83,3 @@ Windrose is still an evolving library which still need care from its users and d
 - Make windroses from an histogram table rather than from two arrays of wind speed and wind direction is also a requested feature.
 
 # References
-
----
-nocite: | 
-  @wiki:xxx, @doi:10.1109/MCSE.2007.58, @doi:10.1109/MCSE.2011.36, @Walt:2011:NAS:1957373.1957466, @doi:10.1109/MCSE.2007.55, @mckinney-proc-scipy-2010, @doi:10.1109/MCSE.2007.53, @oliphant2001scipy, @oliphant2006guide, @munn1969pollution, @nrcs, @garver2016, @quick2017optimization, @harris2014parent, @horel2016summer

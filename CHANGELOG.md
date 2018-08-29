@@ -8,8 +8,12 @@ in every released version.
 ### Version 1.6.x
 - Released: 201x-xx-xx
 - Issues/Enhancements:
+  - Issue #99. Fix scatter plot direction
+
+### Version 1.6.4
+- Released: 2018-08-22
+- Issues/Enhancements:
   - Improve doc
-  - ...
 
 ### Version 1.6.3
 - Released: 2017-08-22

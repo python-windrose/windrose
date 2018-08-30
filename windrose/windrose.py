@@ -18,7 +18,6 @@ VAR_DEFAULT = 'speed'
 DIR_DEFAULT = 'direction'
 FIGSIZE_DEFAULT = (8, 8)
 DPI_DEFAULT = 80
-VF = np.vectorize(lambda wd: -wd + np.pi / 2)
 
 
 def _autogen_docstring(base):
@@ -736,7 +735,7 @@ def wrscatter(direction, var, ax=None, rmax=None, *args, **kwargs):
     Draw scatter plot
     '''
     ax = WindroseAxes.from_ax(ax, rmax=rmax)
-    direction = VF(direction)
+    direction = -np.array(direction) + np.radians(90)
     ax.scatter(direction, var, *args, **kwargs)
     return ax
 

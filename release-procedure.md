@@ -1,6 +1,8 @@
-*  Ensure supported Python versions in `setup.py` and `.travis.yml` are corrects 
+* Ensure supported Python versions in `setup.py` and `.travis.yml` are corrects 
 
-*  Ensure windrose version is up to date in `version.py`
+* Ensure windrose version is up to date in `version.py`
+
+* Ensure `CHANGELOG.md` have been updated
 
 *   Tag commit and push to github
 

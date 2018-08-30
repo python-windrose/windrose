@@ -6,7 +6,10 @@ All notable changes to this code base will be documented in this file,
 in every released version.
 
 ### Version 1.6.x
-- Released: 201x-xx-xx
+- Released: 20zz-yy-xx
+
+### Version 1.6.5
+- Released: 2018-08-30
 - Issues/Enhancements:
   - Issue #99. Fix scatter plot direction
 

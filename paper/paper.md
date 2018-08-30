@@ -38,7 +38,7 @@ The initial use case of this library was for a technical report concerning pollu
 
 It is also used by some contributors for teaching purpose.
 
-![Map overlay](screenshots/overlay.png)
+-![Map overlay](screenshots/overlay.png)
 
 Some others contributors have used it to make figures for a [wind power plant control optimization study](https://www.nrel.gov/docs/fy17osti/68185.pdf).
 
@@ -48,20 +48,20 @@ Some academics use it to track lightning strikes during high intensity storms. T
 
 - The bar plot wind rose is the most common plot
 
-![Windrose (bar) example](screenshots/bar.png)
+-![Windrose (bar) example](screenshots/bar.png)
 
 - Contour plots are also possible
 
-![Windrose (contourf-contour) example](screenshots/contourf-contour.png)
+-![Windrose (contourf-contour) example](screenshots/contourf-contour.png)
 
 - Several windroses can be plotted using subplots to provide a plot per year with for example subplots per month
 
-![Windrose subplots](screenshots/subplots.png)
+-![Windrose subplots](screenshots/subplots.png)
 
 - Probability density functions (PDF) may be plotted. Fitting Weibull distribution is enabled by Scipy.
 The Weibull distribution is used in weather forecasting and the wind power industry to describe wind speed distributions, as the natural distribution of wind speeds often matches the Weibull shape
 
-![Probability density function (PDF) example](screenshots/pdf.png)
+-![Probability density function (PDF) example](screenshots/pdf.png)
 
 # More advanced usages and contributing
 

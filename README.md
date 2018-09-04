@@ -9,6 +9,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/0c8af4ef10064de09a49bbe933479228)](https://www.codacy.com/project/s-celles/windrose_2/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=python-windrose/windrose&amp;utm_campaign=Badge_Grade_Dashboard)
 [![Build Status](https://travis-ci.org/python-windrose/windrose.svg?branch=master)](https://travis-ci.org/python-windrose/windrose)
 [![DOI](https://zenodo.org/badge/37549137.svg)](https://zenodo.org/badge/latestdoi/37549137)
+[![DOI](http://joss.theoj.org/papers/10.21105/joss.00268/status.svg)](https://doi.org/10.21105/joss.00268)
 
 # Windrose
 

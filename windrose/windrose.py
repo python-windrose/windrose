@@ -101,9 +101,11 @@ class WindroseAxes(PolarAxes):
         """
         if ax is None:
             if fig is None:
-                fig = plt.figure(figsize=FIGSIZE_DEFAULT, dpi=DPI_DEFAULT, facecolor='w', edgecolor='w')
+                fig = plt.figure(figsize=FIGSIZE_DEFAULT, dpi=DPI_DEFAULT,
+                                 facecolor='w', edgecolor='w')
             rect = [0.1, 0.1, 0.8, 0.8]
-            ax = WindroseAxes(fig, rect, facecolor='w', rmax=rmax, *args, **kwargs)
+            ax = WindroseAxes(fig, rect, facecolor='w', rmax=rmax, *args,
+                              **kwargs)
             fig.add_axes(ax)
             return ax
         else:
@@ -211,7 +213,8 @@ class WindroseAxes(PolarAxes):
                 else:
                     raise AttributeError("Can't handle patches")
                 handles.append(mpl.patches.Rectangle((0, 0), 0.2, 0.2,
-                                                     facecolor=color, edgecolor='black'))
+                                                     facecolor=color,
+                                                     edgecolor='black'))
             return handles
 
         def get_labels(decimal_places=1):
@@ -355,8 +358,8 @@ class WindroseAxes(PolarAxes):
             direction = direction[mask]
 
         # Set the global information dictionnary
-        self._info['dir'], self._info['bins'], self._info['table'] = histogram(direction, var, bins, nsector, normed,
-                                                                               blowto)
+        self._info['dir'], self._info['bins'], self._info['table'] \
+            = histogram(direction, var, bins, nsector, normed, blowto)
 
         return bins, nbins, nsector, colors, angles, kwargs
 
@@ -380,33 +383,6 @@ class WindroseAxes(PolarAxes):
         Each line can be formated (color, width, ...) like with standard plot
         pylab command.
 
-<<<<<<< HEAD
-        Mandatory:
-        * direction : 1D array - directions the wind blows from, North centred
-        * var : 1D array - values of the variable to compute. Typically the wind
-        speeds
-        Optional:
-        * nsector: integer - number of sectors used to compute the windrose
-        table. If not set, nsectors=16, then each sector will be 360/16=22.5°,
-        and the resulting computed table will be aligned with the cardinals
-        points.
-        * bins : 1D array or integer- number of bins, or a sequence of
-        bins variable. If not set, bins=6, then
-            bins=linspace(min(var), max(var), 6)
-        * blowto : bool. If True, the windrose will be pi rotated,
-        to show where the wind blow to (usefull for pollutant rose).
-        * colors : string or tuple - one string color ('k' or 'black'), in this
-        case all bins will be plotted in this color; a tuple of matplotlib
-        color args (string, float, rgb, etc), different levels will be plotted
-        in different colors in the order specified.
-        * cmap : a cm Colormap instance from matplotlib.cm.
-          - if cmap == None and colors == None, a default Colormap is used.
-        * calm_limit: float - Calm limit for the var parameter. If not None,
-        a centered red circle will be draw for representing the calms occurences
-        and all datas below this value will be removed from the computation
-
-        others kwargs : see help(pylab.plot)
-=======
         Parameters
         ----------
         direction : 1D array
@@ -435,11 +411,11 @@ class WindroseAxes(PolarAxes):
             if cmap == None and colors == None, a default Colormap is used.
         others kwargs
             Any supported argument of :obj:`matplotlib.pyplot.plot`
->>>>>>> fcf258caad4b2591bded639ebec04c01a46ccb43
 
         """
-        bins, nbins, nsector, colors, angles, kwargs = self._init_plot(direction, var,
-                                                                       **kwargs)
+        bins, nbins, nsector, colors, angles, kwargs = self._init_plot(
+            direction, var, **kwargs
+        )
 
         # closing lines
         angles = np.hstack((angles, angles[-1] - 2 * np.pi / nsector))
@@ -495,8 +471,9 @@ class WindroseAxes(PolarAxes):
             Any supported argument of :obj:`matplotlib.pyplot.plot`
         """
 
-        bins, nbins, nsector, colors, angles, kwargs = self._init_plot(direction, var,
-                                                                       **kwargs)
+        bins, nbins, nsector, colors, angles, kwargs = self._init_plot(
+            direction, var, **kwargs
+        )
         kwargs.pop('facecolor', None)
         kwargs.pop('edgecolor', None)
 
@@ -556,8 +533,9 @@ class WindroseAxes(PolarAxes):
 
         """
 
-        bins, nbins, nsector, colors, angles, kwargs = self._init_plot(direction, var,
-                                                                       **kwargs)
+        bins, nbins, nsector, colors, angles, kwargs = self._init_plot(
+            direction, var, **kwargs
+        )
         kwargs.pop('facecolor', None)
         edgecolor = kwargs.pop('edgecolor', None)
         if edgecolor is not None:
@@ -589,8 +567,8 @@ class WindroseAxes(PolarAxes):
 
     def box(self, direction, var, **kwargs):
         """
-        Plot a windrose in proportional box mode. For each var bins and for each
-        sector, a colored box will be draw on the axes.
+        Plot a windrose in proportional box mode. For each var bins and for
+        each sector, a colored box will be draw on the axes.
 
         Parameters
         ----------
@@ -624,8 +602,9 @@ class WindroseAxes(PolarAxes):
 
         """
 
-        bins, nbins, nsector, colors, angles, kwargs = self._init_plot(direction, var,
-                                                                       **kwargs)
+        bins, nbins, nsector, colors, angles, kwargs = self._init_plot(
+            direction, var, **kwargs
+        )
         kwargs.pop('facecolor', None)
         edgecolor = kwargs.pop('edgecolor', None)
         if edgecolor is not None:
@@ -670,7 +649,8 @@ class WindAxes(mpl.axes.Subplot):
         else:
             return (ax)
 
-    def pdf(self, var, bins=None, Nx=100, bar_color='b', plot_color='g', Nbins=10, *args, **kwargs):
+    def pdf(self, var, bins=None, Nx=100, bar_color='b', plot_color='g',
+            Nbins=10, *args, **kwargs):
         """
         Draw probability density function and return Weibull distribution
         parameters
@@ -747,8 +727,8 @@ def histogram(direction, var, bins, nsector, normed=False, blowto=False):
 @_autogen_docstring(WindroseAxes.contour)
 def wrcontour(direction, var, ax=None, rmax=None, **kwargs):
     """
-    Draw contour wiprobability density function and return Weitbull distribution
-    parameters
+    Draw contour probability density function and return Weibull
+    distribution parameters.
     """
     ax = WindroseAxes.from_ax(ax, rmax=rmax)
     ax.contour(direction, var, **kwargs)
@@ -781,13 +761,15 @@ def wrbar(direction, var, ax=None, rmax=None, **kwargs):
 
 
 @_autogen_docstring(WindAxes.pdf)
-def wrpdf(var, bins=None, Nx=100, bar_color='b', plot_color='g', Nbins=10, ax=None, rmax=None, *args, **kwargs):
+def wrpdf(var, bins=None, Nx=100, bar_color='b', plot_color='g', Nbins=10,
+          ax=None, rmax=None, *args, **kwargs):
     """
     Draw probability density function and return Weitbull distribution
     parameters
     """
     ax = WindAxes.from_ax(ax)
-    ax, params = ax.pdf(var, bins, Nx, bar_color, plot_color, Nbins, *args, **kwargs)
+    ax, params = ax.pdf(var, bins, Nx, bar_color, plot_color, Nbins, *args,
+                        **kwargs)
     return(ax, params)
 
 
@@ -852,7 +834,8 @@ D_KIND_PLOT = {
 }
 
 
-def plot_windrose(direction_or_df, var=None, kind='contour', var_name=VAR_DEFAULT, direction_name=DIR_DEFAULT, by=None,
+def plot_windrose(direction_or_df, var=None, kind='contour',
+                  var_name=VAR_DEFAULT, direction_name=DIR_DEFAULT, by=None,
                   rmax=None, **kwargs):
     if var is None:
         # Assuming direction_or_df is a DataFrame
@@ -861,21 +844,26 @@ def plot_windrose(direction_or_df, var=None, kind='contour', var_name=VAR_DEFAUL
         direction = df[direction_name].values
     else:
         direction = direction_or_df
-    return (plot_windrose_np(direction, var, kind=kind, by=by, rmax=rmax, **kwargs))
+    return plot_windrose_np(direction, var, kind=kind, by=by, rmax=rmax,
+                            **kwargs)
 
 
-def plot_windrose_df(df, kind='contour', var_name=VAR_DEFAULT, direction_name=DIR_DEFAULT, by=None, rmax=None,
+def plot_windrose_df(df, kind='contour', var_name=VAR_DEFAULT,
+                     direction_name=DIR_DEFAULT, by=None, rmax=None,
                      **kwargs):
     var = df[var_name].values
     direction = df[direction_name].values
     return (plot_windrose_np(direction, var, by=by, rmax=rmax, **kwargs))
 
 
-def plot_windrose_np(direction, var, kind='contour', clean_flag=True, by=None, rmax=None, **kwargs):
+def plot_windrose_np(direction, var, kind='contour', clean_flag=True, by=None,
+                     rmax=None, **kwargs):
     if kind in D_KIND_PLOT.keys():
         f_plot = D_KIND_PLOT[kind]
     else:
-        raise (Exception("kind=%r but it must be in %r" % (kind, D_KIND_PLOT.keys())))
+        raise Exception(
+            "kind=%r but it must be in %r" % (kind, D_KIND_PLOT.keys())
+        )
     # if f_clean is not None:
     #     df = f_clean(df)
     # var = df[var_name].values
@@ -888,4 +876,7 @@ def plot_windrose_np(direction, var, kind='contour', clean_flag=True, by=None, r
             ax.set_legend()
         return ax
     else:
-        raise (NotImplementedError("'by' keyword not supported for now https://github.com/scls19fr/windrose/issues/10"))
+        raise NotImplementedError(
+            "'by' keyword not supported for now "
+            "https://github.com/scls19fr/windrose/issues/10"
+        )

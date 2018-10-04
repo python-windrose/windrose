@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from setuptools import setup, find_packages  # Always prefer setuptools over distutils
+# Always prefer setuptools over distutils
+from setuptools import setup, find_packages
 from os import path
 import io
 
@@ -23,7 +24,8 @@ setup(
     # version='0.0.2',
     version=__version__,
 
-    description='Python Matplotlib, Numpy library to manage wind data, draw windrose (also known as a polar rose plot)',
+    description=('Python Matplotlib, Numpy library to manage wind data, '
+                 'draw windrose (also known as a polar rose plot)',)
     long_description=long_description,
     long_description_content_type='text/markdown',
 
@@ -88,7 +90,7 @@ setup(
     # List additional groups of dependencies here (e.g. development dependencies).
     # You can install these using the following syntax, for example:
     # $ pip install -e .[dev,test]
-    extras_require = {
+    extras_require={
         'dev': ['check-manifest', 'pytest'],
         'test': ['coverage', 'pytest'],
         'advanced': ['pandas', 'scipy']

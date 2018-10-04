@@ -120,7 +120,7 @@ we encourage you to follow our [code of conduct](https://github.com/python-windr
 ### Contributing
 
 If you discover issues, have ideas for improvements or new features, please report them.
-[CONTRIBUTING.md](https://github.com/python-windrose/windrose/blob/master/CONTRIBUTING.md) explains 
+[CONTRIBUTING.md](https://github.com/python-windrose/windrose/blob/master/CONTRIBUTING.md) explains
 how to contribute to this project.
 
 ### List of contributors and/or notable users

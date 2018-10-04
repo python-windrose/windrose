@@ -69,7 +69,9 @@ class WindAxesFactory(object):
                 ax = cls.from_ax(ax, *args, **kwargs)
                 return ax
         else:
-            raise (NotImplementedError("typ=%r but it might be in %s" % (typ, d.keys())))
+            raise NotImplementedError(
+                "typ=%r but it might be in %s" % (typ, d.keys())
+            )
 
 
 class WindroseAxes(PolarAxes):
@@ -695,7 +697,7 @@ def histogram(direction, var, bins, nsector, normed=False, blowto=False):
     """
 
     if len(var) != len(direction):
-        raise (ValueError("var and direction must have same length"))
+        raise ValueError("var and direction must have same length")
 
     angle = 360. / nsector
 

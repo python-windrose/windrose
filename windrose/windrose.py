@@ -549,10 +549,10 @@ class WindroseAxes(PolarAxes):
         dtheta = 2 * np.pi / nsector
         opening = dtheta * opening
 
-        o = self._calm_circle()
+        offs = self._calm_circle()
 
         for j in range(nsector):
-            offset = o
+            offset = offs
             for i in range(nbins):
                 if i > 0:
                     offset += self._info['table'][i - 1, j]
@@ -614,10 +614,10 @@ class WindroseAxes(PolarAxes):
                 raise ValueError('edgecolor must be a string color')
         opening = np.linspace(0.0, np.pi / 16, nbins)
 
-        o = self._calm_circle()
+        offs = self._calm_circle()
 
         for j in range(nsector):
-            offset = o
+            offset = offs
             for i in range(nbins):
                 if i > 0:
                     offset += self._info['table'][i - 1, j]

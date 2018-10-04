@@ -11,6 +11,9 @@ NAME = 'windrose'
 with io.open(path.join(here, NAME, 'version.py'), 'rt', encoding='UTF-8') as f:
     exec(f.read())
 
+with io.open(path.join(here, 'README.md'), 'rt', encoding='UTF-8') as f:
+    long_description = f.read()
+
 setup(
     name=NAME,
 
@@ -20,9 +23,9 @@ setup(
     # version='0.0.2',
     version=__version__,
 
-    setup_requires=['setuptools-markdown'],
     description='Python Matplotlib, Numpy library to manage wind data, draw windrose (also known as a polar rose plot)',
-    long_description_markdown_filename='README.md',
+    long_description=long_description,
+    long_description_content_type='text/markdown',
 
     # The project's main homepage.
     url=__url__,
@@ -58,11 +61,14 @@ setup(
         'Programming Language :: Python :: 2.7',
         # 'Programming Language :: Python :: 3',
         # 'Programming Language :: Python :: 3.2',
-        'Programming Language :: Python :: 3.3',
+        # 'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
 
         # Pick your license as you wish (should match "license" above)
-        'License :: OSI Approved :: CEA CNRS Inria Logiciel Libre License, version 2.1 (CeCILL-2.1)',
+        # 'License :: CEA CNRS Inria Logiciel Libre License B (CeCILL-B)',
+        'License :: OSI Approved :: BSD License',
 
     ],
 
@@ -83,8 +89,8 @@ setup(
     # You can install these using the following syntax, for example:
     # $ pip install -e .[dev,test]
     extras_require = {
-        'dev': ['check-manifest', 'nose'],
-        'test': ['coverage', 'nose'],
+        'dev': ['check-manifest', 'pytest'],
+        'test': ['coverage', 'pytest'],
         'advanced': ['pandas', 'scipy']
     },
 

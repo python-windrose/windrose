@@ -194,5 +194,6 @@ http://www.github.com/scls19fr/windrose""")
 
     logger.info("Save file to '%s'" % filename_out)
 
+
 if __name__ == "__main__":
     main()

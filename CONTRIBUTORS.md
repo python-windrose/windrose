@@ -1,5 +1,6 @@
 # List of python-windrose contributors and notable users (sorted alphabetically)
 
+- Pete Bachant - Wind Farm Engineer at WindESCo - https://github.com/petebachant
 - Brian Blaylock - University of Utah Department of Atmospheric Sciences - https://github.com/blaylockbk
 - Ryan Brown - United States Environmental Protection Agency - https://www.epa.gov/
 - daniclaar - Baum lab Applied ecology for impacted oceans - University of Victoria, BC, Canada - https://github.com/daniclaar

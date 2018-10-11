@@ -1,7 +1,7 @@
 # Contributing
 
 If you discover issues, have ideas for improvements or new features,
-please report them to the [issue tracker](https://github.com/python-windrose/issues) of the repository.
+please report them to the [issue tracker](https://github.com/python-windrose/windrose/issues) of the repository.
 After this you can help by fixing it submitting a pull request (PR).
 Please, try to follow these guidelines when you
 do so.

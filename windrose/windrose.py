@@ -223,8 +223,8 @@ class WindroseAxes(PolarAxes):
             _decimal_places = str(decimal_places)
 
             fmt = (
-                "[%." + _decimal_places + "f " +
-                ": %0." + _decimal_places + "f"
+                "[%." + _decimal_places + "f "
+                + ": %0." + _decimal_places + "f"
             )
 
             labels = np.copy(self._info['bins'])

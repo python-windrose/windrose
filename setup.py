@@ -25,7 +25,7 @@ setup(
     version=__version__,
 
     description=('Python Matplotlib, Numpy library to manage wind data, '
-                 'draw windrose (also known as a polar rose plot)',)
+                 'draw windrose (also known as a polar rose plot)'),
     long_description=long_description,
     long_description_content_type='text/markdown',
 

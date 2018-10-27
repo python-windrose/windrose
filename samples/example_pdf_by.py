@@ -13,14 +13,17 @@ One figure per year
 import click
 
 import datetime
+
 # import time
 
 from math import pi
 
 # import matplotlib
 import matplotlib.pyplot as plt
+
 # import matplotlib.animation
 from matplotlib.backends.backend_pdf import PdfPages
+
 # import matplotlib.cm as cm
 
 import numpy as np
@@ -49,23 +52,42 @@ def by_func_daily(dt):
 
 
 @click.command()
-@click.option("--filename", default="samples/sample_wind_poitiers.csv", help="Input filename")
+@click.option(
+    "--filename", default="samples/sample_wind_poitiers.csv", help="Input filename"
+)
 @click.option("--filename_out", default="windrose.pdf", help="Output filename")
 @click.option("--dpi", default=DPI_DEFAULT, help="Dot per inch for plot generation")
-@click.option("--figsize", default=S_FIGSIZE_DEFAULT, help="Figure size x,y - default=%s" % S_FIGSIZE_DEFAULT)
+@click.option(
+    "--figsize",
+    default=S_FIGSIZE_DEFAULT,
+    help="Figure size x,y - default=%s" % S_FIGSIZE_DEFAULT,
+)
 @click.option("--bins_min", default=0.01, help="Bins minimum value")
 @click.option("--bins_max", default=20, help="Bins maximum value")
 @click.option("--bins_step", default=2, help="Bins step value")
 @click.option("--fontname", default="Courier New", help="Font name")
 @click.option("--show/--no-show", default=False, help="Show figure")
-@click.option("--dt_from", default='', help="Datetime from")
-@click.option("--dt_to", default='', help="Datetime to")
+@click.option("--dt_from", default="", help="Datetime from")
+@click.option("--dt_to", default="", help="Datetime to")
 @click.option("--offset", default=0, help="Axe figure offset")
 @click.option("--ncols", default=4, help="Number of columns per figure")
 @click.option("--nrows", default=3, help="Number of rows per figure")
-def main(filename, dt_from, dt_to, dpi, figsize,
-         bins_min, bins_max, bins_step, ncols, nrows,
-         fontname, show, filename_out, offset):
+def main(
+    filename,
+    dt_from,
+    dt_to,
+    dpi,
+    figsize,
+    bins_min,
+    bins_max,
+    bins_step,
+    ncols,
+    nrows,
+    fontname,
+    show,
+    filename_out,
+    offset,
+):
 
     # convert figsize (string like "8,9" to a list of float [8.0, 9.0]
     figsize = figsize.split(",")
@@ -74,20 +96,20 @@ def main(filename, dt_from, dt_to, dpi, figsize,
 
     # Read CSV file to a Pandas DataFrame
     df_all = pd.read_csv(filename)
-    df_all['Timestamp'] = pd.to_datetime(df_all['Timestamp'])
-    df_all = df_all.set_index('Timestamp')
-    df_all.index = df_all.index.tz_localize('UTC').tz_convert('UTC')
+    df_all["Timestamp"] = pd.to_datetime(df_all["Timestamp"])
+    df_all = df_all.set_index("Timestamp")
+    df_all.index = df_all.index.tz_localize("UTC").tz_convert("UTC")
     # df_all = df_all.iloc[-10000:,:]
     # df_all = df_all['2011-07-01':'2012-12-31']
-    if dt_from == '':
+    if dt_from == "":
         dt_from = df_all.index[0]
-    if dt_to == '':
+    if dt_to == "":
         dt_to = df_all.index[-1]
     df_all = df_all[dt_from:dt_to]
 
     # Get Numpy arrays from DataFrame
-    direction_all = df_all['direction'].values
-    var_all = df_all['speed'].values
+    direction_all = df_all["direction"].values
+    var_all = df_all["speed"].values
     # index_all = df_all.index.to_datetime()  # Fixed: .values -> to_datetime()
     by_all = df_all.index.map(by_func_monthly)
     by_unique = np.unique(by_all)
@@ -103,7 +125,14 @@ def main(filename, dt_from, dt_to, dpi, figsize,
 
             if (i + offset) % (ncols * nrows) == 0 or i == 0:
                 # Create figure and axes
-                fig, axs = plt.subplots(nrows=nrows, ncols=ncols, figsize=figsize, dpi=dpi, facecolor='w', edgecolor='w')
+                fig, axs = plt.subplots(
+                    nrows=nrows,
+                    ncols=ncols,
+                    figsize=figsize,
+                    dpi=dpi,
+                    facecolor="w",
+                    edgecolor="w",
+                )
                 print("%r\n%r\n%r" % (fig, fig.axes, axs))
 
             i_sheet, sheet_pos = divmod(i + offset, ncols * nrows)

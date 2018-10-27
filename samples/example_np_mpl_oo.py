@@ -21,7 +21,7 @@ def main():
 
     # windrose like a stacked histogram with normed (displayed in percent) results
     ax = WindroseAxes.from_ax()
-    ax.bar(wd, ws, normed=True, opening=0.8, edgecolor='white')
+    ax.bar(wd, ws, normed=True, opening=0.8, edgecolor="white")
     ax.set_legend()
 
     # Another stacked histogram representation, not normed, with bins limits
@@ -38,7 +38,7 @@ def main():
     # Same as above, but with contours over each filled region...
     ax = WindroseAxes.from_ax()
     ax.contourf(wd, ws, bins=bins, cmap=cm.hot)
-    ax.contour(wd, ws, bins=bins, colors='black')
+    ax.contour(wd, ws, bins=bins, colors="black")
     ax.set_legend()
 
     # ...or without filled regions

@@ -12,18 +12,18 @@ import matplotlib.cm as cm
 
 import windrose  # noqa
 
-pd.set_option('max_rows', 10)
+pd.set_option("max_rows", 10)
 
 
 def get_by_func(by=None, by_func=None):
     if by is None and by_func is None:
-        by = 'MS'
+        by = "MS"
 
-    if by in ['year', 'yearly', 'Y']:
+    if by in ["year", "yearly", "Y"]:
         return lambda dt: dt.year
-    elif by in ['month', 'monthly', 'MS']:  # MS: month start
+    elif by in ["month", "monthly", "MS"]:  # MS: month start
         return lambda dt: (dt.year, dt.month)
-    elif by in ['day', 'daily', 'D']:
+    elif by in ["day", "daily", "D"]:
         return lambda dt: (dt.year, dt.month, dt.day)
     elif by is None and by_func is not None:
         return by_func
@@ -38,18 +38,20 @@ def tuple_position(i, nrows, ncols):
 
 
 @click.command()
-@click.option("--filename", default="samples/sample_wind_poitiers.csv", help="Input filename")
+@click.option(
+    "--filename", default="samples/sample_wind_poitiers.csv", help="Input filename"
+)
 @click.option("--year", default=2014, help="Year")
 def main(filename, year):
-    df_all = pd.read_csv(filename, parse_dates=['Timestamp'])
-    df_all = df_all.set_index('Timestamp')
+    df_all = pd.read_csv(filename, parse_dates=["Timestamp"])
+    df_all = df_all.set_index("Timestamp")
 
-    f_year = get_by_func('year')
-    df_all['by_page'] = df_all.index.map(f_year)
-    f_month = get_by_func('month')
-    df_all['by'] = df_all.index.map(f_month)
+    f_year = get_by_func("year")
+    df_all["by_page"] = df_all.index.map(f_year)
+    f_month = get_by_func("month")
+    df_all["by"] = df_all.index.map(f_month)
 
-    df_all = df_all.reset_index().set_index(['by_page', 'by', 'Timestamp'])
+    df_all = df_all.reset_index().set_index(["by_page", "by", "Timestamp"])
 
     print(df_all)
 
@@ -59,18 +61,18 @@ def main(filename, year):
 
     fig.suptitle("Wind speed - %d" % year)
     for month in range(1, 13):
-        ax = fig.add_subplot(nrows, ncols, month, projection='windrose')
+        ax = fig.add_subplot(nrows, ncols, month, projection="windrose")
         title = datetime.datetime(year, month, 1).strftime("%b")
         ax.set_title(title)
         try:
             df = df_all.loc[year].loc[(year, month)]
         except KeyError:
             continue
-        direction = df['direction'].values
-        var = df['speed'].values
+        direction = df["direction"].values
+        var = df["speed"].values
         # ax.contour(direction, var, bins=bins, colors='black', lw=3)
         ax.contourf(direction, var, bins=bins, cmap=cm.hot)
-        ax.contour(direction, var, bins=bins, colors='black')
+        ax.contour(direction, var, bins=bins, colors="black")
 
     plt.show()
 

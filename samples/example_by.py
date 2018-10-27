@@ -18,13 +18,15 @@ import matplotlib.cm as cm
 import numpy as np
 import pandas as pd
 
-from windrose import (WindroseAxes, FIGSIZE_DEFAULT, DPI_DEFAULT)
+from windrose import WindroseAxes, FIGSIZE_DEFAULT, DPI_DEFAULT
 
 
 class AxCollection(object):
     def __init__(self, fig=None, *args, **kwargs):
         if fig is None:
-            self.fig = plt.figure(figsize=FIGSIZE_DEFAULT, dpi=DPI_DEFAULT, facecolor='w', edgecolor='w')
+            self.fig = plt.figure(
+                figsize=FIGSIZE_DEFAULT, dpi=DPI_DEFAULT, facecolor="w", edgecolor="w"
+            )
         else:
             self.fig = fig
 
@@ -79,7 +81,11 @@ class Layout(object):
   cols: %s
   rows: %s
   sheets: %s
->""" % (self.ncols, self.nrows, self.nsheets)
+>""" % (
+            self.ncols,
+            self.nrows,
+            self.nsheets,
+        )
         return s
 
     def __enter__(self, *args, **kwargs):
@@ -121,11 +127,21 @@ def by_func_daily(dt):
 
 
 @click.command()
-@click.option("--filename", default="samples/sample_wind_poitiers.csv", help="Input filename")
-@click.option("--filename_out", default="windrose_animation.mp4", help="Output filename")
+@click.option(
+    "--filename", default="samples/sample_wind_poitiers.csv", help="Input filename"
+)
+@click.option(
+    "--filename_out", default="windrose_animation.mp4", help="Output filename"
+)
 @click.option("--dpi", default=DPI_DEFAULT, help="Dot per inch for plot generation")
-@click.option("--figsize", default=S_FIGSIZE_DEFAULT, help="Figure size x,y - default=%s" % S_FIGSIZE_DEFAULT)
-@click.option("--fps", default=7, help="Number of frame per seconds for video generation")
+@click.option(
+    "--figsize",
+    default=S_FIGSIZE_DEFAULT,
+    help="Figure size x,y - default=%s" % S_FIGSIZE_DEFAULT,
+)
+@click.option(
+    "--fps", default=7, help="Number of frame per seconds for video generation"
+)
 @click.option("--bins_min", default=0.01, help="Bins minimum value")
 @click.option("--bins_max", default=20, help="Bins maximum value")
 @click.option("--bins_step", default=2, help="Bins step value")
@@ -136,15 +152,15 @@ def main(filename, dpi, figsize, fps, bins_min, bins_max, bins_step, filename_ou
 
     # Read CSV file to a Pandas DataFrame
     df_all = pd.read_csv(filename)
-    df_all['Timestamp'] = pd.to_datetime(df_all['Timestamp'])
-    df_all = df_all.set_index('Timestamp')
-    df_all.index = df_all.index.tz_localize('UTC').tz_convert('UTC')
+    df_all["Timestamp"] = pd.to_datetime(df_all["Timestamp"])
+    df_all = df_all.set_index("Timestamp")
+    df_all.index = df_all.index.tz_localize("UTC").tz_convert("UTC")
     # df_all = df_all.iloc[-10000:,:]
-    df_all = df_all.ix['2011-07-01':'2011-12-31']
+    df_all = df_all.ix["2011-07-01":"2011-12-31"]
 
     # Get Numpy arrays from DataFrame
-    direction_all = df_all['direction'].values
-    var_all = df_all['speed'].values
+    direction_all = df_all["direction"].values
+    var_all = df_all["speed"].values
     index_all = df_all.index.to_datetime()  # Fixed: .values -> to_datetime()
     by_all = df_all.index.map(by_func_monthly)
     by_unique = np.unique(by_all)
@@ -233,7 +249,7 @@ def main(filename, dpi, figsize, fps, bins_min, bins_max, bins_step, filename_ou
         # Same as above, but with contours over each filled region...
         ax = WindroseAxes.from_ax()
         ax.contourf(direction, var, bins=bins, cmap=cm.hot)
-        ax.contour(direction, var, bins=bins, colors='black')
+        ax.contour(direction, var, bins=bins, colors="black")
         fontname = "Courier"
         # title = by_value
         dt1 = index[0]

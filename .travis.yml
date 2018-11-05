@@ -1,7 +1,5 @@
 sudo: false
-
 language: python
-
 matrix:
   fast_finish: true
   include:
@@ -13,29 +11,29 @@ matrix:
     env: TEST_TARGET=default
   - python: 3.6
     env: TEST_TARGET=coding_standards
-
 before_install:
-  - wget http://bit.ly/miniconda -O miniconda.sh
-  - bash miniconda.sh -b -p $HOME/miniconda
-  - export PATH="$HOME/miniconda/bin:$PATH"
-  - conda config --set always_yes yes --set changeps1 no --set show_channel_urls true
-  - conda update conda
-  - conda config --add channels conda-forge --force
-  - conda create --name TEST python=$TRAVIS_PYTHON_VERSION --file requirements.txt --file requirements-dev.txt
-  - source activate TEST
-  - pip install check-manifest
-  # GUI
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
-
+- wget http://bit.ly/miniconda -O miniconda.sh
+- bash miniconda.sh -b -p $HOME/miniconda
+- export PATH="$HOME/miniconda/bin:$PATH"
+- conda config --set always_yes yes --set changeps1 no --set show_channel_urls true
+- conda update conda
+- conda config --add channels conda-forge --force
+- conda create --name TEST python=$TRAVIS_PYTHON_VERSION --file requirements.txt --file
+  requirements-dev.txt
+- source activate TEST
+- pip install check-manifest
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
 install:
- - python setup.py install
-
+- python setup.py install
 script:
-  - if [[ $TEST_TARGET == 'default' ]]; then
-       pytest --verbose tests ;
-    fi
-
-  - if [[ $TEST_TARGET == 'coding_standards' ]]; then
-       flake8 --ignore=E501 windrose samples tests ;
-    fi
+- if [[ $TEST_TARGET == 'default' ]]; then pytest --verbose tests ; fi
+- if [[ $TEST_TARGET == 'coding_standards' ]]; then flake8 --ignore=E501 windrose
+  samples tests ; fi
+deploy:
+  provider: pypi
+  user: "scls"
+  password:
+    secure: nWeqLYO8BPyM1JSewV5nzspEUWSYhy+KaoWMToW5ExOmcgxBAcXyrLLcCttg15XeSO7nEN5UzauBj7upEZbybtbSzdiARlWlHwn4b9inL2EKpPjfJ2eBN98V669NCYn3EjG/CSXW9Z8njC8dRkvfboOTYr3JKPjDvWX4wK95l3Z3MHr5jdvbAgSp81XWbGG7D4nc1QdOFrxIB/56Dhw3spP6H8VYp8DruhjRyLWpLchQCFTM3x34QTOHi4iKCb+lA6lOcOC3VLJNQgWRpzpwAFCASAe9eDZuOPczBU9pZB5Vaz/YFbb/Q7rH7EZD73qzAkA431j3ozoylJx7yu75vu1jrFOWEML9wWg6oiZGwrZqkixN2zH6yCECYiR3sIb+bPZIsKwBWFNSvIMzOezgEDF/OLb28KEWkq6GUVBSSsVxalBjM1oQljPLLsatXK6B/LWwDdwTKrVAK70Df5NOYmoiQwClpDxHbm6nOyWj8aFNfKYWDqJuQQ5E+vA57J0rM7FeR5rT+CdDFp+dvK+eoaN1fae3c6JoUCgFDL4fws+HLnkuZ305F7CmCrJn9fl0sIB41kp4INRuNb4RrOyyrTx5Ff+oWU6KXfu4FMr4kzorHsNOtOz24awhybhMVtsT+amkli6ebA0vF+P7q2G91TwlLBd/Fjf/LdQSulx2Xv4=
+  on:
+    tags: true

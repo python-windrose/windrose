@@ -9,6 +9,12 @@ in every released version.
 
 - Released: 20zz-yy-xx
 
+### Version 1.6.7
+
+- Released: 2019-06-07
+- Issues/Enhancements:
+  - Update release procedure for manual Pypi upload
+
 ### Version 1.6.6
 
 - Released: 2019-06-07

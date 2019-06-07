@@ -61,7 +61,8 @@ Upload
 ```
 git clean -xfd
 python setup.py register sdist bdist_wheel --universal
-python setup.py sdist bdist_wheel upload
+python setup.py sdist bdist_wheel
+twine upload dist/*
 ```
 
 ## Verify on PyPI

@@ -8,6 +8,8 @@ in every released version.
 ### Version 1.6.x
 
 - Released: 20zz-yy-xx
+- Fix:
+    - Fix deprecated `_autogen_docstring` for matplotlib >3.1 #117
 
 ### Version 1.6.7
 

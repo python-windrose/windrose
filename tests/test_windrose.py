@@ -190,9 +190,9 @@ def test_windrose_labels_type():
     ax.bar(wd, ws, normed=True, opening=0.8, edgecolor="white")
     labels = ["Label %i" % i for i in range(0, 2, 1)]
     with pytest.raises(ValueError):
-        legend = ax.set_legend(labels=labels)
+        ax.set_legend(labels=labels)
     with pytest.raises(TypeError):
-        legend = ax.set_legend(labels=False)
+        ax.set_legend(labels=False)
 
 
 # def test_plot_by():

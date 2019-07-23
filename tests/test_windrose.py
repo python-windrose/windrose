@@ -8,6 +8,7 @@
 # $ pytest -vv tests/test_windrose.py::test_windrose_np_plot_and_pd_plot
 
 import matplotlib
+import pytest
 
 matplotlib.use("Agg")  # noqa
 
@@ -173,6 +174,25 @@ def test_windrose_pd_not_default_names():
         var_name="wind_speed",
         direction_name="wind_direction",
     )
+
+
+def test_windrose_labels():
+    ax = WindroseAxes.from_ax()
+    ax.bar(wd, ws, normed=True, opening=0.8, edgecolor="white")
+    labels = ["Label %i" % i for i in range(0, 6, 1)]
+    legend = ax.set_legend(labels=labels)
+    for i, label in enumerate(labels):
+        assert legend.get_texts()[i].get_text() == label
+
+
+def test_windrose_labels_type():
+    ax = WindroseAxes.from_ax()
+    ax.bar(wd, ws, normed=True, opening=0.8, edgecolor="white")
+    labels = ["Label %i" % i for i in range(0, 2, 1)]
+    with pytest.raises(ValueError):
+        legend = ax.set_legend(labels=labels)
+    with pytest.raises(TypeError):
+        legend = ax.set_legend(labels=False)
 
 
 # def test_plot_by():

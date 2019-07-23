@@ -209,27 +209,34 @@ class WindroseAxes(PolarAxes):
                 )
             return handles
 
-        def get_labels(decimal_places=1):
+        def get_labels(labels, decimal_places=1):
             _decimal_places = str(decimal_places)
 
             fmt = "[%." + _decimal_places + "f " + ": %0." + _decimal_places + "f"
 
-            labels = np.copy(self._info["bins"])
-            if locale.getlocale()[0] in ["fr_FR"]:
-                fmt += "["
-            else:
-                fmt += ")"
+            if labels is None:
+                labels = np.copy(self._info["bins"])
+                if locale.getlocale()[0] in ["fr_FR"]:
+                    fmt += "["
+                else:
+                    fmt += ")"
 
-            labels = [fmt % (labels[i], labels[i + 1]) for i in range(len(labels) - 1)]
+                labels = [fmt % (labels[i], labels[i + 1])
+                          for i in range(len(labels) - 1)]
+            else:
+                if not isinstance(labels, list):
+                    raise TypeError("labels must be a list")
+                if len(labels) != len(self._info['bins']) - 1:
+                    raise ValueError("labels length must be %d" %
+                                     (len(self._info['bins']) - 1))
             return labels
 
-        kwargs.pop("labels", None)
         kwargs.pop("handles", None)
 
         # decimal_places = kwargs.pop('decimal_places', 1)
 
         handles = get_handles()
-        labels = get_labels(decimal_places)
+        labels = get_labels(kwargs.pop("labels", None), decimal_places)
         self.legend_ = mpl.legend.Legend(self, handles, labels, loc, **kwargs)
         return self.legend_
 

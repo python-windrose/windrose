@@ -65,3 +65,5 @@ target/
 
 # PyCharm
 .idea/
+
+tests/output

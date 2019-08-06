@@ -914,7 +914,8 @@ def plot_windrose(
     direction_name=DIR_DEFAULT,
     by=None,
     rmax=None,
-    **kwargs,
+    ax=None,
+    **kwargs
 ):
     """Plot windrose from a pandas DataFrame or a numpy array."""
     if var is None:
@@ -924,7 +925,8 @@ def plot_windrose(
         direction = df[direction_name].values
     else:
         direction = direction_or_df
-    return plot_windrose_np(direction, var, kind=kind, by=by, rmax=rmax, **kwargs)
+    return plot_windrose_np(direction, var, kind=kind, by=by, rmax=rmax, ax=ax,
+                            **kwargs)
 
 
 def plot_windrose_df(
@@ -934,16 +936,18 @@ def plot_windrose_df(
     direction_name=DIR_DEFAULT,
     by=None,
     rmax=None,
-    **kwargs,
+    ax=None,
+    **kwargs
 ):
     """Plot windrose from a pandas DataFrame."""
     var = df[var_name].values
     direction = df[direction_name].values
-    return plot_windrose_np(direction, var, by=by, rmax=rmax, **kwargs)
+    return plot_windrose_np(direction, var, by=by, rmax=rmax, ax=ax, **kwargs)
 
 
 def plot_windrose_np(
-    direction, var, kind="contour", clean_flag=True, by=None, rmax=None, **kwargs
+    direction, var, kind="contour", clean_flag=True, by=None, rmax=None,
+    ax=None, **kwargs
 ):
     """Plot windrose from a numpy array."""
     if kind in D_KIND_PLOT.keys():
@@ -957,7 +961,7 @@ def plot_windrose_np(
     if clean_flag:
         direction, var = clean(direction, var)
     if by is None:
-        ax = f_plot(direction=direction, var=var, rmax=rmax, **kwargs)
+        ax = f_plot(direction=direction, var=var, rmax=rmax, ax=ax, **kwargs)
         if kind not in ["pdf"]:
             ax.set_legend()
         return ax

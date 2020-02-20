@@ -156,7 +156,7 @@ class WindroseAxes(PolarAxes):
         self.set_rmax(rmax=self.rmax + calm_count)
         self.set_radii_angle(angle=self.radii_angle)
 
-    def legend(self, loc="lower left", decimal_places=1, **kwargs):
+    def legend(self, loc="lower left", decimal_places=1, units=None, **kwargs):
         """
         Sets the legend location and her properties.
 
@@ -167,6 +167,8 @@ class WindroseAxes(PolarAxes):
 
         decimal_places : int, default 1
             The decimal places of the formated legend
+
+        units: str, default None
 
         Other Parameters
         ----------------
@@ -209,7 +211,7 @@ class WindroseAxes(PolarAxes):
                 )
             return handles
 
-        def get_labels(decimal_places=1):
+        def get_labels(decimal_places=1, units=None):
             _decimal_places = str(decimal_places)
 
             fmt = "[%." + _decimal_places + "f " + ": %0." + _decimal_places + "f"
@@ -220,6 +222,9 @@ class WindroseAxes(PolarAxes):
             else:
                 fmt += ")"
 
+            if units:
+                fmt += ' ' + units
+
             labels = [fmt % (labels[i], labels[i + 1]) for i in range(len(labels) - 1)]
             return labels
 
@@ -229,7 +234,7 @@ class WindroseAxes(PolarAxes):
         # decimal_places = kwargs.pop('decimal_places', 1)
 
         handles = get_handles()
-        labels = get_labels(decimal_places)
+        labels = get_labels(decimal_places, units)
         self.legend_ = mpl.legend.Legend(self, handles, labels, loc, **kwargs)
         return self.legend_
 

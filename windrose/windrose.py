@@ -78,13 +78,14 @@ class WindroseAxes(PolarAxes):
         # when the instance is created
         # self.RESOLUTION = kwargs.pop('resolution', 100)
         self.rmax = kwargs.pop("rmax", None)
+        self.theta_labels = kwargs.pop("theta_labels") or ["E", "N-E", "N", "N-W", "W", "S-W", "S", "S-E"]
         PolarAxes.__init__(self, *args, **kwargs)
         self.set_aspect("equal", adjustable="box", anchor="C")
         self.radii_angle = 67.5
         self.cla()
 
     @staticmethod
-    def from_ax(ax=None, fig=None, rmax=None, *args, **kwargs):
+    def from_ax(ax=None, fig=None, rmax=None, theta_labels=None, *args, **kwargs):
         """
         Return a WindroseAxes object for the figure `fig`.
         """
@@ -97,7 +98,7 @@ class WindroseAxes(PolarAxes):
                     edgecolor="w",
                 )
             rect = [0.1, 0.1, 0.8, 0.8]
-            ax = WindroseAxes(fig, rect, facecolor="w", rmax=rmax, *args, **kwargs)
+            ax = WindroseAxes(fig, rect, facecolor="w", rmax=rmax, theta_labels=theta_labels, *args, **kwargs)
             fig.add_axes(ax)
             return ax
         else:
@@ -110,7 +111,6 @@ class WindroseAxes(PolarAxes):
         PolarAxes.cla(self)
 
         self.theta_angles = np.arange(0, 360, 45)
-        self.theta_labels = ["E", "N-E", "N", "N-W", "W", "S-W", "S", "S-E"]
         self.set_thetagrids(angles=self.theta_angles, labels=self.theta_labels)
 
         self._info = {"dir": list(), "bins": list(), "table": list()}

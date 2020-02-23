@@ -78,13 +78,14 @@ class WindroseAxes(PolarAxes):
         # when the instance is created
         # self.RESOLUTION = kwargs.pop('resolution', 100)
         self.rmax = kwargs.pop("rmax", None)
+        self.theta_labels = kwargs.pop("theta_labels") or ["E", "N-E", "N", "N-W", "W", "S-W", "S", "S-E"]
         PolarAxes.__init__(self, *args, **kwargs)
         self.set_aspect("equal", adjustable="box", anchor="C")
         self.radii_angle = 67.5
         self.cla()
 
     @staticmethod
-    def from_ax(ax=None, fig=None, rmax=None, *args, **kwargs):
+    def from_ax(ax=None, fig=None, rmax=None, theta_labels=None, *args, **kwargs):
         """
         Return a WindroseAxes object for the figure `fig`.
         """
@@ -97,7 +98,7 @@ class WindroseAxes(PolarAxes):
                     edgecolor="w",
                 )
             rect = [0.1, 0.1, 0.8, 0.8]
-            ax = WindroseAxes(fig, rect, facecolor="w", rmax=rmax, *args, **kwargs)
+            ax = WindroseAxes(fig, rect, facecolor="w", rmax=rmax, theta_labels=theta_labels, *args, **kwargs)
             fig.add_axes(ax)
             return ax
         else:
@@ -110,7 +111,6 @@ class WindroseAxes(PolarAxes):
         PolarAxes.cla(self)
 
         self.theta_angles = np.arange(0, 360, 45)
-        self.theta_labels = ["E", "N-E", "N", "N-W", "W", "S-W", "S", "S-E"]
         self.set_thetagrids(angles=self.theta_angles, labels=self.theta_labels)
 
         self._info = {"dir": list(), "bins": list(), "table": list()}
@@ -156,7 +156,7 @@ class WindroseAxes(PolarAxes):
         self.set_rmax(rmax=self.rmax + calm_count)
         self.set_radii_angle(angle=self.radii_angle)
 
-    def legend(self, loc="lower left", decimal_places=1, **kwargs):
+    def legend(self, loc="lower left", decimal_places=1, units=None, **kwargs):
         """
         Sets the legend location and her properties.
 
@@ -167,6 +167,8 @@ class WindroseAxes(PolarAxes):
 
         decimal_places : int, default 1
             The decimal places of the formated legend
+
+        units: str, default None
 
         Other Parameters
         ----------------
@@ -209,7 +211,7 @@ class WindroseAxes(PolarAxes):
                 )
             return handles
 
-        def get_labels(decimal_places=1):
+        def get_labels(decimal_places=1, units=None):
             _decimal_places = str(decimal_places)
 
             fmt = "[%." + _decimal_places + "f " + ": %0." + _decimal_places + "f"
@@ -220,6 +222,9 @@ class WindroseAxes(PolarAxes):
             else:
                 fmt += ")"
 
+            if units:
+                fmt += ' ' + units
+
             labels = [fmt % (labels[i], labels[i + 1]) for i in range(len(labels) - 1)]
             return labels
 
@@ -229,7 +234,7 @@ class WindroseAxes(PolarAxes):
         # decimal_places = kwargs.pop('decimal_places', 1)
 
         handles = get_handles()
-        labels = get_labels(decimal_places)
+        labels = get_labels(decimal_places, units)
         self.legend_ = mpl.legend.Legend(self, handles, labels, loc, **kwargs)
         return self.legend_
 

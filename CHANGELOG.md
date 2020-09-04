@@ -5,11 +5,13 @@
 All notable changes to this code base will be documented in this file,
 in every released version.
 
-### Version 1.6.x
+### Version 1.6.8
 
-- Released: 20zz-yy-xx
+- Released: 2020-09-04
+- Issues/Enhancements:
+  - add custom units to the legend #128
 - Fix:
-    - Fix deprecated `_autogen_docstring` for matplotlib >3.1 #117
+  - Fix deprecated `_autogen_docstring` for matplotlib >3.1 (#136, #119 and #135)
 
 ### Version 1.6.7
 

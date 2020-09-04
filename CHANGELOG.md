@@ -11,7 +11,7 @@ in every released version.
 - Issues/Enhancements:
   - add custom units to the legend #128
 - Fix:
-  - Fix deprecated `_autogen_docstring` for matplotlib >3.1 (#136, #119 and #135)
+  - Fix deprecated `_autogen_docstring` for matplotlib >3.1 (#136, #117, #119, #135)
 
 ### Version 1.6.7
 

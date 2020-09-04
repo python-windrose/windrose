@@ -43,24 +43,28 @@ def test_windrose_np_mpl_oo():
     ax.scatter(wd, ws, alpha=0.2)
     ax.set_legend()
     plt.savefig("tests/output/oo/scatter.png")
+    plt.close()
 
     # windrose like a stacked histogram with normed (displayed in percent) results
     ax = WindroseAxes.from_ax()
     ax.bar(wd, ws, normed=True, opening=0.8, edgecolor="white")
     ax.set_legend()
     plt.savefig("tests/output/oo/bar.png")
+    plt.close()
 
     # Another stacked histogram representation, not normed, with bins limits
     ax = WindroseAxes.from_ax()
     ax.box(wd, ws, bins=bins)
     ax.set_legend()
     plt.savefig("tests/output/oo/box.png")
+    plt.close()
 
     # A windrose in filled representation, with a controled colormap
     ax = WindroseAxes.from_ax()
     ax.contourf(wd, ws, bins=bins, cmap=cm.hot)
     ax.set_legend()
     plt.savefig("tests/output/oo/contourf.png")
+    plt.close()
 
     # Same as above, but with contours over each filled region...
     ax = WindroseAxes.from_ax()
@@ -68,12 +72,14 @@ def test_windrose_np_mpl_oo():
     ax.contour(wd, ws, bins=bins, colors="black")
     ax.set_legend()
     plt.savefig("tests/output/oo/contourf-contour.png")
+    plt.close()
 
     # ...or without filled regions
     ax = WindroseAxes.from_ax()
     ax.contour(wd, ws, bins=bins, cmap=cm.hot, lw=3)
     ax.set_legend()
     plt.savefig("tests/output/oo/contour.png")
+    plt.close()
 
     # print ax._info
     # plt.show()
@@ -82,6 +88,7 @@ def test_windrose_np_mpl_oo():
     bins = bins[1:]
     ax.pdf(ws, bins=bins)
     plt.savefig("tests/output/oo/pdf.png")
+    plt.close()
 
 
 def test_windrose_np_mpl_func():
@@ -89,25 +96,32 @@ def test_windrose_np_mpl_func():
 
     wrscatter(wd, ws, alpha=0.2)
     plt.savefig("tests/output/func/scatter.png")
+    plt.close()
 
     wrbar(wd, ws, normed=True, opening=0.8, edgecolor="white")
     plt.savefig("tests/output/func/bar.png")
+    plt.close()
 
     wrbox(wd, ws, bins=bins)
     plt.savefig("tests/output/func/box.png")
+    plt.close()
 
     wrcontourf(wd, ws, bins=bins, cmap=cm.hot)
     plt.savefig("tests/output/func/contourf.png")
+    plt.close()
 
     # ax = wrcontourf(wd, ws, bins=bin, cmap=cm.hot)
     # wrcontour(wd, ws, bins=np.arange(0, 8, 1), colors='black')
     # plt.savefig('tests/output/func/wrcontourf-contour.png')
+    # plt.close()
 
     wrcontour(wd, ws, bins=bins, cmap=cm.hot, lw=3)
     plt.savefig("tests/output/func/contour.png")
+    plt.close()
 
     wrpdf(ws, bins=bins)
     plt.savefig("tests/output/func/pdf.png")
+    plt.close()
 
 
 def test_windrose_pandas():
@@ -116,26 +130,32 @@ def test_windrose_pandas():
     kind = "scatter"
     plot_windrose(df, kind=kind, alpha=0.2)
     plt.savefig("tests/output/df/%s.png" % kind)
+    plt.close()
 
     kind = "bar"
     plot_windrose(df, kind=kind, normed=True, opening=0.8, edgecolor="white")
     plt.savefig("tests/output/df/%s.png" % kind)
+    plt.close()
 
     kind = "box"
     plot_windrose(df, kind=kind, bins=bins)
     plt.savefig("tests/output/df/%s.png" % kind)
+    plt.close()
 
     kind = "contourf"
     plot_windrose(df, kind=kind, bins=bins, cmap=cm.hot)
     plt.savefig("tests/output/df/%s.png" % kind)
+    plt.close()
 
     kind = "contour"
     plot_windrose(df, kind=kind, bins=bins, cmap=cm.hot, lw=3)
     plt.savefig("tests/output/df/%s.png" % kind)
+    plt.close()
 
     kind = "pdf"
     plot_windrose(df, kind=kind, bins=bins)
     plt.savefig("tests/output/df/%s.png" % kind)
+    plt.close()
 
 
 def test_windaxesfactory():
@@ -143,12 +163,14 @@ def test_windaxesfactory():
     ax.bar(wd, ws, normed=True, opening=0.8, edgecolor="white")
     ax.set_legend()
     plt.savefig("tests/output/oo/bar_from_factory.png")
+    plt.close()
 
     ax = WindAxesFactory.create("WindAxes")
     bins = np.arange(0, 8, 1)
     bins = bins[1:]
     ax.pdf(ws, bins=bins)
     plt.savefig("tests/output/oo/pdf_from_factory.png")
+    plt.close()
 
 
 def test_windrose_np_plot_and_pd_plot():
@@ -157,9 +179,11 @@ def test_windrose_np_plot_and_pd_plot():
 
     plot_windrose(df, kind=kind, alpha=0.2)
     plt.savefig("tests/output/df/%s.png" % kind)
+    plt.close()
 
     plot_windrose(wd, ws, kind=kind, alpha=0.2)
     plt.savefig("tests/output/func/%s.png" % kind)
+    plt.close()
 
 
 def test_windrose_pd_not_default_names():

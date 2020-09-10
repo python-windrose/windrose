@@ -78,7 +78,7 @@ class WindroseAxes(PolarAxes):
         # when the instance is created
         # self.RESOLUTION = kwargs.pop('resolution', 100)
         self.rmax = kwargs.pop("rmax", None)
-        self.theta_labels = kwargs.pop("theta_labels") or ["E", "N-E", "N", "N-W", "W", "S-W", "S", "S-E"]
+        self.theta_labels = kwargs.pop("theta_labels", ["E", "N-E", "N", "N-W", "W", "S-W", "S", "S-E"])
         PolarAxes.__init__(self, *args, **kwargs)
         self.set_aspect("equal", adjustable="box", anchor="C")
         self.radii_angle = 67.5

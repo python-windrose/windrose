@@ -188,6 +188,11 @@ A probability density function can be plot using:
 
 Optimal parameters of Weibull distribution can be displayed using
 
+.. code:: python
+
+    print(params)
+    (1, 1.7042156870194352, 0, 7.0907180300605459)
+
 Overlay of a map
 ~~~~~~~~~~~~~~~~
 
@@ -202,30 +207,6 @@ overlaying a map is often usefull.
    import cartopy.io.img_tiles as cimgt
 
    import windrose
-
-   def figposition2coordinate(x, y, ax):
-       """Given a position in the figure, return the position lon/lat on the ax
-
-       Parameters
-       ==========
-
-       x : float
-           Position on the figure
-       y : float
-           Position on the figure
-       ax : axes
-           Axe on which we want to convert x/y in lon/lat
-
-       Return
-       ======
-
-       lonlat : tuple
-       """
-
-       fig_coordinates = ax.figure.transFigure.transform((x, y))
-       ax_inverted = ax.transData.inverted()
-       lonlat = ax_inverted.transform((fig_coordinates[0], fig_coordinates[1]))
-       return lonlat
 
    def coordinate2figposition(lon, lat, ax):
        """Given an ax, return the figure position of a lon and lat
@@ -316,11 +297,6 @@ overlaying a map is often usefull.
 .. figure:: screenshots/map_overlay.png
    :alt: map_overlay
 
-
-.. code:: python
-
-    print(params)
-    (1, 1.7042156870194352, 0, 7.0907180300605459)
 
 Functional API
 --------------

@@ -85,7 +85,7 @@ class WindroseAxes(PolarAxes):
         self.cla()
 
     @staticmethod
-    def from_ax(ax=None, fig=None, rmax=None, theta_labels=None, *args, **kwargs):
+    def from_ax(ax=None, fig=None, rmax=None, theta_labels=None, rect=None, *args, **kwargs):
         """
         Return a WindroseAxes object for the figure `fig`.
         """
@@ -97,8 +97,9 @@ class WindroseAxes(PolarAxes):
                     facecolor="w",
                     edgecolor="w",
                 )
-            rect = [0.1, 0.1, 0.8, 0.8]
-            ax = WindroseAxes(fig, rect, facecolor="w", rmax=rmax, theta_labels=theta_labels, *args, **kwargs)
+            if rect is None:
+                rect = [0.1, 0.1, 0.8, 0.8]
+            ax = WindroseAxes(fig, rect, rmax=rmax, theta_labels=theta_labels, *args, **kwargs)
             fig.add_axes(ax)
             return ax
         else:

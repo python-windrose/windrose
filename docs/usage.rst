@@ -200,6 +200,7 @@ This example illustrate how to set an windrose axe on top of any other axes. Spe
 overlaying a map is often usefull.
 
 .. code:: python
+
    import numpy as np
    import matplotlib as mpl
    import matplotlib.pyplot as plt

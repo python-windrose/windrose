@@ -68,7 +68,7 @@ class WindroseAxes(PolarAxes):
 
     name = "windrose"
 
-    def __init__(self, *args, theta_labels=DEFAULT_THETA_LABELS, **kwargs):
+    def __init__(self, *args, **kwargs):
         """
         See Axes base class for args and kwargs documentation
 

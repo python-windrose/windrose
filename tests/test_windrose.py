@@ -5,6 +5,7 @@ from numpy.testing import assert_allclose
 from pandas.testing import assert_frame_equal
 
 from windrose import clean, clean_df, plot_windrose
+from windrose import DEFAULT_THETA_LABELS
 
 matplotlib.use("Agg")  # noqa
 # Create wind speed and direction variables
@@ -52,3 +53,17 @@ def test_windrose_clean_df():
         }
     )
     assert_frame_equal(actual_df, expected_df)
+
+
+def test_theta_labels():
+    # Ensure default theta_labels are correct
+    ax = WindroseAxes.from_ax()
+    theta_labels = [t.get_text() for t in ax.get_xticklabels()]
+    assert theta_labels == DEFAULT_THETA_LABELS
+    plt.close()
+
+    # Ensure theta_labels are changed when specified
+    ax = WindroseAxes.from_ax(theta_labels=list("abcdefgh"))
+    theta_labels = [t.get_text() for t in ax.get_xticklabels()]
+    assert theta_labels == ["a", "b", "c", "d", "e", "f", "g", "h"]
+    plt.close()

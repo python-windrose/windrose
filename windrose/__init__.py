@@ -4,6 +4,7 @@ from matplotlib.projections import register_projection
 
 from .windrose import D_KIND_PLOT  # noqa
 from .windrose import DPI_DEFAULT  # noqa
+from .windrose import DEFAULT_THETA_LABELS  # noqa
 from .windrose import FIGSIZE_DEFAULT  # noqa
 from .windrose import WindAxes  # noqa
 from .windrose import WindAxesFactory  # noqa

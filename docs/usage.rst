@@ -198,102 +198,64 @@ Overlay of a map
 
 This example illustrate how to set an windrose axe on top of any other axes. Specifically,
 overlaying a map is often usefull.
+It rely on matplotlib toolbox inset_axes utilities.
 
 .. code:: python
 
-   import numpy as np
-   import matplotlib as mpl
-   import matplotlib.pyplot as plt
-   import cartopy.crs as ccrs
-   import cartopy.io.img_tiles as cimgt
+    import numpy as np
+    import matplotlib.pyplot as plt
+    from mpl_toolkits.axes_grid.inset_locator import inset_axes
+    import cartopy.crs as ccrs
+    import cartopy.io.img_tiles as cimgt
 
-   import windrose
+    import windrose
 
-   def coordinate2figposition(lon, lat, ax):
-       """Given an ax, return the figure position of a lon and lat
+    ws = np.random.random(500) * 6
+    wd = np.random.random(500) * 360
 
-       Parameters
-       ==========
+    minlon, maxlon, minlat, maxlat = (6.5, 7.0, 45.85, 46.05)
 
-       lon : float
-           The longitude of the point
-       lat : float
-           The latitude of the point
-       ax : matplotlib.Axes
-           The axe used as overlay
+    proj = ccrs.PlateCarree()
+    fig = plt.figure(figsize=(12, 6))
+    # Draw main ax on top of which we will add windroses
+    main_ax = fig.add_subplot(1, 1, 1, projection=proj)
+    main_ax.set_extent([minlon, maxlon, minlat, maxlat], crs=proj)
+    main_ax.gridlines(draw_labels=True)
+    main_ax.coastlines()
 
-       Return
-       ======
+    request = cimgt.OSM()
+    main_ax.add_image(request, 12)
 
-       xy : tuple
-           The position of the lon and lat on the figure.
-       """
+    # Coordinates of the station we were measuring windspeed
+    cham_lon, cham_lat = (6.8599, 45.9259)
+    passy_lon, passy_lat = (6.7, 45.9159)
 
-       display_coordinate = ax.transData.transform((lon, lat))
-       fig_inverted = ax.figure.transFigure.inverted()
-       xy = fig_inverted.transform(display_coordinate)
-       return xy
+    # Inset axe it with a fixed size
+    wrax_cham = inset_axes(main_ax, 
+            width=1,                             # size in inches
+            height=1,                            # size in inches
+            loc='center',                        # center bbox at given position
+            bbox_to_anchor=(cham_lon, cham_lat), # position of the axe
+            bbox_transform=main_ax.transData,    # use data coordinate (not axe coordinate)
+            axes_class=windrose.WindroseAxes,    # specify the class of the axe
+            )
 
+    # Inset axe with size relative to main axe
+    height_deg = 0.1
+    wrax_passy = inset_axes(main_ax,
+            width="100%",                        # size in % of bbox
+            height="100%",                       # size in % of bbox
+            #loc='center',  # don't know why, but this doesn't work.
+            # specify the center lon and lat of the plot, and size in degree
+            bbox_to_anchor=(passy_lon-height_deg/2, passy_lat-height_deg/2, height_deg, height_deg),
+            bbox_transform=main_ax.transData,
+            axes_class=windrose.WindroseAxes,
+            )
 
-   def main():
-       minlon, maxlon, minlat, maxlat = (6.5, 7.0, 45.85, 46.05)
-
-       proj = ccrs.PlateCarree()
-       fig = plt.figure()
-       # Draw main ax on top of which we will add windroses
-       main_ax = fig.add_subplot(1, 1, 1, projection=proj)
-       main_ax.set_extent([minlon, maxlon, minlat, maxlat], crs=proj)
-       main_ax.gridlines(draw_labels=True)
-       main_ax.coastlines()
-
-       request = cimgt.OSM()
-       main_ax.add_image(request, 12)
-
-       # Coordinates of the station we were measuring windspeed
-       cham_lon, cham_lat = (6.8599, 45.9259)
-       passy_lon, passy_lat = (6.7, 45.9159)
-
-       # heigh of the plot in figure proportion
-       height = 0.2
-
-       x_cham, y_cham = coordinate2figposition(cham_lon, cham_lat, ax=main_ax)
-       x_passy, y_passy = coordinate2figposition(passy_lon, passy_lat, ax=main_ax)
-
-       ws = np.random.random(500) * 6
-       wd = np.random.random(500) * 360
-
-       wrax_cham = windrose.WindroseAxes.from_ax(
-               fig=fig,
-               rect=[x_cham-height/2, y_cham-height/2, height, height],
-               )
-
-       wrax_passy = windrose.WindroseAxes.from_ax(
-               fig=fig,
-               rect=[x_passy-height/2, y_passy-height/2, height, height],
-               )
-
-       wrax_cham.bar(wd, ws)
-       wrax_cham.set_xticklabels("")
-       wrax_passy.bar(wd, ws)
-       wrax_passy.set_xticklabels("")
-
-
-       # IMPORTANT! ===================================================================
-       # Cartopy set the axis aspect to "equal", which dynamically change the x/y scale.
-       # Since we fixed the position of the windrose as fraction of the figure, the position
-       # may be wrong.
-       # So we have to set the aspect to "auto". But the background will be scrappy
-       #main_ax.set_aspect("auto")
-
-       # If you don't resize the figure later on, you can also tweak the fig size to be
-       # proportional of your lon/lat extent.
-       ratio_fig_w_h = (maxlat-minlat)/(maxlon-minlon)
-       fig_width = 10
-       fig.set_size_inches(fig_width, fig_width*ratio_fig_w_h)
-
-       return (main_ax, [wrax_cham, wrax_passy])
-
-   main()
+    wrax_cham.bar(wd, ws)
+    wrax_passy.bar(wd, ws)
+    for ax in [wrax_cham, wrax_passy]:
+      ax.tick_params(labelleft=False, labelbottom=False)
 
 .. figure:: screenshots/map_overlay.png
    :alt: map_overlay

@@ -19,6 +19,7 @@ from .windrose import plot_windrose_df  # noqa
 from .windrose import plot_windrose  # noqa
 from .windrose import FIGSIZE_DEFAULT # noqa
 from .windrose import DPI_DEFAULT  # noqa
+from .windrose import DEFAULT_THETA_LABELS  # noqa
 from .windrose import D_KIND_PLOT  # noqa
 
 from matplotlib.projections import register_projection

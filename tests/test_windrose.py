@@ -20,6 +20,7 @@ from windrose import WindAxes
 from windrose import WindAxesFactory
 
 # from windrose import FIGSIZE_DEFAULT, DPI_DEFAULT
+from windrose import DEFAULT_THETA_LABELS
 from windrose import wrbar, wrbox, wrcontour, wrcontourf, wrpdf, wrscatter
 from windrose import plot_windrose
 
@@ -88,6 +89,20 @@ def test_windrose_np_mpl_oo():
     bins = bins[1:]
     ax.pdf(ws, bins=bins)
     plt.savefig("tests/output/oo/pdf.png")
+    plt.close()
+
+
+def test_theta_labels():
+    # Ensure default theta_labels are correct
+    ax = WindroseAxes.from_ax()
+    theta_labels = [t.get_text() for t in ax.get_xticklabels()]
+    assert theta_labels == DEFAULT_THETA_LABELS
+    plt.close()
+
+    # Ensure theta_labels are changed when specified
+    ax = WindroseAxes.from_ax(theta_labels=list("abcdefgh"))
+    theta_labels = [t.get_text() for t in ax.get_xticklabels()]
+    assert theta_labels == ["a", "b", "c", "d", "e", "f", "g", "h"]
     plt.close()
 
 

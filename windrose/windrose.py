@@ -87,6 +87,7 @@ class WindroseAxes(PolarAxes):
         PolarAxes.__init__(self, *args, **kwargs)
         self.set_aspect("equal", adjustable="box", anchor="C")
         self.radii_angle = 67.5
+        self.rstep = None
         self.clear()
 
     @staticmethod
@@ -150,8 +151,13 @@ class WindroseAxes(PolarAxes):
         if angle is None:
             angle = self.radii_angle
         self.radii_angle = angle
-        N = 5
         rmax = self.get_rmax()
+        if self.rstep is not None:
+            rstep = self.rstep
+            N = np.int_(np.ceil(rmax/rstep))
+            rmax = N * rstep
+        else:
+            N = 5
         radii = np.linspace(0, rmax, N + 1)
         if rmax % N == 0:
             fmt = "%d"
@@ -363,7 +369,9 @@ class WindroseAxes(PolarAxes):
 
         normed = kwargs.pop("normed", False)
         blowto = kwargs.pop("blowto", False)
-
+        rstep = kwargs.pop("rstep", None)
+        self.rstep = rstep
+        
         # Calm condition
         calm_limit = kwargs.pop("calm_limit", None)
         if calm_limit is not None:

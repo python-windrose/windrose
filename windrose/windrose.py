@@ -921,7 +921,7 @@ def plot_windrose_np(
     # var = df[var_name].values
     # direction = df[direction_name].values
     if clean_flag:
-        var, direction = clean(var, direction)
+        direction, var = clean(direction, var)
     if by is None:
         ax = f_plot(direction=direction, var=var, rmax=rmax, **kwargs)
         if kind not in ["pdf"]:

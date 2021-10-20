@@ -22,9 +22,12 @@ from windrose import WindAxesFactory
 # from windrose import FIGSIZE_DEFAULT, DPI_DEFAULT
 from windrose import wrbar, wrbox, wrcontour, wrcontourf, wrpdf, wrscatter
 from windrose import plot_windrose
+from windrose import clean, clean_df
 
 import numpy as np
 import pandas as pd
+from numpy.testing import assert_allclose
+from pandas.testing import assert_frame_equal
 
 
 # Create wind speed and direction variables
@@ -208,3 +211,34 @@ def test_windrose_pd_not_default_names():
 #     #df = df.reset_index()
 #     #df = df.set_index([by, 'Timestamp'])
 #     #print(df)
+
+
+def test_windrose_clean():
+    direction = np.array(
+        [1.0, 1.0, 1.0, np.nan, np.nan, np.nan]
+    )
+    var = np.array(
+        [2.0, 0.0, np.nan, 2.0, 0.0, np.nan]
+    )
+    actual_direction, actual_var = clean(direction, var)
+    expected_direction = np.array([1.0])
+    expected_var = np.array([2.0])
+    assert_allclose(actual_direction, expected_direction)
+    assert_allclose(actual_var, expected_var)
+
+
+def test_windrose_clean_df():
+    df = pd.DataFrame(
+        {
+            "direction": [1.0, 1.0, 1.0, np.nan, np.nan, np.nan],
+            "speed": [2.0, 0.0, np.nan, 2.0, 0.0, np.nan],
+        }
+    )
+    actual_df = clean_df(df)
+    expected_df = pd.DataFrame(
+        {
+            "direction": [1.0],
+            "speed": [2.0],
+        }
+    )
+    assert_frame_equal(actual_df, expected_df)

@@ -842,7 +842,7 @@ def clean_df(df, var=VAR_DEFAULT, direction=DIR_DEFAULT):
     removed from DataFrame
     if a direction is nan, this row is also removed from DataFrame
     """
-    return df[df[var].notnull() & df[var] != 0 & df[direction].notnull()]
+    return df[df[var].notnull() & (df[var] != 0) & df[direction].notnull()]
 
 
 def clean(direction, var, index=False):
@@ -853,8 +853,8 @@ def clean(direction, var, index=False):
     if a direction is nan, data is also removed from both array
     """
     dirmask = np.isfinite(direction)
-    varmask = var != 0 & np.isfinite(var)
-    mask = dirmask * varmask
+    varmask = (var != 0) & np.isfinite(var)
+    mask = dirmask & varmask
     if index is None:
         index = np.arange(mask.sum())
         return direction[mask], var[mask], index

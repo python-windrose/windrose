@@ -14,6 +14,7 @@
 - Lionel Roubeyrie - LIMAIR - https://github.com/LionelR - original author
 - Bruno Ruas De Pinho - https://github.com/brunorpinho
 - Samuël Weber - Institut des Géosciences de l'Environnement, Grenoble, France, https://github.com/weber-s
+- 15b3 - https://github.com/15b3
 
 [Full Github contributors list](https://github.com/python-windrose/windrose/graphs/contributors).
 

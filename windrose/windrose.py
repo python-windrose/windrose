@@ -271,6 +271,7 @@ class WindroseAxes(PolarAxes):
         weibull_factors :
         mean_values :
         frequency :
+        calm_limit : float, default None
         kwarg
             Any argument accepted by :obj:`matplotlib.pyplot.plot`.
         """
@@ -415,6 +416,11 @@ class WindroseAxes(PolarAxes):
             colors in the order specified.
         cmap : a cm Colormap instance from :obj:`matplotlib.cm`, optional
             if cmap == None and colors == None, a default Colormap is used.
+        calm_limit : float, optional
+            Calm limit for the var parameter. If not None, a centered red
+            circle will be draw for representing the calms occurences and all
+            datas below this value will be removed from the computation.
+
         others kwargs
             Any supported argument of :obj:`matplotlib.pyplot.plot`
 
@@ -476,6 +482,10 @@ class WindroseAxes(PolarAxes):
             colors in the order specified.
         cmap : a cm Colormap instance from :obj:`matplotlib.cm`, optional
             if cmap == None and colors == None, a default Colormap is used.
+        calm_limit : float, optional
+            Calm limit for the var parameter. If not None, a centered red
+            circle will be draw for representing the calms occurences and all
+            datas below this value will be removed from the computation.
 
         others kwargs
             Any supported argument of :obj:`matplotlib.pyplot.plot`
@@ -545,6 +555,10 @@ class WindroseAxes(PolarAxes):
         opening : float, optional
             between 0.0 and 1.0, to control the space between each sector (1.0
             for no space)
+        calm_limit : float, optional
+            Calm limit for the var parameter. If not None, a centered red
+            circle will be draw for representing the calms occurences and all
+            datas below this value will be removed from the computation.
 
         """
 
@@ -619,6 +633,10 @@ class WindroseAxes(PolarAxes):
         edgecolor : string, optional
             The string color each edge bar will be plotted.  Default : no
             edgecolor
+        calm_limit : float, optional
+            Calm limit for the var parameter. If not None, a centered red
+            circle will be draw for representing the calms occurences and all
+            datas below this value will be removed from the computation.
 
         """
 

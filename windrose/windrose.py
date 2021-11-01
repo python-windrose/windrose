@@ -752,7 +752,7 @@ def histogram(direction, var, bins, nsector, normed=False, blowto=False):
 
     angle = 360. / nsector
 
-    dir_bins = np.arange(-angle / 2, 360. + angle, angle, dtype=np.float)
+    dir_bins = np.arange(-angle / 2, 360. + angle, angle, dtype=float)
     dir_edges = dir_bins.tolist()
     dir_edges.pop(-1)
     dir_edges[0] = dir_edges.pop(-1)

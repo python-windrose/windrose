@@ -1,0 +1,42 @@
+name: Tests
+
+on:
+  pull_request:
+  push:
+    branches: [master, main]
+
+jobs:
+  run:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        python-version: ["3.6", "3.7", "3.8", "3.9", "3.10"]
+        os: [windows-latest, ubuntu-latest, macos-latest]
+      fail-fast: false
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup
+      uses: mamba-org/provision-with-micromamba@main
+      with:
+        environment-file: false
+
+    - name: Python ${{ matrix.python-version }}
+      shell: bash -l {0}
+      run: |
+        micromamba create --name TEST python=${{ matrix.python-version }} --file requirements.txt --file requirements-dev.txt --channel conda-forge
+        micromamba activate TEST
+        python -m pip install -e . --no-deps --force-reinstall
+
+    - name: Debug Installation
+      shell: bash -l {0}
+      run: |
+        micromamba activate TEST
+        which python
+
+    - name: Tests
+      shell: bash -l {0}
+      run: |
+        micromamba activate TEST
+        pytest --verbose tests

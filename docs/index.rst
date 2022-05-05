@@ -50,12 +50,6 @@ https://docs.github.com/en/pull-requests/collaborating-with-pull-requests
    :target: https://zenodo.org/badge/latestdoi/37549137
 .. |Research software impact| image:: http://depsy.org/api/package/pypi/windrose/badge.svg
    :target: http://depsy.org/package/python/windrose
-.. |Video1| image:: http://img.youtube.com/vi/0u2RxtGgEFo/0.jpg
-   :target: https://www.youtube.com/watch?v=0u2RxtGgEFo
-.. |Video2| image:: http://img.youtube.com/vi/3CWpjSEt0so/0.jpg
-   :target: https://www.youtube.com/watch?v=3CWpjSEt0so
-.. |Video3| image:: http://img.youtube.com/vi/UiGC-3aw9TM/0.jpg
-   :target: https://www.youtube.com/watch?v=UiGC-3aw9TM
 
 Indices and tables
 ==================

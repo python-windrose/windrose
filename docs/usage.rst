@@ -312,6 +312,13 @@ Video export
 A video of plots can be exported. A playlist of videos is available at
 https://www.youtube.com/playlist?list=PLE9hIvV5BUzsQ4EPBDnJucgmmZ85D_b-W
 
+See:
+
+|Video1|
+
+|Video2|
+
+|Video3|
 
 `Source code <https://github.com/python-windrose/windrose/blob/master/samples/example_animate.py>`__
 
@@ -324,3 +331,10 @@ Use:
     $ python samples/example_animate.py --help
 
 to display command line interface usage.
+
+.. |Video1| image:: http://img.youtube.com/vi/0u2RxtGgEFo/0.jpg
+   :target: https://www.youtube.com/watch?v=0u2RxtGgEFo
+.. |Video2| image:: http://img.youtube.com/vi/3CWpjSEt0so/0.jpg
+   :target: https://www.youtube.com/watch?v=3CWpjSEt0so
+.. |Video3| image:: http://img.youtube.com/vi/UiGC-3aw9TM/0.jpg
+   :target: https://www.youtube.com/watch?v=UiGC-3aw9TM

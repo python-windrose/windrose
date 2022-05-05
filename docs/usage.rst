@@ -50,8 +50,8 @@ Another stacked histogram representation, not normed, with bins limits
 .. figure:: screenshots/box.png
    :alt: box
 
-A windrose in filled representation, with a controled colormap
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A windrose in filled representation, with a controlled colormap
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code:: python
 
@@ -88,12 +88,12 @@ Same as above, but with contours over each filled region...
    :alt: contour
 
 After that, you can have a look at the computed values used to plot the
-windrose with the ``ax._info`` dictionnary : 
+windrose with the ``ax._info`` dictionary : 
 
 - ``ax._info['bins']`` :
   list of bins (limits) used for wind speeds. If not set in the call, bins
   will be set to 6 parts between wind speed min and max. 
-- ``ax._info['dir']`` : list of directions "bundaries" used to compute the
+- ``ax._info['dir']`` : list of directions "boundaries" used to compute the
   distribution by wind direction sector. This can be set by the nsector
   parameter (see below). 
 - ``ax._info['table']`` : the resulting table of
@@ -148,7 +148,7 @@ Optional:
   sequence of bins variable. If not set, bins=6 between min(var) and
   max(var).
 - ``blowto`` : bool. If True, the windrose will be pi rotated,
-  to show where the wind blow to (usefull for pollutant rose). 
+  to show where the wind blow to (useful for pollutant rose). 
 - ``colors`` : string or tuple - one string color (``'k'`` or
   ``'black'``), in this case all bins will be plotted in this color; a
   tuple of matplotlib color args (string, float, rgb, etc), different
@@ -197,7 +197,7 @@ Overlay of a map
 ~~~~~~~~~~~~~~~~
 
 This example illustrate how to set an windrose axe on top of any other axes. Specifically,
-overlaying a map is often usefull.
+overlaying a map is often useful.
 It rely on matplotlib toolbox inset_axes utilities.
 
 .. code:: python

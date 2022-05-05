@@ -30,7 +30,7 @@ def main():
     ax.box(wd, ws, bins=bins)
     ax.set_legend()
 
-    # A windrose in filled representation, with a controled colormap
+    # A windrose in filled representation, with a controleld colormap
     ax = WindroseAxes.from_ax()
     ax.contourf(wd, ws, bins=bins, cmap=cm.hot)
     ax.set_legend()

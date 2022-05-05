@@ -14,7 +14,7 @@ A [wind rose](https://en.wikipedia.org/wiki/Wind_rose) is a graphic tool used by
 
 Windrose is a Python library to manage wind data, draw windroses (also known as polar rose plots), and fit Weibull probability density functions.
 
-The initial use case of this library was for a technical report concerning pollution exposure and wind distributions analyzes. Data from local pollution measures and meteorologic informations from various sources like Meteo-France were used to generate a pollution source wind rose.
+The initial use case of this library was for a technical report concerning pollution exposure and wind distributions analyzes. Data from local pollution measures and meteorologic information from various sources like Meteo-France were used to generate a pollution source wind rose.
 
 It is also used by some contributors for teaching purpose.
 

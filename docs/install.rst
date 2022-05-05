@@ -4,16 +4,16 @@ Install
 Requirements
 ~~~~~~~~~~~~
 
--  matplotlib http://matplotlib.org/
--  numpy http://www.numpy.org/
+-  matplotlib https://matplotlib.org/
+-  numpy https://numpy.org/
 -  and naturally python https://www.python.org/ :-P
 
 Option libraries:
 
--  Pandas http://pandas.pydata.org/ (to feed plot functions easily)
--  Scipy http://www.scipy.org/ (to fit data with Weibull distribution)
+-  Pandas https://pandas.pydata.org/ (to feed plot functions easily)
+-  SciPy https://scipy.org/ (to fit data with Weibull distribution)
 -  ffmpeg https://www.ffmpeg.org/ (to output video)
--  click http://click.pocoo.org/ (for command line interface tools)
+-  click https://click.palletsprojects.com/ (for command line interface tools)
 
 Install latest release version via pip
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

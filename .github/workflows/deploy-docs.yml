@@ -1,0 +1,47 @@
+name: Build and Deploy docs
+
+on:
+  push:
+    branches:
+      - [master, main]
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: Setup Mamba
+      uses: mamba-org/provision-with-micromamba@main
+      with:
+        environment-file: false
+
+    - name: Build environment
+      shell: bash -l {0}
+      run: |
+        micromamba create --name TEST python=3 --file requirements.txt --file requirements-dev.txt --channel conda-forge
+        micromamba activate TEST
+        python -m pip install -e . --no-deps --force-reinstall
+
+    - name: Get the version
+      id: get_version
+      run: echo ::set-output name=VERSION::$(python setup.py --version)
+
+    - name: Build documentation
+      shell: bash -l {0}
+      run: |
+        set -e
+        micromamba activate TEST
+        pushd docs
+        make clean html linkcheck
+        popd
+
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3.6.1
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: docs/_build/html

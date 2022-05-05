@@ -4,7 +4,7 @@ Notebook example
 An `IPython (Jupyter) <http://ipython.org/>`__ notebook showing this
 package usage is available at:
 
--  http://nbviewer.ipython.org/github/python-windrose/windrose/blob/master/windrose_sample_random.ipynb
+-  https://nbviewer.org/github/python-windrose/windrose/blob/master/windrose_sample_random.ipynb
 
 Script example
 --------------
@@ -267,7 +267,7 @@ Functional API
 Instead of using object oriented approach like previously shown, some
 "shortcut" functions have been defined: ``wrbox``, ``wrbar``,
 ``wrcontour``, ``wrcontourf``, ``wrpdf``. See `unit
-tests <tests/test_windrose.py>`__.
+tests <https://github.com/python-windrose/windrose/blob/master/tests/test_windrose.py>`__.
 
 Pandas support
 --------------
@@ -310,13 +310,17 @@ Video export
 ------------
 
 A video of plots can be exported. A playlist of videos is available at
-https://www.youtube.com/playlist?list=PLE9hIvV5BUzsQ4EPBDnJucgmmZ85D\_b-W
+https://www.youtube.com/playlist?list=PLE9hIvV5BUzsQ4EPBDnJucgmmZ85D_b-W
 
 See:
 
-|Video1| |Video2| |Video3|
+|Video1|
 
-`Source code <samples/example_animate.py>`__
+|Video2|
+
+|Video3|
+
+`Source code <https://github.com/python-windrose/windrose/blob/master/samples/example_animate.py>`__
 
 This is just a sample for now. API for video need to be created.
 
@@ -327,3 +331,10 @@ Use:
     $ python samples/example_animate.py --help
 
 to display command line interface usage.
+
+.. |Video1| image:: http://img.youtube.com/vi/0u2RxtGgEFo/0.jpg
+   :target: https://www.youtube.com/watch?v=0u2RxtGgEFo
+.. |Video2| image:: http://img.youtube.com/vi/3CWpjSEt0so/0.jpg
+   :target: https://www.youtube.com/watch?v=3CWpjSEt0so
+.. |Video3| image:: http://img.youtube.com/vi/UiGC-3aw9TM/0.jpg
+   :target: https://www.youtube.com/watch?v=UiGC-3aw9TM

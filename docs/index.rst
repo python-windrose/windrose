@@ -1,5 +1,5 @@
 |Latest Version| |Supported Python versions| |Wheel format| |License|
-|Development Status| |Downloads monthly| |Build Status| |DOI| |Research software impact|
+|Development Status| |Downloads monthly| |Tests| |DOI| |Research software impact|
 
 .. windrose documentation master file, created by
    sphinx-quickstart on Tue May  1 16:51:19 2018.
@@ -44,8 +44,8 @@ https://docs.github.com/en/pull-requests/collaborating-with-pull-requests
    :target: https://pypi.org/project/windrose/
 .. |Downloads monthly| image:: https://img.shields.io/pypi/dm/windrose.svg
    :target: https://pypi.org/project/windrose/
-.. |Build Status| image:: https://api.travis-ci.org/python-windrose/windrose.svg
-   :target: https://travis-ci.org/python-windrose/windrose
+.. |Tests| image:: https://github.com/python-windrose/windrose/actions/workflows/tests.yml/badge.svg
+   :target: https://github.com/python-windrose/windrose/actions/workflows/tests.yml
 .. |DOI| image:: https://zenodo.org/badge/37549137.svg
    :target: https://zenodo.org/badge/latestdoi/37549137
 .. |Research software impact| image:: http://depsy.org/api/package/pypi/windrose/badge.svg

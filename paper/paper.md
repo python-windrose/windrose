@@ -24,7 +24,7 @@ affiliations:
    index: 2
 date: 11 may 2018
 bibliography: paper.bib
-nocite: | 
+nocite: |
   @wiki:xxx, @doi:10.1109/MCSE.2007.58, @doi:10.1109/MCSE.2011.36, @Walt:2011:NAS:1957373.1957466, @doi:10.1109/MCSE.2007.55, @mckinney-proc-scipy-2010, @doi:10.1109/MCSE.2007.53, @oliphant2001scipy, @oliphant2006guide, @munn1969pollution, @nrcs, @garver2016, @quick2017optimization, @harris2014parent, @horel2016summer
 ---
 
@@ -68,7 +68,7 @@ The Weibull distribution is used in weather forecasting and the wind power indus
 Full documentation of library is available at http://windrose.readthedocs.io/.
 
 If you discover issues, have ideas for improvements or new features, please report them.
-[CONTRIBUTING.md](https://github.com/python-windrose/windrose/blob/master/CONTRIBUTING.md) explains 
+[CONTRIBUTING.md](https://github.com/python-windrose/windrose/blob/master/CONTRIBUTING.md) explains
 how to contribute to this project.
 
 List of contributors and/or notable users can be found at [CONTRIBUTORS.md](https://github.com/python-windrose/windrose/blob/master/CONTRIBUTORS.md).

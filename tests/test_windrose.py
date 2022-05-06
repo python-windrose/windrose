@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 # Run all unit tests (from project root directory)
 # $ pytest -vv tests

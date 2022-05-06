@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 #
 # windrose documentation build configuration file, created by
 # sphinx-quickstart on Tue May  1 16:51:19 2018.

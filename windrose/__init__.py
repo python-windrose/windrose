@@ -1,7 +1,4 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-from __future__ import absolute_import, division, print_function  # noqa
+"""Draw windrose (also known as a polar rose plot)"""
 
 from matplotlib.projections import register_projection
 

@@ -1,7 +1,4 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-# from __future__ import absolute_import, division, print_function
+"""Windrose for matplotlib"""
 
 import locale
 import random
@@ -22,7 +19,7 @@ CALM_CIRCLE_COLOR = "red"
 CALM_CIRCLE_ALPHA = 0.4
 
 
-class WindAxesFactory(object):
+class WindAxesFactory:
     """
 
     Factory class to create WindroseAxes or WindAxes
@@ -58,7 +55,7 @@ class WindAxesFactory(object):
                 ax = cls.from_ax(ax, *args, **kwargs)
                 return ax
         else:
-            raise NotImplementedError("typ=%r but it might be in %s" % (typ, d.keys()))
+            raise NotImplementedError(f"typ={typ!r} but it might be in {d.keys()}")
 
 
 class WindroseAxes(PolarAxes):
@@ -523,7 +520,7 @@ class WindroseAxes(PolarAxes):
                 facecolor=colors[i],
                 edgecolor=colors[i],
                 zorder=zorder,
-                **kwargs
+                **kwargs,
             )
             self.patches_list.extend(patch)
         self._update()
@@ -602,7 +599,7 @@ class WindroseAxes(PolarAxes):
                     facecolor=colors[i],
                     edgecolor=edgecolor,
                     zorder=zorder,
-                    **kwargs
+                    **kwargs,
                 )
                 self.add_patch(patch)
                 if j == 0:
@@ -676,7 +673,7 @@ class WindroseAxes(PolarAxes):
                     facecolor=colors[i],
                     edgecolor=edgecolor,
                     zorder=zorder,
-                    **kwargs
+                    **kwargs,
                 )
                 self.add_patch(patch)
                 if j == 0:
@@ -689,7 +686,7 @@ class WindAxes(mpl.axes.Subplot):
         """
         See Axes base class for args and kwargs documentation
         """
-        super(WindAxes, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     @staticmethod
     def from_ax(ax=None, fig=None, *args, **kwargs):
@@ -711,7 +708,7 @@ class WindAxes(mpl.axes.Subplot):
         plot_color="g",
         Nbins=10,
         *args,
-        **kwargs
+        **kwargs,
     ):
         """
         Draw probability density function and return Weibull distribution
@@ -833,7 +830,7 @@ def wrpdf(
     ax=None,
     rmax=None,
     *args,
-    **kwargs
+    **kwargs,
 ):
     """
     Draw probability density function and return Weitbull distribution
@@ -913,8 +910,9 @@ def plot_windrose(
     direction_name=DIR_DEFAULT,
     by=None,
     rmax=None,
-    **kwargs
+    **kwargs,
 ):
+    """Plot windrose from a pandas DataFrame or a numpy array."""
     if var is None:
         # Assuming direction_or_df is a DataFrame
         df = direction_or_df
@@ -932,8 +930,9 @@ def plot_windrose_df(
     direction_name=DIR_DEFAULT,
     by=None,
     rmax=None,
-    **kwargs
+    **kwargs,
 ):
+    """Plot windrose from a pandas DataFrame."""
     var = df[var_name].values
     direction = df[direction_name].values
     return plot_windrose_np(direction, var, by=by, rmax=rmax, **kwargs)
@@ -942,10 +941,11 @@ def plot_windrose_df(
 def plot_windrose_np(
     direction, var, kind="contour", clean_flag=True, by=None, rmax=None, **kwargs
 ):
+    """Plot windrose from a numpy array."""
     if kind in D_KIND_PLOT.keys():
         f_plot = D_KIND_PLOT[kind]
     else:
-        raise Exception("kind=%r but it must be in %r" % (kind, D_KIND_PLOT.keys()))
+        raise Exception(f"kind={kind!r} but it must be in {D_KIND_PLOT.keys()!r}")
     # if f_clean is not None:
     #     df = f_clean(df)
     # var = df[var_name].values

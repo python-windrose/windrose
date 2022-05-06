@@ -1,12 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from windrose import WindroseAxes
-from windrose import WindAxes
-
-from matplotlib import pyplot as plt
 import matplotlib.cm as cm
 import numpy as np
+from matplotlib import pyplot as plt
+
+from windrose import WindAxes, WindroseAxes
 
 
 def main():

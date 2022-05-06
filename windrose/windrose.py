@@ -4,13 +4,14 @@
 # from __future__ import absolute_import, division, print_function
 
 import locale
-import matplotlib as mpl
-from matplotlib import docstring
-import numpy as np
 import random
+
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib import docstring
 from matplotlib.projections.polar import PolarAxes
 from numpy.lib.twodim_base import histogram2d
-import matplotlib.pyplot as plt
 
 ZBASE = -1000  # The starting zorder for all drawing, negative to have the grid on
 VAR_DEFAULT = "speed"
@@ -87,7 +88,9 @@ class WindroseAxes(PolarAxes):
         self.cla()
 
     @staticmethod
-    def from_ax(ax=None, fig=None, rmax=None, theta_labels=None, rect=None, *args, **kwargs):
+    def from_ax(
+        ax=None, fig=None, rmax=None, theta_labels=None, rect=None, *args, **kwargs
+    ):
         """
         Return a WindroseAxes object for the figure `fig`.
         """
@@ -101,7 +104,9 @@ class WindroseAxes(PolarAxes):
                 )
             if rect is None:
                 rect = [0.1, 0.1, 0.8, 0.8]
-            ax = WindroseAxes(fig, rect, rmax=rmax, theta_labels=theta_labels, *args, **kwargs)
+            ax = WindroseAxes(
+                fig, rect, rmax=rmax, theta_labels=theta_labels, *args, **kwargs
+            )
             fig.add_axes(ax)
             return ax
         else:
@@ -226,7 +231,7 @@ class WindroseAxes(PolarAxes):
                 fmt += ")"
 
             if units:
-                fmt += ' ' + units
+                fmt += " " + units
 
             labels = [fmt % (labels[i], labels[i + 1]) for i in range(len(labels) - 1)]
             return labels
@@ -374,7 +379,7 @@ class WindroseAxes(PolarAxes):
         """
         if self.calm_count and self.calm_count > 0:
             circle = mpl.patches.Circle(
-                (0., 0.),
+                (0.0, 0.0),
                 self.calm_count,
                 transform=self.transData._b,
                 color=CALM_CIRCLE_COLOR,
@@ -512,9 +517,14 @@ class WindroseAxes(PolarAxes):
             val = vals[i, :] + offset
             offset += vals[i, :]
             zorder = ZBASE + nbins - i
-            patch = self.fill(np.append(angles, 0), np.append(val, 0),
-                              facecolor=colors[i], edgecolor=colors[i],
-                              zorder=zorder, **kwargs)
+            patch = self.fill(
+                np.append(angles, 0),
+                np.append(val, 0),
+                facecolor=colors[i],
+                edgecolor=colors[i],
+                zorder=zorder,
+                **kwargs
+            )
             self.patches_list.extend(patch)
         self._update()
 
@@ -750,20 +760,20 @@ def histogram(direction, var, bins, nsector, normed=False, blowto=False):
     if len(var) != len(direction):
         raise ValueError("var and direction must have same length")
 
-    angle = 360. / nsector
+    angle = 360.0 / nsector
 
-    dir_bins = np.arange(-angle / 2, 360. + angle, angle, dtype=float)
+    dir_bins = np.arange(-angle / 2, 360.0 + angle, angle, dtype=float)
     dir_edges = dir_bins.tolist()
     dir_edges.pop(-1)
     dir_edges[0] = dir_edges.pop(-1)
-    dir_bins[0] = 0.
+    dir_bins[0] = 0.0
 
     var_bins = bins.tolist()
     var_bins.append(np.inf)
 
     if blowto:
-        direction = direction + 180.
-        direction[direction >= 360.] = direction[direction >= 360.] - 360
+        direction = direction + 180.0
+        direction[direction >= 360.0] = direction[direction >= 360.0] - 360
 
     table = histogram2d(x=var, y=direction, bins=[var_bins, dir_bins], normed=False)[0]
     # add the last value to the first to have the table of North winds

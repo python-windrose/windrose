@@ -6,17 +6,16 @@ sample using "by" keyword
 """
 
 import click
+import matplotlib.cm as cm
 
 # import matplotlib
 # matplotlib.use("Agg")
 # import matplotlib as mpl
 import matplotlib.pyplot as plt
-import matplotlib.cm as cm
-
 import numpy as np
 import pandas as pd
 
-from windrose import WindroseAxes, FIGSIZE_DEFAULT, DPI_DEFAULT
+from windrose import DPI_DEFAULT, FIGSIZE_DEFAULT, WindroseAxes
 
 
 class AxCollection(object):
@@ -231,7 +230,8 @@ def main(filename, dpi, figsize, fps, bins_min, bins_max, bins_step, filename_ou
         # by_value = (2011, 5)
 
         # mask = (by == by_value).all(axis=1)
-        # ToFix: see http://stackoverflow.com/questions/32005403/boolean-indexing-with-numpy-array-and-tuples
+        # ToFix see
+        # http://stackoverflow.com/questions/32005403/boolean-indexing-with-numpy-array-and-tuples
 
         mask = (pd.Series(by_all) == by_value).values
 

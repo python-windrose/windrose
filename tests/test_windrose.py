@@ -8,28 +8,32 @@
 # $ pytest -vv tests/test_windrose.py::test_windrose_np_plot_and_pd_plot
 
 import matplotlib
-
-matplotlib.use("Agg")  # noqa
-
-# import matplotlib as mpl
-from matplotlib import pyplot as plt
-from matplotlib import cm as cm
-
-from windrose import WindroseAxes
-from windrose import WindAxes
-from windrose import WindAxesFactory
-
-# from windrose import FIGSIZE_DEFAULT, DPI_DEFAULT
-from windrose import wrbar, wrbox, wrcontour, wrcontourf, wrpdf, wrscatter
-from windrose import plot_windrose
-from windrose import clean, clean_df
-
 import numpy as np
 import pandas as pd
+
+# import matplotlib as mpl
+from matplotlib import cm as cm
+from matplotlib import pyplot as plt
 from numpy.testing import assert_allclose
 from pandas.testing import assert_frame_equal
 
+# from windrose import FIGSIZE_DEFAULT, DPI_DEFAULT
+from windrose import (
+    WindAxes,
+    WindAxesFactory,
+    WindroseAxes,
+    clean,
+    clean_df,
+    plot_windrose,
+    wrbar,
+    wrbox,
+    wrcontour,
+    wrcontourf,
+    wrpdf,
+    wrscatter,
+)
 
+matplotlib.use("Agg")  # noqa
 # Create wind speed and direction variables
 N = 500
 ws = np.random.random(N) * 6
@@ -214,12 +218,8 @@ def test_windrose_pd_not_default_names():
 
 
 def test_windrose_clean():
-    direction = np.array(
-        [1.0, 1.0, 1.0, np.nan, np.nan, np.nan]
-    )
-    var = np.array(
-        [2.0, 0.0, np.nan, 2.0, 0.0, np.nan]
-    )
+    direction = np.array([1.0, 1.0, 1.0, np.nan, np.nan, np.nan])
+    var = np.array([2.0, 0.0, np.nan, 2.0, 0.0, np.nan])
     actual_direction, actual_var = clean(direction, var)
     expected_direction = np.array([1.0])
     expected_var = np.array([2.0])

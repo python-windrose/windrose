@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import pandas as pd
-
-from windrose import plot_windrose
-from matplotlib import pyplot as plt
 import matplotlib.cm as cm
 import numpy as np
+import pandas as pd
+from matplotlib import pyplot as plt
+
+from windrose import plot_windrose
 
 
 def main():

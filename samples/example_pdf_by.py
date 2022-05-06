@@ -8,28 +8,35 @@ One figure per year
 """
 
 
-import click
-
 import datetime
-
-# import time
-
 from math import pi
+
+import click
 
 # import matplotlib
 import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
 
 # import matplotlib.animation
 from matplotlib.backends.backend_pdf import PdfPages
+from numpy import cos, sin
+
+from windrose import (  # noqa
+    WindAxes,
+    WindroseAxes,
+    clean,
+    plot_windrose,
+    wrcontour,
+    wrcontourf,
+    wrscatter,
+)
+
+# import time
+
 
 # import matplotlib.cm as cm
 
-import numpy as np
-from numpy import sin, cos
-import pandas as pd
-
-from windrose import WindroseAxes, WindAxes, plot_windrose, clean  # noqa
-from windrose import wrscatter, wrcontour, wrcontourf  # noqa
 
 FIGSIZE_DEFAULT = (16, 12)
 S_FIGSIZE_DEFAULT = ",".join(map(str, FIGSIZE_DEFAULT))

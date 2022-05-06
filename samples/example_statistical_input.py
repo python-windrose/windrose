@@ -1,9 +1,10 @@
-import click
-from windrose import WindroseAxes
-from matplotlib import pyplot as plt
-import numpy as np
 import os
 
+import click
+import numpy as np
+from matplotlib import pyplot as plt
+
+from windrose import WindroseAxes
 
 FILENAME_DEFAULT = os.path.join(
     os.path.dirname(os.path.abspath(__file__)),
@@ -21,7 +22,8 @@ def main(filename):
     indexes = np.where(windRose[:, 1] > 0.1)
     windDirections = windRose[indexes[0], 0]
     windSpeeds = windRose[indexes[0], 1]
-    # windSpeeds = windRose[indexes[0], 1] * 2 / np.sqrt(np.pi)  # convert from mean wind speed to weibull scale factor
+    # convert from mean wind speed to weibull scale factor
+    # windSpeeds = windRose[indexes[0], 1] * 2 / np.sqrt(np.pi)
     windFrequencies = windRose[indexes[0], 2]
     # size = len(windDirections)
     ax.box(
@@ -32,7 +34,14 @@ def main(filename):
         bins=[15, 18, 20, 23, 25],
         nsector=72,
     )
-    # ax.box(windDirections, [[windSpeeds[i], 2] for i in range(len(windSpeeds))], frequency=windFrequencies, weibull_factors=1, bins=[15, 18, 20, 23, 25], nsector=72)
+    # ax.box(
+    #     windDirections,
+    #     [[windSpeeds[i], 2] for i in range(len(windSpeeds))],
+    #     frequency=windFrequencies,
+    #     weibull_factors=1,
+    #     bins=[15, 18, 20, 23, 25],
+    #     nsector=72,
+    # )
     ax.set_yticklabels([])
     plt.show()
 

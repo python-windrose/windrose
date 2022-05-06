@@ -1,14 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import click
-
 import datetime
-import pandas as pd
 
-import numpy as np
-from matplotlib import pyplot as plt
+import click
 import matplotlib.cm as cm
+import numpy as np
+import pandas as pd
+from matplotlib import pyplot as plt
 
 import windrose  # noqa
 

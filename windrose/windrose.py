@@ -169,7 +169,7 @@ class WindroseAxes(PolarAxes):
             see :obj:`matplotlib.pyplot.legend`.
 
         decimal_places : int, default 1
-            The decimal places of the formated legend
+            The decimal places of the formatted legend
 
         units: str, default None
 
@@ -360,7 +360,7 @@ class WindroseAxes(PolarAxes):
             var = var[mask]
             direction = direction[mask]
 
-        # Set the global information dictionnary
+        # Set the global information dictionary
         self._info["dir"], self._info["bins"], self._info["table"] = histogram(
             direction, var, bins, nsector, normed, blowto
         )
@@ -387,7 +387,7 @@ class WindroseAxes(PolarAxes):
         """
         Plot a windrose in linear mode. For each var bins, a line will be
         draw on the axes, a segment between each sector (center to center).
-        Each line can be formated (color, width, ...) like with standard plot
+        Each line can be formatted (color, width, ...) like with standard plot
         pylab command.
 
         Parameters
@@ -408,7 +408,7 @@ class WindroseAxes(PolarAxes):
             then bins=linspace(min(var), max(var), 6)
         blowto : bool, optional
             If True, the windrose will be pi rotated, to show where the wind
-            blow to (usefull for pollutant rose).
+            blow to (useful for pollutant rose).
         colors : string or tuple, optional
             one string color ('k' or 'black'), in this case all bins will be
             plotted in this color; a tuple of matplotlib color args (string,
@@ -418,8 +418,8 @@ class WindroseAxes(PolarAxes):
             if cmap == None and colors == None, a default Colormap is used.
         calm_limit : float, optional
             Calm limit for the var parameter. If not None, a centered red
-            circle will be draw for representing the calms occurences and all
-            datas below this value will be removed from the computation.
+            circle will be draw for representing the calms occurrences and all
+            data below this value will be removed from the computation.
 
         others kwargs
             Any supported argument of :obj:`matplotlib.pyplot.plot`
@@ -453,7 +453,7 @@ class WindroseAxes(PolarAxes):
         """
         Plot a windrose in filled mode. For each var bins, a line will be
         draw on the axes, a segment between each sector (center to center).
-        Each line can be formated (color, width, ...) like with standard plot
+        Each line can be formatted (color, width, ...) like with standard plot
         pylab command.
 
         Parameters
@@ -474,7 +474,7 @@ class WindroseAxes(PolarAxes):
             then bins=linspace(min(`var`), max(`var`), 6)
         blowto : bool, optional
             If True, the windrose will be pi rotated, to show where the wind
-            blow to (usefull for pollutant rose).
+            blow to (useful for pollutant rose).
         colors : string or tuple, optional
             one string color ('k' or 'black'), in this case all bins will be
             plotted in this color; a tuple of matplotlib color args (string,
@@ -484,8 +484,8 @@ class WindroseAxes(PolarAxes):
             if cmap == None and colors == None, a default Colormap is used.
         calm_limit : float, optional
             Calm limit for the var parameter. If not None, a centered red
-            circle will be draw for representing the calms occurences and all
-            datas below this value will be removed from the computation.
+            circle will be draw for representing the calms occurrences and all
+            data below this value will be removed from the computation.
 
         others kwargs
             Any supported argument of :obj:`matplotlib.pyplot.plot`
@@ -541,7 +541,7 @@ class WindroseAxes(PolarAxes):
             between min(`var`) and max(`var`).
         blowto : bool, optional.
             if True, the windrose will be pi rotated, to show where the wind
-            blow to (usefull for pollutant rose).
+            blow to (useful for pollutant rose).
         colors : string or tuple, optional
             one string color ('k' or 'black'), in this case all bins will be
             plotted in this color; a tuple of matplotlib color args (string,
@@ -557,8 +557,8 @@ class WindroseAxes(PolarAxes):
             for no space)
         calm_limit : float, optional
             Calm limit for the var parameter. If not None, a centered red
-            circle will be draw for representing the calms occurences and all
-            datas below this value will be removed from the computation.
+            circle will be draw for representing the calms occurrences and all
+            data below this value will be removed from the computation.
 
         """
 
@@ -622,7 +622,7 @@ class WindroseAxes(PolarAxes):
             between min(`var`) and max(`var`).
         blowto : bool, optional
             If True, the windrose will be pi rotated, to show where the wind
-            blow to (usefull for pollutant rose).
+            blow to (useful for pollutant rose).
         colors : string or tuple, optional
             one string color ('k' or 'black'), in this case all bins will be
             plotted in this color; a tuple of matplotlib color args (string,
@@ -635,8 +635,8 @@ class WindroseAxes(PolarAxes):
             edgecolor
         calm_limit : float, optional
             Calm limit for the var parameter. If not None, a centered red
-            circle will be draw for representing the calms occurences and all
-            datas below this value will be removed from the computation.
+            circle will be draw for representing the calms occurrences and all
+            data below this value will be removed from the computation.
 
         """
 
@@ -711,7 +711,7 @@ class WindAxes(mpl.axes.Subplot):
 
         if bins is None:
             bins = np.linspace(0, np.max(var), Nbins)
-        hist, bins = np.histogram(var, bins=bins, normed=True)
+        hist, bins = np.histogram(var, bins=bins, density=True)
         width = 0.7 * (bins[1] - bins[0])
         center = (bins[:-1] + bins[1:]) / 2
         self.bar(center, hist, align="center", width=width, color=bar_color)
@@ -725,7 +725,7 @@ def histogram(direction, var, bins, nsector, normed=False, blowto=False):
     """
     Returns an array where, for each sector of wind
     (centred on the north), we have the number of time the wind comes with a
-    particular var (speed, polluant concentration, ...).
+    particular var (speed, pollutant concentration, ...).
 
     Parameters
     ----------
@@ -743,8 +743,8 @@ def histogram(direction, var, bins, nsector, normed=False, blowto=False):
     normed : boolean, default False
         The resulting table is normed in percent or not.
     blowto : boolean, default False
-        Normaly a windrose is computed with directions as wind blows from. If
-        true, the table will be reversed (usefull for pollutantrose)
+        Normally a windrose is computed with directions as wind blows from. If
+        true, the table will be reversed (useful for pollutantrose)
     """
 
     if len(var) != len(direction):

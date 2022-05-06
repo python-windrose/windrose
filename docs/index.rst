@@ -19,7 +19,7 @@ Welcome to windrose's documentation!
    API <api.rst>
 
 A windrose, also known as a polar rose plot, is a special diagram for
-representing the distribution of meteorological datas, typically wind
+representing the distribution of meteorological data, typically wind
 speeds by class and direction. This is a simple module for the
 matplotlib python library, which requires numpy for internal
 computation.

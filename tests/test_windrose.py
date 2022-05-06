@@ -62,7 +62,7 @@ def test_windrose_np_mpl_oo():
     plt.savefig("tests/output/oo/box.png")
     plt.close()
 
-    # A windrose in filled representation, with a controled colormap
+    # A windrose in filled representation, with a controlled colormap
     ax = WindroseAxes.from_ax()
     ax.contourf(wd, ws, bins=bins, cmap=cm.hot)
     ax.set_legend()

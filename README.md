@@ -24,6 +24,10 @@ Some others contributors have used it to make figures for a [wind power plant co
 
 Some academics use it to track lightning strikes during high intensity storms. They are using it to visualize the motion of storms based on the relative position of the lightning from one strike to the next.
 
+## Try windrose on mybinder.org
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/python-windrose/windrose/HEAD?labpath=notebooks)
+
 ## Install
 
 ### Requirements

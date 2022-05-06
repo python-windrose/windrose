@@ -50,3 +50,10 @@ repos:
   rev: v0.3.4
   hooks:
     - id: blackdoc
+
+- repo: https://github.com/econchick/interrogate
+  rev: 1.5.0
+  hooks:
+    - id: interrogate
+      exclude: ^(docs|setup.py|tests)
+      args: [--config=pyproject.toml]

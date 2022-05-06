@@ -1,0 +1,4 @@
+This library is released under dual licensing:
+
+- CECILL-B
+- BSD-3-Clause

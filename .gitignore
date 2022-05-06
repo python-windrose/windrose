@@ -69,3 +69,6 @@ target/
 
 # ignore tmp doc notebook
 *-output.ipynb
+
+# tmp version file should not be pacakged, let setuptool_scm handle this
+windrose/_version.py

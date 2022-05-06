@@ -1,3 +1,5 @@
+exclude: 'samples'
+
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
   rev: v4.2.0
@@ -13,6 +15,25 @@ repos:
     - id: file-contents-sorter
       files: requirements-dev.txt
 
+- repo: https://github.com/PyCQA/flake8
+  rev: 4.0.1
+  hooks:
+    - id: flake8
+      exclude: docs/source/conf.py
+      args: [--max-line-length=105]
+
+- repo: https://github.com/pycqa/isort
+  rev: 5.10.1
+  hooks:
+    - id: isort
+      additional_dependencies: [toml]
+      args: ["--profile", "black", "--filter-files"]
+
+- repo: https://github.com/psf/black
+  rev: 22.3.0
+  hooks:
+  - id: black
+    language_version: python3
 
 - repo: https://github.com/codespell-project/codespell
   rev: v2.1.0
@@ -24,3 +45,8 @@ repos:
           )$
       args:
         - --ignore-words-list=celles,hist
+
+- repo: https://github.com/keewis/blackdoc
+  rev: v0.3.4
+  hooks:
+    - id: blackdoc

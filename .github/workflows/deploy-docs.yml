@@ -1,9 +1,8 @@
 name: Build and Deploy docs
 
-# on:
-#   push:
-#     branches: [master, main]
-on: ["push", "pull_request"]
+on:
+  push:
+    branches: [master, main]
 
 jobs:
   build-docs:

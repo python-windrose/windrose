@@ -2,9 +2,7 @@
 
 ## Python versions
 
-* Ensure supported Python versions in `setup.py` and `.travis.yml` are corrects 
-
-* Ensure windrose version is up to date in `version.py`
+* ECheck `python_requires = >=3.6` in setup.cfg
 
 ## CHANGELOG
 
@@ -36,7 +34,7 @@ to ensure that new release have a DOI
 
 ### Automatic PyPI upload
 
-PyPI deployment was set using https://docs.travis-ci.com/user/deployment/pypi/
+PyPI deployment is done via https://github.com/python-windrose/windrose/blob/master/.github/workflows/publish.yml
 
 When tagging a new release on Github, package should be automatically uploaded on PyPI.
 
@@ -60,12 +58,11 @@ Upload
 
 ```
 git clean -xfd
-python setup.py register sdist bdist_wheel --universal
-python setup.py sdist bdist_wheel
-twine upload dist/*
+python -m build --sdist --wheel . --outdir dist
+python -m twine check dist/*
+python -m twine upload dist/*
 ```
 
 ## Verify on PyPI
 
-Go to https://pypi.python.org/pypi/windrose/
-or https://pypi.python.org/pypi?%3Aaction=pkg_edit&name=windrose
+Go to https://pypi.org/project/windrose/

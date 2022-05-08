@@ -1,0 +1,19 @@
+include *.txt
+include *.md
+include pyproject.toml
+
+graft windrose
+
+prune docs
+prune tests
+prune notebooks
+prune paper
+prune *.egg-info
+prune samples
+
+exclude *.yml
+exclude .pre-commit-config.yaml
+exclude *.enc
+exclude .gitignore
+exclude .isort.cfg
+exclude windrose/_version.py

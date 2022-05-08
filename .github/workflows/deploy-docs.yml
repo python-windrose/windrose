@@ -2,8 +2,7 @@ name: Build and Deploy docs
 
 on:
   push:
-    branches:
-      - [master, main]
+    branches: [master, main]
 
 jobs:
   build-docs:
@@ -36,6 +35,8 @@ jobs:
       run: |
         set -e
         micromamba activate TEST
+        jupyter nbconvert --to notebook --execute notebooks/usage.ipynb --output=usage-output.ipynb
+        mv notebooks/*output.ipynb docs/
         pushd docs
         make clean html linkcheck
         popd

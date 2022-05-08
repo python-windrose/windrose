@@ -14,7 +14,7 @@ Welcome to windrose's documentation!
    :caption: Contents:
 
    Install <install.rst>
-   Usage <usage.rst>
+   Usage <usage-output.ipynb>
    Development <development.rst>
    API <api.rst>
 

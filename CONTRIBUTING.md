@@ -23,7 +23,7 @@ or
 $ git clone https://github.com/python-windrose/windrose
 $ python setup.py install
 ```
-  
+
 * Be clear, concise and precise in your description of the problem.
 * Open an issue with a descriptive title and a summary in grammatically correct,
   complete sentences.

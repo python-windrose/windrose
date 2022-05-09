@@ -1,4 +1,40 @@
+exclude: 'samples'
+
 repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.2.0
+  hooks:
+    - id: trailing-whitespace
+    - id: check-ast
+    - id: debug-statements
+    - id: end-of-file-fixer
+    - id: check-docstring-first
+    - id: check-added-large-files
+      exclude_types: [yaml]
+    - id: requirements-txt-fixer
+    - id: file-contents-sorter
+      files: requirements-dev.txt
+
+- repo: https://github.com/PyCQA/flake8
+  rev: 4.0.1
+  hooks:
+    - id: flake8
+      exclude: docs/source/conf.py
+      args: [--max-line-length=105]
+
+- repo: https://github.com/pycqa/isort
+  rev: 5.10.1
+  hooks:
+    - id: isort
+      additional_dependencies: [toml]
+      args: ["--profile", "black", "--filter-files"]
+
+- repo: https://github.com/psf/black
+  rev: 22.3.0
+  hooks:
+  - id: black
+    language_version: python3
+
 - repo: https://github.com/codespell-project/codespell
   rev: v2.1.0
   hooks:
@@ -9,3 +45,33 @@ repos:
           )$
       args:
         - --ignore-words-list=celles,hist
+
+- repo: https://github.com/keewis/blackdoc
+  rev: v0.3.4
+  hooks:
+    - id: blackdoc
+
+- repo: https://github.com/econchick/interrogate
+  rev: 1.5.0
+  hooks:
+    - id: interrogate
+      exclude: ^(docs|setup.py|tests)
+      args: [--config=pyproject.toml]
+
+- repo: https://github.com/asottile/pyupgrade
+  rev: v2.32.1
+  hooks:
+    - id: pyupgrade
+      args:
+        - --py36-plus
+
+ci:
+    autofix_commit_msg: |
+        [pre-commit.ci] auto fixes from pre-commit.com hooks
+
+        for more information, see https://pre-commit.ci
+    autofix_prs: false
+    autoupdate_commit_msg: '[pre-commit.ci] pre-commit autoupdate'
+    autoupdate_schedule: monthly
+    skip: []
+    submodules: false

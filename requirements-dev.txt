@@ -1,8 +1,7 @@
-coverage
-sphinx_rtd_theme
 black
 cartopy
 check-manifest
+coverage
 flake8
 flake8-builtins
 flake8-comprehensions
@@ -21,5 +20,6 @@ pytest-flake8
 pytest-sugar
 setuptools_scm
 sphinx
+sphinx_rtd_theme
 twine
 wheel

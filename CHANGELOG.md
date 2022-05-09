@@ -85,7 +85,7 @@ in every released version.
   - PEP8
   - Register projection windrose
   - Weitbul plot
-  
+
 
 ### Version 1.4.0
 

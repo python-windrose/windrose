@@ -1,16 +1,14 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-# from __future__ import absolute_import, division, print_function
+"""Windrose for matplotlib"""
 
 import locale
-import matplotlib as mpl
-from matplotlib import docstring
-import numpy as np
 import random
+
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib import docstring
 from matplotlib.projections.polar import PolarAxes
 from numpy.lib.twodim_base import histogram2d
-import matplotlib.pyplot as plt
 
 ZBASE = -1000  # The starting zorder for all drawing, negative to have the grid on
 VAR_DEFAULT = "speed"
@@ -21,7 +19,7 @@ CALM_CIRCLE_COLOR = "red"
 CALM_CIRCLE_ALPHA = 0.4
 
 
-class WindAxesFactory(object):
+class WindAxesFactory:
     """
 
     Factory class to create WindroseAxes or WindAxes
@@ -57,7 +55,7 @@ class WindAxesFactory(object):
                 ax = cls.from_ax(ax, *args, **kwargs)
                 return ax
         else:
-            raise NotImplementedError("typ=%r but it might be in %s" % (typ, d.keys()))
+            raise NotImplementedError(f"typ={typ!r} but it might be in {d.keys()}")
 
 
 class WindroseAxes(PolarAxes):
@@ -87,7 +85,9 @@ class WindroseAxes(PolarAxes):
         self.cla()
 
     @staticmethod
-    def from_ax(ax=None, fig=None, rmax=None, theta_labels=None, rect=None, *args, **kwargs):
+    def from_ax(
+        ax=None, fig=None, rmax=None, theta_labels=None, rect=None, *args, **kwargs
+    ):
         """
         Return a WindroseAxes object for the figure `fig`.
         """
@@ -101,7 +101,9 @@ class WindroseAxes(PolarAxes):
                 )
             if rect is None:
                 rect = [0.1, 0.1, 0.8, 0.8]
-            ax = WindroseAxes(fig, rect, rmax=rmax, theta_labels=theta_labels, *args, **kwargs)
+            ax = WindroseAxes(
+                fig, rect, rmax=rmax, theta_labels=theta_labels, *args, **kwargs
+            )
             fig.add_axes(ax)
             return ax
         else:
@@ -226,7 +228,7 @@ class WindroseAxes(PolarAxes):
                 fmt += ")"
 
             if units:
-                fmt += ' ' + units
+                fmt += " " + units
 
             labels = [fmt % (labels[i], labels[i + 1]) for i in range(len(labels) - 1)]
             return labels
@@ -374,7 +376,7 @@ class WindroseAxes(PolarAxes):
         """
         if self.calm_count and self.calm_count > 0:
             circle = mpl.patches.Circle(
-                (0., 0.),
+                (0.0, 0.0),
                 self.calm_count,
                 transform=self.transData._b,
                 color=CALM_CIRCLE_COLOR,
@@ -512,9 +514,14 @@ class WindroseAxes(PolarAxes):
             val = vals[i, :] + offset
             offset += vals[i, :]
             zorder = ZBASE + nbins - i
-            patch = self.fill(np.append(angles, 0), np.append(val, 0),
-                              facecolor=colors[i], edgecolor=colors[i],
-                              zorder=zorder, **kwargs)
+            patch = self.fill(
+                np.append(angles, 0),
+                np.append(val, 0),
+                facecolor=colors[i],
+                edgecolor=colors[i],
+                zorder=zorder,
+                **kwargs,
+            )
             self.patches_list.extend(patch)
         self._update()
 
@@ -592,7 +599,7 @@ class WindroseAxes(PolarAxes):
                     facecolor=colors[i],
                     edgecolor=edgecolor,
                     zorder=zorder,
-                    **kwargs
+                    **kwargs,
                 )
                 self.add_patch(patch)
                 if j == 0:
@@ -666,7 +673,7 @@ class WindroseAxes(PolarAxes):
                     facecolor=colors[i],
                     edgecolor=edgecolor,
                     zorder=zorder,
-                    **kwargs
+                    **kwargs,
                 )
                 self.add_patch(patch)
                 if j == 0:
@@ -679,7 +686,7 @@ class WindAxes(mpl.axes.Subplot):
         """
         See Axes base class for args and kwargs documentation
         """
-        super(WindAxes, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     @staticmethod
     def from_ax(ax=None, fig=None, *args, **kwargs):
@@ -701,7 +708,7 @@ class WindAxes(mpl.axes.Subplot):
         plot_color="g",
         Nbins=10,
         *args,
-        **kwargs
+        **kwargs,
     ):
         """
         Draw probability density function and return Weibull distribution
@@ -750,20 +757,20 @@ def histogram(direction, var, bins, nsector, normed=False, blowto=False):
     if len(var) != len(direction):
         raise ValueError("var and direction must have same length")
 
-    angle = 360. / nsector
+    angle = 360.0 / nsector
 
-    dir_bins = np.arange(-angle / 2, 360. + angle, angle, dtype=float)
+    dir_bins = np.arange(-angle / 2, 360.0 + angle, angle, dtype=float)
     dir_edges = dir_bins.tolist()
     dir_edges.pop(-1)
     dir_edges[0] = dir_edges.pop(-1)
-    dir_bins[0] = 0.
+    dir_bins[0] = 0.0
 
     var_bins = bins.tolist()
     var_bins.append(np.inf)
 
     if blowto:
-        direction = direction + 180.
-        direction[direction >= 360.] = direction[direction >= 360.] - 360
+        direction = direction + 180.0
+        direction[direction >= 360.0] = direction[direction >= 360.0] - 360
 
     table = histogram2d(x=var, y=direction, bins=[var_bins, dir_bins], normed=False)[0]
     # add the last value to the first to have the table of North winds
@@ -823,7 +830,7 @@ def wrpdf(
     ax=None,
     rmax=None,
     *args,
-    **kwargs
+    **kwargs,
 ):
     """
     Draw probability density function and return Weitbull distribution
@@ -903,8 +910,9 @@ def plot_windrose(
     direction_name=DIR_DEFAULT,
     by=None,
     rmax=None,
-    **kwargs
+    **kwargs,
 ):
+    """Plot windrose from a pandas DataFrame or a numpy array."""
     if var is None:
         # Assuming direction_or_df is a DataFrame
         df = direction_or_df
@@ -922,8 +930,9 @@ def plot_windrose_df(
     direction_name=DIR_DEFAULT,
     by=None,
     rmax=None,
-    **kwargs
+    **kwargs,
 ):
+    """Plot windrose from a pandas DataFrame."""
     var = df[var_name].values
     direction = df[direction_name].values
     return plot_windrose_np(direction, var, by=by, rmax=rmax, **kwargs)
@@ -932,10 +941,11 @@ def plot_windrose_df(
 def plot_windrose_np(
     direction, var, kind="contour", clean_flag=True, by=None, rmax=None, **kwargs
 ):
+    """Plot windrose from a numpy array."""
     if kind in D_KIND_PLOT.keys():
         f_plot = D_KIND_PLOT[kind]
     else:
-        raise Exception("kind=%r but it must be in %r" % (kind, D_KIND_PLOT.keys()))
+        raise Exception(f"kind={kind!r} but it must be in {D_KIND_PLOT.keys()!r}")
     # if f_clean is not None:
     #     df = f_clean(df)
     # var = df[var_name].values

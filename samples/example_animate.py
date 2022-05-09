@@ -13,25 +13,22 @@ python samples/example_animate.py --by D --exit_at 5 --rmax 60
 
 """
 
-import click
-
-import time
+import datetime
 import logging
+import time
 import traceback
 
+import click
 import matplotlib
-
-# matplotlib.use("Agg")
-import matplotlib.pyplot as plt
 import matplotlib.animation
 import matplotlib.cm as cm
 
-import pandas as pd
+# matplotlib.use("Agg")
+import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 
-import datetime
-
-from windrose import WindroseAxes, FIGSIZE_DEFAULT, DPI_DEFAULT
+from windrose import DPI_DEFAULT, FIGSIZE_DEFAULT, WindroseAxes
 
 logging.Formatter.converter = time.gmtime
 logging.basicConfig(format="%(asctime)s %(levelname)s %(message)s", level=logging.DEBUG)

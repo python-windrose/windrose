@@ -1,0 +1,11 @@
+name: WINDROSE
+channels:
+  - conda-forge
+dependencies:
+  - python=3
+  - jupyter
+  - matplotlib-base
+  - numpy
+  - pandas
+  - scipy
+  - windrose

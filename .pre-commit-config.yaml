@@ -16,7 +16,7 @@ repos:
       files: requirements-dev.txt
 
 - repo: https://github.com/PyCQA/flake8
-  rev: 4.0.1
+  rev: 5.0.2
   hooks:
     - id: flake8
       exclude: docs/source/conf.py
@@ -47,7 +47,7 @@ repos:
         - --ignore-words-list=celles,hist
 
 - repo: https://github.com/keewis/blackdoc
-  rev: v0.3.4
+  rev: v0.3.5
   hooks:
     - id: blackdoc
 
@@ -59,7 +59,7 @@ repos:
       args: [--config=pyproject.toml]
 
 - repo: https://github.com/asottile/pyupgrade
-  rev: v2.34.0
+  rev: v2.37.3
   hooks:
     - id: pyupgrade
       args:

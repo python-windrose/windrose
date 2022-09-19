@@ -24,17 +24,3 @@ using:
 .. code:: bash
 
     $ pip install windrose
-
-Install latest development version
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. code:: bash
-
-    $ pip install git+https://github.com/python-windrose/windrose
-
-or
-
-.. code:: bash
-
-    $ git clone https://github.com/python-windrose/windrose
-    $ python setup.py install

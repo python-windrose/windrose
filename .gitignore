@@ -43,7 +43,6 @@ nosetests.xml
 coverage.xml
 *,cover
 .pytest_cache/
-tests/**/*png
 
 # Translations
 *.mo

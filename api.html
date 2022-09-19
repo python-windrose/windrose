@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API &mdash; windrose  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Development" href="development.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> windrose
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage-output.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">windrose</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>API</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/api.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="module-windrose">
+<span id="api"></span><h1>API<a class="headerlink" href="#module-windrose" title="Permalink to this heading"></a></h1>
+<p>Windrose for matplotlib</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="windrose.WindAxes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">windrose.</span></span><span class="sig-name descname"><span class="pre">WindAxes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#windrose.WindAxes" title="Permalink to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="windrose.WindAxes.from_ax">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_ax</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#windrose.WindAxes.from_ax" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="windrose.WindAxes.pdf">
+<span class="sig-name descname"><span class="pre">pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Nx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bar_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'b'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'g'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Nbins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#windrose.WindAxes.pdf" title="Permalink to this definition"></a></dt>
+<dd><p>Draw probability density function and return Weibull distribution
+parameters</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="windrose.WindAxes.set">
+<span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adjustable=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">agg_filter=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anchor=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">animated=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aspect=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">autoscale_on=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">autoscalex_on=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">autoscaley_on=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes_locator=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axisbelow=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">box_aspect=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clip_box=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clip_on=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clip_path=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">facecolor=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_on=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gid=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_layout=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mouseover=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">navigate=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_effects=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">picker=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prop_cycle=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rasterization_zorder=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rasterized=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sketch_params=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">snap=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subplotspec=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">visible=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xbound=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlabel=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlim=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmargin=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xscale=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xticklabels=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xticks=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ybound=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabel=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylim=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ymargin=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yscale=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yticklabels=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yticks=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zorder=&lt;UNSET&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#windrose.WindAxes.set" title="Permalink to this definition"></a></dt>
+<dd><p>Set multiple properties at once.</p>
+<p>Supported properties are</p>
+<dl class="simple">
+<dt>Properties:</dt><dd><p>adjustable: {‘box’, ‘datalim’}
+agg_filter: a filter function, which takes a (m, n, 3) float array and a dpi value, and returns a (m, n, 3) array and two offsets from the bottom left corner of the image
+alpha: scalar or None
+anchor: (float, float) or {‘C’, ‘SW’, ‘S’, ‘SE’, ‘E’, ‘NE’, …}
+animated: bool
+aspect: {‘auto’, ‘equal’} or float
+autoscale_on: bool
+autoscalex_on: unknown
+autoscaley_on: unknown
+axes_locator: Callable[[Axes, Renderer], Bbox]
+axisbelow: bool or ‘line’
+box_aspect: float or None
+clip_box: <cite>.Bbox</cite>
+clip_on: bool
+clip_path: Patch or (Path, Transform) or None
+facecolor or fc: color
+figure: <cite>.Figure</cite>
+frame_on: bool
+gid: str
+in_layout: bool
+label: object
+mouseover: bool
+navigate: bool
+navigate_mode: unknown
+path_effects: <cite>.AbstractPathEffect</cite>
+picker: None or bool or float or callable
+position: [left, bottom, width, height] or <cite>~matplotlib.transforms.Bbox</cite>
+prop_cycle: unknown
+rasterization_zorder: float or None
+rasterized: bool
+sketch_params: (scale: float, length: float, randomness: float)
+snap: bool or None
+subplotspec: unknown
+title: str
+transform: <cite>.Transform</cite>
+url: str
+visible: bool
+xbound: unknown
+xlabel: str
+xlim: (bottom: float, top: float)
+xmargin: float greater than -0.5
+xscale: unknown
+xticklabels: unknown
+xticks: unknown
+ybound: unknown
+ylabel: str
+ylim: (bottom: float, top: float)
+ymargin: float greater than -0.5
+yscale: unknown
+yticklabels: unknown
+yticks: unknown
+zorder: float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="windrose.WindAxesFactory">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">windrose.</span></span><span class="sig-name descname"><span class="pre">WindAxesFactory</span></span><a class="headerlink" href="#windrose.WindAxesFactory" title="Permalink to this definition"></a></dt>
+<dd><p>Factory class to create WindroseAxes or WindAxes</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="windrose.WindAxesFactory.create">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">typ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#windrose.WindAxesFactory.create" title="Permalink to this definition"></a></dt>
+<dd><p>Create</p>
+<p>Mandatory:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>typ</strong> (<em>string</em><em>, </em><em>'windroseaxes'</em><em> or </em><em>'windaxes'</em>) – <dl class="simple">
+<dt>Type of axes to create</dt><dd><ul>
+<li><p>windroseaxes : a WindroseAxes axe</p></li>
+<li><p>windaxe : a WindAxes axe</p></li>
+</ul>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>ax</strong> (<em>matplotlib.Axes</em><em>, </em><em>optional</em>) – A matplotlib axe</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="windrose.WindroseAxes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">windrose.</span></span><span class="sig-name descname"><span class="pre">WindroseAxes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#windrose.WindroseAxes" title="Permalink to this definition"></a></dt>
+<dd><p>Create a windrose axes</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="windrose.WindroseAxes.bar">
+<span class="sig-name descname"><span class="pre">bar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#windrose.WindroseAxes.bar" title="Permalink to this definition"></a></dt>
+<dd><p>Plot a windrose in bar mode. For each var bins and for each sector,
+a colored bar will be draw on the axes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>direction</strong> (<em>1D array</em>) – directions the wind blows from, North centred</p></li>
+<li><p><strong>var</strong> (<em>1D array</em>) – values of the variable to compute. Typically the wind speeds.</p></li>
+<li><p><strong>nsector</strong> (<em>integer</em><em>, </em><em>optional</em>) – number of sectors used to compute the windrose table. If not set,
+nsectors=16, then each sector will be 360/16=22.5°, and the
+resulting computed table will be aligned with the cardinals points.</p></li>
+<li><p><strong>bins</strong> (<em>1D array</em><em> or </em><em>integer</em><em>, </em><em>optional</em>) – number of bins, or a sequence of bins variable. If not set, bins=6
+between min(<cite>var</cite>) and max(<cite>var</cite>).</p></li>
+<li><p><strong>blowto</strong> (<em>bool</em><em>, </em><em>optional.</em>) – if True, the windrose will be pi rotated, to show where the wind
+blow to (useful for pollutant rose).</p></li>
+<li><p><strong>colors</strong> (<em>string</em><em> or </em><em>tuple</em><em>, </em><em>optional</em>) – one string color (‘k’ or ‘black’), in this case all bins will be
+plotted in this color; a tuple of matplotlib color args (string,
+float, rgb, etc), different levels will be plotted
+in different colors in the order specified.</p></li>
+<li><p><strong>cmap</strong> (a cm Colormap instance from <code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.cm</span></code>, optional.) – if cmap == None and colors == None, a default Colormap is used.</p></li>
+<li><p><strong>edgecolor</strong> (<em>string</em><em>, </em><em>optional</em>) – The string color each edge box will be plotted.
+Default : no edgecolor</p></li>
+<li><p><strong>opening</strong> (<em>float</em><em>, </em><em>optional</em>) – between 0.0 and 1.0, to control the space between each sector (1.0
+for no space)</p></li>
+<li><p><strong>calm_limit</strong> (<em>float</em><em>, </em><em>optional</em>) – Calm limit for the var parameter. If not None, a centered red
+circle will be draw for representing the calms occurrences and all
+data below this value will be removed from the computation.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="windrose.WindroseAxes.box">
+<span class="sig-name descname"><span class="pre">box</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#windrose.WindroseAxes.box" title="Permalink to this definition"></a></dt>
+<dd><p>Plot a windrose in proportional box mode. For each var bins and for
+each sector, a colored box will be draw on the axes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>direction</strong> (<em>1D array</em>) – directions the wind blows from, North centred</p></li>
+<li><p><strong>var</strong> (<em>1D array</em>) – values of the variable to compute. Typically the wind speeds</p></li>
+<li><p><strong>nsector</strong> (<em>integer</em><em>, </em><em>optional</em>) – number of sectors used to compute the windrose table. If not set,
+nsectors=16, then each sector will be 360/16=22.5°, and the
+resulting computed table will be aligned with the cardinals points.</p></li>
+<li><p><strong>bins</strong> (<em>1D array</em><em> or </em><em>integer</em><em>, </em><em>optional</em>) – number of bins, or a sequence of bins variable. If not set, bins=6
+between min(<cite>var</cite>) and max(<cite>var</cite>).</p></li>
+<li><p><strong>blowto</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the windrose will be pi rotated, to show where the wind
+blow to (useful for pollutant rose).</p></li>
+<li><p><strong>colors</strong> (<em>string</em><em> or </em><em>tuple</em><em>, </em><em>optional</em>) – one string color (‘k’ or ‘black’), in this case all bins will be
+plotted in this color; a tuple of matplotlib color args (string,
+float, rgb, etc), different levels will be plotted in different
+colors in the order specified.</p></li>
+<li><p><strong>cmap</strong> (a cm Colormap instance from <code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.cm</span></code>, optional) – if cmap == None and colors == None, a default Colormap is used.</p></li>
+<li><p><strong>edgecolor</strong> (<em>string</em><em>, </em><em>optional</em>) – The string color each edge bar will be plotted.  Default : no
+edgecolor</p></li>
+<li><p><strong>calm_limit</strong> (<em>float</em><em>, </em><em>optional</em>) – Calm limit for the var parameter. If not None, a centered red
+circle will be draw for representing the calms occurrences and all
+data below this value will be removed from the computation.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="windrose.WindroseAxes.cla">
+<span class="sig-name descname"><span class="pre">cla</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#windrose.WindroseAxes.cla" title="Permalink to this definition"></a></dt>
+<dd><p>Clear the current axes</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="windrose.WindroseAxes.contour">
+<span class="sig-name descname"><span class="pre">contour</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#windrose.WindroseAxes.contour" title="Permalink to this definition"></a></dt>
+<dd><p>Plot a windrose in linear mode. For each var bins, a line will be
+draw on the axes, a segment between each sector (center to center).
+Each line can be formatted (color, width, …) like with standard plot
+pylab command.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>direction</strong> (<em>1D array</em>) – directions the wind blows from, North centred</p></li>
+<li><p><strong>var</strong> (<em>1D array</em>) – values of the variable to compute. Typically the wind speeds.</p></li>
+<li><p><strong>sector</strong> (<em>integer</em><em>, </em><em>optional</em>) – number of sectors used to compute the windrose table. If not set,
+nsectors=16, then each sector will be 360/16=22.5°, and the
+resulting computed table will be aligned with the cardinals points.</p></li>
+<li><p><strong>bins</strong> (<em>1D array</em><em> or </em><em>integer</em><em>, </em><em>optional</em>) – number of bins, or a sequence of bins variable. If not set, bins=6,
+then bins=linspace(min(var), max(var), 6)</p></li>
+<li><p><strong>blowto</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the windrose will be pi rotated, to show where the wind
+blow to (useful for pollutant rose).</p></li>
+<li><p><strong>colors</strong> (<em>string</em><em> or </em><em>tuple</em><em>, </em><em>optional</em>) – one string color (‘k’ or ‘black’), in this case all bins will be
+plotted in this color; a tuple of matplotlib color args (string,
+float, rgb, etc), different levels will be plotted in different
+colors in the order specified.</p></li>
+<li><p><strong>cmap</strong> (a cm Colormap instance from <code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.cm</span></code>, optional) – if cmap == None and colors == None, a default Colormap is used.</p></li>
+<li><p><strong>calm_limit</strong> (<em>float</em><em>, </em><em>optional</em>) – Calm limit for the var parameter. If not None, a centered red
+circle will be draw for representing the calms occurrences and all
+data below this value will be removed from the computation.</p></li>
+<li><p><strong>kwargs</strong> (<em>others</em>) – Any supported argument of <code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.pyplot.plot</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="windrose.WindroseAxes.contourf">
+<span class="sig-name descname"><span class="pre">contourf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#windrose.WindroseAxes.contourf" title="Permalink to this definition"></a></dt>
+<dd><p>Plot a windrose in filled mode. For each var bins, a line will be
+draw on the axes, a segment between each sector (center to center).
+Each line can be formatted (color, width, …) like with standard plot
+pylab command.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>direction</strong> (<em>1D array</em>) – directions the wind blows from, North centred</p></li>
+<li><p><strong>var</strong> (<em>1D array</em>) – values of the variable to compute. Typically the wind speeds</p></li>
+<li><p><strong>nsector</strong> (<em>integer</em><em>, </em><em>optional</em>) – number of sectors used to compute the windrose table. If not set,
+nsectors=16, then each sector will be 360/16=22.5°, and the
+resulting computed table will be aligned with the cardinals points.</p></li>
+<li><p><strong>bins</strong> (<em>1D array</em><em> or </em><em>integer</em><em>, </em><em>optional</em>) – number of bins, or a sequence of bins variable. If not set, bins=6,
+then bins=linspace(min(<cite>var</cite>), max(<cite>var</cite>), 6)</p></li>
+<li><p><strong>blowto</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the windrose will be pi rotated, to show where the wind
+blow to (useful for pollutant rose).</p></li>
+<li><p><strong>colors</strong> (<em>string</em><em> or </em><em>tuple</em><em>, </em><em>optional</em>) – one string color (‘k’ or ‘black’), in this case all bins will be
+plotted in this color; a tuple of matplotlib color args (string,
+float, rgb, etc), different levels will be plotted in different
+colors in the order specified.</p></li>
+<li><p><strong>cmap</strong> (a cm Colormap instance from <code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.cm</span></code>, optional) – if cmap == None and colors == None, a default Colormap is used.</p></li>
+<li><p><strong>calm_limit</strong> (<em>float</em><em>, </em><em>optional</em>) – Calm limit for the var parameter. If not None, a centered red
+circle will be draw for representing the calms occurrences and all
+data below this value will be removed from the computation.</p></li>
+<li><p><strong>kwargs</strong> (<em>others</em>) – Any supported argument of <code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.pyplot.plot</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="windrose.WindroseAxes.from_ax">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_ax</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rect</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#windrose.WindroseAxes.from_ax" title="Permalink to this definition"></a></dt>
+<dd><p>Return a WindroseAxes object for the figure <cite>fig</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="windrose.WindroseAxes.legend">
+<span class="sig-name descname"><span class="pre">legend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'lower</span> <span class="pre">left'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decimal_places</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#windrose.WindroseAxes.legend" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the legend location and her properties.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>loc</strong> (<em>int</em><em>, </em><em>string</em><em> or </em><em>pair of floats</em><em>, </em><em>default: 'lower left'</em>) – see <code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.pyplot.legend</span></code>.</p></li>
+<li><p><strong>decimal_places</strong> (<em>int</em><em>, </em><em>default 1</em>) – The decimal places of the formatted legend</p></li>
+<li><p><strong>units</strong> (<em>str</em><em>, </em><em>default None</em>) – </p></li>
+<li><p><strong>isaxes</strong> (<em>boolean</em><em>, </em><em>default True</em>) – whether this is an axes legend</p></li>
+<li><p><strong>prop</strong> (<em>FontProperties</em><em>(</em><em>size='smaller'</em><em>)</em>) – the font property</p></li>
+<li><p><strong>borderpad</strong> (<em>float</em>) – the fractional whitespace inside the legend border</p></li>
+<li><p><strong>shadow</strong> (<em>boolean</em>) – if True, draw a shadow behind legend</p></li>
+<li><p><strong>labelspacing</strong> (<em>float</em><em>, </em><em>0.005</em>) – the vertical space between the legend entries</p></li>
+<li><p><strong>handlelenght</strong> (<em>float</em><em>, </em><em>0.05</em>) – the length of the legend lines</p></li>
+<li><p><strong>handletextsep</strong> (<em>float</em><em>, </em><em>0.02</em>) – the space between the legend line and legend text</p></li>
+<li><p><strong>borderaxespad</strong> (<em>float</em><em>, </em><em>0.02</em>) – the border between the axes and legend edge</p></li>
+<li><p><strong>kwarg</strong> – Every other kwarg argument supported by
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.pyplot.legend</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="windrose.WindroseAxes.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'windrose'</span></em><a class="headerlink" href="#windrose.WindroseAxes.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="windrose.WindroseAxes.set">
+<span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adjustable=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">agg_filter=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anchor=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">animated=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aspect=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">autoscale_on=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">autoscalex_on=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">autoscaley_on=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes_locator=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axisbelow=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">box_aspect=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clip_box=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clip_on=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clip_path=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">facecolor=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_on=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gid=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_layout=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mouseover=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">navigate=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_effects=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">picker=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prop_cycle=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radii_angle=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rasterization_zorder=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rasterized=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rgrids=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rlabel_position=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rlim=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rmax=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rmin=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rorigin=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rscale=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rticks=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sketch_params=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">snap=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta_direction=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta_offset=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta_zero_location=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thetagrids=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thetalim=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thetamax=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thetamin=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">visible=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xbound=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlabel=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlim=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmargin=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xscale=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xticklabels=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xticks=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ybound=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabel=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylim=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ymargin=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yscale=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yticklabels=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yticks=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zorder=&lt;UNSET&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#windrose.WindroseAxes.set" title="Permalink to this definition"></a></dt>
+<dd><p>Set multiple properties at once.</p>
+<p>Supported properties are</p>
+<dl class="simple">
+<dt>Properties:</dt><dd><p>adjustable: {‘box’, ‘datalim’}
+agg_filter: a filter function, which takes a (m, n, 3) float array and a dpi value, and returns a (m, n, 3) array and two offsets from the bottom left corner of the image
+alpha: scalar or None
+anchor: (float, float) or {‘C’, ‘SW’, ‘S’, ‘SE’, ‘E’, ‘NE’, …}
+animated: bool
+aspect: {‘auto’, ‘equal’} or float
+autoscale_on: bool
+autoscalex_on: unknown
+autoscaley_on: unknown
+axes_locator: Callable[[Axes, Renderer], Bbox]
+axisbelow: bool or ‘line’
+box_aspect: float or None
+clip_box: <cite>.Bbox</cite>
+clip_on: bool
+clip_path: Patch or (Path, Transform) or None
+facecolor or fc: color
+figure: <cite>.Figure</cite>
+frame_on: bool
+gid: str
+in_layout: bool
+label: object
+legend: unknown
+mouseover: bool
+navigate: bool
+navigate_mode: unknown
+path_effects: <cite>.AbstractPathEffect</cite>
+picker: None or bool or float or callable
+position: [left, bottom, width, height] or <cite>~matplotlib.transforms.Bbox</cite>
+prop_cycle: unknown
+radii_angle: unknown
+rasterization_zorder: float or None
+rasterized: bool
+rgrids: tuple with floats
+rlabel_position: number
+rlim: unknown
+rmax: float
+rmin: float
+rorigin: float
+rscale: unknown
+rticks: unknown
+sketch_params: (scale: float, length: float, randomness: float)
+snap: bool or None
+theta_direction: unknown
+theta_offset: unknown
+theta_zero_location: str
+thetagrids: tuple with floats, degrees
+thetalim: unknown
+thetamax: unknown
+thetamin: unknown
+title: str
+transform: <cite>.Transform</cite>
+url: str
+visible: bool
+xbound: unknown
+xlabel: str
+xlim: (bottom: float, top: float)
+xmargin: float greater than -0.5
+xscale: unknown
+xticklabels: unknown
+xticks: unknown
+ybound: unknown
+ylabel: str
+ylim: (bottom: float, top: float)
+ymargin: float greater than -0.5
+yscale: unknown
+yticklabels: unknown
+yticks: unknown
+zorder: float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="windrose.WindroseAxes.set_legend">
+<span class="sig-name descname"><span class="pre">set_legend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">pyplot_arguments</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#windrose.WindroseAxes.set_legend" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="windrose.WindroseAxes.set_radii_angle">
+<span class="sig-name descname"><span class="pre">set_radii_angle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#windrose.WindroseAxes.set_radii_angle" title="Permalink to this definition"></a></dt>
+<dd><p>Set the radii labels angle</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="windrose.clean">
+<span class="sig-prename descclassname"><span class="pre">windrose.</span></span><span class="sig-name descname"><span class="pre">clean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#windrose.clean" title="Permalink to this definition"></a></dt>
+<dd><p>Remove nan and var=0 values in the two arrays
+if a var (wind speed) is nan or equal to 0, this data is
+removed from var array but also from dir array
+if a direction is nan, data is also removed from both array</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="windrose.clean_df">
+<span class="sig-prename descclassname"><span class="pre">windrose.</span></span><span class="sig-name descname"><span class="pre">clean_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'speed'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'direction'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#windrose.clean_df" title="Permalink to this definition"></a></dt>
+<dd><p>Remove nan and var=0 values in the DataFrame
+if a var (wind speed) is nan or equal to 0, this row is
+removed from DataFrame
+if a direction is nan, this row is also removed from DataFrame</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="windrose.histogram">
+<span class="sig-prename descclassname"><span class="pre">windrose.</span></span><span class="sig-name descname"><span class="pre">histogram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bins</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nsector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blowto</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#windrose.histogram" title="Permalink to this definition"></a></dt>
+<dd><p>Returns an array where, for each sector of wind
+(centred on the north), we have the number of time the wind comes with a
+particular var (speed, pollutant concentration, …).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>direction</strong> (<em>1D array</em>) – directions the wind blows from, North centred</p></li>
+<li><p><strong>var</strong> (<em>1D array</em>) – values of the variable to compute. Typically the wind speeds</p></li>
+<li><p><strong>bins</strong> (<em>list</em>) – list of var category against we’re going to compute the table</p></li>
+<li><p><strong>nsector</strong> (<em>integer</em>) – number of sectors</p></li>
+<li><p><strong>normed</strong> (<em>boolean</em><em>, </em><em>default False</em>) – The resulting table is normed in percent or not.</p></li>
+<li><p><strong>blowto</strong> (<em>boolean</em><em>, </em><em>default False</em>) – Normally a windrose is computed with directions as wind blows from. If
+true, the table will be reversed (useful for pollutantrose)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="windrose.plot_windrose">
+<span class="sig-prename descclassname"><span class="pre">windrose.</span></span><span class="sig-name descname"><span class="pre">plot_windrose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction_or_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'contour'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'speed'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'direction'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#windrose.plot_windrose" title="Permalink to this definition"></a></dt>
+<dd><p>Plot windrose from a pandas DataFrame or a numpy array.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="windrose.plot_windrose_df">
+<span class="sig-prename descclassname"><span class="pre">windrose.</span></span><span class="sig-name descname"><span class="pre">plot_windrose_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'contour'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'speed'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'direction'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#windrose.plot_windrose_df" title="Permalink to this definition"></a></dt>
+<dd><p>Plot windrose from a pandas DataFrame.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="windrose.plot_windrose_np">
+<span class="sig-prename descclassname"><span class="pre">windrose.</span></span><span class="sig-name descname"><span class="pre">plot_windrose_np</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'contour'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clean_flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#windrose.plot_windrose_np" title="Permalink to this definition"></a></dt>
+<dd><p>Plot windrose from a numpy array.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="windrose.wrbar">
+<span class="sig-prename descclassname"><span class="pre">windrose.</span></span><span class="sig-name descname"><span class="pre">wrbar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#windrose.wrbar" title="Permalink to this definition"></a></dt>
+<dd><p>Plot a windrose in bar mode. For each var bins and for each sector,
+a colored bar will be draw on the axes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>direction</strong> (<em>1D array</em>) – directions the wind blows from, North centred</p></li>
+<li><p><strong>var</strong> (<em>1D array</em>) – values of the variable to compute. Typically the wind speeds.</p></li>
+<li><p><strong>nsector</strong> (<em>integer</em><em>, </em><em>optional</em>) – number of sectors used to compute the windrose table. If not set,
+nsectors=16, then each sector will be 360/16=22.5°, and the
+resulting computed table will be aligned with the cardinals points.</p></li>
+<li><p><strong>bins</strong> (<em>1D array</em><em> or </em><em>integer</em><em>, </em><em>optional</em>) – number of bins, or a sequence of bins variable. If not set, bins=6
+between min(<cite>var</cite>) and max(<cite>var</cite>).</p></li>
+<li><p><strong>blowto</strong> (<em>bool</em><em>, </em><em>optional.</em>) – if True, the windrose will be pi rotated, to show where the wind
+blow to (useful for pollutant rose).</p></li>
+<li><p><strong>colors</strong> (<em>string</em><em> or </em><em>tuple</em><em>, </em><em>optional</em>) – one string color (‘k’ or ‘black’), in this case all bins will be
+plotted in this color; a tuple of matplotlib color args (string,
+float, rgb, etc), different levels will be plotted
+in different colors in the order specified.</p></li>
+<li><p><strong>cmap</strong> (a cm Colormap instance from <code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.cm</span></code>, optional.) – if cmap == None and colors == None, a default Colormap is used.</p></li>
+<li><p><strong>edgecolor</strong> (<em>string</em><em>, </em><em>optional</em>) – The string color each edge box will be plotted.
+Default : no edgecolor</p></li>
+<li><p><strong>opening</strong> (<em>float</em><em>, </em><em>optional</em>) – between 0.0 and 1.0, to control the space between each sector (1.0
+for no space)</p></li>
+<li><p><strong>calm_limit</strong> (<em>float</em><em>, </em><em>optional</em>) – Calm limit for the var parameter. If not None, a centered red
+circle will be draw for representing the calms occurrences and all
+data below this value will be removed from the computation.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="windrose.wrbox">
+<span class="sig-prename descclassname"><span class="pre">windrose.</span></span><span class="sig-name descname"><span class="pre">wrbox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#windrose.wrbox" title="Permalink to this definition"></a></dt>
+<dd><p>Plot a windrose in proportional box mode. For each var bins and for
+each sector, a colored box will be draw on the axes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>direction</strong> (<em>1D array</em>) – directions the wind blows from, North centred</p></li>
+<li><p><strong>var</strong> (<em>1D array</em>) – values of the variable to compute. Typically the wind speeds</p></li>
+<li><p><strong>nsector</strong> (<em>integer</em><em>, </em><em>optional</em>) – number of sectors used to compute the windrose table. If not set,
+nsectors=16, then each sector will be 360/16=22.5°, and the
+resulting computed table will be aligned with the cardinals points.</p></li>
+<li><p><strong>bins</strong> (<em>1D array</em><em> or </em><em>integer</em><em>, </em><em>optional</em>) – number of bins, or a sequence of bins variable. If not set, bins=6
+between min(<cite>var</cite>) and max(<cite>var</cite>).</p></li>
+<li><p><strong>blowto</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the windrose will be pi rotated, to show where the wind
+blow to (useful for pollutant rose).</p></li>
+<li><p><strong>colors</strong> (<em>string</em><em> or </em><em>tuple</em><em>, </em><em>optional</em>) – one string color (‘k’ or ‘black’), in this case all bins will be
+plotted in this color; a tuple of matplotlib color args (string,
+float, rgb, etc), different levels will be plotted in different
+colors in the order specified.</p></li>
+<li><p><strong>cmap</strong> (a cm Colormap instance from <code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.cm</span></code>, optional) – if cmap == None and colors == None, a default Colormap is used.</p></li>
+<li><p><strong>edgecolor</strong> (<em>string</em><em>, </em><em>optional</em>) – The string color each edge bar will be plotted.  Default : no
+edgecolor</p></li>
+<li><p><strong>calm_limit</strong> (<em>float</em><em>, </em><em>optional</em>) – Calm limit for the var parameter. If not None, a centered red
+circle will be draw for representing the calms occurrences and all
+data below this value will be removed from the computation.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="windrose.wrcontour">
+<span class="sig-prename descclassname"><span class="pre">windrose.</span></span><span class="sig-name descname"><span class="pre">wrcontour</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#windrose.wrcontour" title="Permalink to this definition"></a></dt>
+<dd><p>Plot a windrose in linear mode. For each var bins, a line will be
+draw on the axes, a segment between each sector (center to center).
+Each line can be formatted (color, width, …) like with standard plot
+pylab command.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>direction</strong> (<em>1D array</em>) – directions the wind blows from, North centred</p></li>
+<li><p><strong>var</strong> (<em>1D array</em>) – values of the variable to compute. Typically the wind speeds.</p></li>
+<li><p><strong>sector</strong> (<em>integer</em><em>, </em><em>optional</em>) – number of sectors used to compute the windrose table. If not set,
+nsectors=16, then each sector will be 360/16=22.5°, and the
+resulting computed table will be aligned with the cardinals points.</p></li>
+<li><p><strong>bins</strong> (<em>1D array</em><em> or </em><em>integer</em><em>, </em><em>optional</em>) – number of bins, or a sequence of bins variable. If not set, bins=6,
+then bins=linspace(min(var), max(var), 6)</p></li>
+<li><p><strong>blowto</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the windrose will be pi rotated, to show where the wind
+blow to (useful for pollutant rose).</p></li>
+<li><p><strong>colors</strong> (<em>string</em><em> or </em><em>tuple</em><em>, </em><em>optional</em>) – one string color (‘k’ or ‘black’), in this case all bins will be
+plotted in this color; a tuple of matplotlib color args (string,
+float, rgb, etc), different levels will be plotted in different
+colors in the order specified.</p></li>
+<li><p><strong>cmap</strong> (a cm Colormap instance from <code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.cm</span></code>, optional) – if cmap == None and colors == None, a default Colormap is used.</p></li>
+<li><p><strong>calm_limit</strong> (<em>float</em><em>, </em><em>optional</em>) – Calm limit for the var parameter. If not None, a centered red
+circle will be draw for representing the calms occurrences and all
+data below this value will be removed from the computation.</p></li>
+<li><p><strong>kwargs</strong> (<em>others</em>) – Any supported argument of <code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.pyplot.plot</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="windrose.wrcontourf">
+<span class="sig-prename descclassname"><span class="pre">windrose.</span></span><span class="sig-name descname"><span class="pre">wrcontourf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#windrose.wrcontourf" title="Permalink to this definition"></a></dt>
+<dd><p>Plot a windrose in filled mode. For each var bins, a line will be
+draw on the axes, a segment between each sector (center to center).
+Each line can be formatted (color, width, …) like with standard plot
+pylab command.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>direction</strong> (<em>1D array</em>) – directions the wind blows from, North centred</p></li>
+<li><p><strong>var</strong> (<em>1D array</em>) – values of the variable to compute. Typically the wind speeds</p></li>
+<li><p><strong>nsector</strong> (<em>integer</em><em>, </em><em>optional</em>) – number of sectors used to compute the windrose table. If not set,
+nsectors=16, then each sector will be 360/16=22.5°, and the
+resulting computed table will be aligned with the cardinals points.</p></li>
+<li><p><strong>bins</strong> (<em>1D array</em><em> or </em><em>integer</em><em>, </em><em>optional</em>) – number of bins, or a sequence of bins variable. If not set, bins=6,
+then bins=linspace(min(<cite>var</cite>), max(<cite>var</cite>), 6)</p></li>
+<li><p><strong>blowto</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, the windrose will be pi rotated, to show where the wind
+blow to (useful for pollutant rose).</p></li>
+<li><p><strong>colors</strong> (<em>string</em><em> or </em><em>tuple</em><em>, </em><em>optional</em>) – one string color (‘k’ or ‘black’), in this case all bins will be
+plotted in this color; a tuple of matplotlib color args (string,
+float, rgb, etc), different levels will be plotted in different
+colors in the order specified.</p></li>
+<li><p><strong>cmap</strong> (a cm Colormap instance from <code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.cm</span></code>, optional) – if cmap == None and colors == None, a default Colormap is used.</p></li>
+<li><p><strong>calm_limit</strong> (<em>float</em><em>, </em><em>optional</em>) – Calm limit for the var parameter. If not None, a centered red
+circle will be draw for representing the calms occurrences and all
+data below this value will be removed from the computation.</p></li>
+<li><p><strong>kwargs</strong> (<em>others</em>) – Any supported argument of <code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.pyplot.plot</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="windrose.wrpdf">
+<span class="sig-prename descclassname"><span class="pre">windrose.</span></span><span class="sig-name descname"><span class="pre">wrpdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Nx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bar_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'b'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'g'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Nbins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#windrose.wrpdf" title="Permalink to this definition"></a></dt>
+<dd><p>Draw probability density function and return Weibull distribution
+parameters</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="windrose.wrscatter">
+<span class="sig-prename descclassname"><span class="pre">windrose.</span></span><span class="sig-name descname"><span class="pre">wrscatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#windrose.wrscatter" title="Permalink to this definition"></a></dt>
+<dd><p>Draw scatter plot</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="development.html" class="btn btn-neutral float-left" title="Development" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, Lionel Roubeyrie &amp; Sebastien Celles.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

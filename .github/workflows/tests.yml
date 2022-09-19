@@ -39,4 +39,4 @@ jobs:
       shell: bash -l {0}
       run: |
         micromamba activate TEST
-        pytest -s -rxs -v -k --mpl tests/
+        pytest -s -rxs -vv --mpl tests/

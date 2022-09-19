@@ -1,15 +1,20 @@
 name: Publish to PyPI
 
-on: ["push", "pull_request"]
+on:
+  pull_request:
+
+  push:
+    tags:
+      - "v*"
 
 jobs:
   packages:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Set up Python
-      uses: actions/setup-python@v1
+      uses: actions/setup-python@v4
       with:
         python-version: 3.x
 
@@ -39,8 +44,8 @@ jobs:
       shell: bash
 
     - name: Publish a Python distribution to PyPI
-      if: ${{ github.event_name == 'release' }}
-      uses: pypa/gh-action-pypi-publish@master
+      if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags/v')
+      uses: pypa/gh-action-pypi-publish@v1.5.1
       with:
         user: __token__
         password: ${{ secrets.PYPI_PASSWORD }}

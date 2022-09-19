@@ -10,12 +10,12 @@ jobs:
 
     steps:
     - name: checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         fetch-depth: 0
 
     - name: Setup Mamba
-      uses: mamba-org/provision-with-micromamba@main
+      uses: mamba-org/provision-with-micromamba@v13
       with:
         environment-file: false
 
@@ -42,7 +42,7 @@ jobs:
         popd
 
     - name: Deploy
-      uses: peaceiris/actions-gh-pages@v3.6.1
+      uses: peaceiris/actions-gh-pages@v3.8.0
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: docs/_build/html

@@ -10,15 +10,15 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        python-version: ["3.6", "3.7", "3.8", "3.9", "3.10"]
+        python-version: ["3.8", "3.9", "3.10"]
         os: [windows-latest, ubuntu-latest, macos-latest]
       fail-fast: false
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Setup
-      uses: mamba-org/provision-with-micromamba@main
+      uses: mamba-org/provision-with-micromamba@v13
       with:
         environment-file: false
 

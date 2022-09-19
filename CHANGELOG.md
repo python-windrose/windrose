@@ -5,6 +5,33 @@
 All notable changes to this code base will be documented in this file,
 in every released version.
 
+### Version 1.7.0
+
+## What's Changed
+* fix typo in docs for map overlay by @weber-s in https://github.com/python-windrose/windrose/pull/144
+* Docs simplify map overlay by @weber-s in https://github.com/python-windrose/windrose/pull/145
+* Fix variable calling/returning order by @sspagnol in https://github.com/python-windrose/windrose/pull/156
+* Fix clean method in case var is nan. by @15b3 in https://github.com/python-windrose/windrose/pull/164
+* Fix default behavior of WindroseAxes.from_ax(). by @15b3 in https://github.com/python-windrose/windrose/pull/166
+* Update docstring about calm_limit by @15b3 in https://github.com/python-windrose/windrose/pull/162
+* fix np.float deprecation warning by @theendlessriver13 in https://github.com/python-windrose/windrose/pull/167
+* move to GitHub Actions by @ocefpaf in https://github.com/python-windrose/windrose/pull/173
+* Auto-publish on PyPI and test test the tarball by @ocefpaf in https://github.com/python-windrose/windrose/pull/174
+* Build and upload docs by @ocefpaf in https://github.com/python-windrose/windrose/pull/175
+* Codespell by @ocefpaf in https://github.com/python-windrose/windrose/pull/176
+* Fix docs gha by @ocefpaf in https://github.com/python-windrose/windrose/pull/177
+* Package metadata by @ocefpaf in https://github.com/python-windrose/windrose/pull/178
+* Add pre-commit and many automated fixes by @ocefpaf in https://github.com/python-windrose/windrose/pull/179
+* Add binder environment and badge by @ocefpaf in https://github.com/python-windrose/windrose/pull/180
+* We no longer support Python 2k, so no universal wheel by @ocefpaf in https://github.com/python-windrose/windrose/pull/181
+
+## New Contributors
+* @sspagnol made their first contribution in https://github.com/python-windrose/windrose/pull/156
+* @15b3 made their first contribution in https://github.com/python-windrose/windrose/pull/164
+* @theendlessriver13 made their first contribution in https://github.com/python-windrose/windrose/pull/167
+
+**Full Changelog**: https://github.com/python-windrose/windrose/compare/v1.6.8...v1.7.0
+
 ### Version 1.6.8
 
 - Released: 2020-09-04

@@ -61,6 +61,7 @@ def test_pdf():
     ax, params = plot_windrose(df, kind=kind, bins=bins)
     return ax.figure
 
+
 @pytest.mark.mpl_image_compare(baseline_dir="output/df")
 def test_windrose_np_plot_and_pd_plot():
     # Not really pandas but this is an orphan test and fits the plot_windrose tests.

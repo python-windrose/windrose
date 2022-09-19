@@ -17,6 +17,7 @@ pylint
 pytest
 pytest-cov
 pytest-flake8
+pytest-mpl
 pytest-sugar
 setuptools_scm
 sphinx

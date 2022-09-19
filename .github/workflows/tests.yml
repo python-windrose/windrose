@@ -39,4 +39,5 @@ jobs:
       shell: bash -l {0}
       run: |
         micromamba activate TEST
-        pytest -s -rxs -vv --mpl tests/
+        pytest -s -rxs -vv tests/ --mpl --mpl-generate-summary=html \
+        --mpl-results-path="windrose_test_output-${{ matrix.os }}-${{ matrix.python-version }}"

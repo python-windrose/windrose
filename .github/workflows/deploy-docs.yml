@@ -1,8 +1,11 @@
 name: Build and Deploy docs
 
 on:
+  pull_request:
+
   push:
-    branches: [master, main]
+    tags:
+      - "v*"
 
 jobs:
   build-docs:
@@ -42,6 +45,7 @@ jobs:
         popd
 
     - name: Deploy
+      if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags/v')
       uses: peaceiris/actions-gh-pages@v3.8.0
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}

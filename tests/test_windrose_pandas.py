@@ -27,14 +27,14 @@ def test_scatter():
     return ax.figure
 
 
-@pytest.mark.mpl_image_compare(baseline_dir="output/df")
+@pytest.mark.mpl_image_compare(baseline_dir="output/df", tolerance=15.5)
 def test_bar():
     kind = "bar"
     ax = plot_windrose(df, kind=kind, normed=True, opening=0.8, edgecolor="white")
     return ax.figure
 
 
-@pytest.mark.mpl_image_compare(baseline_dir="output/df")
+@pytest.mark.mpl_image_compare(baseline_dir="output/df", tolerance=6.5)
 def test_box():
     kind = "box"
     ax = plot_windrose(df, kind=kind, bins=bins)

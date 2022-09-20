@@ -27,7 +27,7 @@ def test_windrose_with_scatter_plot():
     return ax.figure
 
 
-@pytest.mark.mpl_image_compare(baseline_dir="output/oo")
+@pytest.mark.mpl_image_compare(baseline_dir="output/oo", tolerance=15.5)
 def test_windrose_stacked_histogram_normed():
     # windrose like a stacked histogram with normed (displayed in percent) results
     ax = WindroseAxes.from_ax()
@@ -36,7 +36,7 @@ def test_windrose_stacked_histogram_normed():
     return ax.figure
 
 
-@pytest.mark.mpl_image_compare(baseline_dir="output/oo")
+@pytest.mark.mpl_image_compare(baseline_dir="output/oo", tolerance=6.5)
 def test_windrose_stacked_histogram_not_normed_binned():
     # Another stacked histogram representation, not normed, with bins limits
     ax = WindroseAxes.from_ax()

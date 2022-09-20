@@ -23,13 +23,13 @@ def test_wrscatter():
     return ax.figure
 
 
-@pytest.mark.mpl_image_compare(baseline_dir="output/func")
+@pytest.mark.mpl_image_compare(baseline_dir="output/func", tolerance=15.5)
 def test_wrbar():
     ax = wrbar(wd, ws, normed=True, opening=0.8, edgecolor="white")
     return ax.figure
 
 
-@pytest.mark.mpl_image_compare(baseline_dir="output/func")
+@pytest.mark.mpl_image_compare(baseline_dir="output/func", tolerance=6.5)
 def test_wrbox():
     ax = wrbox(wd, ws, bins=bins)
     return ax.figure

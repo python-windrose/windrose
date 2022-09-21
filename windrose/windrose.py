@@ -217,29 +217,27 @@ class WindroseAxes(PolarAxes):
             return handles
 
         def get_labels(decimal_places=1, units=None):
-            _decimal_places = str(decimal_places)
 
-            fmt = "[%." + _decimal_places + "f " + ": %0." + _decimal_places + "f"
-
-            labels = np.copy(self._info["bins"])
-            labels[-1] = np.nan
-            last_dig = labels[-2]
+            digits = np.copy(self._info["bins"]).tolist()
+            digits[-1] = digits[-2]
+            digits = [f"{label:.{decimal_places}f}" for label in digits]
+            fmt = "[{} : {}"
             if locale.getlocale()[0] in ["fr_FR"]:
                 fmt += "["
             else:
                 fmt += ")"
 
             if units:
-                fmt += ' ' + units
+                fmt += " " + units
 
-            labels = [fmt % (labels[i], labels[i + 1]) for i in range(len(labels) - 1)]
-            labels[-1] = '>'+str(last_dig)
+            labels = [
+                fmt.format(digits[k], digits[k + 1]) for k in range(len(digits) - 1)
+            ]
+            labels[-1] = f">{digits[-1]}"
             return labels
 
         kwargs.pop("labels", None)
         kwargs.pop("handles", None)
-
-        # decimal_places = kwargs.pop('decimal_places', 1)
 
         handles = get_handles()
         labels = get_labels(decimal_places, units)

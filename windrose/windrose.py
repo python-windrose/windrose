@@ -279,7 +279,7 @@ class WindroseAxes(PolarAxes):
         blowto : boolean, default False
         colors : str or list of str, default None
             The colors of the plot.
-        cmap : color map, default `jet`
+        cmap : color map
             A :obj:`matplotlib.cm` colormap for the plot.
             Warning! It overrides `colors`.
         weibull_factors :
@@ -355,7 +355,7 @@ class WindroseAxes(PolarAxes):
                     raise ValueError("colors and bins must have same length")
         else:
             if cmap is None:
-                cmap = mpl.cm.jet
+                cmap = plt.get_cmap()
             colors = self._colors(cmap, nbins)
 
         # Building the angles list

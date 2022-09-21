@@ -219,6 +219,8 @@ class WindroseAxes(PolarAxes):
         def get_labels(decimal_places=1, units=None):
 
             digits = np.copy(self._info["bins"]).tolist()
+            if not digits:
+                return ""
             digits[-1] = digits[-2]
             digits = [f"{label:.{decimal_places}f}" for label in digits]
             fmt = "[{} : {}"

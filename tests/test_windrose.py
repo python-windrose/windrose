@@ -1,11 +1,11 @@
 import matplotlib
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from numpy.testing import assert_allclose
 from pandas.testing import assert_frame_equal
 
-from windrose import clean, clean_df, plot_windrose
-from windrose import DEFAULT_THETA_LABELS
+from windrose import DEFAULT_THETA_LABELS, WindroseAxes, clean, clean_df, plot_windrose
 
 matplotlib.use("Agg")  # noqa
 # Create wind speed and direction variables

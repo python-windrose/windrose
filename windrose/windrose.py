@@ -90,8 +90,15 @@ class WindroseAxes(PolarAxes):
         self.clear()
 
     @staticmethod
-    def from_ax(ax=None, fig=None, rmax=None, figsize=FIGSIZE_DEFAULT, rect=None, *args,
-                **kwargs):
+    def from_ax(
+        ax=None,
+        fig=None,
+        rmax=None,
+        figsize=FIGSIZE_DEFAULT,
+        rect=None,
+        *args,
+        **kwargs,
+    ):
         """
         Return a WindroseAxes object for the figure `fig`.
         """
@@ -847,8 +854,9 @@ def wrpdf(
     return (ax, params)
 
 
-def wrscatter(direction, var, ax=None, rmax=None, figsize=FIGSIZE_DEFAULT,
-              *args, **kwargs):
+def wrscatter(
+    direction, var, ax=None, rmax=None, figsize=FIGSIZE_DEFAULT, *args, **kwargs
+):
     """
     Draw scatter plot
     """
@@ -918,7 +926,7 @@ def plot_windrose(
     by=None,
     rmax=None,
     ax=None,
-    **kwargs
+    **kwargs,
 ):
     """Plot windrose from a pandas DataFrame or a numpy array."""
     if var is None:
@@ -928,8 +936,9 @@ def plot_windrose(
         direction = df[direction_name].values
     else:
         direction = direction_or_df
-    return plot_windrose_np(direction, var, kind=kind, by=by, rmax=rmax, ax=ax,
-                            **kwargs)
+    return plot_windrose_np(
+        direction, var, kind=kind, by=by, rmax=rmax, ax=ax, **kwargs
+    )
 
 
 def plot_windrose_df(
@@ -940,7 +949,7 @@ def plot_windrose_df(
     by=None,
     rmax=None,
     ax=None,
-    **kwargs
+    **kwargs,
 ):
     """Plot windrose from a pandas DataFrame."""
     var = df[var_name].values
@@ -949,8 +958,14 @@ def plot_windrose_df(
 
 
 def plot_windrose_np(
-    direction, var, kind="contour", clean_flag=True, by=None, rmax=None,
-    ax=None, **kwargs
+    direction,
+    var,
+    kind="contour",
+    clean_flag=True,
+    by=None,
+    rmax=None,
+    ax=None,
+    **kwargs,
 ):
     """Plot windrose from a numpy array."""
     if kind in D_KIND_PLOT.keys():

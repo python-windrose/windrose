@@ -2,6 +2,7 @@
 
 
 import matplotlib
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import pytest
@@ -68,3 +69,11 @@ def test_windrose_np_plot_and_pd_plot():
     kind = "scatter"
     ax = plot_windrose(wd, ws, kind=kind, alpha=0.2)
     return ax.figure
+
+
+@pytest.mark.mpl_image_compare(baseline_dir="output/df")
+def test_subplots():
+    fig, (ax1, ax2) = plt.subplots(ncols=2, subplot_kw={"projection": "windrose"})
+    plot_windrose(df, ax=ax1)
+    plot_windrose(df, ax=ax2)
+    return fig

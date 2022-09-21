@@ -701,10 +701,10 @@ class WindAxes(mpl.axes.Subplot):
         super().__init__(*args, **kwargs)
 
     @staticmethod
-    def from_ax(ax=None, fig=None, *args, **kwargs):
+    def from_ax(ax=None, fig=None, figsize=FIGSIZE_DEFAULT, *args, **kwargs):
         if ax is None:
             if fig is None:
-                fig = plt.figure(figsize=FIGSIZE_DEFAULT, dpi=DPI_DEFAULT)
+                fig = plt.figure(figsize=figsize, dpi=DPI_DEFAULT)
             ax = WindAxes(fig, 1, 1, 1, *args, **kwargs)
             fig.add_axes(ax)
             return ax

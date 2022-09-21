@@ -154,7 +154,7 @@ class WindroseAxes(PolarAxes):
         rmax = self.get_rmax()
         if self.rstep is not None:
             rstep = self.rstep
-            N = np.int_(np.ceil(rmax/rstep))
+            N = np.int_(np.ceil(rmax / rstep))
             rmax = N * rstep
         else:
             N = 5
@@ -371,7 +371,7 @@ class WindroseAxes(PolarAxes):
         blowto = kwargs.pop("blowto", False)
         rstep = kwargs.pop("rstep", None)
         self.rstep = rstep
-        
+
         # Calm condition
         calm_limit = kwargs.pop("calm_limit", None)
         if calm_limit is not None:

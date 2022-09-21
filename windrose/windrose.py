@@ -17,6 +17,7 @@ FIGSIZE_DEFAULT = (8, 8)
 DPI_DEFAULT = 80
 CALM_CIRCLE_COLOR = "red"
 CALM_CIRCLE_ALPHA = 0.4
+DEFAULT_THETA_LABELS = ["E", "N-E", "N", "N-W", "W", "S-W", "S", "S-E"]
 
 
 class WindAxesFactory:
@@ -70,24 +71,26 @@ class WindroseAxes(PolarAxes):
     def __init__(self, *args, **kwargs):
         """
         See Axes base class for args and kwargs documentation
+
+        Other kwargs are:
+
+        theta_labels : default ["E", "N-E", "N", "N-W", "W", "S-W", "S", "S-E"]
+            Labels for theta coordinate
         """
 
         # Uncomment to have the possibility to change the resolution directly
         # when the instance is created
         # self.RESOLUTION = kwargs.pop('resolution', 100)
         self.rmax = kwargs.pop("rmax", None)
-        self.theta_labels = kwargs.pop("theta_labels", None)
-        if self.theta_labels is None:
-            self.theta_labels = ["E", "N-E", "N", "N-W", "W", "S-W", "S", "S-E"]
+        self.theta_labels = kwargs.pop("theta_labels", DEFAULT_THETA_LABELS)
+
         PolarAxes.__init__(self, *args, **kwargs)
         self.set_aspect("equal", adjustable="box", anchor="C")
         self.radii_angle = 67.5
         self.clear()
 
     @staticmethod
-    def from_ax(
-        ax=None, fig=None, rmax=None, theta_labels=None, rect=None, *args, **kwargs
-    ):
+    def from_ax(ax=None, fig=None, rmax=None, rect=None, *args, **kwargs):
         """
         Return a WindroseAxes object for the figure `fig`.
         """
@@ -101,9 +104,7 @@ class WindroseAxes(PolarAxes):
                 )
             if rect is None:
                 rect = [0.1, 0.1, 0.8, 0.8]
-            ax = WindroseAxes(
-                fig, rect, rmax=rmax, theta_labels=theta_labels, *args, **kwargs
-            )
+            ax = WindroseAxes(fig, rect, rmax=rmax, *args, **kwargs)
             fig.add_axes(ax)
             return ax
         else:

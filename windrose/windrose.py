@@ -82,7 +82,7 @@ class WindroseAxes(PolarAxes):
         PolarAxes.__init__(self, *args, **kwargs)
         self.set_aspect("equal", adjustable="box", anchor="C")
         self.radii_angle = 67.5
-        self.cla()
+        self.clear()
 
     @staticmethod
     def from_ax(
@@ -109,11 +109,11 @@ class WindroseAxes(PolarAxes):
         else:
             return ax
 
-    def cla(self):
+    def clear(self):
         """
         Clear the current axes
         """
-        PolarAxes.cla(self)
+        PolarAxes.clear(self)
 
         self.theta_angles = np.arange(0, 360, 45)
         self.set_thetagrids(angles=self.theta_angles, labels=self.theta_labels)
@@ -315,7 +315,7 @@ class WindroseAxes(PolarAxes):
                         windDirections.append(direction[dbin])
                 var, direction = windSpeeds, windDirections
 
-        # self.cla()
+        # self.clear()
         kwargs.pop("zorder", None)
 
         # Init of the bins array if not set

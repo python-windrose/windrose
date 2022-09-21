@@ -47,7 +47,7 @@ repos:
         - --ignore-words-list=celles,hist
 
 - repo: https://github.com/keewis/blackdoc
-  rev: v0.3.6
+  rev: v0.3.7
   hooks:
     - id: blackdoc
 
@@ -59,7 +59,7 @@ repos:
       args: [--config=pyproject.toml]
 
 - repo: https://github.com/asottile/pyupgrade
-  rev: v2.37.3
+  rev: v2.38.0
   hooks:
     - id: pyupgrade
       args:

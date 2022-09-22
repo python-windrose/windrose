@@ -1,4 +1,3 @@
-[![Documentation Status](https://readthedocs.org/projects/windrose/badge/?version=latest)](http://windrose.readthedocs.io/en/latest/?badge=latest)
 [![Latest Version](https://img.shields.io/pypi/v/windrose.svg)](https://pypi.python.org/pypi/windrose/)
 [![Supported Python versions](https://img.shields.io/pypi/pyversions/windrose.svg)](https://pypi.python.org/pypi/windrose/)
 [![Wheel format](https://img.shields.io/pypi/wheel/windrose.svg)](https://pypi.python.org/pypi/windrose/)
@@ -65,8 +64,7 @@ $ python setup.py install
 ```
 
 ## Documentation
-[![Documentation Status](https://readthedocs.org/projects/windrose/badge/?version=latest)](http://windrose.readthedocs.io/en/latest/?badge=latest)
-Full documentation of library is available at http://windrose.readthedocs.io/
+Full documentation of library is available at https://python-windrose.github.io/windrose/
 
 ## Community guidelines
 

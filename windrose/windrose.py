@@ -6,7 +6,6 @@ import random
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
-from matplotlib import docstring
 from matplotlib.projections.polar import PolarAxes
 from numpy.lib.twodim_base import histogram2d
 
@@ -18,6 +17,22 @@ DPI_DEFAULT = 80
 CALM_CIRCLE_COLOR = "red"
 CALM_CIRCLE_ALPHA = 0.4
 DEFAULT_THETA_LABELS = ["E", "N-E", "N", "N-W", "W", "S-W", "S", "S-E"]
+
+
+def _copy_docstring(source):
+    """
+
+    Copy the docstring from another function.
+    Implemented according to: https://github.com/matplotlib/matplotlib/blob/b5ac96a8980fdb9e59c9fb649e0714d776e26701/lib/matplotlib/_docstring.py#L86-L92
+
+    """  # noqa: E501
+
+    def inner(target):
+        if source.__doc__ is not None:
+            target.__doc__ = source.__doc__
+        return target
+
+    return inner
 
 
 class WindAxesFactory:
@@ -252,7 +267,7 @@ class WindroseAxes(PolarAxes):
 
         handles = get_handles()
         labels = get_labels(decimal_places, units)
-        self.legend_ = mpl.legend.Legend(self, handles, labels, loc, **kwargs)
+        self.legend_ = mpl.legend.Legend(self, handles, labels, loc=loc, **kwargs)
         return self.legend_
 
     def set_legend(self, **pyplot_arguments):
@@ -795,7 +810,7 @@ def histogram(direction, var, bins, nsector, normed=False, blowto=False):
     return dir_edges, var_bins, table
 
 
-@docstring.copy(WindroseAxes.contour)
+@_copy_docstring(WindroseAxes.contour)
 def wrcontour(direction, var, ax=None, rmax=None, figsize=FIGSIZE_DEFAULT, **kwargs):
     """
     Draw contour probability density function and return Weibull
@@ -807,7 +822,7 @@ def wrcontour(direction, var, ax=None, rmax=None, figsize=FIGSIZE_DEFAULT, **kwa
     return ax
 
 
-@docstring.copy(WindroseAxes.contourf)
+@_copy_docstring(WindroseAxes.contourf)
 def wrcontourf(direction, var, ax=None, rmax=None, figsize=FIGSIZE_DEFAULT, **kwargs):
     ax = WindroseAxes.from_ax(ax, rmax=rmax, figsize=figsize)
     ax.contourf(direction, var, **kwargs)
@@ -815,7 +830,7 @@ def wrcontourf(direction, var, ax=None, rmax=None, figsize=FIGSIZE_DEFAULT, **kw
     return ax
 
 
-@docstring.copy(WindroseAxes.box)
+@_copy_docstring(WindroseAxes.box)
 def wrbox(direction, var, ax=None, rmax=None, figsize=FIGSIZE_DEFAULT, **kwargs):
     ax = WindroseAxes.from_ax(ax, rmax=rmax, figsize=figsize)
     ax.box(direction, var, **kwargs)
@@ -823,7 +838,7 @@ def wrbox(direction, var, ax=None, rmax=None, figsize=FIGSIZE_DEFAULT, **kwargs)
     return ax
 
 
-@docstring.copy(WindroseAxes.bar)
+@_copy_docstring(WindroseAxes.bar)
 def wrbar(direction, var, ax=None, rmax=None, figsize=FIGSIZE_DEFAULT, **kwargs):
     ax = WindroseAxes.from_ax(ax, rmax=rmax, figsize=figsize)
     ax.bar(direction, var, **kwargs)
@@ -831,7 +846,7 @@ def wrbar(direction, var, ax=None, rmax=None, figsize=FIGSIZE_DEFAULT, **kwargs)
     return ax
 
 
-@docstring.copy(WindAxes.pdf)
+@_copy_docstring(WindAxes.pdf)
 def wrpdf(
     var,
     bins=None,

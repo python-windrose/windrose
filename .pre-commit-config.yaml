@@ -44,7 +44,7 @@ repos:
               .*\.ipynb
           )$
       args:
-        - --ignore-words-list=celles,hist
+        - --ignore-words-list=celles,hist,therefor
 
 - repo: https://github.com/keewis/blackdoc
   rev: v0.3.8

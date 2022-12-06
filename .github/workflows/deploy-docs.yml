@@ -2,10 +2,12 @@ name: Build and Deploy docs
 
 on:
   pull_request:
-
   push:
-    tags:
-      - "v*"
+    branches:
+      - main
+  release:
+    types:
+      - published
 
 jobs:
   build-docs:
@@ -24,10 +26,10 @@ jobs:
 
     - name: Build environment
       shell: bash -l {0}
-      run: |
+      run: >
         micromamba create --name TEST python=3 --file requirements.txt --file requirements-dev.txt --channel conda-forge
-        micromamba activate TEST
-        python -m pip install -e . --no-deps --force-reinstall
+        && micromamba activate TEST
+        && python -m pip install -e . --no-deps --force-reinstall
 
     - name: Get the version
       id: get_version
@@ -35,17 +37,17 @@ jobs:
 
     - name: Build documentation
       shell: bash -l {0}
-      run: |
+      run: >
         set -e
         micromamba activate TEST
-        jupyter nbconvert --to notebook --execute notebooks/usage.ipynb --output=usage-output.ipynb
-        mv notebooks/*output.ipynb docs/
-        pushd docs
-        make clean html linkcheck
-        popd
+        && jupyter nbconvert --to notebook --execute notebooks/usage.ipynb --output=usage-output.ipynb
+        && mv notebooks/*output.ipynb docs/
+        && pushd docs
+        && make clean html linkcheck
+        && popd
 
     - name: Deploy
-      if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags/v')
+      if: github.event_name == 'release' || github.event_name == 'push'
       uses: peaceiris/actions-gh-pages@v3.8.0
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}

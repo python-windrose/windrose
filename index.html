@@ -16,6 +16,7 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -59,8 +60,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
-      <li>Welcome to windrose’s documentation!</li>
+      <li><a href="#" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Welcome to windrose’s documentation!</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -95,7 +96,7 @@
 }
 </style>
 <p><a class="reference external" href="https://pypi.org/project/windrose/"><img alt="Latest Version" src="https://img.shields.io/pypi/v/windrose.svg" /></a> <a class="reference external" href="https://pypi.org/project/windrose/"><img alt="Supported Python versions" src="https://img.shields.io/pypi/pyversions/windrose.svg" /></a> <a class="reference external" href="https://pypi.org/project/windrose/"><img alt="Wheel format" src="https://img.shields.io/pypi/wheel/windrose.svg" /></a> <a class="reference external" href="https://pypi.org/project/windrose/"><img alt="License" src="https://img.shields.io/pypi/l/windrose.svg" /></a>
-<a class="reference external" href="https://pypi.org/project/windrose/"><img alt="Development Status" src="https://img.shields.io/pypi/status/windrose.svg" /></a> <a class="reference external" href="https://pypi.org/project/windrose/"><img alt="Downloads monthly" src="https://img.shields.io/pypi/dm/windrose.svg" /></a> <a class="reference external" href="https://github.com/python-windrose/windrose/actions/workflows/tests.yml"><img alt="Tests" src="https://github.com/python-windrose/windrose/actions/workflows/tests.yml/badge.svg" /></a> <a class="reference external" href="https://zenodo.org/badge/latestdoi/37549137"><img alt="DOI" src="https://zenodo.org/badge/37549137.svg" /></a> <a class="reference external" href="http://depsy.org/package/python/windrose"><img alt="Research software impact" src="http://depsy.org/api/package/pypi/windrose/badge.svg" /></a></p>
+<a class="reference external" href="https://pypi.org/project/windrose/"><img alt="Development Status" src="https://img.shields.io/pypi/status/windrose.svg" /></a> <a class="reference external" href="https://pypi.org/project/windrose/"><img alt="Downloads monthly" src="https://img.shields.io/pypi/dm/windrose.svg" /></a> <a class="reference external" href="https://github.com/python-windrose/windrose/actions/workflows/tests.yml"><img alt="Tests" src="https://github.com/python-windrose/windrose/actions/workflows/tests.yml/badge.svg" /></a> <a class="reference external" href="https://zenodo.org/badge/latestdoi/37549137"><img alt="DOI" src="https://zenodo.org/badge/37549137.svg" /></a> <a href="#id1"><span class="problematic" id="id2">|Research software impact|</span></a></p>
 <section id="welcome-to-windrose-s-documentation">
 <h1>Welcome to windrose’s documentation!<a class="headerlink" href="#welcome-to-windrose-s-documentation" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
@@ -127,7 +128,24 @@
 <li class="toctree-l2"><a class="reference internal" href="development.html#collaborating">Collaborating</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#windrose.WindAxes"><code class="docutils literal notranslate"><span class="pre">WindAxes</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#windrose.WindAxesFactory"><code class="docutils literal notranslate"><span class="pre">WindAxesFactory</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#windrose.WindroseAxes"><code class="docutils literal notranslate"><span class="pre">WindroseAxes</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#windrose.clean"><code class="docutils literal notranslate"><span class="pre">clean()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#windrose.clean_df"><code class="docutils literal notranslate"><span class="pre">clean_df()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#windrose.histogram"><code class="docutils literal notranslate"><span class="pre">histogram()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#windrose.plot_windrose"><code class="docutils literal notranslate"><span class="pre">plot_windrose()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#windrose.plot_windrose_df"><code class="docutils literal notranslate"><span class="pre">plot_windrose_df()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#windrose.plot_windrose_np"><code class="docutils literal notranslate"><span class="pre">plot_windrose_np()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#windrose.wrbar"><code class="docutils literal notranslate"><span class="pre">wrbar()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#windrose.wrbox"><code class="docutils literal notranslate"><span class="pre">wrbox()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#windrose.wrcontour"><code class="docutils literal notranslate"><span class="pre">wrcontour()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#windrose.wrcontourf"><code class="docutils literal notranslate"><span class="pre">wrcontourf()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#windrose.wrpdf"><code class="docutils literal notranslate"><span class="pre">wrpdf()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#windrose.wrscatter"><code class="docutils literal notranslate"><span class="pre">wrscatter()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </div>
 <p>A windrose, also known as a polar rose plot, is a special diagram for

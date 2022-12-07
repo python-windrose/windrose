@@ -48,8 +48,6 @@ https://docs.github.com/en/pull-requests/collaborating-with-pull-requests
    :target: https://github.com/python-windrose/windrose/actions/workflows/tests.yml
 .. |DOI| image:: https://zenodo.org/badge/37549137.svg
    :target: https://zenodo.org/badge/latestdoi/37549137
-.. |Research software impact| image:: http://depsy.org/api/package/pypi/windrose/badge.svg
-   :target: http://depsy.org/package/python/windrose
 
 Indices and tables
 ==================

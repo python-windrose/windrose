@@ -16,6 +16,7 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -43,7 +44,45 @@
 <li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage-output.html">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">API</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#windrose.WindAxes"><code class="docutils literal notranslate"><span class="pre">WindAxes</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#windrose.WindAxes.from_ax"><code class="docutils literal notranslate"><span class="pre">WindAxes.from_ax()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#windrose.WindAxes.pdf"><code class="docutils literal notranslate"><span class="pre">WindAxes.pdf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#windrose.WindAxes.set"><code class="docutils literal notranslate"><span class="pre">WindAxes.set()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#windrose.WindAxesFactory"><code class="docutils literal notranslate"><span class="pre">WindAxesFactory</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#windrose.WindAxesFactory.create"><code class="docutils literal notranslate"><span class="pre">WindAxesFactory.create()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#windrose.WindroseAxes"><code class="docutils literal notranslate"><span class="pre">WindroseAxes</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#windrose.WindroseAxes.bar"><code class="docutils literal notranslate"><span class="pre">WindroseAxes.bar()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#windrose.WindroseAxes.box"><code class="docutils literal notranslate"><span class="pre">WindroseAxes.box()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#windrose.WindroseAxes.clear"><code class="docutils literal notranslate"><span class="pre">WindroseAxes.clear()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#windrose.WindroseAxes.contour"><code class="docutils literal notranslate"><span class="pre">WindroseAxes.contour()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#windrose.WindroseAxes.contourf"><code class="docutils literal notranslate"><span class="pre">WindroseAxes.contourf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#windrose.WindroseAxes.from_ax"><code class="docutils literal notranslate"><span class="pre">WindroseAxes.from_ax()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#windrose.WindroseAxes.legend"><code class="docutils literal notranslate"><span class="pre">WindroseAxes.legend()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#windrose.WindroseAxes.name"><code class="docutils literal notranslate"><span class="pre">WindroseAxes.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#windrose.WindroseAxes.set"><code class="docutils literal notranslate"><span class="pre">WindroseAxes.set()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#windrose.WindroseAxes.set_legend"><code class="docutils literal notranslate"><span class="pre">WindroseAxes.set_legend()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#windrose.WindroseAxes.set_radii_angle"><code class="docutils literal notranslate"><span class="pre">WindroseAxes.set_radii_angle()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#windrose.clean"><code class="docutils literal notranslate"><span class="pre">clean()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#windrose.clean_df"><code class="docutils literal notranslate"><span class="pre">clean_df()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#windrose.histogram"><code class="docutils literal notranslate"><span class="pre">histogram()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#windrose.plot_windrose"><code class="docutils literal notranslate"><span class="pre">plot_windrose()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#windrose.plot_windrose_df"><code class="docutils literal notranslate"><span class="pre">plot_windrose_df()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#windrose.plot_windrose_np"><code class="docutils literal notranslate"><span class="pre">plot_windrose_np()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#windrose.wrbar"><code class="docutils literal notranslate"><span class="pre">wrbar()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#windrose.wrbox"><code class="docutils literal notranslate"><span class="pre">wrbox()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#windrose.wrcontour"><code class="docutils literal notranslate"><span class="pre">wrcontour()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#windrose.wrcontourf"><code class="docutils literal notranslate"><span class="pre">wrcontourf()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#windrose.wrpdf"><code class="docutils literal notranslate"><span class="pre">wrpdf()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#windrose.wrscatter"><code class="docutils literal notranslate"><span class="pre">wrscatter()</span></code></a></li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -59,8 +98,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>API</li>
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">API</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/api.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -359,7 +398,7 @@ data below this value will be removed from the computation.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>loc</strong> (<em>int</em><em>, </em><em>string</em><em> or </em><em>pair of floats</em><em>, </em><em>default: 'lower left'</em>) – see <code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.pyplot.legend</span></code>.</p></li>
+<li><p><strong>loc</strong> (<em>int</em><em>, </em><em>string</em><em> or </em><em>pair</em><em> of </em><em>floats</em><em>, </em><em>default: 'lower left'</em>) – see <code class="xref py py-obj docutils literal notranslate"><span class="pre">matplotlib.pyplot.legend</span></code>.</p></li>
 <li><p><strong>decimal_places</strong> (<em>int</em><em>, </em><em>default 1</em>) – The decimal places of the formatted legend</p></li>
 <li><p><strong>units</strong> (<em>str</em><em>, </em><em>default None</em>) – </p></li>
 <li><p><strong>isaxes</strong> (<em>boolean</em><em>, </em><em>default True</em>) – whether this is an axes legend</p></li>

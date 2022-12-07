@@ -33,14 +33,14 @@ jobs:
 
     - name: Build documentation
       shell: bash -l {0}
-      run: >
+      run: |
         set -e
         micromamba activate TEST
-        && jupyter nbconvert --to notebook --execute notebooks/usage.ipynb --output=usage-output.ipynb
-        && mv notebooks/*output.ipynb docs/
-        && pushd docs
-        && make clean html linkcheck
-        && popd
+        jupyter nbconvert --to notebook --execute notebooks/usage.ipynb --output=usage-output.ipynb
+        mv notebooks/*output.ipynb docs/
+        pushd docs
+        make clean html linkcheck
+        popd
 
     - name: Deploy
       if: github.event_name == 'release' || github.event_name == 'push'

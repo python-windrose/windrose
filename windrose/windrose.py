@@ -799,7 +799,7 @@ def histogram(direction, var, bins, nsector, normed=False, blowto=False):
         direction = direction + 180.0
         direction[direction >= 360.0] = direction[direction >= 360.0] - 360
 
-    table = histogram2d(x=var, y=direction, bins=[var_bins, dir_bins], normed=False)[0]
+    table = histogram2d(x=var, y=direction, bins=[var_bins, dir_bins], density=False)[0]
     # add the last value to the first to have the table of North winds
     table[:, 0] = table[:, 0] + table[:, -1]
     # and remove the last col

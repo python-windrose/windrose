@@ -82,4 +82,4 @@ If you discover issues, have ideas for improvements or new features, please repo
 how to contribute to this project.
 
 ### List of contributors and/or notable users
-https://github.com/python-windrose/windrose/blob/master/CONTRIBUTORS.md
+https://github.com/python-windrose/windrose/blob/main/CONTRIBUTORS.md

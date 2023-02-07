@@ -241,7 +241,6 @@ class WindroseAxes(PolarAxes):
             return handles
 
         def get_labels(decimal_places=1, units=None):
-
             digits = np.copy(self._info["bins"]).tolist()
             if not digits:
                 return ""

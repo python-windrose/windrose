@@ -611,6 +611,9 @@ class WindroseAxes(PolarAxes):
 
         offs = self._calm_circle()
 
+        # sector offset in radius
+        sector_offset = kwargs.pop("sectoroffset", 0) / 180 * np.pi
+
         for j in range(nsector):
             offset = offs
             for i in range(nbins):
@@ -619,7 +622,7 @@ class WindroseAxes(PolarAxes):
                 val = self._info["table"][i, j]
                 zorder = ZBASE + nbins - i
                 patch = mpl.patches.Rectangle(
-                    (angles[j] - opening / 2, offset),
+                    (angles[j] - opening / 2 - sector_offset, offset),
                     opening,
                     val,
                     facecolor=colors[i],
@@ -685,6 +688,9 @@ class WindroseAxes(PolarAxes):
 
         offs = self._calm_circle()
 
+        # sector offset in radius
+        sector_offset = kwargs.pop("sectoroffset", 0) / 180 * np.pi
+
         for j in range(nsector):
             offset = offs
             for i in range(nbins):
@@ -693,7 +699,7 @@ class WindroseAxes(PolarAxes):
                 val = self._info["table"][i, j]
                 zorder = ZBASE + nbins - i
                 patch = mpl.patches.Rectangle(
-                    (angles[j] - opening[i] / 2, offset),
+                    (angles[j] - opening[i] / 2 - sector_offset, offset),
                     opening[i],
                     val,
                     facecolor=colors[i],
@@ -754,7 +760,8 @@ class WindAxes(mpl.axes.Subplot):
         return (self, params)
 
 
-def histogram(direction, var, bins, nsector, normed=False, blowto=False):
+def histogram(direction, var, bins, nsector, normed=False,
+              blowto=False, section_offset=0):
     """
     Returns an array where, for each sector of wind
     (centred on the north), we have the number of time the wind comes with a
@@ -785,7 +792,9 @@ def histogram(direction, var, bins, nsector, normed=False, blowto=False):
 
     angle = 360.0 / nsector
 
-    dir_bins = np.arange(-angle / 2, 360.0 + angle, angle, dtype=float)
+    dir_bins = np.arange(-angle / 2, 360.0 + angle, angle, dtype=float)\
+        + section_offset
+
     dir_edges = dir_bins.tolist()
     dir_edges.pop(-1)
     dir_edges[0] = dir_edges.pop(-1)

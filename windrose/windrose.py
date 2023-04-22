@@ -569,6 +569,11 @@ class WindroseAxes(PolarAxes):
             number of sectors used to compute the windrose table. If not set,
             nsectors=16, then each sector will be 360/16=22.5°, and the
             resulting computed table will be aligned with the cardinals points.
+        sectoroffset: float, optional
+            the offset for the sectors. By default, the offsect is zero, and
+            the first sector is [-360/nsector, 360/nsector] or [-11.25, 11.25]
+            for nsector=16. If offset is non-zero, the first sector will be
+            [-360/nsector + offset, 360/nsector + offset] and etc.
         bins : 1D array or integer, optional
             number of bins, or a sequence of bins variable. If not set, bins=6
             between min(`var`) and max(`var`).
@@ -653,6 +658,11 @@ class WindroseAxes(PolarAxes):
             number of sectors used to compute the windrose table. If not set,
             nsectors=16, then each sector will be 360/16=22.5°, and the
             resulting computed table will be aligned with the cardinals points.
+        sectoroffset: float, optional
+            the offset for the sectors. By default, the offsect is zero, and
+            the first sector is [-360/nsector, 360/nsector] or [-11.25, 11.25]
+            for nsector=16. If offset is non-zero, the first sector will be
+            [-360/nsector + offset, 360/nsector + offset] and etc.
         bins : 1D array or integer, optional
             number of bins, or a sequence of bins variable. If not set, bins=6
             between min(`var`) and max(`var`).
@@ -761,7 +771,7 @@ class WindAxes(mpl.axes.Subplot):
 
 
 def histogram(direction, var, bins, nsector, normed=False,
-              blowto=False, section_offset=0):
+              blowto=False, sectoroffset=0):
     """
     Returns an array where, for each sector of wind
     (centred on the north), we have the number of time the wind comes with a
@@ -777,7 +787,9 @@ def histogram(direction, var, bins, nsector, normed=False,
         list of var category against we're going to compute the table
     nsector : integer
         number of sectors
-
+    sectoroffset : float, default 0
+        sector offset. For example, the first sector is [-360/nsector+
+        sectoroffset, 360/nsector+sectoroffset], etc.
     Other Parameters
     ----------------
     normed : boolean, default False
@@ -793,7 +805,7 @@ def histogram(direction, var, bins, nsector, normed=False,
     angle = 360.0 / nsector
 
     dir_bins = np.arange(-angle / 2, 360.0 + angle, angle, dtype=float)\
-        + section_offset
+        + sectoroffset
 
     dir_edges = dir_bins.tolist()
     dir_edges.pop(-1)

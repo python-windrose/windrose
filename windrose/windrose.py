@@ -304,6 +304,19 @@ class WindroseAxes(PolarAxes):
             Any argument accepted by :obj:`matplotlib.pyplot.plot`.
         """
 
+        normed = kwargs.pop("normed", False)
+        blowto = kwargs.pop("blowto", False)
+
+        # Calm condition, mask data if needed
+        calm_limit = kwargs.pop("calm_limit", None)
+        if calm_limit is not None:
+            mask = var > calm_limit
+            self.calm_count = len(var) - np.count_nonzero(mask)
+            if normed:
+                self.calm_count = self.calm_count * 100 / len(var)
+            var = var[mask]
+            direction = direction[mask]
+
         # if weibull factors are entered overwrite direction and var
         if "weibull_factors" in kwargs or "mean_values" in kwargs:
             if "weibull_factors" in kwargs and "mean_values" in kwargs:
@@ -374,19 +387,6 @@ class WindroseAxes(PolarAxes):
 
         # Building the angles list
         angles = np.arange(0, -2 * np.pi, -2 * np.pi / nsector) + np.pi / 2
-
-        normed = kwargs.pop("normed", False)
-        blowto = kwargs.pop("blowto", False)
-
-        # Calm condition
-        calm_limit = kwargs.pop("calm_limit", None)
-        if calm_limit is not None:
-            mask = var > calm_limit
-            self.calm_count = len(var) - np.count_nonzero(mask)
-            if normed:
-                self.calm_count = self.calm_count * 100 / len(var)
-            var = var[mask]
-            direction = direction[mask]
 
         # Set the global information dictionary
         self._info["dir"], self._info["bins"], self._info["table"] = histogram(

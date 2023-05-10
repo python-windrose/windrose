@@ -427,9 +427,9 @@ class WindroseAxes(PolarAxes):
 
         Other Parameters
         ----------------
-        sector : integer, optional
+        nsector : integer, optional
             number of sectors used to compute the windrose table. If not set,
-            nsectors=16, then each sector will be 360/16=22.5°, and the
+            nsector=16, then each sector will be 360/16=22.5°, and the
             resulting computed table will be aligned with the cardinals points.
         bins : 1D array or integer, optional
             number of bins, or a sequence of bins variable. If not set, bins=6,
@@ -495,7 +495,7 @@ class WindroseAxes(PolarAxes):
         ----------------
         nsector: integer, optional
             number of sectors used to compute the windrose table. If not set,
-            nsectors=16, then each sector will be 360/16=22.5°, and the
+            nsector=16, then each sector will be 360/16=22.5°, and the
             resulting computed table will be aligned with the cardinals points.
         bins : 1D array or integer, optional
             number of bins, or a sequence of bins variable. If not set, bins=6,
@@ -567,7 +567,7 @@ class WindroseAxes(PolarAxes):
         ----------------
         nsector : integer, optional
             number of sectors used to compute the windrose table. If not set,
-            nsectors=16, then each sector will be 360/16=22.5°, and the
+            nsector=16, then each sector will be 360/16=22.5°, and the
             resulting computed table will be aligned with the cardinals points.
         bins : 1D array or integer, optional
             number of bins, or a sequence of bins variable. If not set, bins=6
@@ -648,7 +648,7 @@ class WindroseAxes(PolarAxes):
         ----------------
         nsector: integer, optional
             number of sectors used to compute the windrose table. If not set,
-            nsectors=16, then each sector will be 360/16=22.5°, and the
+            nsector=16, then each sector will be 360/16=22.5°, and the
             resulting computed table will be aligned with the cardinals points.
         bins : 1D array or integer, optional
             number of bins, or a sequence of bins variable. If not set, bins=6

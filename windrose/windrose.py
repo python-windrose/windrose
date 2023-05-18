@@ -14,8 +14,6 @@ VAR_DEFAULT = "speed"
 DIR_DEFAULT = "direction"
 FIGSIZE_DEFAULT = (8, 8)
 DPI_DEFAULT = 80
-CALM_CIRCLE_COLOR = "red"
-CALM_CIRCLE_ALPHA = 0.4
 DEFAULT_THETA_LABELS = ["E", "N-E", "N", "N-W", "W", "S-W", "S", "S-E"]
 
 
@@ -314,6 +312,7 @@ class WindroseAxes(PolarAxes):
 
         # Calm condition, mask data if needed
         calm_limit = kwargs.pop("calm_limit", None)
+        total = len(var)
         if calm_limit is not None:
             mask = var > calm_limit
             self.calm_count = len(var) - np.count_nonzero(mask)
@@ -404,25 +403,15 @@ class WindroseAxes(PolarAxes):
             nsector,
             normed,
             blowto,
+            total,
         )
 
         return bins, nbins, nsector, colors, angles, kwargs
 
     def _calm_circle(self):
-        """
-        Draw the calm centered circle
-        and return the initial offset for plots methods
-        """
+        """Draw the calm centered circle"""
         if self.calm_count and self.calm_count > 0:
-            circle = mpl.patches.Circle(
-                (0.0, 0.0),
-                self.calm_count,
-                transform=self.transData._b,
-                color=CALM_CIRCLE_COLOR,
-                alpha=CALM_CIRCLE_ALPHA,
-            )
-            self.add_artist(circle)
-        return self.calm_count or 0
+            self.set_rorigin(-(np.sqrt(self.calm_count / np.pi)))
 
     def contour(self, direction, var, **kwargs):
         """
@@ -482,10 +471,11 @@ class WindroseAxes(PolarAxes):
             ),
         )
 
-        offset = self._calm_circle()
+        self._calm_circle()
+        origin = 0
         for i in range(nbins):
-            val = vals[i, :] + offset
-            offset += vals[i, :]
+            val = vals[i, :] + origin
+            origin += vals[i, :]
             zorder = ZBASE + nbins - i
             patch = self.plot(angles, val, color=colors[i], zorder=zorder, **kwargs)
             self.patches_list.extend(patch)
@@ -550,10 +540,11 @@ class WindroseAxes(PolarAxes):
                 ),
             ),
         )
-        offset = self._calm_circle()
+        self._calm_circle()
+        origin = 0
         for i in range(nbins):
-            val = vals[i, :] + offset
-            offset += vals[i, :]
+            val = vals[i, :] + origin
+            origin += vals[i, :]
             zorder = ZBASE + nbins - i
             patch = self.fill(
                 np.append(angles, 0),
@@ -624,17 +615,17 @@ class WindroseAxes(PolarAxes):
         dtheta = 2 * np.pi / nsector
         opening = dtheta * opening
 
-        offs = self._calm_circle()
+        self._calm_circle()
 
         for j in range(nsector):
-            offset = offs
+            origin = 0
             for i in range(nbins):
                 if i > 0:
-                    offset += self._info["table"][i - 1, j]
+                    origin += self._info["table"][i - 1, j]
                 val = self._info["table"][i, j]
                 zorder = ZBASE + nbins - i
                 patch = mpl.patches.Rectangle(
-                    (angles[j] - opening / 2, offset),
+                    (angles[j] - opening / 2, origin),
                     opening,
                     val,
                     facecolor=colors[i],
@@ -698,17 +689,17 @@ class WindroseAxes(PolarAxes):
                 raise ValueError("edgecolor must be a string color")
         opening = np.linspace(0.0, np.pi / 16, nbins)
 
-        offs = self._calm_circle()
+        self._calm_circle()
 
         for j in range(nsector):
-            offset = offs
+            origin = 0
             for i in range(nbins):
                 if i > 0:
-                    offset += self._info["table"][i - 1, j]
+                    origin += self._info["table"][i - 1, j]
                 val = self._info["table"][i, j]
                 zorder = ZBASE + nbins - i
                 patch = mpl.patches.Rectangle(
-                    (angles[j] - opening[i] / 2, offset),
+                    (angles[j] - opening[i] / 2, origin),
                     opening[i],
                     val,
                     facecolor=colors[i],
@@ -769,7 +760,7 @@ class WindAxes(mpl.axes.Subplot):
         return (self, params)
 
 
-def histogram(direction, var, bins, nsector, normed=False, blowto=False):
+def histogram(direction, var, bins, nsector, normed=False, blowto=False, total=0):
     """
     Returns an array where, for each sector of wind
     (centred on the north), we have the number of time the wind comes with a
@@ -819,7 +810,7 @@ def histogram(direction, var, bins, nsector, normed=False, blowto=False):
     # and remove the last col
     table = table[:, :-1]
     if normed:
-        table = table * 100 / table.sum()
+        table = table * 100 / total
 
     return dir_edges, var_bins, table
 

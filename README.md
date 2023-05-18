@@ -41,6 +41,7 @@ Option libraries:
 - Scipy http://www.scipy.org/ (to fit data with Weibull distribution)
 - ffmpeg https://www.ffmpeg.org/ (to output video)
 - click http://click.pocoo.org/ (for command line interface tools)
+- seaborn https://seaborn.pydata.org/ (for easy subplots)
 
 ### Install latest release version via pip
 

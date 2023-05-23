@@ -20,7 +20,7 @@ jobs:
         fetch-depth: 0
 
     - name: Setup Mamba
-      uses: mamba-org/provision-with-micromamba@v15
+      uses: mamba-org/provision-with-micromamba@v16
       with:
         environment-file: false
 

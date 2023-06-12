@@ -35,12 +35,13 @@ Some academics use it to track lightning strikes during high intensity storms. T
 - numpy http://www.numpy.org/
 - and naturally python https://www.python.org/ :-P
 
-Option libraries:
+Optional libraries:
 
 - Pandas http://pandas.pydata.org/ (to feed plot functions easily)
 - Scipy http://www.scipy.org/ (to fit data with Weibull distribution)
 - ffmpeg https://www.ffmpeg.org/ (to output video)
 - click http://click.pocoo.org/ (for command line interface tools)
+- seaborn https://seaborn.pydata.org/ (for easy subplots)
 
 ### Install latest release version via pip
 

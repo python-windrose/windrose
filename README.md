@@ -35,7 +35,7 @@ Some academics use it to track lightning strikes during high intensity storms. T
 - numpy http://www.numpy.org/
 - and naturally python https://www.python.org/ :-P
 
-Option libraries:
+Optional libraries:
 
 - Pandas http://pandas.pydata.org/ (to feed plot functions easily)
 - Scipy http://www.scipy.org/ (to fit data with Weibull distribution)

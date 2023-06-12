@@ -5,7 +5,13 @@ import pandas as pd
 from numpy.testing import assert_allclose
 from pandas.testing import assert_frame_equal
 
-from windrose import DEFAULT_THETA_LABELS, WindroseAxes, clean, clean_df, plot_windrose
+from windrose import (
+    DEFAULT_THETA_LABELS,
+    WindroseAxes,
+    clean,
+    clean_df,
+    plot_windrose,
+)
 
 matplotlib.use("Agg")  # noqa
 # Create wind speed and direction variables
@@ -43,14 +49,14 @@ def test_windrose_clean_df():
         {
             "direction": [1.0, 1.0, 1.0, np.nan, np.nan, np.nan],
             "speed": [2.0, 0.0, np.nan, 2.0, 0.0, np.nan],
-        }
+        },
     )
     actual_df = clean_df(df)
     expected_df = pd.DataFrame(
         {
             "direction": [1.0],
             "speed": [2.0],
-        }
+        },
     )
     assert_frame_equal(actual_df, expected_df)
 

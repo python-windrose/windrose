@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 """
 This sample need to be improve to provide
@@ -143,12 +142,12 @@ Last  dt: %s
 
     # Create a video writer (ffmpeg can create MPEG files)
     FFMpegWriter = matplotlib.animation.writers["ffmpeg"]
-    metadata = dict(
-        title="windrose",
-        artist="windrose",
-        comment="""Made with windrose
+    metadata = {
+        "title": "windrose",
+        "artist": "windrose",
+        "comment": """Made with windrose
 http://www.github.com/scls19fr/windrose""",
-    )
+    }
     writer = FFMpegWriter(fps=fps, metadata=metadata)
 
     dt_start_process = datetime.datetime.now()
@@ -159,10 +158,10 @@ http://www.github.com/scls19fr/windrose""",
                 dt1 = df.index[0]
                 dt2 = df.index[-1]
                 td = dt2 - dt1
-                msg = """  Slide %s/%s
-    From %s
-      to %s
-      td %s""" % (
+                msg = """  Slide {}/{}
+    From {}
+      to {}
+      td {}""".format(
                     i + 1,
                     Nslides,
                     dt1,
@@ -175,13 +174,12 @@ http://www.github.com/scls19fr/windrose""",
                 td_remaining = (now - dt_start_process) / (i + 1) * remaining
                 logger.info(
                     """    Expected
-    time: %s
-  end at: %s
-"""
-                    % (td_remaining, now + td_remaining)
+    time: {}
+  end at: {}
+""".format(td_remaining, now + td_remaining)
                 )
 
-                title = "  From %s\n    to %s" % (dt1, dt2)
+                title = f"  From {dt1}\n    to {dt2}"
 
                 try:
                     ax = WindroseAxes.from_ax(

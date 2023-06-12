@@ -127,7 +127,7 @@ class WindroseAxes(PolarAxes):
                 )
             if rect is None:
                 rect = [0.1, 0.1, 0.8, 0.8]
-            ax = WindroseAxes(fig, rect, rmax=rmax, *args, **kwargs)
+            ax = WindroseAxes(fig, rect, *args, **kwargs)
             fig.add_axes(ax)
             return ax
         else:
@@ -142,9 +142,9 @@ class WindroseAxes(PolarAxes):
         self.theta_angles = np.arange(0, 360, 45)
         self.set_thetagrids(angles=self.theta_angles, labels=self.theta_labels)
 
-        self._info = {"dir": list(), "bins": list(), "table": list()}
+        self._info = {"dir": [], "bins": [], "table": []}
 
-        self.patches_list = list()
+        self.patches_list = []
 
         self.calm_count = None
 
@@ -223,10 +223,11 @@ class WindroseAxes(PolarAxes):
         """
 
         def get_handles():
-            handles = list()
+            handles = []
             for p in self.patches_list:
                 if isinstance(p, mpl.patches.Polygon) or isinstance(
-                    p, mpl.patches.Rectangle
+                    p,
+                    mpl.patches.Rectangle,
                 ):
                     color = p.get_facecolor()
                 elif isinstance(p, mpl.lines.Line2D):
@@ -235,8 +236,12 @@ class WindroseAxes(PolarAxes):
                     raise AttributeError("Can't handle patches")
                 handles.append(
                     mpl.patches.Rectangle(
-                        (0, 0), 0.2, 0.2, facecolor=color, edgecolor="black"
-                    )
+                        (0, 0),
+                        0.2,
+                        0.2,
+                        facecolor=color,
+                        edgecolor="black",
+                    ),
                 )
             return handles
 
@@ -318,7 +323,7 @@ class WindroseAxes(PolarAxes):
             if val:
                 if "frequency" not in kwargs:
                     raise TypeError(
-                        "specify 'frequency' argument for statistical input"
+                        "specify 'frequency' argument for statistical input",
                     )
                 windFrequencies = kwargs.pop("frequency")
                 if len(windFrequencies) != len(direction) or len(direction) != len(var):
@@ -332,11 +337,14 @@ class WindroseAxes(PolarAxes):
                     for _ in range(int(windFrequencies[dbin] * 10000)):
                         if statistic_type == "weibull":
                             windSpeeds.append(
-                                random.weibullvariate(var[dbin][0], var[dbin][1])
+                                random.weibullvariate(var[dbin][0], var[dbin][1]),
                             )
                         elif statistic_type == "mean":
                             windSpeeds.append(
-                                random.weibullvariate(var[dbin] * 2 / np.sqrt(np.pi), 2)
+                                random.weibullvariate(
+                                    var[dbin] * 2 / np.sqrt(np.pi),
+                                    2,
+                                ),
                             )
                         windDirections.append(direction[dbin])
                 var, direction = windSpeeds, windDirections
@@ -390,7 +398,12 @@ class WindroseAxes(PolarAxes):
 
         # Set the global information dictionary
         self._info["dir"], self._info["bins"], self._info["table"] = histogram(
-            direction, var, bins, nsector, normed, blowto
+            direction,
+            var,
+            bins,
+            nsector,
+            normed,
+            blowto,
         )
 
         return bins, nbins, nsector, colors, angles, kwargs
@@ -463,9 +476,10 @@ class WindroseAxes(PolarAxes):
             (
                 self._info["table"],
                 np.reshape(
-                    self._info["table"][:, 0], (self._info["table"].shape[0], 1)
+                    self._info["table"][:, 0],
+                    (self._info["table"].shape[0], 1),
                 ),
-            )
+            ),
         )
 
         offset = self._calm_circle()
@@ -531,9 +545,10 @@ class WindroseAxes(PolarAxes):
             (
                 self._info["table"],
                 np.reshape(
-                    self._info["table"][:, 0], (self._info["table"].shape[0], 1)
+                    self._info["table"][:, 0],
+                    (self._info["table"].shape[0], 1),
                 ),
-            )
+            ),
         )
         offset = self._calm_circle()
         for i in range(nbins):
@@ -1000,5 +1015,5 @@ def plot_windrose_np(
     else:
         raise NotImplementedError(
             "'by' keyword not supported for now "
-            "https://github.com/scls19fr/windrose/issues/10"
+            "https://github.com/scls19fr/windrose/issues/10",
         )

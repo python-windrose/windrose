@@ -983,7 +983,9 @@ def plot_windrose_df(
     """Plot windrose from a pandas DataFrame."""
     var = df[var_name].values
     direction = df[direction_name].values
-    return plot_windrose_np(direction, var, by=by, rmax=rmax, ax=ax, **kwargs)
+    return plot_windrose_np(
+        direction, var, kind=kind, by=by, rmax=rmax, ax=ax, **kwargs
+    )
 
 
 def plot_windrose_np(

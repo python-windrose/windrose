@@ -7,6 +7,7 @@
   <title>API &mdash; windrose  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -17,6 +18,8 @@
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -238,7 +241,7 @@ a colored bar will be draw on the axes.</p>
 <li><p><strong>direction</strong> (<em>1D array</em>) – directions the wind blows from, North centred</p></li>
 <li><p><strong>var</strong> (<em>1D array</em>) – values of the variable to compute. Typically the wind speeds.</p></li>
 <li><p><strong>nsector</strong> (<em>integer</em><em>, </em><em>optional</em>) – number of sectors used to compute the windrose table. If not set,
-nsectors=16, then each sector will be 360/16=22.5°, and the
+nsector=16, then each sector will be 360/16=22.5°, and the
 resulting computed table will be aligned with the cardinals points.</p></li>
 <li><p><strong>bins</strong> (<em>1D array</em><em> or </em><em>integer</em><em>, </em><em>optional</em>) – number of bins, or a sequence of bins variable. If not set, bins=6
 between min(<cite>var</cite>) and max(<cite>var</cite>).</p></li>
@@ -272,7 +275,7 @@ each sector, a colored box will be draw on the axes.</p>
 <li><p><strong>direction</strong> (<em>1D array</em>) – directions the wind blows from, North centred</p></li>
 <li><p><strong>var</strong> (<em>1D array</em>) – values of the variable to compute. Typically the wind speeds</p></li>
 <li><p><strong>nsector</strong> (<em>integer</em><em>, </em><em>optional</em>) – number of sectors used to compute the windrose table. If not set,
-nsectors=16, then each sector will be 360/16=22.5°, and the
+nsector=16, then each sector will be 360/16=22.5°, and the
 resulting computed table will be aligned with the cardinals points.</p></li>
 <li><p><strong>bins</strong> (<em>1D array</em><em> or </em><em>integer</em><em>, </em><em>optional</em>) – number of bins, or a sequence of bins variable. If not set, bins=6
 between min(<cite>var</cite>) and max(<cite>var</cite>).</p></li>
@@ -311,8 +314,8 @@ pylab command.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>direction</strong> (<em>1D array</em>) – directions the wind blows from, North centred</p></li>
 <li><p><strong>var</strong> (<em>1D array</em>) – values of the variable to compute. Typically the wind speeds.</p></li>
-<li><p><strong>sector</strong> (<em>integer</em><em>, </em><em>optional</em>) – number of sectors used to compute the windrose table. If not set,
-nsectors=16, then each sector will be 360/16=22.5°, and the
+<li><p><strong>nsector</strong> (<em>integer</em><em>, </em><em>optional</em>) – number of sectors used to compute the windrose table. If not set,
+nsector=16, then each sector will be 360/16=22.5°, and the
 resulting computed table will be aligned with the cardinals points.</p></li>
 <li><p><strong>bins</strong> (<em>1D array</em><em> or </em><em>integer</em><em>, </em><em>optional</em>) – number of bins, or a sequence of bins variable. If not set, bins=6,
 then bins=linspace(min(var), max(var), 6)</p></li>
@@ -345,7 +348,7 @@ pylab command.</p>
 <li><p><strong>direction</strong> (<em>1D array</em>) – directions the wind blows from, North centred</p></li>
 <li><p><strong>var</strong> (<em>1D array</em>) – values of the variable to compute. Typically the wind speeds</p></li>
 <li><p><strong>nsector</strong> (<em>integer</em><em>, </em><em>optional</em>) – number of sectors used to compute the windrose table. If not set,
-nsectors=16, then each sector will be 360/16=22.5°, and the
+nsector=16, then each sector will be 360/16=22.5°, and the
 resulting computed table will be aligned with the cardinals points.</p></li>
 <li><p><strong>bins</strong> (<em>1D array</em><em> or </em><em>integer</em><em>, </em><em>optional</em>) – number of bins, or a sequence of bins variable. If not set, bins=6,
 then bins=linspace(min(<cite>var</cite>), max(<cite>var</cite>), 6)</p></li>
@@ -513,7 +516,7 @@ if a direction is nan, this row is also removed from DataFrame</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="windrose.histogram">
-<span class="sig-prename descclassname"><span class="pre">windrose.</span></span><span class="sig-name descname"><span class="pre">histogram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bins</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nsector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blowto</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#windrose.histogram" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">windrose.</span></span><span class="sig-name descname"><span class="pre">histogram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bins</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nsector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blowto</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#windrose.histogram" title="Permalink to this definition"></a></dt>
 <dd><p>Returns an array where, for each sector of wind
 (centred on the north), we have the number of time the wind comes with a
 particular var (speed, pollutant concentration, …).</p>
@@ -561,7 +564,7 @@ a colored bar will be draw on the axes.</p>
 <li><p><strong>direction</strong> (<em>1D array</em>) – directions the wind blows from, North centred</p></li>
 <li><p><strong>var</strong> (<em>1D array</em>) – values of the variable to compute. Typically the wind speeds.</p></li>
 <li><p><strong>nsector</strong> (<em>integer</em><em>, </em><em>optional</em>) – number of sectors used to compute the windrose table. If not set,
-nsectors=16, then each sector will be 360/16=22.5°, and the
+nsector=16, then each sector will be 360/16=22.5°, and the
 resulting computed table will be aligned with the cardinals points.</p></li>
 <li><p><strong>bins</strong> (<em>1D array</em><em> or </em><em>integer</em><em>, </em><em>optional</em>) – number of bins, or a sequence of bins variable. If not set, bins=6
 between min(<cite>var</cite>) and max(<cite>var</cite>).</p></li>
@@ -595,7 +598,7 @@ each sector, a colored box will be draw on the axes.</p>
 <li><p><strong>direction</strong> (<em>1D array</em>) – directions the wind blows from, North centred</p></li>
 <li><p><strong>var</strong> (<em>1D array</em>) – values of the variable to compute. Typically the wind speeds</p></li>
 <li><p><strong>nsector</strong> (<em>integer</em><em>, </em><em>optional</em>) – number of sectors used to compute the windrose table. If not set,
-nsectors=16, then each sector will be 360/16=22.5°, and the
+nsector=16, then each sector will be 360/16=22.5°, and the
 resulting computed table will be aligned with the cardinals points.</p></li>
 <li><p><strong>bins</strong> (<em>1D array</em><em> or </em><em>integer</em><em>, </em><em>optional</em>) – number of bins, or a sequence of bins variable. If not set, bins=6
 between min(<cite>var</cite>) and max(<cite>var</cite>).</p></li>
@@ -628,8 +631,8 @@ pylab command.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>direction</strong> (<em>1D array</em>) – directions the wind blows from, North centred</p></li>
 <li><p><strong>var</strong> (<em>1D array</em>) – values of the variable to compute. Typically the wind speeds.</p></li>
-<li><p><strong>sector</strong> (<em>integer</em><em>, </em><em>optional</em>) – number of sectors used to compute the windrose table. If not set,
-nsectors=16, then each sector will be 360/16=22.5°, and the
+<li><p><strong>nsector</strong> (<em>integer</em><em>, </em><em>optional</em>) – number of sectors used to compute the windrose table. If not set,
+nsector=16, then each sector will be 360/16=22.5°, and the
 resulting computed table will be aligned with the cardinals points.</p></li>
 <li><p><strong>bins</strong> (<em>1D array</em><em> or </em><em>integer</em><em>, </em><em>optional</em>) – number of bins, or a sequence of bins variable. If not set, bins=6,
 then bins=linspace(min(var), max(var), 6)</p></li>
@@ -662,7 +665,7 @@ pylab command.</p>
 <li><p><strong>direction</strong> (<em>1D array</em>) – directions the wind blows from, North centred</p></li>
 <li><p><strong>var</strong> (<em>1D array</em>) – values of the variable to compute. Typically the wind speeds</p></li>
 <li><p><strong>nsector</strong> (<em>integer</em><em>, </em><em>optional</em>) – number of sectors used to compute the windrose table. If not set,
-nsectors=16, then each sector will be 360/16=22.5°, and the
+nsector=16, then each sector will be 360/16=22.5°, and the
 resulting computed table will be aligned with the cardinals points.</p></li>
 <li><p><strong>bins</strong> (<em>1D array</em><em> or </em><em>integer</em><em>, </em><em>optional</em>) – number of bins, or a sequence of bins variable. If not set, bins=6,
 then bins=linspace(min(<cite>var</cite>), max(<cite>var</cite>), 6)</p></li>

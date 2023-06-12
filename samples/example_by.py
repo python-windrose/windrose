@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 """
 sample using "by" keyword
@@ -18,7 +17,7 @@ import pandas as pd
 from windrose import DPI_DEFAULT, FIGSIZE_DEFAULT, WindroseAxes
 
 
-class AxCollection(object):
+class AxCollection:
     def __init__(self, fig=None, *args, **kwargs):
         if fig is None:
             self.fig = plt.figure(
@@ -34,7 +33,7 @@ class AxCollection(object):
         pass
 
 
-class Layout(object):
+class Layout:
     """
     Inspired from PdfPages
         https://github.com/matplotlib/matplotlib/blob/master/lib/matplotlib/backends/backend_pdf.py - PdfPages
@@ -75,10 +74,10 @@ class Layout(object):
 
     def __repr__(self):
         s = """<Layout
-  cols: %s
-  rows: %s
-  sheets: %s
->""" % (
+  cols: {}
+  rows: {}
+  sheets: {}
+>""".format(
             self.ncols,
             self.nrows,
             self.nsheets,
@@ -86,12 +85,12 @@ class Layout(object):
         return s
 
     def __enter__(self, *args, **kwargs):
-        print("enter %s %s" % (args, kwargs))
+        print(f"enter {args} {kwargs}")
         return self
 
-    def __exit__(self, type, value, traceback):
+    def __exit__(self, typ, value, traceback):
         # print("exit %s %s" % (args, kwargs))
-        print("exit %s %s %s" % (type, value, traceback))
+        print(f"exit {typ} {value} {traceback}")
         # print("exit")
         self.close()
 
@@ -105,7 +104,7 @@ class Layout(object):
 
 class NormalLayout(Layout):
     def __init__(self):
-        super(NormalLayout, self).__init__()
+        super().__init__()
 
 
 S_FIGSIZE_DEFAULT = ",".join(map(str, FIGSIZE_DEFAULT))
@@ -255,7 +254,7 @@ def main(filename, dpi, figsize, fps, bins_min, bins_max, bins_step, filename_ou
         # dt1 = df.index[mask][0]
         # dt2 = df.index[mask][-1]
         # td = dt2 - dt1
-        title = "From %s\n  to %s" % (dt1, dt2)
+        title = f"From {dt1}\n  to {dt2}"
 
         ax.set_title(title, fontname=fontname)
         ax.set_legend()

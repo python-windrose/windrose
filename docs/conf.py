@@ -114,7 +114,7 @@ html_sidebars = {
         "relations.html",  # needs 'show_related': True theme option to display
         "searchbox.html",
         "donate.html",
-    ]
+    ],
 }
 
 
@@ -151,7 +151,7 @@ latex_documents = [
         "windrose Documentation",
         "Lionel Roubeyrie \\& Sebastien Celles",
         "manual",
-    )
+    ),
 ]
 
 
@@ -176,7 +176,7 @@ texinfo_documents = [
         "windrose",
         "One line description of project.",
         "Miscellaneous",
-    )
+    ),
 ]
 
 

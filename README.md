@@ -17,7 +17,7 @@ The initial use case of this library was for a technical report concerning pollu
 
 It is also used by some contributors for teaching purpose.
 
-![Map overlay](paper/screenshots/overlay.png)
+![Map overlay](https://raw.githubusercontent.com/python-windrose/windrose/main/paper/screenshots/overlay.png)
 
 Some others contributors have used it to make figures for a [wind power plant control optimization study](https://www.nrel.gov/docs/fy17osti/68185.pdf).
 

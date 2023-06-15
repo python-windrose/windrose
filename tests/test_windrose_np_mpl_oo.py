@@ -45,11 +45,38 @@ def test_windrose_stacked_histogram_not_normed_binned():
     return ax.figure
 
 
+@pytest.mark.mpl_image_compare(baseline_dir="output/oo", tolerance=6.5)
+def test_windrose_stacked_histogram_not_normed_binned_calm_limit():
+    # Another stacked histogram representation, not normed, with bins limits and a calm limit
+    ax = WindroseAxes.from_ax()
+    ax.box(wd, ws, bins=bins, calm_limit=0.2)
+    ax.set_legend()
+    return ax.figure
+
+
+@pytest.mark.mpl_image_compare(baseline_dir="output/oo", tolerance=15.5)
+def test_windrose_stacked_histogram_normed_calm_limit():
+    # windrose like a stacked histogram with normed (displayed in percent) results and a calm limit
+    ax = WindroseAxes.from_ax()
+    ax.bar(wd, ws, normed=True, opening=0.8, edgecolor="white", calm_limit=0.2)
+    ax.set_legend()
+    return ax.figure
+
+
 @pytest.mark.mpl_image_compare(baseline_dir="output/oo")
 def test_filled_with_colormap():
     # A windrose in filled representation, with a controlled colormap
     ax = WindroseAxes.from_ax()
     ax.contourf(wd, ws, bins=bins, cmap=cm.hot)
+    ax.set_legend()
+    return ax.figure
+
+
+@pytest.mark.mpl_image_compare(baseline_dir="output/oo")
+def test_filled_with_colormap_calm_limit():
+    # A windrose in filled representation, with a controlled colormap and a calm limit
+    ax = WindroseAxes.from_ax()
+    ax.contourf(wd, ws, bins=bins, cmap=cm.hot, calm_limit=0.2)
     ax.set_legend()
     return ax.figure
 
@@ -65,9 +92,27 @@ def test_filled_with_colormap_contours():
 
 
 @pytest.mark.mpl_image_compare(baseline_dir="output/oo")
+def test_filled_with_colormap_contours_calm_limit():
+    # Same as above, but with contours over each filled region...
+    ax = WindroseAxes.from_ax()
+    ax.contourf(wd, ws, bins=bins, cmap=cm.hot, calm_limit=0.2)
+    ax.contour(wd, ws, bins=bins, colors="black", calm_limit=0.2)
+    ax.set_legend()
+    return ax.figure
+
+
+@pytest.mark.mpl_image_compare(baseline_dir="output/oo")
 def test_without_filled_with_colormap_contours():
     ax = WindroseAxes.from_ax()
     ax.contour(wd, ws, bins=bins, cmap=cm.hot, lw=3)
+    ax.set_legend()
+    return ax.figure
+
+
+@pytest.mark.mpl_image_compare(baseline_dir="output/oo")
+def test_without_filled_with_colormap_contours_calm_limit():
+    ax = WindroseAxes.from_ax()
+    ax.contour(wd, ws, bins=bins, cmap=cm.hot, lw=3, calm_limit=0.2)
     ax.set_legend()
     return ax.figure
 

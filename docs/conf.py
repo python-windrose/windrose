@@ -36,6 +36,7 @@ extensions = [
     "sphinx.ext.intersphinx",
     "sphinx.ext.napoleon",
     "nbsphinx",
+    "sphinx_copybutton",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -113,7 +114,7 @@ html_sidebars = {
         "relations.html",  # needs 'show_related': True theme option to display
         "searchbox.html",
         "donate.html",
-    ]
+    ],
 }
 
 
@@ -150,7 +151,7 @@ latex_documents = [
         "windrose Documentation",
         "Lionel Roubeyrie \\& Sebastien Celles",
         "manual",
-    )
+    ),
 ]
 
 
@@ -175,7 +176,7 @@ texinfo_documents = [
         "windrose",
         "One line description of project.",
         "Miscellaneous",
-    )
+    ),
 ]
 
 

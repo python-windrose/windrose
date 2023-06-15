@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 """
 Example to create a PDF
@@ -138,7 +137,7 @@ def main(
                     facecolor="w",
                     edgecolor="w",
                 )
-                print("%r\n%r\n%r" % (fig, fig.axes, axs))
+                print(f"{fig!r}\n{fig.axes!r}\n{axs!r}")
 
             i_sheet, sheet_pos = divmod(i + offset, ncols * nrows)
             i_row, i_col = divmod(sheet_pos, ncols)

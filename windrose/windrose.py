@@ -14,8 +14,6 @@ VAR_DEFAULT = "speed"
 DIR_DEFAULT = "direction"
 FIGSIZE_DEFAULT = (8, 8)
 DPI_DEFAULT = 80
-CALM_CIRCLE_COLOR = "red"
-CALM_CIRCLE_ALPHA = 0.4
 DEFAULT_THETA_LABELS = ["E", "N-E", "N", "N-W", "W", "S-W", "S", "S-E"]
 
 
@@ -127,7 +125,7 @@ class WindroseAxes(PolarAxes):
                 )
             if rect is None:
                 rect = [0.1, 0.1, 0.8, 0.8]
-            ax = WindroseAxes(fig, rect, rmax=rmax, *args, **kwargs)
+            ax = WindroseAxes(fig, rect, *args, **kwargs)
             fig.add_axes(ax)
             return ax
         else:
@@ -142,9 +140,9 @@ class WindroseAxes(PolarAxes):
         self.theta_angles = np.arange(0, 360, 45)
         self.set_thetagrids(angles=self.theta_angles, labels=self.theta_labels)
 
-        self._info = {"dir": list(), "bins": list(), "table": list()}
+        self._info = {"dir": [], "bins": [], "table": []}
 
-        self.patches_list = list()
+        self.patches_list = []
 
         self.calm_count = None
 
@@ -223,10 +221,11 @@ class WindroseAxes(PolarAxes):
         """
 
         def get_handles():
-            handles = list()
+            handles = []
             for p in self.patches_list:
                 if isinstance(p, mpl.patches.Polygon) or isinstance(
-                    p, mpl.patches.Rectangle
+                    p,
+                    mpl.patches.Rectangle,
                 ):
                     color = p.get_facecolor()
                 elif isinstance(p, mpl.lines.Line2D):
@@ -235,8 +234,12 @@ class WindroseAxes(PolarAxes):
                     raise AttributeError("Can't handle patches")
                 handles.append(
                     mpl.patches.Rectangle(
-                        (0, 0), 0.2, 0.2, facecolor=color, edgecolor="black"
-                    )
+                        (0, 0),
+                        0.2,
+                        0.2,
+                        facecolor=color,
+                        edgecolor="black",
+                    ),
                 )
             return handles
 
@@ -304,6 +307,20 @@ class WindroseAxes(PolarAxes):
             Any argument accepted by :obj:`matplotlib.pyplot.plot`.
         """
 
+        normed = kwargs.pop("normed", False)
+        blowto = kwargs.pop("blowto", False)
+
+        # Calm condition, mask data if needed
+        calm_limit = kwargs.pop("calm_limit", None)
+        total = len(var)
+        if calm_limit is not None:
+            mask = var > calm_limit
+            self.calm_count = len(var) - np.count_nonzero(mask)
+            if normed:
+                self.calm_count = self.calm_count * 100 / len(var)
+            var = var[mask]
+            direction = direction[mask]
+
         # if weibull factors are entered overwrite direction and var
         if "weibull_factors" in kwargs or "mean_values" in kwargs:
             if "weibull_factors" in kwargs and "mean_values" in kwargs:
@@ -318,7 +335,7 @@ class WindroseAxes(PolarAxes):
             if val:
                 if "frequency" not in kwargs:
                     raise TypeError(
-                        "specify 'frequency' argument for statistical input"
+                        "specify 'frequency' argument for statistical input",
                     )
                 windFrequencies = kwargs.pop("frequency")
                 if len(windFrequencies) != len(direction) or len(direction) != len(var):
@@ -332,11 +349,14 @@ class WindroseAxes(PolarAxes):
                     for _ in range(int(windFrequencies[dbin] * 10000)):
                         if statistic_type == "weibull":
                             windSpeeds.append(
-                                random.weibullvariate(var[dbin][0], var[dbin][1])
+                                random.weibullvariate(var[dbin][0], var[dbin][1]),
                             )
                         elif statistic_type == "mean":
                             windSpeeds.append(
-                                random.weibullvariate(var[dbin] * 2 / np.sqrt(np.pi), 2)
+                                random.weibullvariate(
+                                    var[dbin] * 2 / np.sqrt(np.pi),
+                                    2,
+                                ),
                             )
                         windDirections.append(direction[dbin])
                 var, direction = windSpeeds, windDirections
@@ -375,41 +395,23 @@ class WindroseAxes(PolarAxes):
         # Building the angles list
         angles = np.arange(0, -2 * np.pi, -2 * np.pi / nsector) + np.pi / 2
 
-        normed = kwargs.pop("normed", False)
-        blowto = kwargs.pop("blowto", False)
-
-        # Calm condition
-        calm_limit = kwargs.pop("calm_limit", None)
-        if calm_limit is not None:
-            mask = var > calm_limit
-            self.calm_count = len(var) - np.count_nonzero(mask)
-            if normed:
-                self.calm_count = self.calm_count * 100 / len(var)
-            var = var[mask]
-            direction = direction[mask]
-
         # Set the global information dictionary
         self._info["dir"], self._info["bins"], self._info["table"] = histogram(
-            direction, var, bins, nsector, normed, blowto
+            direction,
+            var,
+            bins,
+            nsector,
+            normed,
+            blowto,
+            total,
         )
 
         return bins, nbins, nsector, colors, angles, kwargs
 
     def _calm_circle(self):
-        """
-        Draw the calm centered circle
-        and return the initial offset for plots methods
-        """
+        """Draw the calm centered circle"""
         if self.calm_count and self.calm_count > 0:
-            circle = mpl.patches.Circle(
-                (0.0, 0.0),
-                self.calm_count,
-                transform=self.transData._b,
-                color=CALM_CIRCLE_COLOR,
-                alpha=CALM_CIRCLE_ALPHA,
-            )
-            self.add_artist(circle)
-        return self.calm_count or 0
+            self.set_rorigin(-(np.sqrt(self.calm_count / np.pi)))
 
     def contour(self, direction, var, **kwargs):
         """
@@ -427,9 +429,9 @@ class WindroseAxes(PolarAxes):
 
         Other Parameters
         ----------------
-        sector : integer, optional
+        nsector : integer, optional
             number of sectors used to compute the windrose table. If not set,
-            nsectors=16, then each sector will be 360/16=22.5°, and the
+            nsector=16, then each sector will be 360/16=22.5°, and the
             resulting computed table will be aligned with the cardinals points.
         bins : 1D array or integer, optional
             number of bins, or a sequence of bins variable. If not set, bins=6,
@@ -463,15 +465,17 @@ class WindroseAxes(PolarAxes):
             (
                 self._info["table"],
                 np.reshape(
-                    self._info["table"][:, 0], (self._info["table"].shape[0], 1)
+                    self._info["table"][:, 0],
+                    (self._info["table"].shape[0], 1),
                 ),
-            )
+            ),
         )
 
-        offset = self._calm_circle()
+        self._calm_circle()
+        origin = 0
         for i in range(nbins):
-            val = vals[i, :] + offset
-            offset += vals[i, :]
+            val = vals[i, :] + origin
+            origin += vals[i, :]
             zorder = ZBASE + nbins - i
             patch = self.plot(angles, val, color=colors[i], zorder=zorder, **kwargs)
             self.patches_list.extend(patch)
@@ -495,7 +499,7 @@ class WindroseAxes(PolarAxes):
         ----------------
         nsector: integer, optional
             number of sectors used to compute the windrose table. If not set,
-            nsectors=16, then each sector will be 360/16=22.5°, and the
+            nsector=16, then each sector will be 360/16=22.5°, and the
             resulting computed table will be aligned with the cardinals points.
         bins : 1D array or integer, optional
             number of bins, or a sequence of bins variable. If not set, bins=6,
@@ -531,14 +535,16 @@ class WindroseAxes(PolarAxes):
             (
                 self._info["table"],
                 np.reshape(
-                    self._info["table"][:, 0], (self._info["table"].shape[0], 1)
+                    self._info["table"][:, 0],
+                    (self._info["table"].shape[0], 1),
                 ),
-            )
+            ),
         )
-        offset = self._calm_circle()
+        self._calm_circle()
+        origin = 0
         for i in range(nbins):
-            val = vals[i, :] + offset
-            offset += vals[i, :]
+            val = vals[i, :] + origin
+            origin += vals[i, :]
             zorder = ZBASE + nbins - i
             patch = self.fill(
                 np.append(angles, 0),
@@ -567,7 +573,7 @@ class WindroseAxes(PolarAxes):
         ----------------
         nsector : integer, optional
             number of sectors used to compute the windrose table. If not set,
-            nsectors=16, then each sector will be 360/16=22.5°, and the
+            nsector=16, then each sector will be 360/16=22.5°, and the
             resulting computed table will be aligned with the cardinals points.
         sectoroffset: float, optional
             the offset for the sectors. By default, the offsect is zero, and
@@ -614,20 +620,20 @@ class WindroseAxes(PolarAxes):
         dtheta = 2 * np.pi / nsector
         opening = dtheta * opening
 
-        offs = self._calm_circle()
+        self._calm_circle()
 
         # sector offset in radius
         sector_offset = kwargs.pop("sectoroffset", 0) / 180 * np.pi
 
         for j in range(nsector):
-            offset = offs
+            origin = 0
             for i in range(nbins):
                 if i > 0:
-                    offset += self._info["table"][i - 1, j]
+                    origin += self._info["table"][i - 1, j]
                 val = self._info["table"][i, j]
                 zorder = ZBASE + nbins - i
                 patch = mpl.patches.Rectangle(
-                    (angles[j] - opening / 2 - sector_offset, offset),
+                    (angles[j] - opening / 2 - sector_offset, origin),
                     opening,
                     val,
                     facecolor=colors[i],
@@ -656,7 +662,7 @@ class WindroseAxes(PolarAxes):
         ----------------
         nsector: integer, optional
             number of sectors used to compute the windrose table. If not set,
-            nsectors=16, then each sector will be 360/16=22.5°, and the
+            nsector=16, then each sector will be 360/16=22.5°, and the
             resulting computed table will be aligned with the cardinals points.
         sectoroffset: float, optional
             the offset for the sectors. By default, the offsect is zero, and
@@ -696,20 +702,20 @@ class WindroseAxes(PolarAxes):
                 raise ValueError("edgecolor must be a string color")
         opening = np.linspace(0.0, np.pi / 16, nbins)
 
-        offs = self._calm_circle()
+        self._calm_circle()
 
         # sector offset in radius
         sector_offset = kwargs.pop("sectoroffset", 0) / 180 * np.pi
 
         for j in range(nsector):
-            offset = offs
+            origin = 0
             for i in range(nbins):
                 if i > 0:
-                    offset += self._info["table"][i - 1, j]
+                    origin += self._info["table"][i - 1, j]
                 val = self._info["table"][i, j]
                 zorder = ZBASE + nbins - i
                 patch = mpl.patches.Rectangle(
-                    (angles[j] - opening[i] / 2 - sector_offset, offset),
+                    (angles[j] - opening[i] / 2 - sector_offset, origin),
                     opening[i],
                     val,
                     facecolor=colors[i],
@@ -770,7 +776,7 @@ class WindAxes(mpl.axes.Subplot):
         return (self, params)
 
 
-def histogram(direction, var, bins, nsector, normed=False, blowto=False):
+def histogram(direction, var, bins, nsector, normed=False, blowto=False, total=0):
     """
     Returns an array where, for each sector of wind
     (centred on the north), we have the number of time the wind comes with a
@@ -820,7 +826,7 @@ def histogram(direction, var, bins, nsector, normed=False, blowto=False):
     # and remove the last col
     table = table[:, :-1]
     if normed:
-        table = table * 100 / table.sum()
+        table = table * 100 / total
 
     return dir_edges, var_bins, table
 
@@ -984,7 +990,9 @@ def plot_windrose_df(
     """Plot windrose from a pandas DataFrame."""
     var = df[var_name].values
     direction = df[direction_name].values
-    return plot_windrose_np(direction, var, by=by, rmax=rmax, ax=ax, **kwargs)
+    return plot_windrose_np(
+        direction, var, kind=kind, by=by, rmax=rmax, ax=ax, **kwargs
+    )
 
 
 def plot_windrose_np(
@@ -1016,5 +1024,5 @@ def plot_windrose_np(
     else:
         raise NotImplementedError(
             "'by' keyword not supported for now "
-            "https://github.com/scls19fr/windrose/issues/10"
+            "https://github.com/scls19fr/windrose/issues/10",
         )

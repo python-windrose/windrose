@@ -29,24 +29,26 @@ jobs:
 
     - name: Install build tools
       run: |
-        python -m pip install --upgrade pip wheel setuptools setuptools_scm build twine check-manifest
+        python -m pip install --upgrade pip build
 
     - name: Build binary wheel
       run: python -m build --sdist --wheel . --outdir dist
 
     - name: CheckFiles
       run: >
-        check-manifest
+        python -m pip install --upgrade check-manifest
+        && check-manifest
         && ls dist
 
     - name: Test wheels
-      run: |
-        cd dist && python -m pip install windrose*.whl
-        python -m twine check *
+      run: >
+        python -m pip install --upgrade pip twine
+        && cd dist && python -m pip install windrose*.whl
+        && python -m twine check *
 
     - name: Publish a Python distribution to PyPI
       if: success() && github.event_name == 'release'
-      uses: pypa/gh-action-pypi-publish@v1.8.5
+      uses: pypa/gh-action-pypi-publish@release/v1
       with:
         user: __token__
         password: ${{ secrets.PYPI_PASSWORD }}

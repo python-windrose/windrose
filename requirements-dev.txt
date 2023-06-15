@@ -19,8 +19,10 @@ pytest-cov
 pytest-flake8
 pytest-mpl
 pytest-sugar
+seaborn
 setuptools_scm
 sphinx
+sphinx-copybutton
 sphinx_rtd_theme
 twine
 wheel

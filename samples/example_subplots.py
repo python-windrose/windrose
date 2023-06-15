@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 import datetime
 
@@ -51,8 +50,6 @@ def main(filename, year):
     df_all["by"] = df_all.index.map(f_month)
 
     df_all = df_all.reset_index().set_index(["by_page", "by", "Timestamp"])
-
-    print(df_all)
 
     nrows, ncols = 3, 4
     fig = plt.figure()

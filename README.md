@@ -17,7 +17,7 @@ The initial use case of this library was for a technical report concerning pollu
 
 It is also used by some contributors for teaching purpose.
 
-![Map overlay](paper/screenshots/overlay.png)
+![Map overlay](https://raw.githubusercontent.com/python-windrose/windrose/main/paper/screenshots/overlay.png)
 
 Some others contributors have used it to make figures for a [wind power plant control optimization study](https://www.nrel.gov/docs/fy17osti/68185.pdf).
 
@@ -35,12 +35,13 @@ Some academics use it to track lightning strikes during high intensity storms. T
 - numpy http://www.numpy.org/
 - and naturally python https://www.python.org/ :-P
 
-Option libraries:
+Optional libraries:
 
 - Pandas http://pandas.pydata.org/ (to feed plot functions easily)
 - Scipy http://www.scipy.org/ (to fit data with Weibull distribution)
 - ffmpeg https://www.ffmpeg.org/ (to output video)
 - click http://click.pocoo.org/ (for command line interface tools)
+- seaborn https://seaborn.pydata.org/ (for easy subplots)
 
 ### Install latest release version via pip
 

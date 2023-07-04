@@ -6,19 +6,6 @@ requires = [
   "wheel",
 ]
 
-[tool.interrogate]
-ignore-init-method = true
-ignore-init-module = false
-ignore-magic = false
-ignore-semiprivate = false
-ignore-private = false
-ignore-module = false
-fail-under = 70
-exclude = ["setup.py", "docs", "tests"]
-verbose = 1
-quiet = false
-color = true
-
 [tool.ruff]
 select = [
     "A", # flake8-builtins
@@ -42,3 +29,16 @@ line-length = 79
 "samples/example_pdf_by.py" = [
     "T201",
 ]
+
+[tool.interrogate]
+ignore-init-method = true
+ignore-init-module = false
+ignore-magic = false
+ignore-semiprivate = false
+ignore-private = false
+ignore-module = false
+fail-under = 70
+exclude = ["setup.py", "docs", "tests"]
+verbose = 1
+quiet = false
+color = true

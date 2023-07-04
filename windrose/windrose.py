@@ -173,7 +173,7 @@ class WindroseAxes(PolarAxes):
         radii_labels = [fmt % r for r in radii]
         # radii_labels[0] = ""  # Removing label 0
         self.set_rgrids(
-            radii=radii[1:], labels=radii_labels[1:], angle=self.radii_angle, **kwargs
+            radii=radii[1:], labels=radii_labels[1:], angle=self.radii_angle, **kwargs,
         )
 
     def _update(self):
@@ -456,7 +456,7 @@ class WindroseAxes(PolarAxes):
 
         """
         bins, nbins, nsector, colors, angles, kwargs = self._init_plot(
-            direction, var, **kwargs
+            direction, var, **kwargs,
         )
 
         # closing lines
@@ -524,7 +524,7 @@ class WindroseAxes(PolarAxes):
         """
 
         bins, nbins, nsector, colors, angles, kwargs = self._init_plot(
-            direction, var, **kwargs
+            direction, var, **kwargs,
         )
         kwargs.pop("facecolor", None)
         kwargs.pop("edgecolor", None)
@@ -602,7 +602,7 @@ class WindroseAxes(PolarAxes):
         """
 
         bins, nbins, nsector, colors, angles, kwargs = self._init_plot(
-            direction, var, **kwargs
+            direction, var, **kwargs,
         )
         kwargs.pop("facecolor", None)
         edgecolor = kwargs.pop("edgecolor", None)
@@ -680,7 +680,7 @@ class WindroseAxes(PolarAxes):
         """
 
         bins, nbins, nsector, colors, angles, kwargs = self._init_plot(
-            direction, var, **kwargs
+            direction, var, **kwargs,
         )
         kwargs.pop("facecolor", None)
         edgecolor = kwargs.pop("edgecolor", None)
@@ -875,7 +875,7 @@ def wrpdf(
 
 
 def wrscatter(
-    direction, var, ax=None, rmax=None, figsize=FIGSIZE_DEFAULT, *args, **kwargs
+    direction, var, ax=None, rmax=None, figsize=FIGSIZE_DEFAULT, *args, **kwargs,
 ):
     """
     Draw scatter plot
@@ -957,7 +957,7 @@ def plot_windrose(
     else:
         direction = direction_or_df
     return plot_windrose_np(
-        direction, var, kind=kind, by=by, rmax=rmax, ax=ax, **kwargs
+        direction, var, kind=kind, by=by, rmax=rmax, ax=ax, **kwargs,
     )
 
 
@@ -975,7 +975,7 @@ def plot_windrose_df(
     var = df[var_name].values
     direction = df[direction_name].values
     return plot_windrose_np(
-        direction, var, kind=kind, by=by, rmax=rmax, ax=ax, **kwargs
+        direction, var, kind=kind, by=by, rmax=rmax, ax=ax, **kwargs,
     )
 
 

@@ -27,7 +27,7 @@ repos:
     - id: blackdoc
 
 - repo: https://github.com/codespell-project/codespell
-  rev: v2.2.4
+  rev: v2.2.5
   hooks:
     - id: codespell
       exclude: >
@@ -46,17 +46,17 @@ repos:
       args: [--config=pyproject.toml]
 
 - repo: https://github.com/asottile/add-trailing-comma
-  rev: v2.5.1
+  rev: v3.0.0
   hooks:
     - id: add-trailing-comma
 
-- repo: https://github.com/charliermarsh/ruff-pre-commit
-  rev: v0.0.272
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  rev: v0.0.276
   hooks:
     - id: ruff
 
 - repo: https://github.com/tox-dev/pyproject-fmt
-  rev: 0.11.2
+  rev: 0.13.0
   hooks:
     - id: pyproject-fmt
 

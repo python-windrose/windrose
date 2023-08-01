@@ -16,7 +16,7 @@ repos:
       files: requirements-dev.txt
 
 - repo: https://github.com/psf/black
-  rev: 23.3.0
+  rev: 23.7.0
   hooks:
   - id: black
     language_version: python3
@@ -46,12 +46,12 @@ repos:
       args: [--config=pyproject.toml]
 
 - repo: https://github.com/asottile/add-trailing-comma
-  rev: v3.0.0
+  rev: v3.0.1
   hooks:
     - id: add-trailing-comma
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: v0.0.276
+  rev: v0.0.281
   hooks:
     - id: ruff
 

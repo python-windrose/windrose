@@ -16,7 +16,7 @@ repos:
       files: requirements-dev.txt
 
 - repo: https://github.com/psf/black
-  rev: 23.10.1
+  rev: 23.11.0
   hooks:
   - id: black
     language_version: python3
@@ -51,17 +51,17 @@ repos:
     - id: add-trailing-comma
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: v0.1.4
+  rev: v0.1.6
   hooks:
     - id: ruff
 
 - repo: https://github.com/tox-dev/pyproject-fmt
-  rev: 1.4.1
+  rev: 1.5.3
   hooks:
     - id: pyproject-fmt
 
 - repo: https://github.com/nbQA-dev/nbQA
-  rev: 1.7.0
+  rev: 1.7.1
   hooks:
     # mdformat works on the CLI but not as pre-commit yet.
     # Use `nbqa mdformat jupyterbook --nbqa-md` to run it locally.

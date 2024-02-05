@@ -12,6 +12,7 @@ isort
 jupyter
 nbsphinx
 pre-commit
+pyarrow
 pydocstyle
 pylint
 pytest

@@ -5,6 +5,11 @@
 All notable changes to this code base will be documented in this file,
 in every released version.
 
+### Version 1.x.x (unreleased)
+
+## What's Changed
+* Fix issue where sometimes the plot sectors showed a straight line instead of a curved one (#137)
+
 ### Version 1.7.0
 
 ## What's Changed

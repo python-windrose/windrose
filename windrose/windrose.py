@@ -642,6 +642,8 @@ class WindroseAxes(PolarAxes):
                     zorder=zorder,
                     **kwargs,
                 )
+                # needed so the the line of the rectangle becomes curved
+                patch.get_path()._interpolation_steps = 100
                 self.add_patch(patch)
                 if j == 0:
                     self.patches_list.append(patch)
@@ -718,6 +720,8 @@ class WindroseAxes(PolarAxes):
                     zorder=zorder,
                     **kwargs,
                 )
+                # needed so the the line of the rectangle becomes curved
+                patch.get_path()._interpolation_steps = 100
                 self.add_patch(patch)
                 if j == 0:
                     self.patches_list.append(patch)

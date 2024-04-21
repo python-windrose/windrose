@@ -38,3 +38,10 @@ jobs:
       run: |
         pytest -s -rxs -vv -Werror tests/ --mpl --mpl-generate-summary=html \
         --mpl-results-path="windrose_test_output-${{ matrix.os }}-${{ matrix.python-version }}"
+    - name: Store mpl-results
+      uses: actions/upload-artifact@v4
+      if: failure()
+      with:
+        name: "windrose_test_output-${{ matrix.os }}-${{ matrix.python-version }}"
+        path: "windrose_test_output-${{ matrix.os }}-${{ matrix.python-version }}"
+        retention-days: 1

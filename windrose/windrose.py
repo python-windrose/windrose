@@ -376,6 +376,11 @@ class WindroseAxes(PolarAxes):
         bins = np.asarray(bins)
         nbins = len(bins)
 
+        if np.isnan(bins).any():
+            raise ValueError(
+                "Input bins contain NaN values. If bins are not explicitly "\
+                "provided as 1D array, that means var array has NaN values.")
+
         # Number of sectors
         nsector = kwargs.pop("nsector", None)
         if nsector is None:

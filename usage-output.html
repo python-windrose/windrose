@@ -1,26 +1,27 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Examples &mdash; windrose  documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="_static/nbsphinx-code-cells.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css" />
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
-        <script src="_static/clipboard.min.js"></script>
-        <script src="_static/copybutton.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="_static/copybutton.js?v=f281be69"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -96,7 +97,7 @@
            <div itemprop="articleBody">
              
   <section id="Examples">
-<h1>Examples<a class="headerlink" href="#Examples" title="Permalink to this heading"></a></h1>
+<h1>Examples<a class="headerlink" href="#Examples" title="Link to this heading"></a></h1>
 <p>This example use randoms values for wind speed and direction(ws and wdnotebooks/windrose_sample_poitiers_csv.ipynb variables). In situation, these variables are loaded with reals values (1-D array), from a database or directly from a text file. See <a class="reference external" href="https://github.com/python-windrose/windrose/blob/master/notebooks/windrose_sample_poitiers_csv.ipynb">this notebook</a> for an example of real data.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
@@ -111,7 +112,7 @@
 </div>
 </div>
 <section id="A-stacked-histogram-with-normed-(displayed-in-percent)-results.">
-<h2>A stacked histogram with normed (displayed in percent) results.<a class="headerlink" href="#A-stacked-histogram-with-normed-(displayed-in-percent)-results." title="Permalink to this heading"></a></h2>
+<h2>A stacked histogram with normed (displayed in percent) results.<a class="headerlink" href="#A-stacked-histogram-with-normed-(displayed-in-percent)-results." title="Link to this heading"></a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
@@ -130,7 +131,7 @@
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.legend.Legend at 0x7f6760d1b250&gt;
+&lt;matplotlib.legend.Legend at 0x7f18fc4f2bd0&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -142,7 +143,7 @@
 </div>
 </section>
 <section id="Another-stacked-histogram-representation,-not-normed,-with-bins-limits.">
-<h2>Another stacked histogram representation, not normed, with bins limits.<a class="headerlink" href="#Another-stacked-histogram-representation,-not-normed,-with-bins-limits." title="Permalink to this heading"></a></h2>
+<h2>Another stacked histogram representation, not normed, with bins limits.<a class="headerlink" href="#Another-stacked-histogram-representation,-not-normed,-with-bins-limits." title="Link to this heading"></a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
@@ -159,7 +160,7 @@
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.legend.Legend at 0x7f6760c7b1d0&gt;
+&lt;matplotlib.legend.Legend at 0x7f18fc2723c0&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -171,7 +172,7 @@
 </div>
 </section>
 <section id="A-windrose-in-filled-representation,-with-a-controlled-colormap.">
-<h2>A windrose in filled representation, with a controlled colormap.<a class="headerlink" href="#A-windrose-in-filled-representation,-with-a-controlled-colormap." title="Permalink to this heading"></a></h2>
+<h2>A windrose in filled representation, with a controlled colormap.<a class="headerlink" href="#A-windrose-in-filled-representation,-with-a-controlled-colormap." title="Link to this heading"></a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
@@ -190,7 +191,7 @@
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.legend.Legend at 0x7f6760cf8050&gt;
+&lt;matplotlib.legend.Legend at 0x7f18fc34eea0&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -202,7 +203,7 @@
 </div>
 </section>
 <section id="Same-as-above,-but-with-contours-over-each-filled-region...">
-<h2>Same as above, but with contours over each filled region…<a class="headerlink" href="#Same-as-above,-but-with-contours-over-each-filled-region..." title="Permalink to this heading"></a></h2>
+<h2>Same as above, but with contours over each filled region…<a class="headerlink" href="#Same-as-above,-but-with-contours-over-each-filled-region..." title="Link to this heading"></a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
@@ -220,7 +221,7 @@
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.legend.Legend at 0x7f6760bdb1d0&gt;
+&lt;matplotlib.legend.Legend at 0x7f18fc3a6ea0&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -232,7 +233,7 @@
 </div>
 </section>
 <section id="...or-without-filled-regions.">
-<h2>…or without filled regions.<a class="headerlink" href="#...or-without-filled-regions." title="Permalink to this heading"></a></h2>
+<h2>…or without filled regions.<a class="headerlink" href="#...or-without-filled-regions." title="Link to this heading"></a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
@@ -249,7 +250,7 @@
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.legend.Legend at 0x7f676089b1d0&gt;
+&lt;matplotlib.legend.Legend at 0x7f18f4d73140&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -362,7 +363,7 @@
 </ul>
 </section>
 <section id="Probability-density-function-(pdf)-and-fitting-Weibull-distribution">
-<h2>Probability density function (pdf) and fitting Weibull distribution<a class="headerlink" href="#Probability-density-function-(pdf)-and-fitting-Weibull-distribution" title="Permalink to this heading"></a></h2>
+<h2>Probability density function (pdf) and fitting Weibull distribution<a class="headerlink" href="#Probability-density-function-(pdf)-and-fitting-Weibull-distribution" title="Link to this heading"></a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
@@ -397,12 +398,12 @@
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-params=(1, 1.638544641323291, 0, 3.4002912197329938)
+params=(1, np.float64(1.6846870835491603), 0, np.float64(3.3576762514579443))
 </pre></div></div>
 </div>
 </section>
 <section id="Overlay-of-a-map">
-<h2>Overlay of a map<a class="headerlink" href="#Overlay-of-a-map" title="Permalink to this heading"></a></h2>
+<h2>Overlay of a map<a class="headerlink" href="#Overlay-of-a-map" title="Link to this heading"></a></h2>
 <p>This example illustrate how to set an windrose axe on top of any other axes. Specifically, overlaying a map is often useful. It rely on matplotlib toolbox inset_axes utilities.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
@@ -477,7 +478,7 @@ params=(1, 1.638544641323291, 0, 3.4002912197329938)
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-/home/runner/micromamba/envs/TEST/lib/python3.11/site-packages/cartopy/io/__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/10m_physical/ne_10m_coastline.zip
+/home/runner/micromamba/envs/TEST/lib/python3.12/site-packages/cartopy/io/__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/10m_physical/ne_10m_coastline.zip
   warnings.warn(f&#39;Downloading: {url}&#39;, DownloadWarning)
 </pre></div></div>
 </div>
@@ -490,7 +491,7 @@ params=(1, 1.638544641323291, 0, 3.4002912197329938)
 </div>
 </section>
 <section id="Subplots">
-<h2>Subplots<a class="headerlink" href="#Subplots" title="Permalink to this heading"></a></h2>
+<h2>Subplots<a class="headerlink" href="#Subplots" title="Link to this heading"></a></h2>
 <p><a class="reference external" href="https://seaborn.pydata.org/index.html">seaborn</a> offers an easy way to create subplots per parameter. For example per month or day. You can adapt this to have years as columns and rows as months or vice versa.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
@@ -548,7 +549,7 @@ params=(1, 1.638544641323291, 0, 3.4002912197329938)
 <span class="n">y_ticks</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">axes</span><span class="p">:</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_legend</span><span class="p">(</span>
-        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;$m \cdot s^{-1}$&quot;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.15</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower right&quot;</span>
+        <span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$m \cdot s^{-1}$&quot;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.15</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower right&quot;</span>
     <span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_rgrids</span><span class="p">(</span><span class="n">y_ticks</span><span class="p">,</span> <span class="n">y_ticks</span><span class="p">)</span>
 
@@ -566,11 +567,11 @@ params=(1, 1.638544641323291, 0, 3.4002912197329938)
 </div>
 </section>
 <section id="Functional-API">
-<h2>Functional API<a class="headerlink" href="#Functional-API" title="Permalink to this heading"></a></h2>
+<h2>Functional API<a class="headerlink" href="#Functional-API" title="Link to this heading"></a></h2>
 <p>Instead of using object oriented approach like previously shown, some “shortcut” functions have been defined: <code class="docutils literal notranslate"><span class="pre">wrbox</span></code>, <code class="docutils literal notranslate"><span class="pre">wrbar</span></code>, <code class="docutils literal notranslate"><span class="pre">wrcontour</span></code>, <code class="docutils literal notranslate"><span class="pre">wrcontourf</span></code>, <code class="docutils literal notranslate"><span class="pre">wrpdf</span></code>. See <a class="reference external" href="https://github.com/python-windrose/windrose/blob/master/tests/test_windrose.py">unit tests</a>.</p>
 </section>
 <section id="Pandas-support">
-<h2>Pandas support<a class="headerlink" href="#Pandas-support" title="Permalink to this heading"></a></h2>
+<h2>Pandas support<a class="headerlink" href="#Pandas-support" title="Link to this heading"></a></h2>
 <p>windrose not only supports Numpy arrays. It also supports also Pandas DataFrame. <code class="docutils literal notranslate"><span class="pre">plot_windrose</span></code> function provides most of plotting features previously shown.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
@@ -615,7 +616,7 @@ params=(1, 1.638544641323291, 0, 3.4002912197329938)
 </ul>
 </section>
 <section id="Video-export">
-<h2>Video export<a class="headerlink" href="#Video-export" title="Permalink to this heading"></a></h2>
+<h2>Video export<a class="headerlink" href="#Video-export" title="Link to this heading"></a></h2>
 <p>A video of plots can be exported. A playlist of videos is <a class="reference external" href="https://www.youtube.com/playlist?list=PLE9hIvV5BUzsQ4EPBDnJucgmmZ85D_b-W">available here</a>, see:</p>
 <p><a class="reference external" href="https://www.youtube.com/watch?v=0u2RxtGgEFo"><img alt="Video1" src="http://img.youtube.com/vi/0u2RxtGgEFo/0.jpg" /></a></p>
 <p><a class="reference external" href="https://www.youtube.com/watch?v=3CWpjSEt0so"><img alt="Video2" src="http://img.youtube.com/vi/3CWpjSEt0so/0.jpg" /></a></p>

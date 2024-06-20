@@ -7,7 +7,7 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.projections.polar import PolarAxes
-from numpy.lib.twodim_base import histogram2d
+from numpy import histogram2d
 
 ZBASE = -1000  # The starting zorder for all drawing, negative to have the grid on
 VAR_DEFAULT = "speed"

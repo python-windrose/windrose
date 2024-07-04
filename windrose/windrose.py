@@ -829,7 +829,6 @@ def histogram(
     dir_edges = dir_bins.tolist()
     dir_edges.pop(-1)
     dir_edges[0] = dir_edges.pop(-1)
-    # dir_bins[0] = 0.0 + sectoroffset
 
     var_bins = bins.tolist()
     var_bins.append(np.inf)

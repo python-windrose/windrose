@@ -580,7 +580,7 @@ class WindroseAxes(PolarAxes):
             resulting computed table will be aligned with the cardinals points.
         sectoroffset: float, optional
             the offset for the sectors between [-180/nsector, 180/nsector].
-            By default, the offsect is zero, and the first sector is
+            By default, the offset is zero, and the first sector is
             [-360/nsector/2, 360/nsector/2] or [-11.25, 11.25] for nsector=16.
             If offset is non-zero, the first sector will be
             [-360/nsector + offset, 360/nsector + offset] and etc.

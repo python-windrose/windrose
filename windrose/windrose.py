@@ -387,6 +387,8 @@ class WindroseAxes(PolarAxes):
         if nsector is None:
             nsector = 16
 
+        sector_offset = kwargs.get("sectoroffset", 0)
+
         # Sets the colors table based on the colormap or the "colors" argument
         colors = kwargs.pop("colors", None)
         cmap = kwargs.pop("cmap", None)
@@ -410,9 +412,10 @@ class WindroseAxes(PolarAxes):
             var,
             bins,
             nsector,
+            total,
+            sector_offset,
             normed,
             blowto,
-            total,
         )
 
         return bins, nbins, nsector, colors, angles, kwargs
@@ -588,6 +591,12 @@ class WindroseAxes(PolarAxes):
             number of sectors used to compute the windrose table. If not set,
             nsector=16, then each sector will be 360/16=22.5°, and the
             resulting computed table will be aligned with the cardinals points.
+        sectoroffset: float, optional
+            the offset for the sectors between [-180/nsector, 180/nsector].
+            By default, the offset is zero, and the first sector is
+            [-360/nsector/2, 360/nsector/2] or [-11.25, 11.25] for nsector=16.
+            If offset is non-zero, the first sector will be
+            [-360/nsector + offset, 360/nsector + offset] and etc.
         bins : 1D array or integer, optional
             number of bins, or a sequence of bins variable. If not set, bins=6
             between min(`var`) and max(`var`).
@@ -632,6 +641,9 @@ class WindroseAxes(PolarAxes):
 
         self._calm_circle()
 
+        # sector offset in radius
+        sector_offset = kwargs.pop("sectoroffset", 0) / 180 * np.pi
+
         for j in range(nsector):
             origin = 0
             for i in range(nbins):
@@ -640,7 +652,7 @@ class WindroseAxes(PolarAxes):
                 val = self._info["table"][i, j]
                 zorder = ZBASE + nbins - i
                 patch = mpl.patches.Rectangle(
-                    (angles[j] - opening / 2, origin),
+                    (angles[j] - opening / 2 - sector_offset, origin),
                     opening,
                     val,
                     facecolor=colors[i],
@@ -673,6 +685,11 @@ class WindroseAxes(PolarAxes):
             number of sectors used to compute the windrose table. If not set,
             nsector=16, then each sector will be 360/16=22.5°, and the
             resulting computed table will be aligned with the cardinals points.
+        sectoroffset: float, optional
+            the offset for the sectors. By default, the offsect is zero, and
+            the first sector is [-360/nsector, 360/nsector] or [-11.25, 11.25]
+            for nsector=16. If offset is non-zero, the first sector will be
+            [-360/nsector + offset, 360/nsector + offset] and etc.
         bins : 1D array or integer, optional
             number of bins, or a sequence of bins variable. If not set, bins=6
             between min(`var`) and max(`var`).
@@ -710,6 +727,9 @@ class WindroseAxes(PolarAxes):
 
         self._calm_circle()
 
+        # sector offset in radius
+        sector_offset = kwargs.pop("sectoroffset", 0) / 180 * np.pi
+
         for j in range(nsector):
             origin = 0
             for i in range(nbins):
@@ -718,7 +738,7 @@ class WindroseAxes(PolarAxes):
                 val = self._info["table"][i, j]
                 zorder = ZBASE + nbins - i
                 patch = mpl.patches.Rectangle(
-                    (angles[j] - opening[i] / 2, origin),
+                    (angles[j] - opening[i] / 2 - sector_offset, origin),
                     opening[i],
                     val,
                     facecolor=colors[i],
@@ -781,7 +801,16 @@ class WindAxes(mpl.axes.Subplot):
         return (self, params)
 
 
-def histogram(direction, var, bins, nsector, normed=False, blowto=False, total=0):
+def histogram(
+    direction,
+    var,
+    bins,
+    nsector,
+    total,
+    sectoroffset=0,
+    normed=False,
+    blowto=False,
+):
     """
     Returns an array where, for each sector of wind
     (centred on the north), we have the number of time the wind comes with a
@@ -812,11 +841,15 @@ def histogram(direction, var, bins, nsector, normed=False, blowto=False, total=0
 
     angle = 360.0 / nsector
 
-    dir_bins = np.arange(-angle / 2, 360.0 + angle, angle, dtype=float)
+    dir_bins = np.arange(
+        -angle / 2 + sectoroffset,
+        360.0 + angle + sectoroffset,
+        angle,
+        dtype=float,
+    )
     dir_edges = dir_bins.tolist()
     dir_edges.pop(-1)
     dir_edges[0] = dir_edges.pop(-1)
-    dir_bins[0] = 0.0
 
     var_bins = bins.tolist()
     var_bins.append(np.inf)

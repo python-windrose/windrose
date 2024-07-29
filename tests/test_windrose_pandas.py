@@ -16,7 +16,7 @@ np.random.seed(0)
 N = 500
 ws = np.random.random(N) * 6
 wd = np.random.random(N) * 360
-bins = np.arange(0.01, 8, 1)
+bins = np.arange(0, 8, 1)
 
 df = pd.DataFrame({"speed": ws, "direction": wd})
 
@@ -45,21 +45,21 @@ def test_box():
 @pytest.mark.mpl_image_compare(baseline_dir="output/df")
 def test_contourf():
     kind = "contourf"
-    ax = plot_windrose(df, kind=kind, bins=bins, cmap=cm.hot)
+    ax = plot_windrose(df, kind=kind, bins=np.arange(0.01, 8, 1), cmap=cm.hot)
     return ax.figure
 
 
 @pytest.mark.mpl_image_compare(baseline_dir="output/df")
 def test_contour():
     kind = "contour"
-    ax = plot_windrose(df, kind=kind, bins=bins, cmap=cm.hot, lw=3)
+    ax = plot_windrose(df, kind=kind, bins=np.arange(0.01, 8, 1), cmap=cm.hot, lw=3)
     return ax.figure
 
 
 @pytest.mark.mpl_image_compare(baseline_dir="output/df")
 def test_pdf():
     kind = "pdf"
-    ax, params = plot_windrose(df, kind=kind, bins=bins)
+    ax, params = plot_windrose(df, kind=kind, bins=np.arange(0.01, 8, 1))
     return ax.figure
 
 

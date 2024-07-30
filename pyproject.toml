@@ -6,6 +6,59 @@ requires = [
   "wheel",
 ]
 
+[project]
+name = "windrose"
+description = "Python Matplotlib, Numpy library to manage wind data, draw windrose (also known as a polar rose plot)"
+readme = "README.md"
+license = { text = "BSD-3-Clause OR BCeCILL-B" }
+maintainers = [
+  { name = "Sebastien Celles" },
+  { name = "Filipe Fernandes", email = "ocefpaf+windrose@gmail.com" },
+]
+authors = [
+  { name = "Lionel Roubeyrie", email = "s.celles@gmail.co" },
+]
+requires-python = ">=3.8"
+classifiers = [
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+]
+dynamic = [
+  "version",
+]
+dependencies = [
+  "matplotlib>=3",
+  "numpy>=1.21",
+]
+optional-dependencies.extras = [
+  "pandas",
+  "scipy",
+]
+urls.documentation = "https://python-windrose.github.io/windrose"
+urls.homepage = "https://github.com/python-windrose/windrose"
+urls.repository = "https://github.com/python-windrose/windrose"
+
+[tool.setuptools]
+packages = [ "windrose" ]
+include-package-data = true
+license-files = [
+  "LICENSE.txt",
+  "LICENCE_BSD-3-Clause.txt",
+  "LICENCE_CECILL-B.txt",
+]
+[tool.setuptools.dynamic]
+dependencies = { file = [ "requirements.txt" ] }
+readme = { file = "README.md", content-type = "text/markdown" }
+
+[tool.setuptools_scm]
+write_to = "windrose/_version.py"
+write_to_template = "__version__ = '{version}'"
+tag_regex = "^(?P<prefix>v)?(?P<version>[^\\+]+)(?P<suffix>.*)?$"
+
 [tool.ruff]
 target-version = "py38"
 line-length = 79
@@ -27,6 +80,23 @@ lint.per-file-ignores."samples/example_by.py" = [
 ]
 lint.per-file-ignores."samples/example_pdf_by.py" = [
   "T201",
+]
+
+[tool.check-manifest]
+ignore = [
+  "*.yaml",
+  ".coveragerc",
+  "docs",
+  "docs/*",
+  "notebooks",
+  "notebooks/*",
+  "tests",
+  "tests/*",
+  "paper",
+  "paper/*",
+  "*.pyc",
+  ".binder/",
+  ".binder/*",
 ]
 
 [tool.interrogate]

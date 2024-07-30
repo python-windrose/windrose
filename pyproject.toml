@@ -10,7 +10,7 @@ requires = [
 target-version = "py38"
 line-length = 79
 
-select = [
+lint.select = [
   "A",   # flake8-builtins
   "B",   # flake8-bugbear
   "C4",  # flake8-comprehensions
@@ -19,13 +19,13 @@ select = [
   "T20", # flake8-print
   "UP",  # upgrade
 ]
-per-file-ignores."docs/conf.py" = [
+lint.per-file-ignores."docs/conf.py" = [
   "A001",
 ]
-per-file-ignores."samples/example_by.py" = [
+lint.per-file-ignores."samples/example_by.py" = [
   "T201",
 ]
-per-file-ignores."samples/example_pdf_by.py" = [
+lint.per-file-ignores."samples/example_pdf_by.py" = [
   "T201",
 ]
 

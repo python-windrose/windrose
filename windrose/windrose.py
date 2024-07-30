@@ -371,6 +371,19 @@ class WindroseAxes(PolarAxes):
         bins = kwargs.pop("bins", None)
         if bins is None:
             bins = np.linspace(np.min(var), np.max(var), 6)
+        if isinstance(bins, (list, tuple, np.ndarray)):
+            if len(bins) > 0 and bins[0] > np.min(var) and not calm_limit:
+                raise ValueError(
+                    f"the first value provided in bins must be less than or equal "
+                    f"to the minimum value of the wind speed data. "
+                    f"Did you mean: bins={(0, *bins)!r} ? "
+                    f"If you want to exclude values below a certain threshold, "
+                    f"try setting calm_limit={min(bins)}.",
+                )
+            elif len(bins) > 0 and calm_limit is not None and min(bins) < calm_limit:
+                raise ValueError(
+                    f"the lowest value in bins must be >= {calm_limit} (=calm_limits)",
+                )
         if isinstance(bins, int):
             bins = np.linspace(np.min(var), np.max(var), bins)
         bins = np.asarray(bins)

@@ -49,7 +49,8 @@ def test_windrose_stacked_histogram_not_normed_binned():
 def test_windrose_stacked_histogram_not_normed_binned_calm_limit():
     # Another stacked histogram representation, not normed, with bins limits and a calm limit
     ax = WindroseAxes.from_ax()
-    ax.box(wd, ws, bins=bins, calm_limit=0.2)
+    # the bins most not be below the calm_limit
+    ax.box(wd, ws, bins=[0.2, 1, 2, 3, 4, 5, 6, 7], calm_limit=0.2)
     ax.set_legend()
     return ax.figure
 
@@ -76,7 +77,8 @@ def test_filled_with_colormap():
 def test_filled_with_colormap_calm_limit():
     # A windrose in filled representation, with a controlled colormap and a calm limit
     ax = WindroseAxes.from_ax()
-    ax.contourf(wd, ws, bins=bins, cmap=cm.hot, calm_limit=0.2)
+    # the bins most not be below the calm_limit
+    ax.contourf(wd, ws, bins=[0.2, 1, 2, 3, 4, 5, 6, 7], cmap=cm.hot, calm_limit=0.2)
     ax.set_legend()
     return ax.figure
 
@@ -95,6 +97,8 @@ def test_filled_with_colormap_contours():
 def test_filled_with_colormap_contours_calm_limit():
     # Same as above, but with contours over each filled region...
     ax = WindroseAxes.from_ax()
+    # the bins most not be below the calm_limit
+    bins = [0.2, 1, 2, 3, 4, 5, 6, 7]
     ax.contourf(wd, ws, bins=bins, cmap=cm.hot, calm_limit=0.2)
     ax.contour(wd, ws, bins=bins, colors="black", calm_limit=0.2)
     ax.set_legend()
@@ -112,7 +116,15 @@ def test_without_filled_with_colormap_contours():
 @pytest.mark.mpl_image_compare(baseline_dir="output/oo")
 def test_without_filled_with_colormap_contours_calm_limit():
     ax = WindroseAxes.from_ax()
-    ax.contour(wd, ws, bins=bins, cmap=cm.hot, lw=3, calm_limit=0.2)
+    # the bins most not be below the calm_limit
+    ax.contour(
+        wd,
+        ws,
+        bins=[0.2, 1, 2, 3, 4, 5, 6, 7],
+        cmap=cm.hot,
+        lw=3,
+        calm_limit=0.2,
+    )
     ax.set_legend()
     return ax.figure
 

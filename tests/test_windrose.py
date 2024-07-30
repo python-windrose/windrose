@@ -2,6 +2,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+import pytest
 from numpy.testing import assert_allclose
 from pandas.testing import assert_frame_equal
 
@@ -73,3 +74,26 @@ def test_theta_labels():
     theta_labels = [t.get_text() for t in ax.get_xticklabels()]
     assert theta_labels == ["a", "b", "c", "d", "e", "f", "g", "h"]
     plt.close()
+
+
+def test_windrose_incorrect_bins_specified():
+    ax = WindroseAxes.from_ax()
+    with pytest.raises(ValueError) as exc_info:
+        ax.bar(direction=wd, var=ws, bins=[1, 2, 3])
+
+    (msg,) = exc_info.value.args
+    assert msg == (
+        "the first value provided in bins must be less than or equal to the minimum "
+        "value of the wind speed data. Did you mean: bins=(0, 1, 2, 3) ? "
+        "If you want to exclude values below a certain threshold, "
+        "try setting calm_limit=1."
+    )
+
+
+def test_windrose_incorrect_bins_in_combination_with_calm_limit():
+    ax = WindroseAxes.from_ax()
+    with pytest.raises(ValueError) as exc_info:
+        ax.bar(direction=wd, var=ws, bins=[1, 2, 3], calm_limit=2)
+
+    (msg,) = exc_info.value.args
+    assert msg == "the lowest value in bins must be >= 2 (=calm_limits)"

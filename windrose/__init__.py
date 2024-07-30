@@ -3,24 +3,44 @@
 from matplotlib.projections import register_projection
 
 from .windrose import (
-    D_KIND_PLOT,  # noqa
-    DEFAULT_THETA_LABELS,  # noqa
-    DPI_DEFAULT,  # noqa
-    FIGSIZE_DEFAULT,  # noqa
-    WindAxes,  # noqa
-    WindAxesFactory,  # noqa
-    WindroseAxes,  # noqa
-    clean,  # noqa
-    clean_df,  # noqa
-    plot_windrose,  # noqa
-    plot_windrose_df,  # noqa
-    plot_windrose_np,  # noqa
-    wrbar,  # noqa
-    wrbox,  # noqa
-    wrcontour,  # noqa
-    wrcontourf,  # noqa
-    wrpdf,  # noqa
-    wrscatter,  # noqa
+    D_KIND_PLOT,
+    DEFAULT_THETA_LABELS,
+    DPI_DEFAULT,
+    FIGSIZE_DEFAULT,
+    WindAxes,
+    WindAxesFactory,
+    WindroseAxes,
+    clean,
+    clean_df,
+    plot_windrose,
+    plot_windrose_df,
+    plot_windrose_np,
+    wrbar,
+    wrbox,
+    wrcontour,
+    wrcontourf,
+    wrpdf,
+    wrscatter,
 )
 
+__all__ = [
+    "D_KIND_PLOT",
+    "DEFAULT_THETA_LABELS",
+    "DPI_DEFAULT",
+    "FIGSIZE_DEFAULT",
+    "WindAxes",
+    "WindAxesFactory",
+    "WindroseAxes",
+    "clean",
+    "clean_df",
+    "plot_windrose",
+    "plot_windrose_df",
+    "plot_windrose_np",
+    "wrbar",
+    "wrbox",
+    "wrcontour",
+    "wrcontourf",
+    "wrpdf",
+    "wrscatter",
+]
 register_projection(WindroseAxes)

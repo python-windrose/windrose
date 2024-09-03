@@ -75,6 +75,10 @@ lint.select = [
 lint.per-file-ignores."docs/conf.py" = [
   "A001",
 ]
+lint.per-file-ignores."notebooks/usage.ipynb" = [
+  "T201",
+]
+
 lint.per-file-ignores."samples/example_by.py" = [
   "T201",
 ]

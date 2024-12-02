@@ -51,7 +51,7 @@ repos:
     - id: add-trailing-comma
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: v0.7.2
+  rev: v0.8.1
   hooks:
     - id: ruff
 
@@ -61,7 +61,7 @@ repos:
     - id: pyproject-fmt
 
 - repo: https://github.com/nbQA-dev/nbQA
-  rev: 1.8.7
+  rev: 1.9.1
   hooks:
     # mdformat works on the CLI but not as pre-commit yet.
     # Use `nbqa mdformat jupyterbook --nbqa-md` to run it locally.

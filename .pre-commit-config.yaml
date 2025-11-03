@@ -22,7 +22,7 @@ repos:
     language_version: python3
 
 - repo: https://github.com/keewis/blackdoc
-  rev: v0.4.3
+  rev: v0.4.5
   hooks:
     - id: blackdoc
 
@@ -46,17 +46,17 @@ repos:
       args: [--config=pyproject.toml]
 
 - repo: https://github.com/asottile/add-trailing-comma
-  rev: v3.2.0
+  rev: v4.0.0
   hooks:
     - id: add-trailing-comma
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: v0.13.3
+  rev: v0.14.3
   hooks:
     - id: ruff
 
 - repo: https://github.com/tox-dev/pyproject-fmt
-  rev: v2.7.0
+  rev: v2.11.0
   hooks:
     - id: pyproject-fmt
 

@@ -264,7 +264,10 @@ class WindroseAxes(PolarAxes):
             labels = [
                 fmt.format(digits[k], digits[k + 1]) for k in range(len(digits) - 1)
             ]
-            labels[-1] = f">{digits[-1]}"
+            if units:
+                labels[-1] = f">{digits[-1]} " + units
+            else:
+                labels[-1] = f">{digits[-1]}"
             return labels
 
         kwargs.pop("labels", None)

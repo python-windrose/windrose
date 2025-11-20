@@ -15,7 +15,7 @@ jobs:
       fail-fast: false
 
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
 
     - name: Setup Micromamba for Python ${{ matrix.python-version }}
       uses: mamba-org/setup-micromamba@v2

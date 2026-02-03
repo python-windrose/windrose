@@ -12,8 +12,8 @@ description = "Python Matplotlib, Numpy library to manage wind data, draw windro
 readme = "README.md"
 license = { text = "BSD-3-Clause OR BCeCILL-B" }
 maintainers = [
-  { name = "Sebastien Celles" },
   { name = "Filipe Fernandes", email = "ocefpaf+windrose@gmail.com" },
+  { name = "Sebastien Celles" },
 ]
 authors = [
   { name = "Lionel Roubeyrie", email = "s.celles@gmail.co" },

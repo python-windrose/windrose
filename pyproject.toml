@@ -52,9 +52,8 @@ license-files = [
   "LICENCE_BSD-3-Clause.txt",
   "LICENCE_CECILL-B.txt",
 ]
-[tool.setuptools.dynamic]
-dependencies = { file = [ "requirements.txt" ] }
-readme = { file = "README.md", content-type = "text/markdown" }
+dynamic.dependencies = { file = [ "requirements.txt" ] }
+dynamic.readme = { file = "README.md", content-type = "text/markdown" }
 
 [tool.setuptools_scm]
 write_to = "windrose/_version.py"
@@ -64,7 +63,6 @@ tag_regex = "^(?P<prefix>v)?(?P<version>[^\\+]+)(?P<suffix>.*)?$"
 [tool.ruff]
 target-version = "py38"
 line-length = 79
-
 lint.select = [
   "A",   # flake8-builtins
   "B",   # flake8-bugbear
@@ -80,7 +78,6 @@ lint.per-file-ignores."docs/conf.py" = [
 lint.per-file-ignores."notebooks/usage.ipynb" = [
   "T201",
 ]
-
 lint.per-file-ignores."samples/example_by.py" = [
   "T201",
 ]

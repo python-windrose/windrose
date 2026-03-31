@@ -16,7 +16,7 @@ repos:
       files: requirements-dev.txt
 
 - repo: https://github.com/psf/black-pre-commit-mirror
-  rev: 26.1.0
+  rev: 26.3.1
   hooks:
   - id: black
     language_version: python3
@@ -27,7 +27,7 @@ repos:
     - id: blackdoc
 
 - repo: https://github.com/codespell-project/codespell
-  rev: v2.4.1
+  rev: v2.4.2
   hooks:
     - id: codespell
       exclude: >
@@ -51,12 +51,12 @@ repos:
     - id: add-trailing-comma
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: v0.15.4
+  rev: v0.15.8
   hooks:
     - id: ruff
 
 - repo: https://github.com/tox-dev/pyproject-fmt
-  rev: v2.16.2
+  rev: v2.21.0
   hooks:
     - id: pyproject-fmt
 
@@ -80,13 +80,16 @@ repos:
   hooks:
     - id: nb-strip-paths
 
+- repo: https://github.com/woodruffw/zizmor-pre-commit
+  rev: v1.23.1
+  hooks:
+    - id: zizmor
+
 ci:
     autofix_commit_msg: |
         [pre-commit.ci] auto fixes from pre-commit.com hooks
 
         for more information, see https://pre-commit.ci
     autofix_prs: false
-    autoupdate_commit_msg: '[pre-commit.ci] pre-commit autoupdate'
-    autoupdate_schedule: monthly
     skip: []
     submodules: false

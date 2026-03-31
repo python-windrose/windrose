@@ -13,7 +13,7 @@ Option libraries:
 -  Pandas https://pandas.pydata.org/ (to feed plot functions easily)
 -  SciPy https://scipy.org/ (to fit data with Weibull distribution)
 -  ffmpeg https://www.ffmpeg.org/ (to output video)
--  click https://click.palletsprojects.com/ (for command line interface tools)
+-  click https://click.palletsprojects.com/en/stable/ (for command line interface tools)
 -  seaborn https://seaborn.pydata.org/ (for easy subplots)
 
 Install latest release version via pip

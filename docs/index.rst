@@ -46,8 +46,8 @@ https://docs.github.com/en/pull-requests/collaborating-with-pull-requests
    :target: https://pypi.org/project/windrose/
 .. |Tests| image:: https://github.com/python-windrose/windrose/actions/workflows/tests.yml/badge.svg
    :target: https://github.com/python-windrose/windrose/actions/workflows/tests.yml
-.. |DOI| image:: https://zenodo.org/badge/37549137.svg
-   :target: https://zenodo.org/badge/latestdoi/37549137
+.. |DOI| image:: https://zenodo.org/badge/DOI/10.5281/zenodo.13133010.svg
+  :target: https://doi.org/10.5281/zenodo.13133010
 
 Indices and tables
 ==================

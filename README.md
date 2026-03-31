@@ -4,8 +4,9 @@
 [![License](https://img.shields.io/pypi/l/windrose.svg)](https://pypi.python.org/pypi/windrose/)
 [![Development Status](https://img.shields.io/pypi/status/windrose.svg)](https://pypi.python.org/pypi/windrose/)
 [![Tests](https://github.com/python-windrose/windrose/actions/workflows/tests.yml/badge.svg)](https://github.com/python-windrose/windrose/actions/workflows/tests.yml)
-[![DOI](https://zenodo.org/badge/37549137.svg)](https://zenodo.org/badge/latestdoi/37549137)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13133010.svg)](https://doi.org/10.5281/zenodo.13133010)
 [![JOSS](https://joss.theoj.org/papers/10.21105/joss.00268/status.svg)](https://joss.theoj.org/papers/10.21105/joss.00268)
+
 
 # Windrose
 

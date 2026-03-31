@@ -161,6 +161,10 @@ latex_documents = [
 # (source start file, name, description, authors, manual section).
 man_pages = [(master_doc, "windrose", "windrose Documentation", [author], 1)]
 
+# Zenodo URLs are returning 403 in the checker but are fine.
+linkcheck_ignore = [
+    r"https://zenodo\.org.*",
+]
 
 # -- Options for Texinfo output -------------------------------------------
 

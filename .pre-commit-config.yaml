@@ -16,7 +16,7 @@ repos:
       files: requirements-dev.txt
 
 - repo: https://github.com/psf/black-pre-commit-mirror
-  rev: 26.3.1
+  rev: 26.5.0
   hooks:
   - id: black
     language_version: python3
@@ -51,7 +51,7 @@ repos:
     - id: add-trailing-comma
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: v0.15.12
+  rev: v0.15.13
   hooks:
     - id: ruff
 
@@ -81,7 +81,7 @@ repos:
     - id: nb-strip-paths
 
 - repo: https://github.com/woodruffw/zizmor-pre-commit
-  rev: v1.24.1
+  rev: v1.25.2
   hooks:
     - id: zizmor
 

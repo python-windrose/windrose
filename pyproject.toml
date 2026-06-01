@@ -45,18 +45,18 @@ urls.repository = "https://github.com/python-windrose/windrose"
 [tool.setuptools]
 packages = [ "windrose" ]
 include-package-data = true
+dynamic.dependencies = { file = [ "requirements.txt" ] }
+dynamic.readme = { file = "README.md", content-type = "text/markdown" }
 license-files = [
   "LICENSE.txt",
   "LICENCE_BSD-3-Clause.txt",
   "LICENCE_CECILL-B.txt",
 ]
-dynamic.dependencies = { file = [ "requirements.txt" ] }
-dynamic.readme = { file = "README.md", content-type = "text/markdown" }
 
 [tool.setuptools_scm]
+tag_regex = "^(?P<prefix>v)?(?P<version>[^\\+]+)(?P<suffix>.*)?$"
 write_to = "windrose/_version.py"
 write_to_template = "__version__ = '{version}'"
-tag_regex = "^(?P<prefix>v)?(?P<version>[^\\+]+)(?P<suffix>.*)?$"
 
 [tool.ruff]
 target-version = "py38"
@@ -83,36 +83,36 @@ lint.per-file-ignores."samples/example_pdf_by.py" = [
   "T201",
 ]
 
-[tool.check-manifest]
-ignore = [
-  "*.yaml",
-  ".coveragerc",
-  "docs",
-  "docs/*",
-  "notebooks",
-  "notebooks/*",
-  "tests",
-  "tests/*",
-  "paper",
-  "paper/*",
-  "*.pyc",
-  ".binder/",
-  ".binder/*",
-]
-
 [tool.interrogate]
+fail-under = 70
 ignore-init-method = true
 ignore-init-module = false
 ignore-magic = false
 ignore-semiprivate = false
 ignore-private = false
 ignore-module = false
-fail-under = 70
 exclude = [
-  "setup.py",
   "docs",
+  "setup.py",
   "tests",
 ]
+color = true
 verbose = 1
 quiet = false
-color = true
+
+[tool.check-manifest]
+ignore = [
+  "*.pyc",
+  "*.yaml",
+  ".binder/",
+  ".binder/*",
+  ".coveragerc",
+  "docs",
+  "docs/*",
+  "notebooks",
+  "notebooks/*",
+  "paper",
+  "paper/*",
+  "tests",
+  "tests/*",
+]

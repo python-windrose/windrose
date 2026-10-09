@@ -23,6 +23,19 @@ def test_wrscatter():
     return ax.figure
 
 
+def test_wrscatter_direction_convention():
+    # 0 degrees is North (up) and angles increase clockwise, as for the
+    # bar/box/contour plots: theta = radians(90 - direction).  See gh-99.
+    compass = np.array([0.0, 45.0, 90.0, 180.0, 270.0])
+    ax = wrscatter(compass, np.full_like(compass, 10.0))
+    theta = ax.collections[0].get_offsets()[:, 0]
+    two_pi = 2 * np.pi
+    np.testing.assert_allclose(
+        np.mod(theta, two_pi),
+        np.mod(np.radians(90.0 - compass), two_pi),
+    )
+
+
 @pytest.mark.mpl_image_compare(baseline_dir="output/func", tolerance=5)
 def test_wrbar():
     ax = wrbar(wd, ws, normed=True, opening=0.8, edgecolor="white")

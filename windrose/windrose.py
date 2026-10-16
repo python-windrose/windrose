@@ -957,7 +957,7 @@ def wrscatter(
     Draw scatter plot
     """
     ax = WindroseAxes.from_ax(ax, rmax=rmax, figsize=figsize)
-    direction = -np.array(direction) + np.radians(90)
+    direction = np.radians(90.0 - np.asarray(direction, dtype=float))
     ax.scatter(direction, var, *args, **kwargs)
     return ax
 

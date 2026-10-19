@@ -51,7 +51,7 @@ repos:
     - id: add-trailing-comma
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: v0.17.0
+  rev: v0.17.1
   hooks:
     - id: ruff
 
@@ -81,7 +81,7 @@ repos:
     - id: nb-strip-paths
 
 - repo: https://github.com/woodruffw/zizmor-pre-commit
-  rev: v1.30.1
+  rev: v1.31.1
   hooks:
     - id: zizmor
 

@@ -31,7 +31,13 @@ def test_scatter():
 @pytest.mark.mpl_image_compare(baseline_dir="output/df", tolerance=20)
 def test_bar():
     kind = "bar"
-    ax = plot_windrose(df, kind=kind, normed=True, opening=0.8, edgecolor="white")
+    ax = plot_windrose(
+        df,
+        kind=kind,
+        normed=True,
+        opening=0.8,
+        edgecolor="white",
+    )
     return ax.figure
 
 
@@ -52,7 +58,13 @@ def test_contourf():
 @pytest.mark.mpl_image_compare(baseline_dir="output/df", tolerance=20)
 def test_contour():
     kind = "contour"
-    ax = plot_windrose(df, kind=kind, bins=np.arange(0.01, 8, 1), cmap=cm.hot, lw=3)
+    ax = plot_windrose(
+        df,
+        kind=kind,
+        bins=np.arange(0.01, 8, 1),
+        cmap=cm.hot,
+        lw=3,
+    )
     return ax.figure
 
 
@@ -73,7 +85,10 @@ def test_windrose_np_plot_and_pd_plot():
 
 @pytest.mark.mpl_image_compare(baseline_dir="output/df")
 def test_subplots():
-    fig, (ax1, ax2) = plt.subplots(ncols=2, subplot_kw={"projection": "windrose"})
+    fig, (ax1, ax2) = plt.subplots(
+        ncols=2,
+        subplot_kw={"projection": "windrose"},
+    )
     plot_windrose(df, ax=ax1)
     plot_windrose(df, ax=ax2)
     return fig

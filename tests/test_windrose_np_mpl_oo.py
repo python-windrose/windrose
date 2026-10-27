@@ -78,7 +78,13 @@ def test_filled_with_colormap_calm_limit():
     # A windrose in filled representation, with a controlled colormap and a calm limit
     ax = WindroseAxes.from_ax()
     # the bins most not be below the calm_limit
-    ax.contourf(wd, ws, bins=[0.2, 1, 2, 3, 4, 5, 6, 7], cmap=cm.hot, calm_limit=0.2)
+    ax.contourf(
+        wd,
+        ws,
+        bins=[0.2, 1, 2, 3, 4, 5, 6, 7],
+        cmap=cm.hot,
+        calm_limit=0.2,
+    )
     ax.set_legend()
     return ax.figure
 

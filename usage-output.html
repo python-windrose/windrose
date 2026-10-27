@@ -16,13 +16,13 @@
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="_static/documentation_options.js?v=5929fcd5"></script>
-      <script src="_static/doctools.js?v=9bcbadda"></script>
-      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="_static/copybutton.js?v=f281be69"></script>
       <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
       <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -118,7 +118,7 @@
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">windrose</span><span class="w"> </span><span class="kn">import</span> <span class="n">WindroseAxes</span>
 
 <span class="n">ax</span> <span class="o">=</span> <span class="n">WindroseAxes</span><span class="o">.</span><span class="n">from_ax</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">wd</span><span class="p">,</span> <span class="n">ws</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">opening</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">wd</span><span class="p">,</span> <span class="n">ws</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">opening</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">"white"</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_legend</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -129,7 +129,7 @@
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.legend.Legend at 0x7f21753257f0&gt;
+&lt;matplotlib.legend.Legend at 0x7fd3340802f0&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -158,7 +158,7 @@
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.legend.Legend at 0x7f2174ff8410&gt;
+&lt;matplotlib.legend.Legend at 0x7fd327f98ec0&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -189,7 +189,7 @@
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.legend.Legend at 0x7f2175259a90&gt;
+&lt;matplotlib.legend.Legend at 0x7fd318520d70&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -208,7 +208,7 @@
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">WindroseAxes</span><span class="o">.</span><span class="n">from_ax</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">wd</span><span class="p">,</span> <span class="n">ws</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">hot</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">wd</span><span class="p">,</span> <span class="n">ws</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">colors</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">wd</span><span class="p">,</span> <span class="n">ws</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">colors</span><span class="o">=</span><span class="s2">"black"</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_legend</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -219,7 +219,7 @@
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.legend.Legend at 0x7f21752df9d0&gt;
+&lt;matplotlib.legend.Legend at 0x7fd3185a4c20&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -248,7 +248,7 @@
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.legend.Legend at 0x7f2174e8f9d0&gt;
+&lt;matplotlib.legend.Legend at 0x7fd318419e80&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -270,7 +270,7 @@
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">wd</span><span class="p">,</span> <span class="n">ws</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nsector</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
-<span class="n">table</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">_info</span><span class="p">[</span><span class="s2">&quot;table&quot;</span><span class="p">]</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">_info</span><span class="p">[</span><span class="s2">"table"</span><span class="p">]</span>
 <span class="n">wd_freq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -282,27 +282,27 @@
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
-<span class="n">direction</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">_info</span><span class="p">[</span><span class="s2">&quot;dir&quot;</span><span class="p">]</span>
+<span class="n">direction</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">_info</span><span class="p">[</span><span class="s2">"dir"</span><span class="p">]</span>
 <span class="n">wd_freq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">16</span><span class="p">),</span> <span class="n">wd_freq</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">16</span><span class="p">),</span> <span class="n">wd_freq</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s2">"center"</span><span class="p">)</span>
 <span class="n">xlabels</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="s2">&quot;N&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;N-E&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;E&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;S-E&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;S&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;S-O&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;O&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;N-O&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="s2">"N"</span><span class="p">,</span>
+    <span class="s2">""</span><span class="p">,</span>
+    <span class="s2">"N-E"</span><span class="p">,</span>
+    <span class="s2">""</span><span class="p">,</span>
+    <span class="s2">"E"</span><span class="p">,</span>
+    <span class="s2">""</span><span class="p">,</span>
+    <span class="s2">"S-E"</span><span class="p">,</span>
+    <span class="s2">""</span><span class="p">,</span>
+    <span class="s2">"S"</span><span class="p">,</span>
+    <span class="s2">""</span><span class="p">,</span>
+    <span class="s2">"S-O"</span><span class="p">,</span>
+    <span class="s2">""</span><span class="p">,</span>
+    <span class="s2">"O"</span><span class="p">,</span>
+    <span class="s2">""</span><span class="p">,</span>
+    <span class="s2">"N-O"</span><span class="p">,</span>
+    <span class="s2">""</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">xticks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">xticks</span><span class="p">)</span>
@@ -387,7 +387,7 @@
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">params</span><span class="si">=}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">params</span><span class="si">=}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -396,7 +396,7 @@
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-params=(1, np.float64(1.6611785551133385), 0, np.float64(3.2699297373634497))
+params=(1, np.float64(1.6748367087125111), 0, np.float64(3.3934316264424513))
 </pre></div></div>
 </div>
 </section>
@@ -440,7 +440,7 @@ params=(1, np.float64(1.6611785551133385), 0, np.float64(3.2699297373634497))
     <span class="n">main_ax</span><span class="p">,</span>
     <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># size in inches</span>
     <span class="n">height</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># size in inches</span>
-    <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>  <span class="c1"># center bbox at given position</span>
+    <span class="n">loc</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span>  <span class="c1"># center bbox at given position</span>
     <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="n">cham_lon</span><span class="p">,</span> <span class="n">cham_lat</span><span class="p">),</span>  <span class="c1"># position of the axe</span>
     <span class="n">bbox_transform</span><span class="o">=</span><span class="n">main_ax</span><span class="o">.</span><span class="n">transData</span><span class="p">,</span>  <span class="c1"># use data coordinate (not axe coordinate)</span>
     <span class="n">axes_class</span><span class="o">=</span><span class="n">windrose</span><span class="o">.</span><span class="n">WindroseAxes</span><span class="p">,</span>  <span class="c1"># specify the class of the axe</span>
@@ -450,9 +450,9 @@ params=(1, np.float64(1.6611785551133385), 0, np.float64(3.2699297373634497))
 <span class="n">height_deg</span> <span class="o">=</span> <span class="mf">0.1</span>
 <span class="n">wrax_passy</span> <span class="o">=</span> <span class="n">inset_axes</span><span class="p">(</span>
     <span class="n">main_ax</span><span class="p">,</span>
-    <span class="n">width</span><span class="o">=</span><span class="s2">&quot;100%&quot;</span><span class="p">,</span>  <span class="c1"># size in % of bbox</span>
-    <span class="n">height</span><span class="o">=</span><span class="s2">&quot;100%&quot;</span><span class="p">,</span>  <span class="c1"># size in % of bbox</span>
-    <span class="c1"># loc=&quot;center&quot;,  # don&quot;t know why, but this doesn&quot;t work.</span>
+    <span class="n">width</span><span class="o">=</span><span class="s2">"100%"</span><span class="p">,</span>  <span class="c1"># size in % of bbox</span>
+    <span class="n">height</span><span class="o">=</span><span class="s2">"100%"</span><span class="p">,</span>  <span class="c1"># size in % of bbox</span>
+    <span class="c1"># loc="center",  # don"t know why, but this doesn"t work.</span>
     <span class="c1"># specify the center lon and lat of the plot, and size in degree</span>
     <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span>
         <span class="n">passy_lon</span> <span class="o">-</span> <span class="n">height_deg</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
@@ -476,7 +476,7 @@ params=(1, np.float64(1.6611785551133385), 0, np.float64(3.2699297373634497))
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-/home/runner/micromamba/envs/TEST/lib/python3.13/site-packages/cartopy/io/__init__.py:242: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/10m_physical/ne_10m_coastline.zip
+/opt/hostedtoolcache/Python/3.14.8/x64/lib/python3.14/site-packages/cartopy/io/__init__.py:263: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/10m_physical/ne_10m_coastline.zip
   warnings.warn(f&#39;Downloading: {url}&#39;, DownloadWarning)
 </pre></div></div>
 </div>
@@ -504,28 +504,30 @@ params=(1, np.float64(1.6611785551133385), 0, np.float64(3.2699297373634497))
 
 <span class="n">wind_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
     <span class="p">{</span>
-        <span class="s2">&quot;ws&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">1200</span><span class="p">)</span> <span class="o">*</span> <span class="mi">6</span><span class="p">,</span>
-        <span class="s2">&quot;wd&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">1200</span><span class="p">)</span> <span class="o">*</span> <span class="mi">360</span><span class="p">,</span>
-        <span class="s2">&quot;month&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span> <span class="mi">100</span><span class="p">),</span>
+        <span class="s2">"ws"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">1200</span><span class="p">)</span> <span class="o">*</span> <span class="mi">6</span><span class="p">,</span>
+        <span class="s2">"wd"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">1200</span><span class="p">)</span> <span class="o">*</span> <span class="mi">360</span><span class="p">,</span>
+        <span class="s2">"month"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span> <span class="mi">100</span><span class="p">),</span>
     <span class="p">}</span>
 <span class="p">)</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">plot_windrose_subplots</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;wrapper function to create subplots per axis&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""wrapper function to create subplots per axis"""</span>
     <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
     <span class="n">ax</span> <span class="o">=</span> <span class="n">WindroseAxes</span><span class="o">.</span><span class="n">from_ax</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
-    <span class="n">plot_windrose</span><span class="p">(</span><span class="n">direction_or_df</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="n">direction</span><span class="p">],</span> <span class="n">var</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="n">var</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">plot_windrose</span><span class="p">(</span>
+        <span class="n">direction_or_df</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="n">direction</span><span class="p">],</span> <span class="n">var</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="n">var</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span>
 
 
 <span class="c1"># this creates the raw subplot structure with a subplot per value in month.</span>
 <span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">FacetGrid</span><span class="p">(</span>
     <span class="n">data</span><span class="o">=</span><span class="n">wind_data</span><span class="p">,</span>
     <span class="c1"># the column name for each level a subplot should be created</span>
-    <span class="n">col</span><span class="o">=</span><span class="s2">&quot;month&quot;</span><span class="p">,</span>
+    <span class="n">col</span><span class="o">=</span><span class="s2">"month"</span><span class="p">,</span>
     <span class="c1"># place a maximum of 3 plots per row</span>
     <span class="n">col_wrap</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-    <span class="n">subplot_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;projection&quot;</span><span class="p">:</span> <span class="s2">&quot;windrose&quot;</span><span class="p">},</span>
+    <span class="n">subplot_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">"projection"</span><span class="p">:</span> <span class="s2">"windrose"</span><span class="p">},</span>
     <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">sharey</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">despine</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -534,20 +536,22 @@ params=(1, np.float64(1.6611785551133385), 0, np.float64(3.2699297373634497))
 
 <span class="n">g</span><span class="o">.</span><span class="n">map_dataframe</span><span class="p">(</span>
     <span class="n">plot_windrose_subplots</span><span class="p">,</span>
-    <span class="n">direction</span><span class="o">=</span><span class="s2">&quot;wd&quot;</span><span class="p">,</span>
-    <span class="n">var</span><span class="o">=</span><span class="s2">&quot;ws&quot;</span><span class="p">,</span>
+    <span class="n">direction</span><span class="o">=</span><span class="s2">"wd"</span><span class="p">,</span>
+    <span class="n">var</span><span class="o">=</span><span class="s2">"ws"</span><span class="p">,</span>
     <span class="n">normed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="c1"># manually set bins, so they match for each subplot</span>
     <span class="n">bins</span><span class="o">=</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
     <span class="n">calm_limit</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
-    <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">,</span>
+    <span class="n">kind</span><span class="o">=</span><span class="s2">"bar"</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="c1"># make the subplots easier to compare, by having the same y-axis range</span>
 <span class="n">y_ticks</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">axes</span><span class="p">:</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_legend</span><span class="p">(</span>
-        <span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$m \cdot s^{-1}$&quot;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.15</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower right&quot;</span>
+        <span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">"$m \cdot s^{-1}$"</span><span class="p">,</span>
+        <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.15</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">),</span>
+        <span class="n">loc</span><span class="o">=</span><span class="s2">"lower right"</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_rgrids</span><span class="p">(</span><span class="n">y_ticks</span><span class="p">,</span> <span class="n">y_ticks</span><span class="p">)</span>
 
@@ -580,8 +584,8 @@ params=(1, np.float64(1.6611785551133385), 0, np.float64(3.2699297373634497))
 <span class="n">N</span> <span class="o">=</span> <span class="mi">500</span>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">*</span> <span class="mi">6</span>
 <span class="n">wd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">*</span> <span class="mi">360</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;speed&quot;</span><span class="p">:</span> <span class="n">ws</span><span class="p">,</span> <span class="s2">&quot;direction&quot;</span><span class="p">:</span> <span class="n">wd</span><span class="p">})</span>
-<span class="n">plot_windrose</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;contour&quot;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">hot</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"speed"</span><span class="p">:</span> <span class="n">ws</span><span class="p">,</span> <span class="s2">"direction"</span><span class="p">:</span> <span class="n">wd</span><span class="p">})</span>
+<span class="n">plot_windrose</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">"contour"</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">hot</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

@@ -25,7 +25,9 @@ df = pd.DataFrame({"speed": ws, "direction": wd})
 
 def test_windrose_pd_not_default_names():
     kind = "scatter"
-    df_not_default_names = pd.DataFrame({"wind_speed": ws, "wind_direction": wd})
+    df_not_default_names = pd.DataFrame(
+        {"wind_speed": ws, "wind_direction": wd},
+    )
     plot_windrose(
         df_not_default_names,
         kind=kind,

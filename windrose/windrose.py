@@ -9,7 +9,9 @@ import numpy as np
 from matplotlib.projections.polar import PolarAxes
 from numpy import histogram2d
 
-ZBASE = -1000  # The starting zorder for all drawing, negative to have the grid on
+ZBASE = (
+    -1000
+)  # The starting zorder for all drawing, negative to have the grid on
 VAR_DEFAULT = "speed"
 DIR_DEFAULT = "direction"
 FIGSIZE_DEFAULT = (8, 8)
@@ -69,7 +71,9 @@ class WindAxesFactory:
                 ax = cls.from_ax(ax, *args, **kwargs)
                 return ax
         else:
-            raise NotImplementedError(f"typ={typ!r} but it might be in {d.keys()}")
+            raise NotImplementedError(
+                f"typ={typ!r} but it might be in {d.keys()}",
+            )
 
 
 class WindroseAxes(PolarAxes):
@@ -262,7 +266,8 @@ class WindroseAxes(PolarAxes):
                 fmt += " " + units
 
             labels = [
-                fmt.format(digits[k], digits[k + 1]) for k in range(len(digits) - 1)
+                fmt.format(digits[k], digits[k + 1])
+                for k in range(len(digits) - 1)
             ]
             if units:
                 labels[-1] = f">{digits[-1]} " + units
@@ -275,7 +280,13 @@ class WindroseAxes(PolarAxes):
 
         handles = get_handles()
         labels = get_labels(decimal_places, units)
-        self.legend_ = mpl.legend.Legend(self, handles, labels, loc=loc, **kwargs)
+        self.legend_ = mpl.legend.Legend(
+            self,
+            handles,
+            labels,
+            loc=loc,
+            **kwargs,
+        )
         return self.legend_
 
     def set_legend(self, **pyplot_arguments):
@@ -330,7 +341,9 @@ class WindroseAxes(PolarAxes):
         # if weibull factors are entered overwrite direction and var
         if "weibull_factors" in kwargs or "mean_values" in kwargs:
             if "weibull_factors" in kwargs and "mean_values" in kwargs:
-                raise TypeError("cannot specify both weibull_factors and mean_values")
+                raise TypeError(
+                    "cannot specify both weibull_factors and mean_values",
+                )
             statistic_type = "unset"
             if "weibull_factors" in kwargs:
                 statistic_type = "weibull"
@@ -344,7 +357,9 @@ class WindroseAxes(PolarAxes):
                         "specify 'frequency' argument for statistical input",
                     )
                 windFrequencies = kwargs.pop("frequency")
-                if len(windFrequencies) != len(direction) or len(direction) != len(var):
+                if len(windFrequencies) != len(direction) or len(
+                    direction,
+                ) != len(var):
                     if len(windFrequencies) != len(direction):
                         raise TypeError("len(frequency) != len(direction)")
                     elif len(direction) != len(var):
@@ -355,7 +370,10 @@ class WindroseAxes(PolarAxes):
                     for _ in range(int(windFrequencies[dbin] * 10000)):
                         if statistic_type == "weibull":
                             windSpeeds.append(
-                                random.weibullvariate(var[dbin][0], var[dbin][1]),
+                                random.weibullvariate(
+                                    var[dbin][0],
+                                    var[dbin][1],
+                                ),
                             )
                         elif statistic_type == "mean":
                             windSpeeds.append(
@@ -383,7 +401,11 @@ class WindroseAxes(PolarAxes):
                     f"If you want to exclude values below a certain threshold, "
                     f"try setting calm_limit={min(bins)}.",
                 )
-            elif len(bins) > 0 and calm_limit is not None and min(bins) < calm_limit:
+            elif (
+                len(bins) > 0
+                and calm_limit is not None
+                and min(bins) < calm_limit
+            ):
                 raise ValueError(
                     f"the lowest value in bins must be >= {calm_limit} (=calm_limits)",
                 )
@@ -507,7 +529,13 @@ class WindroseAxes(PolarAxes):
             val = vals[i, :] + origin
             origin += vals[i, :]
             zorder = ZBASE + nbins - i
-            patch = self.plot(angles, val, color=colors[i], zorder=zorder, **kwargs)
+            patch = self.plot(
+                angles,
+                val,
+                color=colors[i],
+                zorder=zorder,
+                **kwargs,
+            )
             self.patches_list.extend(patch)
         self._update()
 
@@ -874,7 +902,12 @@ def histogram(
         direction = direction + 180.0
         direction[direction >= 360.0] = direction[direction >= 360.0] - 360
 
-    table = histogram2d(x=var, y=direction, bins=[var_bins, dir_bins], density=False)[0]
+    table = histogram2d(
+        x=var,
+        y=direction,
+        bins=[var_bins, dir_bins],
+        density=False,
+    )[0]
     # add the last value to the first to have the table of North winds
     table[:, 0] = table[:, 0] + table[:, -1]
     # and remove the last col
@@ -886,7 +919,14 @@ def histogram(
 
 
 @_copy_docstring(WindroseAxes.contour)
-def wrcontour(direction, var, ax=None, rmax=None, figsize=FIGSIZE_DEFAULT, **kwargs):
+def wrcontour(
+    direction,
+    var,
+    ax=None,
+    rmax=None,
+    figsize=FIGSIZE_DEFAULT,
+    **kwargs,
+):
     """
     Draw contour probability density function and return Weibull
     distribution parameters.
@@ -898,7 +938,14 @@ def wrcontour(direction, var, ax=None, rmax=None, figsize=FIGSIZE_DEFAULT, **kwa
 
 
 @_copy_docstring(WindroseAxes.contourf)
-def wrcontourf(direction, var, ax=None, rmax=None, figsize=FIGSIZE_DEFAULT, **kwargs):
+def wrcontourf(
+    direction,
+    var,
+    ax=None,
+    rmax=None,
+    figsize=FIGSIZE_DEFAULT,
+    **kwargs,
+):
     ax = WindroseAxes.from_ax(ax, rmax=rmax, figsize=figsize)
     ax.contourf(direction, var, **kwargs)
     ax.set_legend()
@@ -906,7 +953,14 @@ def wrcontourf(direction, var, ax=None, rmax=None, figsize=FIGSIZE_DEFAULT, **kw
 
 
 @_copy_docstring(WindroseAxes.box)
-def wrbox(direction, var, ax=None, rmax=None, figsize=FIGSIZE_DEFAULT, **kwargs):
+def wrbox(
+    direction,
+    var,
+    ax=None,
+    rmax=None,
+    figsize=FIGSIZE_DEFAULT,
+    **kwargs,
+):
     ax = WindroseAxes.from_ax(ax, rmax=rmax, figsize=figsize)
     ax.box(direction, var, **kwargs)
     ax.set_legend()
@@ -914,7 +968,14 @@ def wrbox(direction, var, ax=None, rmax=None, figsize=FIGSIZE_DEFAULT, **kwargs)
 
 
 @_copy_docstring(WindroseAxes.bar)
-def wrbar(direction, var, ax=None, rmax=None, figsize=FIGSIZE_DEFAULT, **kwargs):
+def wrbar(
+    direction,
+    var,
+    ax=None,
+    rmax=None,
+    figsize=FIGSIZE_DEFAULT,
+    **kwargs,
+):
     ax = WindroseAxes.from_ax(ax, rmax=rmax, figsize=figsize)
     ax.bar(direction, var, **kwargs)
     ax.set_legend()
@@ -940,7 +1001,16 @@ def wrpdf(
     parameters
     """
     ax = WindAxes.from_ax(ax, figsize=figsize)
-    ax, params = ax.pdf(var, bins, Nx, bar_color, plot_color, Nbins, *args, **kwargs)
+    ax, params = ax.pdf(
+        var,
+        bins,
+        Nx,
+        bar_color,
+        plot_color,
+        Nbins,
+        *args,
+        **kwargs,
+    )
     return (ax, params)
 
 
@@ -1081,7 +1151,9 @@ def plot_windrose_np(
     if kind in D_KIND_PLOT.keys():
         f_plot = D_KIND_PLOT[kind]
     else:
-        raise Exception(f"kind={kind!r} but it must be in {D_KIND_PLOT.keys()!r}")
+        raise Exception(
+            f"kind={kind!r} but it must be in {D_KIND_PLOT.keys()!r}",
+        )
     # if f_clean is not None:
     #     df = f_clean(df)
     # var = df[var_name].values

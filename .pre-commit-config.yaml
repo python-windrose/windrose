@@ -43,19 +43,19 @@ repos:
     - id: add-trailing-comma
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: v0.17.3
+  rev: v0.17.4
   hooks:
     - id: ruff
       args: ["--fix", "--show-fixes"]
     - id: ruff-format
 
 - repo: https://github.com/tox-dev/pyproject-fmt
-  rev: v2.30.3
+  rev: v2.30.6
   hooks:
     - id: pyproject-fmt
 
 - repo: https://github.com/nbQA-dev/nbQA
-  rev: 1.9.1
+  rev: 1.10.0
   hooks:
     # mdformat works on the CLI but not as pre-commit yet.
     # Use `nbqa mdformat jupyterbook --nbqa-md` to run it locally.
@@ -74,7 +74,7 @@ repos:
     - id: nb-strip-paths
 
 - repo: https://github.com/woodruffw/zizmor-pre-commit
-  rev: v1.31.1
+  rev: v1.32.0
   hooks:
     - id: zizmor
 

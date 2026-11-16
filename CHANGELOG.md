@@ -8,6 +8,7 @@ in every released version.
 ### Version 1.x.x (unreleased)
 
 ## What's Changed
+* Expose windrose bin handles and labels for shared figure legends (#293).
 * Fix issue where sometimes the plot sectors showed a straight line instead of a curved one (#137)
 * `wrscatter` now converts the wind direction from degrees to radians, so scatter
   plots use the same North-up, clockwise convention as the other plots (#99)

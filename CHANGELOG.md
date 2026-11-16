@@ -8,6 +8,8 @@ in every released version.
 ### Version 1.x.x (unreleased)
 
 ## What's Changed
+* Keep project URLs under project metadata so dependency groups remain valid
+  and built distributions include their documentation and source links.
 * Fix issue where sometimes the plot sectors showed a straight line instead of a curved one (#137)
 * `wrscatter` now converts the wind direction from degrees to radians, so scatter
   plots use the same North-up, clockwise convention as the other plots (#99)

@@ -34,6 +34,9 @@ optional-dependencies.extras = [
   "pandas",
   "scipy",
 ]
+urls.documentation = "https://python-windrose.github.io/windrose"
+urls.homepage = "https://github.com/python-windrose/windrose"
+urls.repository = "https://github.com/python-windrose/windrose"
 
 [dependency-groups]
 dev = [
@@ -47,9 +50,6 @@ dev = [
   { include-group = "docs" },
 ]
 docs = [ "jupyter", "nbsphinx", "seaborn", "sphinx", "sphinx-copybutton", "sphinx-rtd-theme" ]
-urls.documentation = "https://python-windrose.github.io/windrose"
-urls.homepage = "https://github.com/python-windrose/windrose"
-urls.repository = "https://github.com/python-windrose/windrose"
 
 [tool.setuptools]
 packages = [ "windrose" ]

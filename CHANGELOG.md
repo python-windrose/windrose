@@ -11,6 +11,7 @@ in every released version.
 * Fix issue where sometimes the plot sectors showed a straight line instead of a curved one (#137)
 * `wrscatter` now converts the wind direction from degrees to radians, so scatter
   plots use the same North-up, clockwise convention as the other plots (#99)
+* Radial tick labels show percentages when a wind rose uses `normed=True` (#294)
 
 ### Version 1.7.0
 

@@ -78,6 +78,54 @@ def test_theta_labels():
     plt.close()
 
 
+@pytest.mark.parametrize("kind", ["bar", "box", "contour", "contourf"])
+@pytest.mark.parametrize("normed, suffix", [(False, ""), (True, "%")])
+def test_radial_label_units(kind, normed, suffix):
+    data = pd.DataFrame({"direction": [0, 90], "speed": [1, 2]})
+    ax = plot_windrose(data, kind=kind, normed=normed)
+    try:
+        expected = (
+            ["10%", "20%", "30%", "40%", "50%"]
+            if normed
+            else [
+                "0.2",
+                "0.4",
+                "0.6",
+                "0.8",
+                "1.0",
+            ]
+        )
+        assert [tick.get_text() for tick in ax.get_yticklabels()] == expected
+
+        ax.set_rmax(12.5)
+        ax.set_radii_angle(angle=90)
+        expected = [f"{r:.1f}{suffix}" for r in (2.5, 5, 7.5, 10, 12.5)]
+        assert [tick.get_text() for tick in ax.get_yticklabels()] == expected
+
+        ax.clear()
+        ax.set_rmax(10)
+        ax.set_radii_angle()
+        assert [tick.get_text() for tick in ax.get_yticklabels()] == [
+            "2",
+            "4",
+            "6",
+            "8",
+            "10",
+        ]
+    finally:
+        plt.close(ax.figure)
+
+
+def test_tex_radial_labels_escape_percent_sign():
+    ax = WindroseAxes.from_ax()
+    try:
+        ax.bar(np.array([0, 90]), np.array([1, 2]), normed=True)
+        ax.set_radii_angle(usetex=True)
+        assert ax.get_yticklabels()[-1].get_text() == r"50\%"
+    finally:
+        plt.close(ax.figure)
+
+
 def test_windrose_incorrect_bins_specified():
     ax = WindroseAxes.from_ax()
     with pytest.raises(ValueError) as exc_info:

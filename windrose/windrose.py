@@ -149,6 +149,7 @@ class WindroseAxes(PolarAxes):
         self.patches_list = []
 
         self.calm_count = None
+        self._normed = False
 
     def _colors(self, cmap, n):
         """
@@ -174,7 +175,11 @@ class WindroseAxes(PolarAxes):
             fmt = "%d"
         else:
             fmt = "%.1f"
-        radii_labels = [fmt % r for r in radii]
+        suffix = ""
+        if self._normed:
+            usetex = kwargs.get("usetex", mpl.rcParams["text.usetex"])
+            suffix = r"\%" if usetex else "%"
+        radii_labels = [(fmt % r) + suffix for r in radii]
         # radii_labels[0] = ""  # Removing label 0
         self.set_rgrids(
             radii=radii[1:],
@@ -310,6 +315,7 @@ class WindroseAxes(PolarAxes):
         Other Parameters
         ----------------
         normed : boolean, default False
+            Express the sector frequencies and radial labels as percentages.
         blowto : boolean, default False
         colors : str or list of str, default None
             The colors of the plot.
@@ -455,6 +461,7 @@ class WindroseAxes(PolarAxes):
             normed,
             blowto,
         )
+        self._normed = normed
 
         return bins, nbins, nsector, colors, angles, kwargs
 

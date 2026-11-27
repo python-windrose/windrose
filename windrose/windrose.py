@@ -190,6 +190,80 @@ class WindroseAxes(PolarAxes):
         self.set_rmax(rmax=self.rmax + calm_count)
         self.set_radii_angle(angle=self.radii_angle)
 
+    def _legend_handles_labels(self, decimal_places=1, units=None):
+        def get_handles():
+            handles = []
+            for p in self.patches_list:
+                if isinstance(p, mpl.patches.Polygon) or isinstance(
+                    p,
+                    mpl.patches.Rectangle,
+                ):
+                    color = p.get_facecolor()
+                elif isinstance(p, mpl.lines.Line2D):
+                    color = p.get_color()
+                else:
+                    raise AttributeError("Can't handle patches")
+                handles.append(
+                    mpl.patches.Rectangle(
+                        (0, 0),
+                        0.2,
+                        0.2,
+                        facecolor=color,
+                        edgecolor="black",
+                    ),
+                )
+            return handles
+
+        def get_labels(decimal_places=1, units=None):
+            digits = np.copy(self._info["bins"]).tolist()
+            if not digits:
+                return []
+            digits[-1] = digits[-2]
+            digits = [f"{label:.{decimal_places}f}" for label in digits]
+            fmt = "[{} : {}"
+            if locale.getlocale()[0] in ["fr_FR"]:
+                fmt += "["
+            else:
+                fmt += ")"
+
+            if units:
+                fmt += " " + units
+
+            labels = [
+                fmt.format(digits[k], digits[k + 1])
+                for k in range(len(digits) - 1)
+            ]
+            if units:
+                labels[-1] = f">{digits[-1]} " + units
+            else:
+                labels[-1] = f">{digits[-1]}"
+            return labels
+
+        return get_handles(), get_labels(decimal_places, units)
+
+    def get_legend_handles_labels(
+        self,
+        legend_handler_map=None,
+        *,
+        decimal_places=1,
+        units=None,
+    ):
+        """Return windrose bin handles and labels for a shared legend.
+
+        The bin labels use the same precision and units as :meth:`legend`.
+        Labeled Matplotlib artists are included after the windrose bins.
+        Calling this method does not create or replace an axes legend.
+        Pass the returned handles and labels explicitly to ``Figure.legend``::
+
+            handles, labels = ax.get_legend_handles_labels()
+            ax.figure.legend(handles, labels)
+        """
+        handles, labels = self._legend_handles_labels(decimal_places, units)
+        artist_handles, artist_labels = super().get_legend_handles_labels(
+            legend_handler_map,
+        )
+        return handles + artist_handles, labels + artist_labels
+
     def legend(self, loc="lower left", decimal_places=1, units=None, **kwargs):
         """
         Sets the legend location and her properties.
@@ -227,59 +301,10 @@ class WindroseAxes(PolarAxes):
             :obj:`matplotlib.pyplot.legend`
         """
 
-        def get_handles():
-            handles = []
-            for p in self.patches_list:
-                if isinstance(p, mpl.patches.Polygon) or isinstance(
-                    p,
-                    mpl.patches.Rectangle,
-                ):
-                    color = p.get_facecolor()
-                elif isinstance(p, mpl.lines.Line2D):
-                    color = p.get_color()
-                else:
-                    raise AttributeError("Can't handle patches")
-                handles.append(
-                    mpl.patches.Rectangle(
-                        (0, 0),
-                        0.2,
-                        0.2,
-                        facecolor=color,
-                        edgecolor="black",
-                    ),
-                )
-            return handles
-
-        def get_labels(decimal_places=1, units=None):
-            digits = np.copy(self._info["bins"]).tolist()
-            if not digits:
-                return ""
-            digits[-1] = digits[-2]
-            digits = [f"{label:.{decimal_places}f}" for label in digits]
-            fmt = "[{} : {}"
-            if locale.getlocale()[0] in ["fr_FR"]:
-                fmt += "["
-            else:
-                fmt += ")"
-
-            if units:
-                fmt += " " + units
-
-            labels = [
-                fmt.format(digits[k], digits[k + 1])
-                for k in range(len(digits) - 1)
-            ]
-            if units:
-                labels[-1] = f">{digits[-1]} " + units
-            else:
-                labels[-1] = f">{digits[-1]}"
-            return labels
-
         kwargs.pop("labels", None)
         kwargs.pop("handles", None)
 
-        handles = get_handles()
-        labels = get_labels(decimal_places, units)
+        handles, labels = self._legend_handles_labels(decimal_places, units)
         self.legend_ = mpl.legend.Legend(
             self,
             handles,
